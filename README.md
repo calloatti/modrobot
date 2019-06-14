@@ -1,4 +1,5 @@
 # modrobot
 Updates Minecraft mods
 
-https://github.com/calloatti/modrobot/wiki
+[Wiki](https://github.com/calloatti/modrobot/wiki)
+[Screenshots](https://github.com/calloatti/modrobot/wiki/Screenshots)
