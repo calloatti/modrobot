@@ -83,7 +83,7 @@ For m.lnx = 1 To m.nlen
 
    m.nk = Bitor(m.nk, Bitlshift(m.nb, m.nshift))
 
-   m.nshift =(m.nshift + 0x8)
+   m.nshift = m.nshift + 0x8
 
    If m.nshift = 0x20
 
