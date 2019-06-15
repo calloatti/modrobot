@@ -4,32 +4,38 @@
 
 UINT32 DLL_EXPORT fingerprint(const LPCSTR filename)
 {
-    FILE * ptr_file;
+    FILE * pf;
 
-    ptr_file = fopen(filename, "rb");
+    pf = fopen(filename, "rb");
 
-    if (!ptr_file)
+    if (!pf)
     {
         return 0;
     }
 
-    fseek(ptr_file, 0, SEEK_END);
+    // get file size
 
-    long flen = ftell(ptr_file);
+    fseek(pf, 0, SEEK_END);
 
-    fseek(ptr_file, 0, SEEK_SET);
+    long flen = ftell(pf);
+
+    //reset file pointer to BOF
+
+    fseek(pf, 0, SEEK_SET);
+
+    // create buffer to read entire file into
 
     byte *buffer;
 
     buffer = (byte*) calloc(flen, sizeof(byte));
 
-    fread(buffer, flen, 1, ptr_file);
+    fread(buffer, flen, 1, pf);
 
-    fclose(ptr_file);
+    fclose(pf);
 
     byte b;
 
-    // Get length of data that will be used to calculate the hash
+    // Get len of data
     // tab, cr, lf, and space are ignored
     // This value is used to initialize the hash to a 'random' value
 
@@ -59,7 +65,7 @@ UINT32 DLL_EXPORT fingerprint(const LPCSTR filename)
 
     INT32 shift = 0x0;
 
-    for (int i = 0; i < flen;  i = i + 1)
+    for (int i = 0; i < flen; i = i + 1)
     {
         b = buffer[i];
 
@@ -94,12 +100,12 @@ UINT32 DLL_EXPORT fingerprint(const LPCSTR filename)
     {
         h = h ^ k;
 
-        h = h * 0x5bd1e995;
+        h = h * m;
     }
 
     h = h ^ (h >> 13);
 
-    h = h * 0x5bd1e995;
+    h = h * m;
 
     h = h ^ (h >> 15);
 
@@ -110,11 +116,11 @@ UINT32 DLL_EXPORT fingerprint(const LPCSTR filename)
 
 UINT32 DLL_EXPORT fingerprintold(const LPCSTR filename)
 {
-    FILE * ptr_file;
+    FILE * pf;
 
-    ptr_file = fopen(filename, "rb");
+    pf = fopen(filename, "rb");
 
-    if (!ptr_file)
+    if (!pf)
     {
         return 0;
     }
@@ -123,7 +129,7 @@ UINT32 DLL_EXPORT fingerprintold(const LPCSTR filename)
 
     UINT32 len = 0;
 
-    while (fread( & b, 1, 1, ptr_file) > 0)
+    while (fread( & b, 1, 1, pf) > 0)
     {
         if (b == 0x9 || b == 0xa || b == 0xd || b == 0x20)
         {
@@ -138,9 +144,9 @@ UINT32 DLL_EXPORT fingerprintold(const LPCSTR filename)
 
     INT32 shift = 0x0;
 
-    fseek(ptr_file, 0, SEEK_SET);
+    fseek(pf, 0, SEEK_SET);
 
-    while (fread( & b, 1, 1, ptr_file) > 0)
+    while (fread( & b, 1, 1, pf) > 0)
     {
         if (b == 0x9 || b == 0xa || b == 0xd || b == 0x20)
         {
@@ -169,7 +175,7 @@ UINT32 DLL_EXPORT fingerprintold(const LPCSTR filename)
         }
     }
 
-    fclose(ptr_file);
+    fclose(pf);
 
     if (shift > 0)
     {
