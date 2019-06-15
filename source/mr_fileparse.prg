@@ -29,7 +29,7 @@ Endif
 
 If Seek(m.paid, 'addons_pjf', 'aid') = .F. Then
 
-   Select(m.nselect)
+   _restorearea(m.nselect)
 
    Return
 
@@ -226,4 +226,4 @@ For m.lnx = 1 To m.hfjson.Count
 
 Endfor
 
-Select(m.nselect)
+_restorearea(m.nselect)

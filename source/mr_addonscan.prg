@@ -10,7 +10,7 @@ If Not Used('addons_scan')
 
 Endif
 
-Select 'addons_scan'
+select 'addons_scan'
 
 Scan
 
@@ -26,4 +26,4 @@ Wait Clear
 
 Use In 'addons_scan'
 
-Select(m.nselect)
+_restorearea(m.nselect)

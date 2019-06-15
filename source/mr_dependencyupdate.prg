@@ -35,8 +35,17 @@ m.aid	= m.podependency.addonid
 m.fid	= m.podependency.fileid
 m.dtype	= m.podependency.Type
 
-= Seek(m.dtype, 'mr_enumdep_up', 'eid')
+
+If Seek(m.aid, 'mr_addons_up', 'aid') = .F.
+
+   *!* ADD DEPENDENCY ADDON ID TO ADDONS TABLE
+
+   mr_addonupdate(m.aid)
+
+Endif
+
 = Seek(m.aid, 'mr_addons_up', 'aid')
+= Seek(m.dtype, 'mr_enumdep_up', 'eid')
 = Seek(m.fid, 'mr_files_up', 'fid')
 
 m.dname	   = mr_enumdep_up.ename
@@ -58,5 +67,4 @@ Replace mr_dep_up.dname With m.dname In 'mr_dep_up'
 Replace mr_dep_up.aname With m.aname In 'mr_dep_up'
 Replace mr_dep_up.filename With m.filename In 'mr_dep_up'
 
-
-Select(m.nselect) 
+_restorearea(m.nselect)

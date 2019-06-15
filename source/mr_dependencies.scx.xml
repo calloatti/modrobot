@@ -1,0 +1,240 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322014960</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>2</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I30P3YMN</uniqueid>
+		<timestamp>1322139654</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 90
+Width = 90
+Alias = "mr_dependencies"
+Order = "filename"
+Database = ..\data\data1.dbc
+CursorSource = "mr_dependencies"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322139654</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>MR_DEPENDENCIES</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "DEPENDENCIES"
+uniqueid = 3B871445671843D2AF37253672C2A1B2
+Name = "MR_DEPENDENCIES"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Destroy
+*!* destroy
+
+_inisetvalue('MR_DEPENDENCIES_DID', mr_dependencies.aid)
+ENDPROC
+PROCEDURE init2
+*!* init2
+
+If Seek(_inigetvalue('MR_DEPENDENCIES_DID', mr_dependencies.aid), 'MR_DEPENDENCIES', 'DID') = .F.
+
+Go Top In 'mr_dependencies'
+
+Endif
+
+Thisform.updateui()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322123575</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_DEPENDENCIES</parent>
+		<properties>Height = 456
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IA00IMUK</uniqueid>
+		<timestamp>1322123727</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbmenu</objname>
+		<parent>MR_DEPENDENCIES</parent>
+		<properties>Top = 0
+Left = 924
+Height = 28
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

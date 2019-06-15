@@ -64,4 +64,3 @@ Scan For Empty(avatars_ascan.aurl)
 
 Endscan
 
-

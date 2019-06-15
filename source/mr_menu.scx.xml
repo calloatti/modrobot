@@ -1,0 +1,541 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+Width = 0
+Height = 0
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60PV5JL</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_menu</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+Height = 540
+Width = 1368
+DoCreate = .T.
+Caption = "MENU"
+BackColor = 47,47,53
+uniqueid = 61D4EE899D154419ABF855C1B3CDF300
+Name = "MR_MENU"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 24
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Instances"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_INSTANCES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 137
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Mods"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_MODS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLSQ</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 363
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Projects"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_ADDONS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLSW</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 476
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Files"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_FILES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLT2</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand5</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 589
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Game versions"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand5"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_ENUM_GAMEVERSION
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLT7</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand6</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 702
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Dependencies"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand6"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_DEPENDENCIES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLTD</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand7</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 815
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Avatars"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand7"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_AVATARS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLTJ</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand8</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 928
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "File versions"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand8"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_FILEVERSIONS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I617KLTO</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand9</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 1041
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Stats"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand9"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_STATS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I900L3UZ</uniqueid>
+		<timestamp>1322058252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand10</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 250
+Height = 108
+Width = 108
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "Mod dependencies"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand10"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_MOD_DEPENDENCIES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

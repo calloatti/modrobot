@@ -102,8 +102,7 @@ Endscan
 
 Use In 'mr_addons_fgn'
 
-
-Select (m.nselect)
+_restorearea(m.nselect)
 
 
  

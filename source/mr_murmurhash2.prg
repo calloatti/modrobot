@@ -33,31 +33,23 @@ m.strm = _apiHeapAlloc(m.heap, HEAP_ZERO_MEMORY, m.nlen)
 
 Sys(2600, m.strm, m.nlen, Filetostr(m.pfilename))
 
-If m.pnormalize = .T.
+*!* COUNT VALID BYTES
 
-   *!* COUNT VALID BYTES
+m.nsize = 0
 
-   m.nsize = 0
+For m.lnx = 1 To m.nlen
 
-   For m.lnx = 1 To m.nlen
+   m.nb = Asc(Sys(2600, m.strm + m.lnx - 1, 1))
 
-      m.nb = Asc(Sys(2600, m.strm + m.lnx - 1, 1))
+   If m.nb = 0x9 Or m.nb = 0xd Or m.nb = 0xa Or m.nb = 0x20 Then
 
-      If m.nb = 0x9 Or m.nb = 0xd Or m.nb = 0xa Or m.nb = 0x20 Then
+      Loop
 
-         Loop
+   Endif
 
-      Endif
+   m.nsize = m.nsize + 1
 
-      m.nsize = m.nsize + 1
-
-   Endfor
-
-Else
-
-   m.nsize = m.nlen
-
-Endif
+Endfor
 
 m.seed = 0x1
 
@@ -75,7 +67,7 @@ For m.lnx = 1 To m.nlen
 
    *!* SKIP SOME VALUES (TAB, LF, CR, SPACE)
 
-   If m.pnormalize = .T. And(m.nb = 0x9 Or m.nb = 0xa Or m.nb = 0xd Or m.nb = 0x20) Then
+   If m.nb = 0x9 Or m.nb = 0xa Or m.nb = 0xd Or m.nb = 0x20 Then
 
       Loop
 
@@ -141,4 +133,5 @@ Procedure mmh2_safemul32
    Return Bitand(m.pa, 0xffff) * m.pb + Bitlshift(Bitand((Bitrshift(m.pa, 16) * m.pb), 0xffff), 16)
 
 Endproc
+
 

@@ -39,4 +39,4 @@ For m.aid = m.aidmin To m.aidmax
 
 Endfor
 
-Select(m.nselect) 
+_restorearea(m.nselect) 

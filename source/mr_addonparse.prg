@@ -20,7 +20,7 @@ Endif
 
 If Seek(m.paid, 'addons_pja', 'aid') = .F. Then
 
-   Select(m.nselect)
+   _restorearea(m.nselect)
 
    Return
 
@@ -143,6 +143,4 @@ Endif
 
 _logwrite('ADDON PARSE END', m.paid)
 
-Select(m.nselect)
-
-
+_restorearea(m.nselect)

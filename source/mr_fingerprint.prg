@@ -1,70 +1,25 @@
 *!* mr_fingerprint
 
-Lparameters pfingerprint
+Lparameters pfilename
 
-m.fingerprint = m.pfingerprint
+Local fp
 
-If Vartype(m.fingerprint) = 'N'
+If File(m.pfilename)
 
-   m.fingerprint = '[' + Transform(m.fingerprint) + ']'
+   Declare Integer fingerprint In fingerprint.Dll String
 
-Endif
+   m.fp = fingerprint(m.pfilename)
 
-If Not Left(m.fingerprint, 1) == '['
+   If m.fp < 0
 
-   m.fingerprint = '[' + m.fingerprint
-
-Endif
-
-If Not Right(m.fingerprint, 1) == ']'
-
-   m.fingerprint = m.fingerprint + ']'
-
-Endif
-
-m.aid = 0
-
-_logwrite('FINGERPRINT START')
-
-m.winhttp = Newobject('winhttp', 'winhttp.vcx')
-
-*m.winhttp.setproxy(2, 'localhost:8888')
-
-m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
-
-m.winhttp.option_enableredirects = .T.
-
-m.url = 'https://addons-ecs.forgesvc.net/api/v2/fingerprint'
-
-m.winhttp.Open('POST', m.url, .T.)
-
-m.winhttp.setrequestheader('Accept', 'application/json')
-m.winhttp.setrequestheader('Content-Type', 'application/json')
-
-m.result = m.winhttp.Send(m.fingerprint)
-
-Do While m.winhttp.waitforresponse(0) = 0
-
-   DoEvents
-
-   _apisleep(50)
-
-Enddo
-
-If m.winhttp.responsestatus = 200 Then
-
-   Public ojson
-
-   m.ojson = nfjsonread(m.winhttp.responsetext)
-
-   If Type('m.ojson.exactmatches[1].id') # 'U'
-
-      m.aid = m.ojson.exactmatches[1].Id
+      m.fp = m.fp + Int(2^32)
 
    Endif
 
+Else
+
+   m.fp = 0
+
 Endif
 
-_logwrite('FINGERPRINT END')
-
-Return m.aid
+Return m.fp

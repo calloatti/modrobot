@@ -1,0 +1,844 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1321887237</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>4</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I30I2W6R</uniqueid>
+		<timestamp>1322123821</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 320
+Width = 90
+Alias = "mr_files"
+Order = "fid"
+Database = ..\data\data1.dbc
+CursorSource = "mr_files"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60QZMK8</uniqueid>
+		<timestamp>1322123821</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 94
+Left = 398
+Height = 242
+Width = 90
+Alias = "mr_avatars"
+Order = "aid"
+Database = ..\data\data1.dbc
+CursorSource = "mr_avatars"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60QZMK9</uniqueid>
+		<timestamp>1321886833</timestamp>
+		<class>relation</class>
+		<classloc/>
+		<baseclass>relation</baseclass>
+		<objname>Relation1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>ParentAlias = "mr_files"
+RelationalExpr = "aid"
+ChildAlias = "mr_avatars"
+ChildOrder = "aid"
+Name = "Relation1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322123821</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>MR_FILES</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "FILES"
+uniqueid = 3B76DDD5BE5A4767AF76FB98A417F81B
+Name = "MR_FILES"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Destroy
+*!* destroy
+
+_inisetvalue('MR_FILES_FID', mr_files.fid)
+ENDPROC
+PROCEDURE init2
+*!* init2
+
+If Seek(_inigetvalue('MR_FILES_FID', mr_files.fid), 'MR_FILES', 'FID') = .F.
+
+Go Top In 'mr_files'
+
+Endif
+
+Thisform.updateui()
+ENDPROC
+PROCEDURE updateui
+*!* updateui
+
+Thisform._editbox1.Value = mr_files.hfjson
+
+Thisform._editbox1.Value =  nfjsonformat(mr_files.hfjson)
+
+Thisform.tbjson.Enabled = Not Empty(mr_files.hfjson)
+
+
+If Empty(mr_avatars.avatar)
+
+Thisform.imgavatar.PictureVal = Filetostr(Thisform.apppath + 'res\noimage.png')
+
+Else
+
+Thisform.imgavatar.PictureVal = mr_avatars.avatar
+
+Endif
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60QI1N3</uniqueid>
+		<timestamp>1321886394</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>MR_FILES</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 456
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322076672</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_FILES</parent>
+		<properties>Anchor = 15
+Height = 300
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+Lparameters nColIndex
+
+Thisform.updateui()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60QI1N4</uniqueid>
+		<timestamp>1321886394</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox1</objname>
+		<parent>MR_FILES</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 12
+Height = 144
+Left = 480
+ReadOnly = .T.
+Top = 348
+Width = 312
+IntegralHeight = .F.
+Name = "_editbox1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I30I2W6R</uniqueid>
+		<timestamp>1322076408</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_addon</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 72
+Height = 28
+Width = 72
+Caption = "API ADDON"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_addon"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon(mr_files.aid))
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322076408</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_file</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 204
+Height = 28
+Width = 60
+Caption = "API FILE"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_file"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_file(mr_files.aid, mr_files.fid))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I30I2W6R</uniqueid>
+		<timestamp>1322076408</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 816
+Height = 28
+Width = 48
+Caption = "FILES"
+ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject_files(mr_files.aid))
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322076672</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverview</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 744
+Height = 28
+Width = 72
+Caption = "OVERVIEW"
+ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tboverview"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject(mr_files.aid))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60R2LHQ</uniqueid>
+		<timestamp>1322104936</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbgetnew</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 60
+Caption = "GET NEW"
+Enabled = .F.
+ToolTipText = "DOWNLOADS NEW PROJECTS"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbgetnew"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1321887237</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_files</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 144
+Height = 28
+Width = 60
+Caption = "API FILES"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_files"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_files(mr_files.aid))
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60R2LI1</uniqueid>
+		<timestamp>1322076672</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbjson</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 324
+Height = 28
+Width = 60
+Caption = "JSON"
+ToolTipText = "OPEN JSON IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbjson"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local cfile
+
+m.cfile = _getapppath() + 'json'
+
+If Not Directory(m.cfile, 1)
+
+Mkdir(m.cfile)
+
+Endif
+
+m.cfile = m.cfile + '\f_' + Transform(mr_files.fid, '@l 9999999999') + '.txt'
+
+Strtofile(nfjsonformat(mr_files.hfjson), m.cfile)
+
+mr_shellexecute(m.cfile)
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I90J2KF8</uniqueid>
+		<timestamp>1322076672</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_changelog</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 264
+Height = 28
+Width = 60
+Caption = "API CHANGELOG"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_changelog"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_file_changelog(mr_files.aid, mr_files.fid))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I90JGQS3</uniqueid>
+		<timestamp>1322076672</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfile</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 864
+Height = 28
+Width = 48
+Caption = "FILE"
+ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tbfile"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject_files(mr_files.aid, mr_files.fid))
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60QI1N5</uniqueid>
+		<timestamp>1321886394</timestamp>
+		<class>image</class>
+		<classloc/>
+		<baseclass>image</baseclass>
+		<objname>imgavatar</objname>
+		<parent>MR_FILES</parent>
+		<properties>Anchor = 12
+Picture = ..\res\noimage1.png
+Stretch = 2
+Height = 144
+Left = 804
+Top = 348
+Width = 144
+Name = "imgavatar"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60QI1N6</uniqueid>
+		<timestamp>1322076992</timestamp>
+		<class>_splitter</class>
+		<classloc>..\..\shared\_splitter.vcx</classloc>
+		<baseclass>shape</baseclass>
+		<objname>sp1</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 336
+Left = 12
+Height = 12
+Width = 936
+Anchor = 4
+sp_minimumsize = 138
+Name = "sp1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I81DX257</uniqueid>
+		<timestamp>1322123821</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbmenu</objname>
+		<parent>MR_FILES</parent>
+		<properties>Top = 0
+Left = 924
+Height = 28
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

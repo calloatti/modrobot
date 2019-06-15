@@ -2,7 +2,7 @@
 
 Local cfile, crlf, furl, purl
 
-SELECT * FROM mr_files ORDER BY aname,filename WHERE 'FABRIC' $ mr_files.foldername INTO CURSOR sqlres
+select * From mr_files Order By aname, filename Where 'FABRIC' $ mr_files.foldername Into Cursor sqlres
 
 m.cfile = 'C:\VFPP\CURSE\docs\fabric-files.txt'
 
@@ -12,16 +12,16 @@ Strtofile('##List of Fabric mod files on CurseForge' + m.crlf, m.cfile, 0)
 Strtofile(m.crlf, m.cfile, 1)
 
 
-Strtofile(Ttoc(Datetime(), 3) + m.crlf, m.cfile,1)
+Strtofile(Ttoc(Datetime(), 3) + m.crlf, m.cfile, 1)
 Strtofile(m.crlf, m.cfile, 1)
 Strtofile('Mod Name | File Name|MC Ver', m.cfile, 1)
 Strtofile(m.crlf, m.cfile, 1)
 Strtofile('---|---|---', m.cfile, 1)
 Strtofile(m.crlf, m.cfile, 1)
 
-SELECT 'sqlres'
+Select 'sqlres'
 
-Scan 
+Scan
 
    m.purl = 'https://minecraft.curseforge.com/projects/' + Transform(sqlres.aid)
    m.furl = 'https://minecraft.curseforge.com/projects/' + Transform(sqlres.aid) + '/files/' + Transform(sqlres.fid)
@@ -34,4 +34,3 @@ Scan
 Endscan
 
 
- 

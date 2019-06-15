@@ -1,0 +1,510 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Class</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80H8LI7</uniqueid>
+		<timestamp>1322008659</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverview</objname>
+		<parent/>
+		<properties>Name = "tboverview"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>tboverview</objname>
+		<parent/>
+		<properties>Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80H9Z9J</uniqueid>
+		<timestamp>1322008694</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles</objname>
+		<parent/>
+		<properties>Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>tbfiles</objname>
+		<parent/>
+		<properties>Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80H9Z9J</uniqueid>
+		<timestamp>1322008706</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbwiki</objname>
+		<parent/>
+		<properties>Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>tbwiki</objname>
+		<parent/>
+		<properties>Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80H9Z9J</uniqueid>
+		<timestamp>1322008720</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbimages</objname>
+		<parent/>
+		<properties>Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>tbimages</objname>
+		<parent/>
+		<properties>Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80H9Z9J</uniqueid>
+		<timestamp>1322008725</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbissues</objname>
+		<parent/>
+		<properties>Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>tbissues</objname>
+		<parent/>
+		<properties>Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80H9Z9J</uniqueid>
+		<timestamp>1322008731</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbsource</objname>
+		<parent/>
+		<properties>Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>tbsource</objname>
+		<parent/>
+		<properties>Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80A4E11</uniqueid>
+		<timestamp>1322025744</timestamp>
+		<class>custom</class>
+		<classloc/>
+		<baseclass>custom</baseclass>
+		<objname>fp</objname>
+		<parent/>
+		<properties>Height = 45
+Width = 79
+fphashes = 
+fpresponse = 0
+fpresponsetext = 
+fpojson = 
+Name = "fp"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Init
+*!* INIT
+
+
+ENDPROC
+PROCEDURE fpadd
+*!* FPADD
+
+Lparameters phash
+
+If Vartype(m.phash) = 'N'
+
+m.phash = Transform(m.phash)
+
+Endif
+
+If Vartype(m.phash) # 'C'
+
+Error 'PARAM HASH VARTYPE # C'
+
+Endif
+
+If Empty(This.fphashes)
+
+This.fphashes = m.phash
+
+Else
+
+This.fphashes = This.fphashes + ', ' + m.phash
+
+Endif
+ENDPROC
+PROCEDURE fppost
+*!* FPPOST
+
+Local winhttp As 'winhttp' Of 'winhttp.vcx'
+Local payload, url
+
+If Empty(This.fphashes)
+
+Return
+
+Endif
+
+_logwrite('FINGERPRINT START')
+
+This.fpresponse = 0
+
+This.fpresponsetext = ''
+
+This.fpojson = ''
+
+m.payload = '[' + This.fphashes + ']'
+
+m.winhttp = Newobject('winhttp', 'winhttp.vcx')
+
+*m.winhttp.setproxy(2, 'localhost:8888')
+
+m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
+
+m.winhttp.option_enableredirects = .T.
+
+m.url = 'https://addons-ecs.forgesvc.net/api/v2/fingerprint'
+
+m.winhttp.Open('POST', m.url, .T.)
+
+m.winhttp.setrequestheader('Accept', 'application/json')
+
+m.winhttp.setrequestheader('Content-Type', 'application/json')
+
+m.winhttp.Send(m.payload)
+
+Do While m.winhttp.waitforresponse(0) = 0
+
+DoEvents
+
+_apisleep(50)
+
+Enddo
+
+This.fpresponse = m.winhttp.responsestatus
+
+This.fpresponsetext = m.winhttp.responsetext
+
+If m.winhttp.responsestatus = 200 Then
+
+Public ojson
+
+m.ojson = nfjsonread(m.winhttp.responsetext)
+
+This.fpojson = m.ojson
+
+Endif
+
+_logwrite('FINGERPRINT END', This.fpresponse)
+
+
+
+
+
+ENDPROC
+PROCEDURE fpreset
+*!* FPRESET
+
+This.fphashes = '[]'
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3>fphashes
+fpresponse
+fpresponsetext
+fpojson
+*fpreset Resets the list of hashes
+*fpadd Adds a hash to the hash list
+*fppost Makes the post request to the API using the hash list
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>fp</objname>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

@@ -1,0 +1,294 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1321776270</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>2</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I41CGGOW</uniqueid>
+		<timestamp>1322123852</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 90
+Alias = "fabric_projects"
+Database = ..\data\data1.dbc
+CursorSource = "fabric_projects"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322123852</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>MR_FABRIC_PROJECTS</objname>
+		<parent/>
+		<properties>Top = 0
+DoCreate = .T.
+Caption = "FABRIC PROJECTS"
+uniqueid = 0E72EDB345234E98B501B829F6B2FE18
+Name = "MR_FABRIC_PROJECTS"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322123852</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_FABRIC_PROJECTS</parent>
+		<properties>Height = 456
+Left = 12
+RecordSource = "fabric_projects"
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1321776270</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand6</objname>
+		<parent>MR_FABRIC_PROJECTS</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 48
+Caption = "XML"
+ZOrderSet = 4
+Name = "_tbcommand6"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Thisform._gridview1.datatoexcelxlm('C:\VFPP\CURSE\export\fabric_mods.xls')
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1321776377</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_FABRIC_PROJECTS</parent>
+		<properties>Top = 0
+Left = 72
+Height = 28
+Width = 48
+Caption = "TXT"
+ZOrderSet = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Thisform._gridview1.DATAtotext('C:\VFPP\CURSE\export\fabric_mods.txt')
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I41CKRG5</uniqueid>
+		<timestamp>1321776377</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>MR_FABRIC_PROJECTS</parent>
+		<properties>Top = 0
+Left = 132
+Height = 28
+Width = 48
+Caption = "HTML"
+ZOrderSet = 4
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Thisform._gridview1.datatohtml('C:\VFPP\CURSE\export\fabric_mods.html')
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

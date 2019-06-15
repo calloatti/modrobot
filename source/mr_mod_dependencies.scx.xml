@@ -1,0 +1,253 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322040891</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322102614</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_mod_dependencies</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "MOD DEPENDENCIES"
+mr_iguid = 
+uniqueid = EE1A345833EC405592A6C539AA23C80F
+Name = "MR_MOD_DEPENDENCIES"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE load2
+Thisform.mr_iguid = _inigetvalue('MR_MODS_IGUID', Replicate('9', 32))
+
+
+Select mr_mods.aid As aid1, mr_mods.fid1 As fid1, mr_mods.filename1 As filename1, ;
+mr_dependencies_a.aid As aid2, mr_dependencies_a.aname As pname, ;
+mr_dependencies_a.dtype As dtype, mr_dependencies_a.dname, .F. As OK;
+FROM ;
+data1!mr_mods ;
+LEFT Outer Join data1!mr_dependencies mr_dependencies_a ;
+ON  mr_mods.fid1 = mr_dependencies_a.fid;
+WHERE  mr_mods.iguid = ?Thisform.mr_iguid Into Cursor sqlresult Readwrite
+
+
+Use Dbf('sqlresult') Again In 0 Alias 'sqlresult2'
+
+Select 'sqlresult2'
+
+Scan
+
+If Isnull(sqlresult2.dtype) Then
+
+Replace sqlresult2.OK With .T. In 'sqlresult2'
+
+Endif
+
+If sqlresult2.dtype = 1 Then
+
+Replace sqlresult2.OK With .T. In 'sqlresult2'
+
+Endif
+
+Select 'sqlresult'
+
+Locate For sqlresult.aid1 == sqlresult2.aid2
+
+Select 'sqlresult2'
+
+If Found('sqlresult')
+
+Replace sqlresult2.OK With .T. In 'sqlresult2'
+
+Endif
+
+Endscan
+
+
+Select 'sqlresult'
+
+Go Top
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>mr_iguid
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322073666</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>_gridview1</objname>
+		<parent>MR_MOD_DEPENDENCIES</parent>
+		<properties>Height = 456
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "_gridview1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
+
+Do Case
+
+Case  sqlresult.dtype = 2  And sqlresult.ok = .f.
+
+This.HighlightBackColor = Rgb(255, 241, 118)
+
+Case sqlresult.dtype = 3  And sqlresult.ok = .f.
+
+This.HighlightBackColor = Rgb(229, 115, 115)
+
+Otherwise
+
+This.HighlightBackColor = This.gethighlightbackcolor()
+
+Endcase
+
+ENDPROC
+PROCEDURE getdynamicbackcolor
+Lparameters poColum As Column
+
+*!* http://materialuicolors.co/?utm_source=launchers
+
+Local lnDynamicBackColor
+
+Do Case
+
+Case  sqlresult.dtype = 2 and sqlresult.ok = .f.
+
+
+m.lnDynamicBackColor = Rgb(0xFF, 0xF9, 0xC4)
+
+Case  sqlresult.dtype = 3 and sqlresult.ok = .f.
+
+m.lnDynamicBackColor = Rgb(0xFF, 0xCD, 0xD2)
+
+
+Otherwise
+
+m.lnDynamicBackColor = This.ColumnBackColor
+
+
+Endcase
+
+Return m.lnDynamicBackColor
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

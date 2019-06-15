@@ -138,8 +138,5 @@ Endif
 
 Use In 'addons_up'
 
-Select(m.nselect)
-
-
-
+_restorearea(m.nselect)
 

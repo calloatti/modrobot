@@ -1,0 +1,465 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322006653</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>3</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I6148MZA</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 292
+Width = 114
+Alias = "mr_instances"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80F59K3</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 90
+Width = 90
+Alias = "mr_enum_gameversion"
+Order = "gverlong"
+OrderDirection = 2
+Database = ..\data\data1.dbc
+CursorSource = "mr_enum_gameversion"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>MR_INSTANCES</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "INSTANCES"
+uniqueid = B663AFD3DC7F4BB48D96D49268F1C9CA
+Name = "MR_INSTANCES"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322100162</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Height = 456
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+showmemocolumns = .T.
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE DblClick
+_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+
+Do Form MR_MODS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand6</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 60
+Caption = "ADD"
+ToolTipText = "ADD INSTANCES"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand6"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_instancegetfolder()
+
+Thisform.gridmain.Refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 84
+Height = 28
+Width = 60
+Caption = "DELETE"
+ToolTipText = "DELETE SELECTED INSTANCE"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Delete Next 1 In 'mr_instances'
+
+Thisform.Refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I61E37EP</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 312
+Height = 28
+Width = 60
+Caption = "OPEN"
+ToolTipText = "OPEN THE INSTANCE MOD LIST"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+
+Do Form MR_MODS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 156
+Height = 28
+Width = 60
+Caption = "MINVER"
+ToolTipText = "SETS THE MIN MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local nselect, result
+
+m.nselect = Select()
+
+Select 'mr_enum_gameversion'
+
+*!* Lparameters pItemID, pParentId, pItemType, pItemChecked, pItemDisabled, pItemCaption, pItemPicture
+
+Go Top
+
+Scan
+
+This.tbmenuitemadd(Recno('mr_enum_gameversion'), 0, 0, 0, 0, mr_enum_gameversion.gver)
+
+Endscan
+
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_enum_gameversion'
+
+Replace mr_instances.gver1 With mr_enum_gameversion.gver
+Replace mr_instances.gverlong1 With mr_enum_gameversion.gverlong
+
+Endif
+
+Thisform.Refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I80FWCLJ</uniqueid>
+		<timestamp>1322123833</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 228
+Height = 28
+Width = 72
+Caption = "MAXVER"
+ToolTipText = "SETS THE MAX MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local nselect, result
+
+m.nselect = Select()
+
+Select 'mr_enum_gameversion'
+
+Scan
+
+This.tbmenuitemadd(Recno('mr_enum_gameversion'), 0, 0, 0, 0, Alltrim(mr_enum_gameversion.gver))
+
+Endscan
+
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_enum_gameversion'
+
+Replace mr_instances.gver2 With mr_enum_gameversion.gver
+Replace mr_instances.gverlong2 With mr_enum_gameversion.gverlong
+
+Endif
+
+Thisform.Refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

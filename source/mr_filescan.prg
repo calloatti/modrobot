@@ -2,7 +2,6 @@
 
 Local forced, nselect, silent
 
-
 m.nselect = Select()
 
 If Not Used('addons_scan')
@@ -36,4 +35,4 @@ Wait Clear
 
 Use In 'files_scan'
 
-Select(m.nselect) 
+_restorearea(m.nselect)
