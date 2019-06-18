@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322040891</timestamp>
+		<timestamp>1322357540</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>1</reserved2>
+		<reserved2>2</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,8 +58,41 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5ID13H6P8</uniqueid>
+		<timestamp>1322357730</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 90
+Alias = "mr_instances"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322102614</timestamp>
+		<timestamp>1322357730</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -73,9 +106,15 @@ Name = "MR_MOD_DEPENDENCIES"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods>PROCEDURE load2
-Thisform.mr_iguid = _inigetvalue('MR_MODS_IGUID', Replicate('9', 32))
+		<methods>PROCEDURE init2
+*!* init2
 
+thisform.updateui()
+ENDPROC
+PROCEDURE load2
+Thisform.mr_iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+= Seek(Thisform.mr_iguid, 'mr_instances', 'iguid')
 
 Select mr_mods.aid As aid1, mr_mods.fid1 As fid1, mr_mods.filename1 As filename1, ;
 mr_dependencies_a.aid As aid2, mr_dependencies_a.aname As pname, ;
@@ -127,6 +166,34 @@ Go Top
 
 
 
+
+
+
+ENDPROC
+PROCEDURE updateui
+*!* updateui
+
+m.sep = Space(3)
+
+Thisform.lblinstance.Caption = ' ' + ;
+'GUID: ' + mr_instances.iguid + m.sep + ;
+'NAME: ' + mr_instances.iname + m.sep + ;
+'VERSION ' + mr_instances.iminecraft + m.sep + ;
+'LOADER: ' + mr_instances.iloader + m.sep + ;
+'MINVER: ' + mr_instances.gver1 + m.sep + ;
+'MAXVER: ' + mr_instances.gver2 + m.sep + ;
+'PATH: ' + mr_instances.ifolder
+
+If Empty(mr_instances.iname) Then
+
+Thisform.Caption = 'DEPS - ' + mr_instances.iguid
+
+Else
+
+Thisform.Caption = 'DEPS - ' + mr_instances.iname
+
+Endif
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -146,13 +213,13 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322073666</timestamp>
+		<timestamp>1322357540</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>_gridview1</objname>
 		<parent>MR_MOD_DEPENDENCIES</parent>
-		<properties>Height = 456
+		<properties>Height = 432
 Left = 12
 Top = 36
 Width = 936
@@ -224,6 +291,231 @@ ENDPROC
 		<user/>
 	</record>
 	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID12N36R</uniqueid>
+		<timestamp>1322356790</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbmenu</objname>
+		<parent>MR_MOD_DEPENDENCIES</parent>
+		<properties>Top = 0
+Left = 912
+Height = 28
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+*!*	Local choice
+
+
+*!*	This.tbmenuitemadd(01, 0, 0, 0, 0, "Mod Manager")
+*!*	This.tbmenuitemadd(02, 0, 0, 0, 0, "Workshop Manager")
+*!*	This.tbmenuitemadd(03, 0, 0, 0, 0, "PickNMix Manager")
+*!*	This.tbmenuitemadd(04, 0, 0, 0, 0, "DLC Manager")
+*!*	This.tbmenuitemadd(05, 0, 0, 0, 0, "Import Manager")
+*!*	This.tbmenuitemadd(00, 0, 1)
+*!*	This.tbmenuitemadd(11, 0, 0, 0, 0, "Civ V DLC Folder")
+*!*	This.tbmenuitemadd(12, 0, 0, 0, 0, "Civ V MODS Folder")
+*!*	This.tbmenuitemadd(13, 0, 0, 0, 0, "Civ V Cache Folder")
+*!*	This.tbmenuitemadd(14, 0, 0, 0, 0, "Mod Manager MODS Folder")
+*!*	This.tbmenuitemadd(00, 0, 1)
+*!*	This.tbmenuitemadd(21, 0, 0, 0, 0, "Delete Civ5ModsDatabase.db")
+*!*	*!*This.tbmenuitemadd(00, 0, 1)
+*!*	*!*	This.tbmenuitemadd(06, 0, 0, 0, 0, "")
+*!*	*!*	This.tbmenuitemadd(07, 0, 0, 0, 0, "")
+*!*	*!*	This.tbmenuitemadd(00, 0, 1)
+*!*	*!*This.tbmenuitemadd(08, 0, 0, 0, 0, "Set form size to 1280 x 720")
+
+*!*	m.choice = This.tbmenushow()
+
+*!*	Do Case
+
+*!*		Case m.choice = 1
+*!*			Thisform.doform('CMM_MODS_LOCAL')
+
+*!*		Case m.choice = 2
+*!*			Thisform.doform('CMM_MODS_WORKSHOP')
+
+*!*		Case m.choice = 3
+*!*			Thisform.doform('CMM_MODS_PICKNMIX')
+
+*!*		Case m.choice = 4
+*!*			Thisform.doform('CMM_MODS_DLC')
+
+*!*		Case m.choice = 5
+*!*			Thisform.doform('CMM_IMPORT')
+
+*!*		Case m.choice = 11
+*!*			*_apiShellExecute(Thisform.HWnd, "open", Addbs(cmm_getciv5installpath()) + 'Assets\DLC', "", "", 1)
+
+*!*		Case m.choice = 12
+*!*			*_apiShellExecute(Thisform.HWnd, "open", cmm_getciv5modsfolderpath(), "", "", 1)
+
+*!*		Case m.choice = 13
+*!*			*_apiShellExecute(Thisform.HWnd, "open", cmm_getciv5cachefolderpath(), "", "", 1)
+
+*!*		Case m.choice = 14
+*!*			_apiShellExecute(Thisform.HWnd, "open", Thisform.apppath + 'mods', "", "", 1)
+
+*!*		Case m.choice = 21
+*!*			*cmm_civ5modsdatabasedelete()
+
+*!*		Case m.choice = 6
+
+
+*!*		Case m.choice = 7
+
+*!*		Case m.choice = 8
+*!*			Thisform.Width	= 1280 - Sysmetric(3) * 2
+*!*			Thisform.Height	= 720 - Sysmetric(4) * 2 - Sysmetric(9)
+
+*!*	Endcase
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID12N36G</uniqueid>
+		<timestamp>1322356802</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles</objname>
+		<parent>MR_MOD_DEPENDENCIES</parent>
+		<properties>Top = 0
+Left = 840
+Height = 28
+Width = 48
+Caption = "FILES"
+ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject_files(sqlresult.aid2))
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID12N36L</uniqueid>
+		<timestamp>1322356802</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverview</objname>
+		<parent>MR_MOD_DEPENDENCIES</parent>
+		<properties>Top = 0
+Left = 768
+Height = 28
+Width = 72
+Caption = "OVERVIEW"
+ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tboverview"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject(sqlresult.aid2))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID13H6PW</uniqueid>
+		<timestamp>1322357540</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>lblinstance</objname>
+		<parent>MR_MOD_DEPENDENCIES</parent>
+		<properties>FontSize = 8
+Anchor = 14
+Caption = ""
+Height = 15
+Left = 12
+Top = 480
+Width = 936
+autowidth = .F.
+Name = "lblinstance"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
 		<platform>COMMENT</platform>
 		<uniqueid>RESERVED</uniqueid>
 		<timestamp>0</timestamp>
@@ -234,6 +526,7 @@ ENDPROC
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>
 		<protected/>
 		<methods/>

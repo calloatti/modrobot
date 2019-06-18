@@ -2,9 +2,8 @@
 
 Lparameters premotefile, plocalfile
 
-*!* NRESULT 0 ERROR DOWNLOADING FILE
-*!* NRESULT 1 FILE DOWNLOADED
-*!* NRESULT 2 FILE ALREADY EXISTS
+*!* NRESULT 0 FILE DOWNLOAD ERROR
+*!* NRESULT 1 FILE DOWNLOAD OK
 
 #Define MRDOWNLOAD_ERROR		0
 #Define MRDOWNLOAD_SUCCESS		1
@@ -35,7 +34,7 @@ If Not _file(m.plocalfile)
 
    m.winhttp = Newobject('winhttp', 'winhttp')
 
-   m.winhttp.setproxy(2, 'localhost:8888')
+   *m.winhttp.setproxy(2, 'localhost:8888')
 
    m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
 
@@ -66,8 +65,6 @@ If Not _file(m.plocalfile)
       Error 'FOPEN/FCREATE ERROR'
 
    Endif
-
-   _logwrite('GET', m.premotefile)
 
    Do While .T.
 
@@ -167,15 +164,11 @@ If _getfilesize(m.plocalfile) = m.bytestotal Then
 
    m.nresult = MRDOWNLOAD_SUCCESS
 
-   _logwrite('DOWNLOAD_SUCCESS')
-
 Else
 
    _apideletefile(m.plocalfile)
 
    m.nresult = MRDOWNLOAD_ERROR
-
-   _logwrite('MRDOWNLOAD_ERROR')
 
 Endif
 

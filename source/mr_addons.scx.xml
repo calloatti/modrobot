@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1322138831</timestamp>
+		<timestamp>1322356269</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6080T40</uniqueid>
-		<timestamp>1322138831</timestamp>
+		<timestamp>1322356269</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -158,17 +158,17 @@ Name = "Relation1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322138831</timestamp>
+		<timestamp>1322356269</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_ADDONS</objname>
+		<objname>mr_addons</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
 DoCreate = .T.
 Caption = "PROJECTS"
-uniqueid = A589245BE650426A9A9B873950C338EB
+uniqueid = 08407DF8FD254EFB8604E89E0BF2BBDA
 Name = "MR_ADDONS"
 tmrSql.Name = "tmrSql"
 </properties>
@@ -245,7 +245,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -284,7 +284,7 @@ Name = "edtlog"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Anchor = 15
 Height = 300
 Left = 12
@@ -315,54 +315,15 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322104930</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand6</objname>
-		<parent>MR_ADDONS</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 60
-Caption = "GET NEW"
-Enabled = .F.
-ToolTipText = "DOWNLOADS NEW PROJECTS"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand6"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_addonaddnew()
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5I50W8VO9</uniqueid>
-		<timestamp>1322138831</timestamp>
+		<timestamp>1322356269</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbjson</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 0
-Left = 204
+Left = 144
 Height = 28
 Width = 60
 Caption = "JSON"
@@ -410,14 +371,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYYZ</uniqueid>
-		<timestamp>1322076669</timestamp>
+		<timestamp>1322356269</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbapi_files</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 0
-Left = 144
+Left = 84
 Height = 28
 Width = 60
 Caption = "API FILES"
@@ -449,14 +410,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZ4</uniqueid>
-		<timestamp>1322076669</timestamp>
+		<timestamp>1322356269</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbapi_addon</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 0
-Left = 72
+Left = 12
 Height = 28
 Width = 72
 Caption = "API ADDON"
@@ -493,7 +454,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 0
 Left = 780
 Height = 28
@@ -534,7 +495,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfiles</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 0
 Left = 852
 Height = 28
@@ -573,7 +534,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox1</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 12
@@ -608,7 +569,7 @@ Name = "_editbox1"
 		<classloc>..\..\shared\_splitter.vcx</classloc>
 		<baseclass>shape</baseclass>
 		<objname>_splitter1</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 336
 Left = 12
 Height = 12
@@ -640,7 +601,7 @@ Name = "_splitter1"
 		<classloc/>
 		<baseclass>image</baseclass>
 		<objname>imgavatar</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Anchor = 12
 Picture = ..\res\noimage1.png
 Stretch = 2
@@ -673,7 +634,7 @@ Name = "imgavatar"
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>MR_ADDONS</parent>
+		<parent>mr_addons</parent>
 		<properties>Top = 0
 Left = 924
 Height = 28

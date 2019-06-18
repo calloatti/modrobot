@@ -1,8 +1,8 @@
 *!* curse
 
-_InitErrorHandler()
+_initerrorhandler()
 
-_SetPath()
+_setpath()
 
 Do Form mr_main
 

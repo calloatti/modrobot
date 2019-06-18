@@ -340,7 +340,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80A4E11</uniqueid>
-		<timestamp>1322025744</timestamp>
+		<timestamp>1322401409</timestamp>
 		<class>custom</class>
 		<classloc/>
 		<baseclass>custom</baseclass>
@@ -383,7 +383,7 @@ This.fphashes = m.phash
 
 Else
 
-This.fphashes = This.fphashes + ', ' + m.phash
+This.fphashes = This.fphashes + ',' + m.phash
 
 Endif
 ENDPROC
@@ -407,11 +407,11 @@ This.fpresponsetext = ''
 
 This.fpojson = ''
 
-m.payload = '[' + This.fphashes + ']'
+m.payload = '[' + Rtrim(This.fphashes, 1, ',') + ']'
 
 m.winhttp = Newobject('winhttp', 'winhttp.vcx')
 
-*m.winhttp.setproxy(2, 'localhost:8888')
+m.winhttp.setproxy(2, 'localhost:8888')
 
 m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
 
@@ -450,6 +450,7 @@ This.fpojson = m.ojson
 Endif
 
 _logwrite('FINGERPRINT END', This.fpresponse)
+
 
 
 

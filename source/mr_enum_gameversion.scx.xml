@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I611Q32O</uniqueid>
-		<timestamp>1322123779</timestamp>
+		<timestamp>1322336994</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,15 +93,15 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322123779</timestamp>
+		<timestamp>1322336994</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_ENUM_GAMEVERSION</objname>
+		<objname>mr_enum_gameversion</objname>
 		<parent/>
 		<properties>DoCreate = .T.
 Caption = "GAME VERSIONS"
-uniqueid = 6DBCFCA65F4F484AAE5F5A874542F1FD
+uniqueid = 94367B182D364EE5979FFEED6AB92076
 Name = "MR_ENUM_GAMEVERSION"
 tmrSql.Name = "tmrSql"
 </properties>
@@ -128,7 +128,7 @@ tmrSql.Name = "tmrSql"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_ENUM_GAMEVERSION</parent>
+		<parent>mr_enum_gameversion</parent>
 		<properties>Height = 456
 Left = 12
 Top = 36

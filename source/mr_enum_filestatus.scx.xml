@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61466ZR</uniqueid>
-		<timestamp>1322123770</timestamp>
+		<timestamp>1322336997</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,15 +92,15 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322123770</timestamp>
+		<timestamp>1322336997</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_ENUM_FILESTATUS</objname>
+		<objname>mr_enum_filestatus</objname>
 		<parent/>
 		<properties>DoCreate = .T.
 Caption = "FILE STATUS"
-uniqueid = 808890D115A2440098C080BE15D5FFA7
+uniqueid = C9A649D525AA4892A353077AF72D7022
 Name = "MR_ENUM_FILESTATUS"
 tmrSql.Name = "tmrSql"
 </properties>
@@ -127,7 +127,7 @@ tmrSql.Name = "tmrSql"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_ENUM_FILESTATUS</parent>
+		<parent>mr_enum_filestatus</parent>
 		<properties>Height = 456
 Left = 12
 Top = 36

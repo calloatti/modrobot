@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1322123833</timestamp>
+		<timestamp>1322336979</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1322123833</timestamp>
+		<timestamp>1322336979</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,17 +127,17 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322123833</timestamp>
+		<timestamp>1322336979</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_INSTANCES</objname>
+		<objname>mr_instances</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
 DoCreate = .T.
 Caption = "INSTANCES"
-uniqueid = B663AFD3DC7F4BB48D96D49268F1C9CA
+uniqueid = 601C1595B05F46FDA00D1C22A3788D5B
 Name = "MR_INSTANCES"
 tmrSql.Name = "tmrSql"
 </properties>
@@ -159,7 +159,7 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322100162</timestamp>
+		<timestamp>1322294880</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
@@ -274,7 +274,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61E37EP</uniqueid>
-		<timestamp>1322123833</timestamp>
+		<timestamp>1322294885</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>

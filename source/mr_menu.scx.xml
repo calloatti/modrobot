@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350661</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -67,12 +67,12 @@ Name = "Dataenvironment"
 		<parent/>
 		<properties>Top = 0
 Left = 0
-Height = 540
-Width = 1368
+Height = 756
+Width = 1020
 DoCreate = .T.
-Caption = "MENU"
+Caption = "HOME"
 BackColor = 47,47,53
-uniqueid = 61D4EE899D154419ABF855C1B3CDF300
+uniqueid = 20899F472382482CA43F374E422E900F
 Name = "MR_MENU"
 tmrSql.Name = "tmrSql"
 </properties>
@@ -94,19 +94,19 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
+		<properties>Top = 624
 Left = 24
-Height = 108
-Width = 108
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Instances"
+Caption = "INSTANCES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -136,19 +136,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 137
-Height = 108
-Width = 108
+		<properties>Top = 624
+Left = 132
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Mods"
+Caption = "MODS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -178,19 +178,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLSQ</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand3</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 363
-Height = 108
-Width = 108
+		<properties>Top = 516
+Left = 24
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Projects"
+Caption = "PROJECTS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -220,19 +220,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLSW</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand4</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 476
-Height = 108
-Width = 108
+		<properties>Top = 516
+Left = 132
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Files"
+Caption = "FILES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -262,19 +262,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLT2</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand5</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 408
-Left = 589
-Height = 108
-Width = 108
+Left = 24
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Game versions"
+Caption = "MINECRAFT|VERSIONS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -304,19 +304,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLT7</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand6</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 702
-Height = 108
-Width = 108
+		<properties>Top = 516
+Left = 240
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Dependencies"
+Caption = "FILE|DEPENDENCIES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -346,19 +346,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLTD</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand7</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 815
-Height = 108
-Width = 108
+		<properties>Top = 624
+Left = 348
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Avatars"
+Caption = "LOG"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -369,7 +369,7 @@ Name = "_tbcommand7"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_AVATARS
+DO FORM MR_LOG
 ENDPROC
 </methods>
 		<objcode/>
@@ -388,19 +388,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLTJ</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand8</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 928
-Height = 108
-Width = 108
+		<properties>Top = 516
+Left = 348
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "File versions"
+Caption = "FILE|VERSIONS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -429,20 +429,20 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I617KLTO</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand9</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 1041
-Height = 108
-Width = 108
+		<properties>Top = 300
+Left = 24
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Stats"
+Caption = "STATS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -472,19 +472,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I900L3UZ</uniqueid>
-		<timestamp>1322058252</timestamp>
+		<timestamp>1322350448</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand10</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 408
-Left = 250
-Height = 108
-Width = 108
+		<properties>Top = 624
+Left = 240
+Height = 96
+Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "Mod dependencies"
+Caption = "DEPENDENCIES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -496,6 +496,49 @@ Name = "_tbcommand10"
 		<protected/>
 		<methods>PROCEDURE Click
 DO FORM MR_MOD_DEPENDENCIES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID0W4RMP</uniqueid>
+		<timestamp>1322350630</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand11</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 192
+Left = 24
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "ALL OF FABRIC"
+ToolTipText = "ALL OF FABRIC MODPACK HOME PAGE"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand11"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/AK9Official/All-of-Fabric')
 ENDPROC
 </methods>
 		<objcode/>

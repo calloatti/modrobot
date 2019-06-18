@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I30P3YMN</uniqueid>
-		<timestamp>1322139654</timestamp>
+		<timestamp>1322337003</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,15 +93,15 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322139654</timestamp>
+		<timestamp>1322337003</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_DEPENDENCIES</objname>
+		<objname>mr_dependencies</objname>
 		<parent/>
 		<properties>DoCreate = .T.
 Caption = "DEPENDENCIES"
-uniqueid = 3B871445671843D2AF37253672C2A1B2
+uniqueid = 37BEEFD12E5546E8A72CDD99EC6DDAB8
 Name = "MR_DEPENDENCIES"
 tmrSql.Name = "tmrSql"
 </properties>
@@ -144,7 +144,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_DEPENDENCIES</parent>
+		<parent>mr_dependencies</parent>
 		<properties>Height = 456
 Left = 12
 Top = 36
@@ -175,7 +175,7 @@ Name = "gridmain"
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>MR_DEPENDENCIES</parent>
+		<parent>mr_dependencies</parent>
 		<properties>Top = 0
 Left = 924
 Height = 28

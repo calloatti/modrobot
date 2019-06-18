@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321776270</timestamp>
+		<timestamp>1322336892</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I41CGGOW</uniqueid>
-		<timestamp>1322336988</timestamp>
+		<uniqueid>_5ID0HUYIC</uniqueid>
+		<timestamp>1322364293</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -69,9 +69,9 @@ Name = "Dataenvironment"
 Left = 10
 Height = 90
 Width = 90
-Alias = "fabric_projects"
+Alias = "mr_log"
 Database = ..\data\data1.dbc
-CursorSource = "fabric_projects"
+CursorSource = "mr_log"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -92,21 +92,23 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322336988</timestamp>
+		<timestamp>1322364293</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_fabric_projects</objname>
+		<objname>mr_log</objname>
 		<parent/>
-		<properties>Top = 0
-DoCreate = .T.
-Caption = "FABRIC PROJECTS"
-uniqueid = 9D002B57E4E34A169161E67996B0E422
-Name = "MR_FABRIC_PROJECTS"
+		<properties>DoCreate = .T.
+Caption = "LOG"
+uniqueid = 592EF988041C45D1957EF7B8A89F58A1
+Name = "MR_LOG"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE init2
+GO BOTTOM in 'mr_log'
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -123,15 +125,14 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322123852</timestamp>
+		<timestamp>1322123575</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_FABRIC_PROJECTS</parent>
+		<parent>mr_log</parent>
 		<properties>Height = 456
 Left = 12
-RecordSource = "fabric_projects"
 Top = 36
 Width = 936
 _gridcontextmenulang = en
@@ -154,102 +155,33 @@ Name = "gridmain"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321776270</timestamp>
+		<uniqueid>_5IA00IMUK</uniqueid>
+		<timestamp>1322123727</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand6</objname>
-		<parent>MR_FABRIC_PROJECTS</parent>
+		<objname>tbmenu</objname>
+		<parent>mr_log</parent>
 		<properties>Top = 0
-Left = 12
+Left = 924
 Height = 28
-Width = 48
-Caption = "XML"
-ZOrderSet = 4
-Name = "_tbcommand6"
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Click
-Thisform._gridview1.datatoexcelxlm('C:\VFPP\CURSE\export\fabric_mods.xls')
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321776377</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>MR_FABRIC_PROJECTS</parent>
-		<properties>Top = 0
-Left = 72
-Height = 28
-Width = 48
-Caption = "TXT"
-ZOrderSet = 4
-Name = "_tbcommand1"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Thisform._gridview1.DATAtotext('C:\VFPP\CURSE\export\fabric_mods.txt')
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I41CKRG5</uniqueid>
-		<timestamp>1321776377</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand2</objname>
-		<parent>MR_FABRIC_PROJECTS</parent>
-		<properties>Top = 0
-Left = 132
-Height = 28
-Width = 48
-Caption = "HTML"
-ZOrderSet = 4
-Name = "_tbcommand2"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Thisform._gridview1.datatohtml('C:\VFPP\CURSE\export\fabric_mods.html')
-
-
-ENDPROC
-</methods>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>

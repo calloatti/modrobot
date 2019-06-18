@@ -28,16 +28,16 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322062792</timestamp>
+		<timestamp>1322338953</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 240
-Left = 23
-Width = 1410
-Height = 493
+		<properties>Top = 95
+Left = 39
+Width = 1570
+Height = 663
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>9</reserved2>
+		<reserved2>10</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61EBSMR</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -101,7 +101,7 @@ Name = "Cursor1"
 		<properties>Top = 40
 Left = 294
 Height = 309
-Width = 144
+Width = 94
 Alias = "mr_instances"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
@@ -125,16 +125,16 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor3</objname>
 		<parent>Dataenvironment</parent>
-		<properties>Top = 35
-Left = 501
+		<properties>Top = 26
+Left = 422
 Height = 351
-Width = 157
+Width = 112
 Alias = "mr_mods1"
 Database = ..\data\data1.dbc
 CursorSource = "mr_mods"
@@ -158,16 +158,16 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70J9KXM</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor4</objname>
 		<parent>Dataenvironment</parent>
 		<properties>Top = 22
-Left = 708
+Left = 596
 Height = 357
-Width = 177
+Width = 101
 Alias = "mr_files"
 Database = ..\data\data1.dbc
 CursorSource = "mr_files"
@@ -191,7 +191,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70K005Y</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -224,7 +224,7 @@ Name = "Cursor5"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I714UVYU</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -257,7 +257,7 @@ Name = "Cursor6"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FSB4G</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -292,7 +292,7 @@ Name = "Cursor7"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0IPOO1</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -324,8 +324,41 @@ Name = "Cursor8"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5ID0K0IKM</uniqueid>
+		<timestamp>1322405392</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor9</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 33
+Left = 784
+Height = 90
+Width = 90
+Alias = "mr_log"
+Database = ..\data\data1.dbc
+CursorSource = "mr_log"
+Name = "Cursor9"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322170679</timestamp>
+		<timestamp>1322405392</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -339,8 +372,8 @@ noavatar = 0
 gridrowcolor = 0
 mr_loader = 
 mr_iguid = 
-uniqueid = 0F9305FFE5CB42EBA6804161CA0FFAC8
-Name = "mr_mods"
+uniqueid = D74C4473368A4B07ADDB19F79B139BE9
+Name = "MR_MODS"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
@@ -352,29 +385,34 @@ ENDPROC
 PROCEDURE init2
 *!* init2
 
+Local iguid
+
 Thisform.noavatar = Filetostr(Thisform.apppath + 'res\noimage.png')
 
-Thisform.mr_setinstance(_inigetvalue('MR_INSTANCES_IGUID', Replicate('9', 32)))
+m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+Thisform.mr_setinstance(m.iguid)
+
+
 
 
 ENDPROC
 PROCEDURE mr_getcursedata
 *!* mr_getcursedata
 
-Lparameters phash, ptable
 
-If Seek(m.phash, 'mr_files', 'hash') = .T.
+If Seek(mr_mods1.hash1, 'mr_files', 'hash') = .T.
 
 _logwrite('UPDATE FILE DATA START', mr_files.aid)
 
-Replace aid With mr_files.aid In m.ptable
-Replace fid1 With mr_files.fid In m.ptable
-Replace aname With mr_files.aname In m.ptable
-Replace aauthname With mr_files.aauthname In m.ptable
-Replace gver1 With mr_files.gver In m.ptable
-Replace rtypename1 With mr_files.rtypename In m.ptable
-Replace filedate1 With mr_files.filedate In m.ptable
-Replace loader1 With mr_files.foldername In m.ptable
+Replace mr_mods1.aid With mr_files.aid In 'mr_mods1'
+Replace mr_mods1.fid1 With mr_files.fid In 'mr_mods1'
+Replace mr_mods1.aname With mr_files.aname In 'mr_mods1'
+Replace mr_mods1.aauthname With mr_files.aauthname In 'mr_mods1'
+Replace mr_mods1.gver1 With mr_files.gver In 'mr_mods1'
+Replace mr_mods1.rtypename1 With mr_files.rtypename In 'mr_mods1'
+Replace mr_mods1.filedate1 With mr_files.filedate In 'mr_mods1'
+Replace mr_mods1.loader1 With mr_files.foldername In 'mr_mods1'
 
 *!* SAVE LOADER TO BE USED WHEN SEARCHING FOR NEW FILES
 
@@ -395,17 +433,13 @@ ENDPROC
 PROCEDURE mr_getcursedatascan
 *!* mr_getcursedatascan
 
-Local iguid
-
-m.iguid = Thisform.mr_iguid
-
 Select 'mr_mods1'
 
-Scan For mr_mods1.iguid == m.iguid
+Scan For mr_mods1.iguid == Thisform.mr_iguid
 
 DoEvents
 
-Thisform.mr_getcursedata(mr_mods1.hash1, 'mr_mods1')
+Thisform.mr_getcursedata()
 
 Endscan
 
@@ -416,8 +450,8 @@ ENDPROC
 PROCEDURE mr_getfolderdatascan
 *!* mr_getfolderdatascan
 
-Local afiles[1], filelen1, filename1, filespec, fileunc, iguid, hash1, ifolder, lnx, md5, ncount
-Local orecord
+Local afiles[1], fguid, filelen1, filename1, filespec, fileunc, hash1, ifolder, iguid, lnx, ncount
+Local rguid
 
 If Empty(Thisform.mr_iguid)
 
@@ -433,15 +467,44 @@ m.iguid = Thisform.mr_iguid
 
 Select 'mr_mods1'
 
-*!* RESET iguid OF EXISTING RECORDS TO REUSE THEM
-
-Scatter Blank Name m.orecord
-
-m.orecord.iguid = 'XXX'
+*!* FIRST SCAN EXISTING RECORDS TO CHECK FOR MISSING FILES
 
 Scan For mr_mods1.iguid == m.iguid
 
-Gather Name m.orecord
+m.fileunc = Addbs(mr_instances.ifolder) + mr_mods1.filename1
+
+_logwrite(m.fileunc)
+
+m.hash1 = mr_fingerprint(m.fileunc)
+
+If mr_mods1.hash1 # m.hash1 Then
+
+Append Blank In mr_log
+
+Replace mr_log.iguid With m.iguid In 'mr_log'
+Replace mr_log.ifolder With mr_instances.ifolder In 'mr_log'
+Replace mr_log.fid1 With mr_mods1.fid1 In 'mr_log'
+Replace mr_log.filename1 With mr_mods1.filename1 In 'mr_log'
+Replace mr_log.hash1 With mr_mods1.hash1 In 'mr_log'
+
+If m.hash1 = 0
+
+Replace mr_log.ldesc With 'DELETED' In 'mr_log'
+
+Else
+
+Replace mr_log.ldesc With 'HASH CHANGED' In 'mr_log'
+Replace mr_log.hash2 With m.hash1 In 'mr_log'
+
+Endif
+
+Replace mr_log.ldatetime With Datetime() In 'mr_log'
+
+Replace mr_mods1.iguid With '00000000' In 'mr_mods1'
+Replace mr_mods1.fguid With '00000000' In 'mr_mods1'
+Replace mr_mods1.rguid With '0000000000000000' In 'mr_mods1'
+
+Endif
 
 Endscan
 
@@ -469,39 +532,50 @@ _logwrite(m.fileunc)
 
 m.filelen1 = m.afiles(m.lnx, 2)
 
-*m.filedate1 = Fdate(m.fileunc, 1)
-
-*!*	   m.md5 = _MD5HashFile(m.fileunc)
-
-*!*	   If Seek(m.md5, 'mr_md5', 'md5') = .T.
-
-*!*	      _logwrite('MD5:', m.md5)
-
-*!*	      m.hash1 = mr_md5.hash
-
-*!*	   Else
-
 m.hash1 = mr_fingerprint(m.fileunc)
 
-*!*	      Insert Into 'mr_md5'('hash', 'md5') Values(m.hash1, m.md5)
+m.fguid = Strconv(_ubintoc(m.hash1), 15)
 
-*!*	   Endif
+m.rguid = m.iguid + m.fguid
 
-Select 'mr_mods1'
+*!* IF MATCH BY RGUID
 
-*!* SEARCH FOR RECORD MATCH AND REUSE
+If Seek(m.rguid, 'mr_mods1', 'rguid') = .T.
 
-If Seek('XXX', 'mr_mods1', 'IGUID') = .F.
-
-Insert Into 'mr_mods1' From Memvar
+Replace mr_mods1.iguid With m.iguid In 'mr_mods1'
+Replace mr_mods1.fguid With m.fguid In 'mr_mods1'
+Replace mr_mods1.filename1 With m.filename1 In 'mr_mods1'
+Replace mr_mods1.filelen1 With m.filelen1 In 'mr_mods1'
+Replace mr_mods1.hash1 With m.hash1 In 'mr_mods1'
 
 Else
 
-Replace ;
-mr_mods1.iguid With m.iguid, ;
-mr_mods1.filename1 With m.filename1, ;
-mr_mods1.filelen1 With m.filelen1, ;
-mr_mods1.hash1 With m.hash1 In 'mr_mods1'
+*!* TRY TO REUSE UNUSED RECORD
+
+If Seek('00000000', 'mr_mods1', 'IGUID') = .F.
+
+Append Blank In 'mr_mods1'
+
+Endif
+
+Replace mr_mods1.iguid With m.iguid In 'mr_mods1'
+Replace mr_mods1.fguid With m.fguid In 'mr_mods1'
+Replace mr_mods1.rguid With m.rguid In 'mr_mods1'
+Replace mr_mods1.filename1 With m.filename1 In 'mr_mods1'
+Replace mr_mods1.filelen1  With m.filelen1 In 'mr_mods1'
+Replace mr_mods1.hash1 With m.hash1 In 'mr_mods1'
+Replace mr_mods1.upd With .t. In 'mr_mods1'
+
+*!* NEW FILE ADD TO LOG
+
+Append Blank In mr_log
+
+Replace mr_log.ifolder With mr_instances.ifolder In 'mr_log'
+Replace mr_log.fid1 With mr_mods1.fid1 In 'mr_log'
+Replace mr_log.filename1 With mr_mods1.filename1 In 'mr_log'
+Replace mr_log.ldesc With 'NEW' In 'mr_log'
+Replace mr_log.ldatetime With Datetime() In 'mr_log'
+Replace mr_log.hash1 With m.hash1 In 'mr_mods1'
 
 Endif
 
@@ -516,30 +590,31 @@ _logwrite('SCAN END')
 
 
 
+
 ENDPROC
 PROCEDURE mr_getnewverdata
 *!* mr_getnewverdata
 
-Lparameters paid, pfid, ploader, ptable
+Local lnx, loader1
 
-Local lnx
-
-If m.paid &gt; 0
+If mr_mods1.aid &gt; 0
 
 _logwrite('GET NEW FILE DATA START', mr_files.aid)
 
 
-*!* TRY THE SEARCH 3 TIMES. FIRST USING THE LOADER PARAM, THEN
-*!* USING 'FABRIC' AND THEN 'FORGE'
+*!* TRY THE SEARCH 2 TIMES. FIRST USING THE LOADER PARAM, THEN
+*!* USING THE SAVED LOADER NAME
+
+m.loader1 = mr_mods1.loader1
 
 For m.lnx = 1 To 2
 
 Select Top 1 * From mr_fileversions ;
 Where mr_fileversions.gverlong &gt;= mr_instances.gverlong1 ;
 And mr_fileversions.gverlong &lt;= mr_instances.gverlong2 ;
-And mr_fileversions.aid = m.paid ;
-And mr_fileversions.loader == m.ploader ;
-And mr_fileversions.fid &gt;= m.pfid ;
+And mr_fileversions.aid = mr_mods1.aid ;
+And mr_fileversions.loader == m.loader1 ;
+And mr_fileversions.fid &gt;= mr_mods1.fid1 ;
 Order By mr_fileversions.gverlong Desc, mr_fileversions.fid Desc ;
 Into Cursor 'sqlresult'
 
@@ -549,7 +624,7 @@ Exit
 
 Endif
 
-m.ploader = Thisform.mr_loader
+m.loader1 = Thisform.mr_loader
 
 Endfor
 
@@ -557,14 +632,14 @@ If Reccount('sqlresult') = 1 Then
 
 = Seek(sqlresult.fid, 'mr_files', 'fid')
 
-Replace fid2 With mr_files.fid In m.ptable
-Replace filedate2 With mr_files.filedate In m.ptable
-Replace filelen2 With mr_files.filelen In m.ptable
-Replace filename2 With mr_files.filename In m.ptable
-Replace hash2 With mr_files.hash In m.ptable
-Replace rtypename2 With mr_files.rtypename In m.ptable
-Replace gver2 With sqlresult.gver In m.ptable
-Replace loader2 With mr_files.foldername In m.ptable
+Replace mr_mods1.fid2 With mr_files.fid In 'mr_mods1'
+Replace mr_mods1.filedate2 With mr_files.filedate In 'mr_mods1'
+Replace mr_mods1.filelen2 With mr_files.filelen In 'mr_mods1'
+Replace mr_mods1.filename2 With mr_files.filename In 'mr_mods1'
+Replace mr_mods1.hash2 With mr_files.hash In 'mr_mods1'
+Replace mr_mods1.rtypename2 With mr_files.rtypename In 'mr_mods1'
+Replace mr_mods1.gver2 With sqlresult.gver In 'mr_mods1'
+Replace mr_mods1.loader2 With mr_files.foldername In 'mr_mods1'
 
 Endif
 
@@ -579,58 +654,53 @@ PROCEDURE mr_getnewverdatascan
 
 Select 'mr_mods1'
 
-Scan
+Scan For mr_mods1.iguid == Thisform.mr_iguid
 
 DoEvents
 
-Thisform.mr_getnewverdata(mr_mods1.aid, mr_mods1.fid1, mr_mods1.loader1, 'mr_mods1')
+Thisform.mr_getnewverdata()
 
 Endscan
 
 
+ENDPROC
+PROCEDURE mr_modupdate
+*!* mr_modupdate
 
-
-
-
-
+mr_modupdate(mr_mods1.rguid)
 
 
 ENDPROC
+PROCEDURE mr_modupdatescan
+*!* mr_modupdatescan
+
+Select 'mr_mods1'
+
+Scan For mr_mods1.iguid == Thisform.mr_iguid
+
+DoEvents
+
+Thisform.mr_modupdate()
+
+Endscan
+ENDPROC
 PROCEDURE mr_refreshcurse
-*!* mr_refreshcurse
+*!* refreshcurse
 
-Lparameters phash
+Lparameters phashes
 
-Local ofp as 'fp' Of 'mr_vcl'
+Local ofp As 'fp' Of 'mr_vcl'
 Local aid, iguid, lnx, lnz, ofile
 
 m.ofp = Newobject('fp', 'mr_vcl')
 
-m.iguid = Thisform.mr_iguid
+m.ofp.fphashes = m.phashes
 
-If m.phash = 0
-
-Select 'mr_mods1'
-
-Scan For mr_mods1.iguid == m.iguid
-
-m.ofp.fpadd(mr_mods1.hash1)
-
-Endscan
-
-Else
-
-m.ofp.fpadd(m.phash)
-
-Endif
-
-_logwrite('REFRESH START')
+_logwrite('GET CURSE DATA START')
 
 m.ofp.fppost()
 
-If m.ofp.fpresponse = 200 Then
-
-If Vartype(m.ofp.fpojson.exactmatches[1]) = 'O'
+If m.ofp.fpresponse = 200 And Vartype(m.ofp.fpojson.exactmatches[1]) = 'O'
 
 For m.lnx = 1 To Alen(m.ofp.fpojson.exactmatches)
 
@@ -640,7 +710,6 @@ mr_addonupdate(m.aid, .T.)
 
 Endfor
 
-Endif
 
 *!* ADD DEPENDENCIES
 
@@ -662,22 +731,54 @@ Endfor
 
 Endif
 
-_logwrite('REFRESH END')
+_logwrite('GET CURSE DATA END')
+ENDPROC
+PROCEDURE mr_refreshcursescan
+*!* mr_refreshcursescan
+
+m.hashes = ''
+
+Select 'mr_mods1'
+
+Scan For mr_mods1.iguid == Thisform.mr_iguid
+
+m.hashes = m.hashes + Transform(mr_mods1.hash1) + ','
+
+Endscan
+
+Thisform.mr_refreshcurse(m.hashes)
 ENDPROC
 PROCEDURE mr_setinstance
-*!* setinstance
+*!* mr_setinstance
 
 Lparameters piguid
 
 Thisform.mr_iguid = m.piguid
 
-If Seek(Thisform.mr_iguid, 'mr_instances', 'iguid') = .T.
+If m.piguid = '00000000' And Reccount('mr_instances') &gt; 0 Then
 
-Thisform.Caption = 'MODS - ' + mr_instances.iname + ' - ' + mr_instances.ifolder
+Go Top In 'mr_instances'
+
+Thisform.mr_iguid = mr_instances.iguid
+
+Endif
+
+If Seek(Thisform.mr_iguid, 'mr_instances', 'iguid') = .T.
 
 Set Filter To mr_mods.iguid == Thisform.mr_iguid In 'mr_mods'
 
 _inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+
+If Empty(mr_instances.iname) Then
+
+Thisform.Caption = 'MODS - ' + mr_instances.iguid
+
+Else
+
+Thisform.Caption = 'MODS - ' + mr_instances.iname
+
+Endif
+
 
 Else
 
@@ -712,20 +813,22 @@ Thisform.imgavatar.PictureVal = mr_avatars.avatar
 
 Endif
 
-m.sep = Space(5)
+m.sep = Space(3)
 
-Thisform.lblstatus.Caption = ;
-' ' + mr_instances.iname + m.sep + mr_instances.iminecraft + m.sep + mr_instances.iloader + m.sep + ;
-'MINVER: ' + mr_instances.gver1 + '  MAXVER: ' + mr_instances.gver2
-
-Thisform.lblstatusfolder.Caption = ' ' + mr_instances.ifolder
-
+Thisform.lblinstance.Caption = ' ' + ;
+'GUID: ' + mr_instances.iguid + m.sep + ;
+'NAME: ' + mr_instances.iname + m.sep + ;
+'VERSION ' + mr_instances.iminecraft + m.sep + ;
+'LOADER: ' + mr_instances.iloader + m.sep + ;
+'MINVER: ' + mr_instances.gver1 + m.sep + ;
+'MAXVER: ' + mr_instances.gver2 + m.sep + ;
+'PATH: ' + mr_instances.ifolder
 
 *!* SET COLOR OF HIGHLIGHTED ROW IN GRID
 
 Do Case
 
-Case  mr_mods.fid1 # 0 And mr_mods.fid2 # 0 AND mr_mods.fid1 # mr_mods.fid2
+Case  mr_mods.fid1 # 0 And mr_mods.fid2 # 0 And mr_mods.fid1 # mr_mods.fid2
 
 Thisform.gridmain.HighlightBackColor = Rgb(255, 241, 118)
 
@@ -738,6 +841,9 @@ Otherwise
 Thisform.gridmain.HighlightBackColor = Thisform.gridmain.gethighlightbackcolor()
 
 Endcase
+
+
+
 
 ENDPROC
 </methods>
@@ -757,6 +863,9 @@ mr_iguid
 *mr_getnewverdata 
 *mr_getcursedata 
 *mr_setinstance 
+*mr_refreshcursescan 
+*mr_modupdate 
+*mr_modupdatescan 
 </reserved3>
 		<reserved4/>
 		<reserved5/>
@@ -807,7 +916,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322141050</timestamp>
+		<timestamp>1322360008</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
@@ -829,10 +938,9 @@ Lparameters nColIndex
 
 Thisform.updateui()
 ENDPROC
-PROCEDURE Click
+PROCEDURE DblClick
 
-
-
+Replace mr_mods.upd With Not mr_mods.upd In 'mr_mods'
 ENDPROC
 PROCEDURE getdynamicbackcolor
 Lparameters poColum As Column
@@ -882,22 +990,21 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322007228</timestamp>
+		<timestamp>1322357175</timestamp>
 		<class>_label</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
-		<objname>lblstatus</objname>
+		<objname>lblinstance</objname>
 		<parent>mr_mods</parent>
-		<properties>AutoSize = .F.
-FontSize = 8
-Anchor = 6
-BorderStyle = 0
+		<properties>FontSize = 8
+Anchor = 14
 Caption = ""
 Height = 15
 Left = 12
 Top = 479
-Width = 504
-Name = "lblstatus"
+Width = 936
+autowidth = .F.
+Name = "lblinstance"
 </properties>
 		<protected/>
 		<methods/>
@@ -917,16 +1024,16 @@ Name = "lblstatus"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90KJNOL</uniqueid>
-		<timestamp>1322077285</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand7</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 876
+Left = 888
 Height = 28
-Width = 48
+Width = 36
 Caption = "FILE2"
 ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
 ZOrderSet = 4
@@ -973,16 +1080,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322077285</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand4</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 684
+Left = 768
 Height = 28
-Width = 72
+Width = 48
 Caption = "FOLDER"
 ToolTipText = "OPEN MODS FOLDER"
 ZOrderSet = 4
@@ -1026,7 +1133,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80YJRE3</uniqueid>
-		<timestamp>1322144833</timestamp>
+		<timestamp>1322401186</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1036,26 +1143,27 @@ ENDPROC
 Left = 192
 Height = 28
 Width = 36
-Caption = "GET 1"
-ToolTipText = "DOWNLOAD CURSE DATA FOR THE SELECTED MOD"
+Caption = "REFRESH"
+ToolTipText = "DOWNLOAD CURSE DATA FOR SELECTED MOD"
 ZOrderSet = 4
 Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-If mr_mods.aid # 0
 
-thisform.mr_refreshcurse(mr_mods.hash1)
+Thisform.mr_refreshcurse(Transform(mr_mods.hash1))
 
-Thisform.mr_getcursedata(mr_mods.hash1, 'mr_mods')
+= Seek(mr_mods.rguid, 'mr_mods1', 'rguid')
 
-Thisform.mr_getnewverdata(mr_mods.aid, mr_mods.fid1, mr_mods.loader1, 'mr_mods')
+Thisform.mr_getcursedata()
+
+Thisform.mr_getnewverdata()
+
+Go Recno('mr_mods') In 'mr_mods'
+
+Thisform.updateui()
 
 Thisform.Refresh()
-
-Endif
-
-
 
 
 
@@ -1078,18 +1186,18 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322103861</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand6</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 12
+Left = 108
 Height = 28
 Width = 48
 Caption = "SCAN"
-ToolTipText = "SCAN MODS FOLDER FOR MOD FILES"
+ToolTipText = "SCAN MODS FOLDER"
 ZOrderSet = 4
 Name = "_tbcommand6"
 </properties>
@@ -1104,7 +1212,7 @@ Return
 
 Endif
 
-_logwrite('SCAN START')
+_logwrite('PROCESS START')
 
 Thisform.mr_getfolderdatascan()
 
@@ -1112,7 +1220,9 @@ Thisform.mr_getcursedatascan()
 
 Thisform.mr_getnewverdatascan()
 
-_logwrite('SCAN END')
+_logwrite('PROCESS END')
+
+Thisform.updateui()
 
 Thisform.Refresh()
 
@@ -1136,29 +1246,35 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322138668</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 60
+Left = 156
 Height = 28
 Width = 36
-Caption = "GET"
-ToolTipText = "DOWNLOAD CURSE DATA FOR ALL MOD FILES IN MODS FOLDER"
+Caption = "REFRESH ALL"
+ToolTipText = "DOWNLOAD CURSE DATA FOR ALL MODS"
 ZOrderSet = 4
 Name = "_tbcommand1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 
-Thisform.mr_refreshcurse(0)
+_logwrite('PROCESS START')
+
+Thisform.mr_refreshcursescan()
 
 Thisform.mr_getcursedatascan()
 
 Thisform.mr_getnewverdatascan()
+
+_logwrite('PROCESS END')
+
+Thisform.updateui()
 
 Thisform.Refresh()
 
@@ -1184,16 +1300,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322077285</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfiles</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 828
+Left = 852
 Height = 28
-Width = 48
+Width = 36
 Caption = "FILE1"
 ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
 ZOrderSet = 4
@@ -1239,22 +1355,22 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I81ANN7Y</uniqueid>
-		<timestamp>1322141092</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand3</objname>
+		<objname>tbinstances</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 396
+Left = 516
 Height = 28
 Width = 60
 Caption = "INSTANCES"
-ToolTipText = "PICK INSTANCE"
+ToolTipText = "INSTANCES MENU"
 ZOrderSet = 4
 tbmarginv = 4
-Name = "_tbcommand3"
+Name = "tbinstances"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
@@ -1304,27 +1420,28 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322138668</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand5</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 228
+Left = 576
 Height = 28
 Width = 48
 Caption = "DEPS"
-ToolTipText = "OPENS DEPENDENCIES FORM"
+ToolTipText = "DEPENDENCIES"
 ZOrderSet = 4
+tbalign = 2
 Name = "_tbcommand5"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 
-_inisetvalue('MR_MODS_IGUID', thisform.mr_iguid)
+_inisetvalue('MR_INSTANCES_IGUID', Thisform.mr_iguid)
 
-DO FORM mr_mod_dependencies
+Do Form mr_mod_dependencies
 ENDPROC
 </methods>
 		<objcode/>
@@ -1343,16 +1460,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90KFBBE</uniqueid>
-		<timestamp>1322077285</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 756
+Left = 816
 Height = 28
-Width = 72
+Width = 36
 Caption = "OVERVIEW"
 ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
 ZOrderSet = 4
@@ -1386,19 +1503,20 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0G730L</uniqueid>
-		<timestamp>1322138682</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand8</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 276
+Left = 672
 Height = 28
 Width = 48
 Caption = "PROJECTS"
-ToolTipText = "OPEN PROJECT IN PROJECTS FORM"
+ToolTipText = "VIEW PROJECT IN PROJECTS LIST"
 ZOrderSet = 4
+tbalign = 2
 Name = "_tbcommand8"
 </properties>
 		<protected/>
@@ -1425,19 +1543,20 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0G730Q</uniqueid>
-		<timestamp>1322138715</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand9</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 324
+Left = 720
 Height = 28
 Width = 48
 Caption = "FILES"
-ToolTipText = "OPEN FILE IN FILES FORM"
+ToolTipText = "VIEW FILE IN FILES LIST"
 ZOrderSet = 4
+tbalign = 2
 Name = "_tbcommand9"
 </properties>
 		<protected/>
@@ -1446,6 +1565,278 @@ Name = "_tbcommand9"
 _inisetvalue('MR_FILES_FID', mr_mods.fid1)
 
 Do Form mr_files
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID0R56FA</uniqueid>
+		<timestamp>1322360313</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 624
+Height = 28
+Width = 48
+Caption = "LOG"
+ToolTipText = "CHANGE LOG"
+ZOrderSet = 4
+tbalign = 2
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Do Form mr_log
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322402423</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand10</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 228
+Height = 28
+Width = 60
+Caption = "VERSIONS"
+ToolTipText = "SELECT MOD FILE UPDATE VERSION"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand10"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local fid
+
+m.fid = 0
+
+Do Case
+
+Case mr_mods.fid2 &gt; 0
+
+Do Form mr_mods_pickfile With mr_mods.fid2 To m.fid
+
+Case mr_mods.fid1 &gt; 0
+
+Do Form mr_mods_pickfile With mr_mods.fid1 To m.fid
+
+Endcase
+
+If m.fid &gt; 0 Then
+
+= Seek(m.fid, 'mr_files', 'fid')
+
+Replace mr_mods.fid2 With mr_files.fid In 'mr_mods'
+Replace mr_mods.filedate2 With mr_files.filedate In 'mr_mods'
+Replace mr_mods.filelen2 With mr_files.filelen In 'mr_mods'
+Replace mr_mods.filename2 With mr_files.filename In 'mr_mods'
+Replace mr_mods.hash2 With mr_files.hash In 'mr_mods'
+Replace mr_mods.rtypename2 With mr_files.rtypename In 'mr_mods'
+Replace mr_mods.gver2 With mr_files.gver In 'mr_mods'
+Replace mr_mods.loader2 With mr_files.foldername In 'mr_mods'
+
+Thisform.updateui()
+
+Thisform.gridmain.Refresh()
+
+Endif
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322400810</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand11</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 288
+Height = 28
+Width = 60
+Caption = "UPDATE ALL"
+ToolTipText = "UPDATE ALL MODS (UPD COLUMN CHECKED)"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand11"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+_logwrite('PROCESS START')
+
+Thisform.mr_modupdatescan()
+
+_logwrite('PROCESS END')
+
+Thisform.updateui()
+
+Thisform.Refresh()
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322338953</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand12</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 348
+Height = 28
+Width = 60
+Caption = "UPDATE"
+ToolTipText = "UPDATE SELECTED MOD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand12"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+_logwrite('PROCESS START')
+
+= Seek(mr_mods.rguid, 'mr_mods1', 'rguid')
+
+Thisform.mr_modupdate()
+
+Thisform.updateui()
+
+_logwrite('PROCESS END')
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IE0KY8D3</uniqueid>
+		<timestamp>1322405392</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand13</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 408
+Height = 28
+Width = 60
+Caption = "E/D"
+ToolTipText = "ENABLE/DISABLE MOD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand13"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local filenamen, filenameo, result
+
+m.result = 0
+
+Do Case
+
+Case Upper(Justext(mr_mods.filename1)) = 'JAR'
+
+m.filenameo = mr_mods.filename1
+
+m.filenamen = mr_mods.filename1 + '.disabled'
+
+m.result = _apimovefile(Addbs(mr_instances.ifolder) + m.filenameo, Addbs(mr_instances.ifolder) + m.filenamen)
+
+Case Upper(Justext(mr_mods.filename1)) = 'DISABLED'
+
+m.filenameo = mr_mods.filename1
+
+m.filenamen = Juststem(Juststem(mr_mods.filename1)) + '.jar'
+
+m.result = _apimovefile(Addbs(mr_instances.ifolder) + m.filenameo, Addbs(mr_instances.ifolder) + m.filenamen)
+
+Endcase
+
+If m.result # 0
+
+Replace mr_mods.filename1 With m.filenamen In 'mr_mods'
+
+Thisform.gridmain.Refresh()
+
+Endif
+
+
+
+
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -1496,24 +1887,30 @@ Name = "imgavatar"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322007228</timestamp>
-		<class>_label</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>label</baseclass>
-		<objname>lblstatusfolder</objname>
+		<uniqueid>_5I70HWZP6</uniqueid>
+		<timestamp>1322077176</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbmenu</objname>
 		<parent>mr_mods</parent>
-		<properties>AutoSize = .F.
+		<properties>Top = 0
+Left = 924
+Height = 28
+Width = 28
 FontSize = 8
-Anchor = 12
-Alignment = 1
-BorderStyle = 0
+Picture = ..\res\3bars.png
 Caption = ""
-Height = 15
-Left = 528
-Top = 479
-Width = 420
-Name = "lblstatusfolder"
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
 </properties>
 		<protected/>
 		<methods/>
@@ -1533,18 +1930,18 @@ Name = "lblstatusfolder"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FZ6X0</uniqueid>
-		<timestamp>1322138668</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbvermax</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 144
+Left = 60
 Height = 28
 Width = 48
 Caption = "MAXVER"
-ToolTipText = "SETS THE MAX MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
+ToolTipText = "SET THE MAX MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MOD UPDATES"
 Name = "tbvermax"
 </properties>
 		<protected/>
@@ -1593,18 +1990,18 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FZ6X5</uniqueid>
-		<timestamp>1322138668</timestamp>
+		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbvermin</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 96
+Left = 12
 Height = 28
 Width = 48
 Caption = "MINVER"
-ToolTipText = "SETS THE MIN MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
+ToolTipText = "SET THE MIN MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MOD UPDATES"
 Name = "tbvermin"
 </properties>
 		<protected/>
@@ -1637,48 +2034,6 @@ Endif
 Thisform.updateui()
 ENDPROC
 </methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1322077176</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbmenu</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 924
-Height = 28
-Width = 28
-FontSize = 8
-Picture = ..\res\3bars.png
-Caption = ""
-TabIndex = 7
-ToolTipText = "MENU"
-ZOrderSet = 21
-tbalign = 2
-tbautowidth = .F.
-tbpictureautosize = .F.
-tbmenuoffseth = 6
-tbautofontsize = .F.
-tbmarginv = 4
-Name = "tbmenu"
-</properties>
-		<protected/>
-		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>

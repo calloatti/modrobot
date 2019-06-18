@@ -1,4 +1,4 @@
-*!* mr_buildfileurl
+*!* mr_geturlfile1
 
 *!* https://edge.forgecdn.net/files/
 *!* https://addons.cursecdn.com/files/

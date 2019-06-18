@@ -97,7 +97,7 @@ Name = "Cursor1"
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_AVATARS</objname>
+		<objname>mr_avatars</objname>
 		<parent/>
 		<properties>DoCreate = .T.
 Caption = "AVATARS"

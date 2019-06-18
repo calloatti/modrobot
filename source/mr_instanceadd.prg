@@ -55,6 +55,10 @@ If File(m.cfile)
 
                m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].cachedversion
 
+            Case m.ojson.components[m.lny].cachedname == 'Fabric Loader'
+
+               m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].Version
+
          Endcase
 
       Endfor
@@ -63,7 +67,7 @@ If File(m.cfile)
 
 Endif
 
-m.iguid =  _md5hashstring(Upper(m.ifolder))
+m.iguid =  mr_crc32(m.ifolder)
 
 If Seek(m.iguid, 'instance_add', 'iguid') = .F.
 
@@ -90,4 +94,4 @@ Use In 'instance_add'
 
 
 
- 
+

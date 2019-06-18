@@ -61,7 +61,7 @@ Endif
 
 *!* SPLIT EACH ELEMENT OF THE FILES JSON TO GET ONE JSON PER FILE
 
-m.hfjson = nfjsonsplit(m.pfjson)
+m.hfjson = mr_filejsonsplit(m.pfjson)
 
 For m.lnx = 1 To m.hfjson.Count
 

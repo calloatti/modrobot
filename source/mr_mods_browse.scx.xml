@@ -27,17 +27,17 @@
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I60PSBPE</uniqueid>
-		<timestamp>1321885754</timestamp>
+		<uniqueid>_5ID0JYDJT</uniqueid>
+		<timestamp>1322338899</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 0
-Left = 0
-Width = 0
-Height = 0
+		<properties>Top = 220
+Left = 1
+Width = 520
+Height = 200
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>1</reserved2>
+		<reserved2>2</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,24 +58,21 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I60PSBPF</uniqueid>
-		<timestamp>1322336976</timestamp>
-		<class>_form</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>form</baseclass>
-		<objname>mr_main</objname>
-		<parent/>
-		<properties>Top = 0
-Left = 0
-ShowWindow = 2
-DoCreate = .T.
-Caption = "MODROBOT"
-Icon = ..\res\mod-robot.ico
-clearevents = .T.
-restoreformposition = .T.
-uniqueid = 6E6A08E4D3E64CBF9EC3B04D332A8957
-Name = "MR_MAIN"
-tmrSql.Name = "tmrSql"
+		<uniqueid>_5ID0JYDJU</uniqueid>
+		<timestamp>1322360857</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 90
+Alias = "mr_mods"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods"
+Name = "Cursor1"
 </properties>
 		<protected/>
 		<methods/>
@@ -94,23 +91,53 @@ tmrSql.Name = "tmrSql"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I60PSBPG</uniqueid>
-		<timestamp>1321885856</timestamp>
-		<class>tdimain</class>
-		<classloc>..\..\tdi\tdi.vcx</classloc>
-		<baseclass>container</baseclass>
-		<objname>Tdimain1</objname>
-		<parent>mr_main</parent>
-		<properties>Top = 0
-Left = 12
-tabfirstwidth = 60
-Name = "Tdimain1"
+		<uniqueid>_5ID0JYDJV</uniqueid>
+		<timestamp>1322360857</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_mods_browse</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "MODS"
+uniqueid = DB55674F300B42189B1E51C082657552
+Name = "MR_MODS_BROWSE"
+TMRSQL.Name = "TMRSQL"
 </properties>
 		<protected/>
-		<methods>PROCEDURE tdiinit
-DO FORM MR_MENU
-ENDPROC
-</methods>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ID0JYDJW</uniqueid>
+		<timestamp>1322360857</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>mr_mods_browse</parent>
+		<properties>Height = 456
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+hideguid = .F.
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -134,6 +161,7 @@ ENDPROC
 		<objname/>
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
 </properties>
 		<protected/>
 		<methods/>

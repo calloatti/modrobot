@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6145E4F</uniqueid>
-		<timestamp>1322123762</timestamp>
+		<timestamp>1322337000</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,15 +92,15 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322123762</timestamp>
+		<timestamp>1322337000</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_ENUM_FILERELEASETYPES</objname>
+		<objname>mr_enum_filereleasetypes</objname>
 		<parent/>
 		<properties>DoCreate = .T.
 Caption = "FILE RELEASE TYPES"
-uniqueid = 597EABEECC2E499AA1588F23B0CEFAFB
+uniqueid = F8C1C0E75384422186144E82CFF11A01
 Name = "MR_ENUM_FILERELEASETYPES"
 tmrSql.Name = "tmrSql"
 </properties>

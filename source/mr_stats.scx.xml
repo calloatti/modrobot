@@ -59,11 +59,11 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKM</uniqueid>
-		<timestamp>1322139820</timestamp>
+		<timestamp>1322347225</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>MR_STATS</objname>
+		<objname>mr_stats</objname>
 		<parent/>
 		<properties>DoCreate = .T.
 Caption = "STATS"
@@ -133,7 +133,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1321963728</timestamp>
+		<timestamp>1322347225</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -165,9 +165,16 @@ Use mr_instances Exclusive
 Zap
 Use mr_mods Exclusive
 Zap
+Use mr_log Exclusive
+Zap
 Use
+Alter Table mr_log Alter Column lid I Autoinc Nextvalue 1
+USE
+
+_indextables()
 
 _logwrite('ZAP END')
+
 
 
 
@@ -191,7 +198,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0HBKS5</uniqueid>
-		<timestamp>1322139803</timestamp>
+		<timestamp>1322210208</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -228,7 +235,9 @@ Use In   m.atables[m.lnx]
 
 Endfor
 
-
+_logwrite('CONFIG FILE EXTERNAL', SYS(2019,1))
+_logwrite('CONFIG FILE INTERNAL', SYS(2019,2))
+_logwrite('START FOLDER', SYS(2004))
 
 
 
