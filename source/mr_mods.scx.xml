@@ -28,21 +28,24 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322338953</timestamp>
+		<timestamp>1322413889</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 95
-Left = 39
+		<properties>Top = 132
+Left = -199
 Width = 1570
 Height = 663
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE AfterCloseTables
+Close Tables All
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -59,7 +62,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +95,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61EBSMR</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -125,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -158,7 +161,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70J9KXM</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -191,7 +194,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70K005Y</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -224,7 +227,7 @@ Name = "Cursor5"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I714UVYU</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -257,7 +260,7 @@ Name = "Cursor6"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FSB4G</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -292,7 +295,7 @@ Name = "Cursor7"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0IPOO1</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -325,7 +328,7 @@ Name = "Cursor8"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0K0IKM</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -358,7 +361,7 @@ Name = "Cursor9"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<timestamp>1322416709</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -377,12 +380,7 @@ Name = "MR_MODS"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Destroy
-*!* destroy
-
-Close Tables All
-ENDPROC
-PROCEDURE init2
+		<methods>PROCEDURE init2
 *!* init2
 
 Local iguid
@@ -641,6 +639,16 @@ Replace mr_mods1.rtypename2 With mr_files.rtypename In 'mr_mods1'
 Replace mr_mods1.gver2 With sqlresult.gver In 'mr_mods1'
 Replace mr_mods1.loader2 With mr_files.foldername In 'mr_mods1'
 
+If mr_mods1.fid1 # mr_mods1.fid2
+
+Replace mr_mods1.hasupd With .T. In 'mr_mods1'
+
+Else
+
+Replace mr_mods1.hasupd With .F. In 'mr_mods1'
+
+Endif
+
 Endif
 
 Use In 'sqlresult'
@@ -876,8 +884,8 @@ mr_iguid
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I50EU5DF</uniqueid>
-		<timestamp>1321942593</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322338953</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -916,7 +924,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322360008</timestamp>
+		<timestamp>1322412355</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
@@ -926,6 +934,7 @@ Name = "edtlog"
 Height = 276
 HighlightRow = .T.
 Left = 12
+RecordSource = "mr_mods"
 Top = 36
 Width = 936
 HighlightStyle = 0
@@ -990,7 +999,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322357175</timestamp>
+		<timestamp>1322338953</timestamp>
 		<class>_label</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
@@ -1023,8 +1032,8 @@ Name = "lblinstance"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I90KJNOL</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322338953</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1079,8 +1088,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I50Z6RB2</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1132,8 +1141,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80YJRE3</uniqueid>
-		<timestamp>1322401186</timestamp>
+		<uniqueid>_5I61EBSMR</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1185,8 +1194,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I70HWZP6</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1245,8 +1254,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I70J9KXM</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1299,8 +1308,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I70K005Y</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1355,8 +1364,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I714UVYU</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1419,8 +1428,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I80FSB4G</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1459,8 +1468,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I90KFBBE</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5IA0IPOO1</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1502,8 +1511,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IA0G730L</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5ID0K0IKM</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1542,8 +1551,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IA0G730Q</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1582,8 +1591,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5ID0R56FA</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5I50EU5DF</uniqueid>
+		<timestamp>1321942593</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1619,8 +1628,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322402423</timestamp>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322416709</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1667,6 +1676,16 @@ Replace mr_mods.rtypename2 With mr_files.rtypename In 'mr_mods'
 Replace mr_mods.gver2 With mr_files.gver In 'mr_mods'
 Replace mr_mods.loader2 With mr_files.foldername In 'mr_mods'
 
+If mr_mods.fid1 # mr_mods.fid2
+
+Replace mr_mods.hasupd With .T. In 'mr_mods1'
+
+Else
+
+Replace mr_mods.hasupd With .F. In 'mr_mods1'
+
+Endif
+
 Thisform.updateui()
 
 Thisform.gridmain.Refresh()
@@ -1690,7 +1709,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322400810</timestamp>
+		<timestamp>1322357175</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1736,8 +1755,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322338953</timestamp>
+		<uniqueid>_5IE0KY8D3</uniqueid>
+		<timestamp>1322405392</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1782,8 +1801,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IE0KY8D3</uniqueid>
-		<timestamp>1322405392</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322338953</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1854,8 +1873,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I70GHBR7</uniqueid>
-		<timestamp>1321942593</timestamp>
+		<uniqueid>_5I50Z6RB2</uniqueid>
+		<timestamp>1322412355</timestamp>
 		<class>image</class>
 		<classloc/>
 		<baseclass>image</baseclass>
@@ -1887,8 +1906,8 @@ Name = "imgavatar"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1322077176</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322400810</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1929,8 +1948,8 @@ Name = "tbmenu"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80FZ6X0</uniqueid>
-		<timestamp>1322360313</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322402423</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1989,7 +2008,7 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80FZ6X5</uniqueid>
+		<uniqueid>_5ID0R56FA</uniqueid>
 		<timestamp>1322360313</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>

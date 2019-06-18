@@ -340,7 +340,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80A4E11</uniqueid>
-		<timestamp>1322401409</timestamp>
+		<timestamp>1322418255</timestamp>
 		<class>custom</class>
 		<classloc/>
 		<baseclass>custom</baseclass>
@@ -411,13 +411,13 @@ m.payload = '[' + Rtrim(This.fphashes, 1, ',') + ']'
 
 m.winhttp = Newobject('winhttp', 'winhttp.vcx')
 
-m.winhttp.setproxy(2, 'localhost:8888')
+*m.winhttp.setproxy(2, 'localhost:8888')
 
 m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
 
 m.winhttp.option_enableredirects = .T.
 
-m.url = 'https://addons-ecs.forgesvc.net/api/v2/fingerprint'
+m.url = mr_geturlapi() + '/fingerprint'
 
 m.winhttp.Open('POST', m.url, .T.)
 

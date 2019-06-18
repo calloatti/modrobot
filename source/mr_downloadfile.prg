@@ -9,12 +9,9 @@ Lparameters premotefile, plocalfile
 #Define MRDOWNLOAD_SUCCESS		1
 #Define MRDOWNLOAD_FILE_EXISTS	2
 
-#Define	TBPF_NOPROGRESS		0
-#Define	TBPF_INDETERMINATE	0x1
-
-Local winhttp As 'winhttp' Of 'winhttp'
-Local ITaskbarList4, bytesdone, bytesperc, bytestotal, contentlength, contentrange, filehandle
-Local nblocksize, nresult, rangefrom, rangestr, rangeto, tempfile
+Local winhttp as 'winhttp' OF 'winhttp'
+Local bytesdone, bytesperc, bytestotal, contentlength, contentrange, filehandle, nblocksize, nresult
+Local rangefrom, rangestr, rangeto, tempfile
 
 m.nblocksize =(1024 * 128) - 1
 
@@ -27,10 +24,6 @@ m.nblocksize =(1024 * 128) - 1
 m.tempfile = m.plocalfile + '.download'
 
 If Not _file(m.plocalfile)
-
-   m.ITaskbarList4 = com_ITaskbarList4()
-
-   m.ITaskbarList4.HrInit()
 
    m.winhttp = Newobject('winhttp', 'winhttp')
 
@@ -98,8 +91,6 @@ If Not _file(m.plocalfile)
 
       m.bytesperc  = Transform(Ceiling(m.bytesdone / m.bytestotal * 100), '999 %')
 
-      m.ITaskbarList4.SetProgressValue(0, m.bytesdone, m.bytestotal)
-
       _logwrite('RESULT:', m.winhttp.responsestatus, m.bytesperc)
 
       If m.winhttp.responsestatus # 206 Then
@@ -129,10 +120,6 @@ If Not _file(m.plocalfile)
       m.rangefrom = m.rangefrom + m.nblocksize
 
    Enddo
-
-   m.ITaskbarList4.SetProgressState(0, TBPF_NOPROGRESS)
-
-   m.ITaskbarList4 = Null
 
    *!* CLOSE TEMP FILE
 
@@ -184,3 +171,5 @@ Return m.nresult
 
 
 
+
+ 

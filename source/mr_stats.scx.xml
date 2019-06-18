@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKM</uniqueid>
-		<timestamp>1322347225</timestamp>
+		<timestamp>1322417307</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -133,7 +133,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1322347225</timestamp>
+		<timestamp>1322417307</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -153,27 +153,40 @@ _logwrite('ZAP START')
 
 Use mr_addons Exclusive
 Zap
+
 Use mr_files Exclusive
 Zap
 Use mr_avatars Exclusive
 Zap
+
 Use mr_dependencies Exclusive
 Zap
+
 Use mr_fileversions Exclusive
 Zap
+
 Use mr_instances Exclusive
 Zap
+
 Use mr_mods Exclusive
 Zap
+
 Use mr_log Exclusive
 Zap
+
 Use
+
 Alter Table mr_log Alter Column lid I Autoinc Nextvalue 1
-USE
+
+Use
+
+_apideletefile(Addbs(Thisform.apppath) + 'data\mr_log.bak')
+
+_logwrite('ZAP END')
 
 _indextables()
 
-_logwrite('ZAP END')
+
 
 
 

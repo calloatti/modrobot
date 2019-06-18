@@ -44,9 +44,8 @@ Scan &&For mr_addons_fgn.gameid = 432 And mr_addons_fgn.acsptype = 5
 
 	Endif
 
-	?mr_addons_fgn.aid
 
-	m.url = 'https://addons-ecs.forgesvc.net/api/v2/addon/' + Transform(mr_addons_fgn.aid) + '/files'
+	m.url = mr_geturlapi_addon_files(mr_addons_fgn.aid)
 
 	m.winhttp.Open('GET', m.url, .T.)
 

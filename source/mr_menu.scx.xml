@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1322350661</timestamp>
+		<timestamp>1322407938</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -514,7 +514,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0W4RMP</uniqueid>
-		<timestamp>1322350630</timestamp>
+		<timestamp>1322407938</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -525,7 +525,7 @@ Left = 24
 Height = 96
 Width = 96
 Anchor = 6
-Picture = ..\res\bookmark.png
+Picture = ..\res\all_of_fabric_logo.png
 Caption = "ALL OF FABRIC"
 ToolTipText = "ALL OF FABRIC MODPACK HOME PAGE"
 PicturePosition = 13

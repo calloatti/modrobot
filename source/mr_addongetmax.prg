@@ -15,7 +15,7 @@ m.winhttp.gzip = .T.
 
 m.winhttp.option_enableredirects = .T.
 
-m.url = curse_geturlprojectsnew(1)
+m.url = mr_geturlprojectsnew(1)
 
 m.winhttp.Open('GET', m.url, .T.)
 
@@ -51,7 +51,7 @@ m.pslug = Alltrim(Justfname(Strextract(m.namewrapper, '<a href="', '">')))
 
 *!* WE HAVE THE NEWEST PROJECT SLUG, NOW GET PROJECT ID
 
-m.url = curse_geturlproject(m.pslug)
+m.url = mr_geturlproject(m.pslug)
 
 _logwrite('GET LAST ADDON ID', m.url)
 

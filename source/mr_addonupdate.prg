@@ -35,7 +35,7 @@ If addons_up.haresponse = 0 Or m.pforce
 
    m.winhttp.option_enableredirects = .T.
 
-   m.url = 'https://addons-ecs.forgesvc.net/api/v2/addon/' + Transform(addons_up.aid)
+   m.url = mr_geturlapi_addon(addons_up.aid)
 
    m.winhttp.Open('GET', m.url, .T.)
 
@@ -94,7 +94,7 @@ If addons_up.haresponse = 200 And addons_up.agameid = 432
 
       m.winhttp.option_enableredirects = .T.
 
-      m.url = 'https://addons-ecs.forgesvc.net/api/v2/addon/' + Transform(addons_up.aid) + '/files'
+      m.url = mr_geturlapi_addon_files(addons_up.aid)
 
       m.winhttp.Open('GET', m.url, .T.)
 
