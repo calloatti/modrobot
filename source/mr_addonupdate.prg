@@ -118,9 +118,9 @@ If addons_up.haresponse = 200 And addons_up.agameid = 432
 
          If m.hfresponse = 200
 
-            m.hfjson = Chrtran(m.winhttp.getresponse(), 0h09200a0d, '')
+            m.hfjson = m.winhttp.getresponse()
 
-            mr_fileparse(addons_up.aid, m.hfjson)
+            mr_fileparse(addons_up.aid, m.hfjson, m.pforce)
 
          Endif
 

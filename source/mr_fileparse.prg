@@ -11,8 +11,6 @@ If Empty(m.pfjson) Or m.pfjson == '[]' Then
 
 Endif
 
-m.pfjson = Chrtran(m.pfjson, 0h09200a0d, '')
-
 m.nselect = Select()
 
 If Not Used('addons_pjf')
