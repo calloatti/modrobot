@@ -4,7 +4,7 @@
 
 Lparameters pjson
 
-Local ojson as 'collection'
+Local ojson As 'collection'
 Local lnx
 
 m.pjson = Alltrim(m.pjson, 1, '[', ']')
@@ -25,4 +25,4 @@ Endfor
 
 m.ojson.Add('{"id"' + Strextract(m.pjson, '{"id"', '', m.lnx))
 
-Return m.ojson 
+Return m.ojson

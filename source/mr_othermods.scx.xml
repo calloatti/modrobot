@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322006653</timestamp>
+		<timestamp>1322543525</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IF0UGSCM</uniqueid>
+		<timestamp>1322555709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,11 +67,12 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 292
-Width = 114
-Alias = "mr_instances"
+Height = 115
+Width = 153
+Alias = "mr_othermods"
+Order = "modid"
 Database = ..\data\data1.dbc
-CursorSource = "mr_instances"
+CursorSource = "mr_othermods"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -91,22 +92,21 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IG0SC3UX</uniqueid>
+		<timestamp>1322555709</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor2</objname>
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
-Left = 150
-Height = 90
-Width = 90
-Alias = "mr_enum_gameversion"
-Order = "gverlong"
-OrderDirection = 2
+Left = 290
+Height = 188
+Width = 142
+Alias = "mr_othermods1"
+Order = "modid"
 Database = ..\data\data1.dbc
-CursorSource = "mr_enum_gameversion"
+CursorSource = "mr_othermods"
 Name = "Cursor2"
 </properties>
 		<protected/>
@@ -127,95 +127,21 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1322555709</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_instances</objname>
+		<objname>mr_othermods</objname>
 		<parent/>
-		<properties>Top = 0
-Left = 0
-DoCreate = .T.
-Caption = "INSTANCES"
-uniqueid = 601C1595B05F46FDA00D1C22A3788D5B
-Name = "MR_INSTANCES"
+		<properties>DoCreate = .T.
+Caption = "OTHER MODS"
+uniqueid = A20520F4060F4D6BA82879FF4484FE76
+Name = "MR_OTHERMODS"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322294880</timestamp>
-		<class>_gridview</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>grid</baseclass>
-		<objname>gridmain</objname>
-		<parent>mr_instances</parent>
-		<properties>Height = 456
-Left = 12
-Top = 36
-Width = 936
-_gridcontextmenulang = en
-showmemocolumns = .T.
-Name = "gridmain"
-</properties>
-		<protected/>
-		<methods>PROCEDURE DblClick
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
-
-Do Form MR_MODS
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand6</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 60
-Picture = ..\res\1x\outline_add_black_18dp.png
-Caption = "ADD"
-ToolTipText = "ADD INSTANCES"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand6"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_instancegetfolder()
+		<methods>PROCEDURE Activate
+DoDefault()
 
 Thisform.gridmain.Refresh()
 ENDPROC
@@ -235,27 +161,92 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322123844</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>mr_othermods</parent>
+		<properties>Height = 456
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1322494030</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbvermin</objname>
+		<parent>mr_othermods</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 48
+Picture = ..\res\1x\outline_search_black_18dp.png
+Caption = "GOOGLE"
+ToolTipText = ""
+Name = "tbvermin"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://www.google.com/search?q="' + mr_othermods.filename + '"')
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322494030</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>mr_instances</parent>
+		<parent>mr_othermods</parent>
 		<properties>Top = 0
-Left = 84
+Left = 60
 Height = 28
-Width = 60
-Picture = ..\res\1x\outline_clear_black_18dp.png
-Caption = "DELETE"
-ToolTipText = "DELETE SELECTED INSTANCE"
-ZOrderSet = 4
-tbmarginv = 4
+Width = 48
+Picture = ..\res\1x\outline_file_copy_black_18dp.png
+Caption = "PASTE URL"
+ToolTipText = ""
 Name = "_tbcommand1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Delete Next 1 In 'mr_instances'
+Replace mr_othermods.url With _Cliptext In 'mr_othermods'
 
 Thisform.Refresh()
 ENDPROC
@@ -275,29 +266,34 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I61E37EP</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IF0UVSCM</uniqueid>
+		<timestamp>1322493634</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand2</objname>
-		<parent>mr_instances</parent>
+		<objname>tboverview</objname>
+		<parent>mr_othermods</parent>
 		<properties>Top = 0
-Left = 312
+Left = 828
 Height = 28
-Width = 60
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "OPEN"
-ToolTipText = "OPEN THE INSTANCE MODS TAB"
+ToolTipText = "OPEN PROJECT URL IN WEB BROWSER"
 ZOrderSet = 4
+tbalign = 2
 tbmarginv = 4
-Name = "_tbcommand2"
+Name = "tboverview"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+If Not Empty(mr_othermods.url)
 
-Do Form MR_MODS
+mr_shellexecute(mr_othermods.url)
+
+Endif
+
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -316,51 +312,24 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1322543525</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand3</objname>
-		<parent>mr_instances</parent>
+		<objname>_tbcommand2</objname>
+		<parent>mr_othermods</parent>
 		<properties>Top = 0
-Left = 156
+Left = 108
 Height = 28
-Width = 60
-Picture = ..\res\1x\outline_bottom_black_18dp.png
-Caption = "MINVER"
-ToolTipText = "SETS THE MIN MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
-Name = "_tbcommand3"
+Width = 48
+Picture = ..\res\1x\outline_clear_black_18dp.png
+Caption = "DELETE"
+ToolTipText = ""
+Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local nselect, result
-
-m.nselect = Select()
-
-Select 'mr_enum_gameversion'
-
-*!* Lparameters pItemID, pParentId, pItemType, pItemChecked, pItemDisabled, pItemCaption, pItemPicture
-
-Go Top
-
-Scan
-
-This.tbmenuitemadd(Recno('mr_enum_gameversion'), 0, 0, 0, 0, mr_enum_gameversion.gver)
-
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_enum_gameversion'
-
-Replace mr_instances.gver1 With mr_enum_gameversion.gver
-Replace mr_instances.gverlong1 With mr_enum_gameversion.gverlong
-
-Endif
+Delete Next 1 In 'mr_othermods'
 
 Thisform.Refresh()
 ENDPROC
@@ -380,50 +349,84 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80FWCLJ</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IF0UVSCG</uniqueid>
+		<timestamp>1322480400</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand4</objname>
-		<parent>mr_instances</parent>
+		<objname>tbmenu</objname>
+		<parent>mr_othermods</parent>
 		<properties>Top = 0
-Left = 228
+Left = 924
 Height = 28
-Width = 72
-Picture = ..\res\1x\outline_top_black_18dp.png
-Caption = "MAXVER"
-ToolTipText = "SETS THE MAX MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
-Name = "_tbcommand4"
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IG0SC3VV</uniqueid>
+		<timestamp>1322547354</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>mr_othermods</parent>
+		<properties>Top = 0
+Left = 168
+Height = 28
+Width = 48
+Picture = ..\res\1x\outline_cloud_upload_black_18dp.png
+Caption = "UPLOAD LIST"
+ToolTipText = ""
+Name = "_tbcommand3"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local nselect, result
+Local contents
 
-m.nselect = Select()
+Select 'mr_othermods1'
 
-Select 'mr_enum_gameversion'
+m.contents = nfjsonformat(nfCursorToJson())
 
-Scan
+Select 'mr_othermods'
 
-This.tbmenuitemadd(Recno('mr_enum_gameversion'), 0, 0, 0, 0, Alltrim(mr_enum_gameversion.gver))
+*!*	m.contents = ''
 
-Endscan
+*!*	Scan For Not Empty(mr_othermods1.url)
 
-_restorearea(m.nselect)
+*!*	   m.contents = m.contents + mr_othermods1.modid + '|' + mr_othermods1.filename + '|' + mr_othermods1.url + 0h0a
 
-m.result = This.tbmenushow()
+*!*	Endscan
 
-If m.result &gt; 0 Then
 
-Go m.result In 'mr_enum_gameversion'
-
-Replace mr_instances.gver2 With mr_enum_gameversion.gver
-Replace mr_instances.gverlong2 With mr_enum_gameversion.gverlong
-
-Endif
-
-Thisform.Refresh()
+mr_pasteupload('OTHER MODS LIST', m.contents)
 ENDPROC
 </methods>
 		<objcode/>

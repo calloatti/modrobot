@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I611Q32O</uniqueid>
-		<timestamp>1322336994</timestamp>
+		<timestamp>1322553881</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,14 +93,14 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322336994</timestamp>
+		<timestamp>1322553881</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
 		<objname>mr_enum_gameversion</objname>
 		<parent/>
 		<properties>DoCreate = .T.
-Caption = "GAME VERSIONS"
+Caption = "MINECRAFT VERSIONS"
 uniqueid = 94367B182D364EE5979FFEED6AB92076
 Name = "MR_ENUM_GAMEVERSION"
 tmrSql.Name = "tmrSql"

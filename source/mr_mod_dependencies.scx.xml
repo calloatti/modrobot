@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID13H6P8</uniqueid>
-		<timestamp>1322357730</timestamp>
+		<timestamp>1322493659</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,13 +92,15 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322357730</timestamp>
+		<timestamp>1322493659</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
 		<objname>mr_mod_dependencies</objname>
 		<parent/>
-		<properties>DoCreate = .T.
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
 Caption = "MOD DEPENDENCIES"
 mr_iguid = 
 uniqueid = EE1A345833EC405592A6C539AA23C80F
@@ -218,7 +220,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>_gridview1</objname>
-		<parent>MR_MOD_DEPENDENCIES</parent>
+		<parent>mr_mod_dependencies</parent>
 		<properties>Height = 432
 Left = 12
 Top = 36
@@ -298,7 +300,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>MR_MOD_DEPENDENCIES</parent>
+		<parent>mr_mod_dependencies</parent>
 		<properties>Top = 0
 Left = 912
 Height = 28
@@ -404,16 +406,17 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID12N36G</uniqueid>
-		<timestamp>1322356802</timestamp>
+		<timestamp>1322493659</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfiles</objname>
-		<parent>MR_MOD_DEPENDENCIES</parent>
+		<parent>mr_mod_dependencies</parent>
 		<properties>Top = 0
 Left = 840
 Height = 28
 Width = 48
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "FILES"
 ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
 ZOrderSet = 4
@@ -443,16 +446,17 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID12N36L</uniqueid>
-		<timestamp>1322356802</timestamp>
+		<timestamp>1322493659</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>MR_MOD_DEPENDENCIES</parent>
+		<parent>mr_mod_dependencies</parent>
 		<properties>Top = 0
 Left = 768
 Height = 28
 Width = 72
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "OVERVIEW"
 ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
 ZOrderSet = 4
@@ -489,7 +493,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
 		<objname>lblinstance</objname>
-		<parent>MR_MOD_DEPENDENCIES</parent>
+		<parent>mr_mod_dependencies</parent>
 		<properties>FontSize = 8
 Anchor = 14
 Caption = ""

@@ -26,6 +26,12 @@ If Seek(m.paid, 'addons_pja', 'aid') = .F. Then
 
 Endif
 
+If Not Used('categories_pja')
+
+   Use 'mr_categories' Again Alias 'categories_pja' In 0
+
+Endif
+
 If Not Used('avatars_pja')
 
    Use 'mr_avatars' Again Alias 'avatars_pja' In 0
@@ -141,6 +147,35 @@ If m.ojson.gameid = 432 And Type('m.ojson.attachments[1]') = 'O'
 
 Endif
 
+*!* CATEGORIES
+
+If Type('m.ojson.categories[1]') = 'O'
+
+   For m.lnx = 1 To Alen(m.ojson.categories)
+
+      If Seek(m.ojson.categories[m.lnx].categoryid, 'categories_pja', 'categoryid') = .F.
+
+         Append Blank In 'categories_pja'
+
+         Replace ;
+            categories_pja.categoryid With m.ojson.categories[m.lnx].categoryid, ;
+            categories_pja.avatarurl With m.ojson.categories[m.lnx].avatarurl, ;
+            categories_pja.cname With m.ojson.categories[m.lnx].Name, ;
+            categories_pja.gameid With m.ojson.categories[m.lnx].gameid In 'categories_pja'
+
+         Replace categories_pja.avatar With mr_downloadresource(categories_pja.avatarurl) In 'categories_pja'
+
+      Endif
+
+   Endfor
+
+Endif
+
 _logwrite('ADDON PARSE END', m.paid)
+
+Use In 'addons_pja'
+Use In 'avatars_pja'
+Use In 'pstatus_pja'
+Use In 'categories_pja'
 
 _restorearea(m.nselect)

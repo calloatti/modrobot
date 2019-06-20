@@ -2,7 +2,10 @@
 
 Lparameters pfolder
 
-Local cdata, cfile, ifolder, iguid, iloader, iminecraft, iname, lny, ojson
+Local cdata, cfile, ifolder, iguid, iloader, iminecraft, iname, lny, nselect, ojson
+
+
+m.nselect = Select()
 
 If Not Used('instance_add')
 
@@ -84,14 +87,5 @@ Replace instance_add.iloader With m.iloader In 'instance_add'
 
 Use In 'instance_add'
 
-
-
-
-
-
-
-
-
-
-
+_restorearea(m.nselect)
 

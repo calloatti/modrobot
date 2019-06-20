@@ -77,7 +77,6 @@ If addons_up.haresponse = 0 Or m.pforce
 
 Endif
 
-
 If addons_up.haresponse = 200 And addons_up.agameid = 432
 
    If addons_up.hfresponse = 0 Or m.pforce

@@ -52,4 +52,6 @@ If Seek(m.paid, 'avatars_da', 'aid') = .T. And Not Empty(avatars_da.aurl) And Em
 
 Endif
 
+Use In 'avatars_da'
+
 _restorearea(m.nselect)

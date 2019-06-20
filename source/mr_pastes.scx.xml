@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322006653</timestamp>
+		<timestamp>1322544270</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>3</reserved2>
+		<reserved2>2</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IG0RX6CF</uniqueid>
+		<timestamp>1322547426</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,11 +67,11 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 292
-Width = 114
-Alias = "mr_instances"
+Height = 207
+Width = 91
+Alias = "mr_pastes"
 Database = ..\data\data1.dbc
-CursorSource = "mr_instances"
+CursorSource = "mr_pastes"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -91,54 +91,19 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1322493611</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor2</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 150
-Height = 90
-Width = 90
-Alias = "mr_enum_gameversion"
-Order = "gverlong"
-OrderDirection = 2
-Database = ..\data\data1.dbc
-CursorSource = "mr_enum_gameversion"
-Name = "Cursor2"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1322547426</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_instances</objname>
+		<objname>mr_pastes</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
 DoCreate = .T.
-Caption = "INSTANCES"
-uniqueid = 601C1595B05F46FDA00D1C22A3788D5B
-Name = "MR_INSTANCES"
+Caption = "PASTES"
+uniqueid = 2B890559900F438A9B2A4D2D0C354371
+Name = "MR_PASTES"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
@@ -159,25 +124,25 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322294880</timestamp>
+		<timestamp>1322547426</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_instances</parent>
-		<properties>Height = 456
+		<parent>MR_FILEVERSIONS</parent>
+		<properties>Anchor = 11
+Height = 228
 Left = 12
 Top = 36
 Width = 936
 _gridcontextmenulang = en
-showmemocolumns = .T.
 Name = "gridmain"
 </properties>
 		<protected/>
-		<methods>PROCEDURE DblClick
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
 
-Do Form MR_MODS
+thisform.editboxtext.refresh()
 ENDPROC
 </methods>
 		<objcode/>
@@ -195,31 +160,25 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand6</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
+		<uniqueid>_5IG0T2AU3</uniqueid>
+		<timestamp>1322547426</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>editboxtext</objname>
+		<parent>MR_FILEVERSIONS</parent>
+		<properties>FontName = "Consolas"
+Anchor = 15
+Height = 216
 Left = 12
-Height = 28
-Width = 60
-Picture = ..\res\1x\outline_add_black_18dp.png
-Caption = "ADD"
-ToolTipText = "ADD INSTANCES"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand6"
+ReadOnly = .T.
+Top = 276
+Width = 936
+ControlSource = "mr_pastes.ptext"
+Name = "editboxtext"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Click
-mr_instancegetfolder()
-
-Thisform.gridmain.Refresh()
-ENDPROC
-</methods>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -235,69 +194,28 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 84
-Height = 28
-Width = 60
-Picture = ..\res\1x\outline_clear_black_18dp.png
-Caption = "DELETE"
-ToolTipText = "DELETE SELECTED INSTANCE"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand1"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Delete Next 1 In 'mr_instances'
-
-Thisform.Refresh()
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I61E37EP</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IG0TLYZ9</uniqueid>
+		<timestamp>1322544915</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_FILEVERSIONS</parent>
 		<properties>Top = 0
-Left = 312
+Left = 12
 Height = 28
-Width = 60
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "OPEN"
-ToolTipText = "OPEN THE INSTANCE MODS TAB"
-ZOrderSet = 4
-tbmarginv = 4
+Width = 112
+Picture = ..\res\1x\outline_clear_black_18dp.png
+Caption = "DELETE"
+ToolTipText = ""
 Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
 
-Do Form MR_MODS
+mr_pastedelete(mr_pastes.purl)
+
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -315,54 +233,34 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IG0TLYZE</uniqueid>
+		<timestamp>1322544667</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand3</objname>
-		<parent>mr_instances</parent>
+		<objname>tboverview</objname>
+		<parent>MR_FILEVERSIONS</parent>
 		<properties>Top = 0
-Left = 156
+Left = 816
 Height = 28
-Width = 60
-Picture = ..\res\1x\outline_bottom_black_18dp.png
-Caption = "MINVER"
-ToolTipText = "SETS THE MIN MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
-Name = "_tbcommand3"
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "OPEN"
+ToolTipText = "OPEN PROJECT URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tboverview"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local nselect, result
+If Not Empty(mr_pastes.purl)
 
-m.nselect = Select()
-
-Select 'mr_enum_gameversion'
-
-*!* Lparameters pItemID, pParentId, pItemType, pItemChecked, pItemDisabled, pItemCaption, pItemPicture
-
-Go Top
-
-Scan
-
-This.tbmenuitemadd(Recno('mr_enum_gameversion'), 0, 0, 0, 0, mr_enum_gameversion.gver)
-
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_enum_gameversion'
-
-Replace mr_instances.gver1 With mr_enum_gameversion.gver
-Replace mr_instances.gverlong1 With mr_enum_gameversion.gverlong
+mr_shellexecute(mr_pastes.purl)
 
 Endif
 
-Thisform.Refresh()
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -380,52 +278,33 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80FWCLJ</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<uniqueid>_5IG0TLYZK</uniqueid>
+		<timestamp>1322544667</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand4</objname>
-		<parent>mr_instances</parent>
+		<objname>tbmenu</objname>
+		<parent>MR_FILEVERSIONS</parent>
 		<properties>Top = 0
-Left = 228
+Left = 912
 Height = 28
-Width = 72
-Picture = ..\res\1x\outline_top_black_18dp.png
-Caption = "MAXVER"
-ToolTipText = "SETS THE MAX MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
-Name = "_tbcommand4"
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Click
-Local nselect, result
-
-m.nselect = Select()
-
-Select 'mr_enum_gameversion'
-
-Scan
-
-This.tbmenuitemadd(Recno('mr_enum_gameversion'), 0, 0, 0, 0, Alltrim(mr_enum_gameversion.gver))
-
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_enum_gameversion'
-
-Replace mr_instances.gver2 With mr_enum_gameversion.gver
-Replace mr_instances.gverlong2 With mr_enum_gameversion.gverlong
-
-Endif
-
-Thisform.Refresh()
-ENDPROC
-</methods>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -450,6 +329,7 @@ ENDPROC
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Consolas, 0, 9, 7, 14, 11, 13, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>
 		<protected/>

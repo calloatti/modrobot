@@ -224,4 +224,16 @@ For m.lnx = 1 To m.hfjson.Count
 
 Endfor
 
+Use In 'addons_pjf'
+
+Use In 'filever_pjf'
+
+Use In 'gversion_pjf'
+
+Use In 'fstatus_pjf'
+
+Use In 'reltype_pjf'
+
+Use In 'files_pjf'
+
 _restorearea(m.nselect)

@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I30I2W6R</uniqueid>
-		<timestamp>1322336985</timestamp>
+		<timestamp>1322493953</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60QZMK8</uniqueid>
-		<timestamp>1322336985</timestamp>
+		<timestamp>1322493953</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -157,7 +157,7 @@ Name = "Relation1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322336985</timestamp>
+		<timestamp>1322493953</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -335,27 +335,31 @@ Name = "_editbox1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JGQS3</uniqueid>
-		<timestamp>1322076672</timestamp>
+		<uniqueid>_5IF14KCKP</uniqueid>
+		<timestamp>1322493953</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbfile</objname>
+		<objname>_tbcommand2</objname>
 		<parent>mr_files</parent>
 		<properties>Top = 0
-Left = 864
+Left = 324
 Height = 28
-Width = 48
-Caption = "FILE"
-ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
+Width = 84
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "REFRESH"
+ToolTipText = "REFRESH PROJECT DATA"
 ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tbfile"
+Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject_files(mr_files.aid, mr_files.fid))
+mr_addonupdate(mr_files.aid, .T.)
+
+Thisform.Refresh()
+
+
+
 
 ENDPROC
 </methods>
@@ -374,27 +378,190 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I90J2KF8</uniqueid>
-		<timestamp>1322076672</timestamp>
+		<uniqueid>_5I30I2W6R</uniqueid>
+		<timestamp>1322489586</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_changelog</objname>
+		<objname>tbapi_addon</objname>
 		<parent>mr_files</parent>
 		<properties>Top = 0
-Left = 264
+Left = 12
 Height = 28
-Width = 60
-Caption = "API CHANGELOG"
+Width = 72
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API ADDON"
 ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
 ZOrderSet = 4
 tbmarginv = 4
-Name = "tbapi_changelog"
+Name = "tbapi_addon"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon_file_changelog(mr_files.aid, mr_files.fid))
+mr_shellexecute(mr_geturlapi_addon(mr_files.aid))
 
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322489586</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_file</objname>
+		<parent>mr_files</parent>
+		<properties>Top = 0
+Left = 144
+Height = 28
+Width = 60
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API FILE"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_file"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_file(mr_files.aid, mr_files.fid))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I30I2W6R</uniqueid>
+		<timestamp>1322489549</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles</objname>
+		<parent>mr_files</parent>
+		<properties>Top = 0
+Left = 660
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "FILES"
+ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject_files(mr_files.aid))
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322489624</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverview</objname>
+		<parent>mr_files</parent>
+		<properties>Top = 0
+Left = 564
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "OVERVIEW"
+ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tboverview"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject(mr_files.aid))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322489586</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_files</objname>
+		<parent>mr_files</parent>
+		<properties>Top = 0
+Left = 84
+Height = 28
+Width = 60
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API FILES"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_files"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_files(mr_files.aid))
 
 
 ENDPROC
@@ -415,16 +582,17 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60R2LI1</uniqueid>
-		<timestamp>1322076672</timestamp>
+		<timestamp>1322493953</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbjson</objname>
 		<parent>mr_files</parent>
 		<properties>Top = 0
-Left = 324
+Left = 264
 Height = 28
 Width = 60
+Picture = ..\res\1x\outline_description_black_18dp.png
 Caption = "JSON"
 ToolTipText = "OPEN JSON IN NOTEPAD"
 ZOrderSet = 4
@@ -470,184 +638,27 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321887237</timestamp>
+		<uniqueid>_5I90J2KF8</uniqueid>
+		<timestamp>1322489585</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_files</objname>
-		<parent>mr_files</parent>
-		<properties>Top = 0
-Left = 144
-Height = 28
-Width = 60
-Caption = "API FILES"
-ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbapi_files"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon_files(mr_files.aid))
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I60R2LHQ</uniqueid>
-		<timestamp>1322104936</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbgetnew</objname>
-		<parent>mr_files</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 60
-Caption = "GET NEW"
-Enabled = .F.
-ToolTipText = "DOWNLOADS NEW PROJECTS"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbgetnew"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322076672</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tboverview</objname>
-		<parent>mr_files</parent>
-		<properties>Top = 0
-Left = 744
-Height = 28
-Width = 72
-Caption = "OVERVIEW"
-ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tboverview"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject(mr_files.aid))
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I30I2W6R</uniqueid>
-		<timestamp>1322076408</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbfiles</objname>
-		<parent>mr_files</parent>
-		<properties>Top = 0
-Left = 816
-Height = 28
-Width = 48
-Caption = "FILES"
-ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tbfiles"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject_files(mr_files.aid))
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322076408</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_file</objname>
+		<objname>tbapi_changelog</objname>
 		<parent>mr_files</parent>
 		<properties>Top = 0
 Left = 204
 Height = 28
 Width = 60
-Caption = "API FILE"
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API CHANGELOG"
 ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
 ZOrderSet = 4
 tbmarginv = 4
-Name = "tbapi_file"
+Name = "tbapi_changelog"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon_file(mr_files.aid, mr_files.fid))
+mr_shellexecute(mr_geturlapi_addon_file_changelog(mr_files.aid, mr_files.fid))
 
 
 
@@ -668,27 +679,28 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I30I2W6R</uniqueid>
-		<timestamp>1322076408</timestamp>
+		<uniqueid>_5I90JGQS3</uniqueid>
+		<timestamp>1322489549</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_addon</objname>
+		<objname>tbfile</objname>
 		<parent>mr_files</parent>
 		<properties>Top = 0
-Left = 72
+Left = 756
 Height = 28
-Width = 72
-Caption = "API ADDON"
-ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "FILE"
+ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
 ZOrderSet = 4
+tbalign = 2
 tbmarginv = 4
-Name = "tbapi_addon"
+Name = "tbfile"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon(mr_files.aid))
-
+mr_shellexecute(mr_geturlproject_files(mr_files.aid, mr_files.fid))
 
 ENDPROC
 </methods>

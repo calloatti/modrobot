@@ -35,7 +35,6 @@ m.aid	= m.podependency.addonid
 m.fid	= m.podependency.fileid
 m.dtype	= m.podependency.Type
 
-
 If Seek(m.aid, 'mr_addons_up', 'aid') = .F.
 
    *!* ADD DEPENDENCY ADDON ID TO ADDONS TABLE
@@ -60,11 +59,20 @@ If Seek(m.did, 'mr_dep_up', 'did') = .F.
 
 Endif
 
-Replace mr_dep_up.aid With m.aid In 'mr_dep_up'
-Replace mr_dep_up.fid With m.fid In 'mr_dep_up'
-Replace mr_dep_up.dtype With m.dtype In 'mr_dep_up'
-Replace mr_dep_up.dname With m.dname In 'mr_dep_up'
-Replace mr_dep_up.aname With m.aname In 'mr_dep_up'
-Replace mr_dep_up.filename With m.filename In 'mr_dep_up'
+Replace ;
+   mr_dep_up.aid With m.aid, ;
+   mr_dep_up.fid With m.fid, ;
+   mr_dep_up.dtype With m.dtype, ;
+   mr_dep_up.dname With m.dname, ;
+   mr_dep_up.aname With m.aname, ;
+   mr_dep_up.filename With m.filename In 'mr_dep_up'
+
+Use In 'mr_enumdep_up'
+
+Use In 'mr_dep_up'
+
+Use In 'mr_files_up'
+
+Use In 'mr_addons_up'
 
 _restorearea(m.nselect)

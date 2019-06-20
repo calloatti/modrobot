@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1322407938</timestamp>
+		<timestamp>1322554742</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -261,8 +261,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I617KLT2</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -346,7 +346,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLTD</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1322553859</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -358,7 +358,7 @@ Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "LOG"
+Caption = "CHANGELOG"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -539,6 +539,132 @@ Name = "_tbcommand11"
 		<protected/>
 		<methods>PROCEDURE Click
 mr_shellexecute('https://github.com/AK9Official/All-of-Fabric')
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand12</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 624
+Left = 456
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "OTHER MODS"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand12"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_OTHERMODS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IG13878H</uniqueid>
+		<timestamp>1322553924</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand13</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 132
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "CATEGORIES"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand13"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_CATEGORIES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IG1454BQ</uniqueid>
+		<timestamp>1322554742</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand14</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 624
+Left = 564
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "PASTES"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand14"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_PASTES
 ENDPROC
 </methods>
 		<objcode/>

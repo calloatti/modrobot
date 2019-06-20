@@ -27,17 +27,17 @@
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1321963728</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322553943</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 336
-Left = 244
-Width = 843
-Height = 348
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>1</reserved2>
+		<reserved2>2</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,23 +58,68 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I712ALKM</uniqueid>
-		<timestamp>1322554091</timestamp>
+		<uniqueid>_5IG0ZBELE</uniqueid>
+		<timestamp>1322553943</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 90
+Alias = "mr_categories"
+Order = "cname"
+Database = ..\data\data1.dbc
+CursorSource = "mr_categories"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1322553943</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_stats</objname>
+		<objname>mr_categories</objname>
 		<parent/>
 		<properties>DoCreate = .T.
-Caption = "STATS"
-uniqueid = 596C3CFDDB4E4182B8014ADF17C15A6E
-Name = "MR_STATS"
+Caption = "CATEGORIES"
+uniqueid = 98BD55BAADFE4814A06FD41F17645C3F
+Name = "MR_CATEGORIES"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
 		<methods>PROCEDURE init2
+Thisform.updateui()
+ENDPROC
+PROCEDURE updateui
 
+If Empty(mr_categories.avatar)
 
+Thisform.imgavatar.PictureVal = Filetostr(Thisform.apppath + 'res\noimage.png')
+
+Else
+
+Thisform.imgavatar.PictureVal = mr_categories.avatar
+
+Endif
 
 ENDPROC
 </methods>
@@ -93,22 +138,22 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I91BVS1U</uniqueid>
-		<timestamp>1322139820</timestamp>
+		<uniqueid>_5IG0ZGZAY</uniqueid>
+		<timestamp>1322550304</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>MR_STATS</parent>
+		<parent>mr_fileversions</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
-Anchor = 15
-Height = 444
+Anchor = 14
+Height = 144
 Left = 12
 ReadOnly = .T.
 TabIndex = 9
-Top = 48
-Width = 936
+Top = 348
+Width = 780
 ZOrderSet = 0
 Value = 
 IntegralHeight = .F.
@@ -132,72 +177,25 @@ Name = "edtlog"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1322554091</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>MR_STATS</parent>
-		<properties>Top = 12
-Left = 24
-Picture = ..\res\1x\outline_clear_black_18dp.png
-Caption = "ZAP"
-ToolTipText = "ZAPS TABLES"
-Name = "_tbcommand1"
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1322550304</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>mr_fileversions</parent>
+		<properties>Height = 300
+Left = 12
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Click
-Close Tables All
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
 
-_logwrite('ZAP START')
-
-Use mr_addons Exclusive
-Zap
-
-Use mr_avatars Exclusive
-Zap
-
-Use mr_dependencies Exclusive
-Zap
-
-Use mr_files Exclusive
-Zap
-
-Use mr_fileversions Exclusive
-Zap
-
-Use mr_instances Exclusive
-Zap
-
-Use mr_log Exclusive
-Zap
-
-Use mr_mods Exclusive
-Zap
-
-Use mr_pastes Exclusive
-Zap
-
-Use
-
-Alter Table mr_log Alter Column lid I Autoinc Nextvalue 1
-
-Use
-
-_apideletefile(Addbs(Thisform.apppath) + 'data\mr_log.bak')
-
-_logwrite('ZAP END')
-
-_indextables()
-
-
-
-
-
-
-
-
+Thisform.updateui()
 ENDPROC
 </methods>
 		<objcode/>
@@ -215,54 +213,24 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IA0HBKS5</uniqueid>
-		<timestamp>1322494116</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand2</objname>
-		<parent>MR_STATS</parent>
-		<properties>Top = 12
-Left = 864
-Picture = ..\res\1x\outline_info_black_18dp.png
-Caption = "STATS"
-ToolTipText = "ZAPS TABLES"
-tbalign = 2
-Name = "_tbcommand2"
+		<uniqueid>_5IG0ZENLQ</uniqueid>
+		<timestamp>1322550283</timestamp>
+		<class>image</class>
+		<classloc/>
+		<baseclass>image</baseclass>
+		<objname>imgavatar</objname>
+		<parent>mr_fileversions</parent>
+		<properties>Anchor = 12
+Picture = ..\res\noimage1.png
+Stretch = 2
+Height = 144
+Left = 804
+Top = 348
+Width = 144
+Name = "imgavatar"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Click
-Local atables[1], lnx, ncount, olbl
-
-m.ncount = Adir(adbfs, Thisform.apppath + 'data\mr_*.dbf')
-
-For m.lnx = 1 To m.ncount
-
-Use m.adbfs[m.lnx, 1] Again In 0 Shared
-
-Endfor
-
-m.ncount = Aused(atables)
-
-= Asort(m.atables)
-
-For m.lnx = 1 To m.ncount
-
-_logwrite(m.atables[m.lnx, 1] + ':' + Transform(Reccount(m.atables[m.lnx, 1])))
-
-Use In   m.atables[m.lnx]
-
-Endfor
-
-_logwrite('CONFIG FILE EXTERNAL', SYS(2019,1))
-_logwrite('CONFIG FILE INTERNAL', SYS(2019,2))
-_logwrite('START FOLDER', SYS(2004))
-
-
-
-
-ENDPROC
-</methods>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -287,7 +255,7 @@ ENDPROC
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Consolas, 0, 8, 6, 13, 10, 12, 3, 0
-Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
 </properties>
 		<protected/>
 		<methods/>
