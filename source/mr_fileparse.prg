@@ -3,7 +3,7 @@
 Lparameters paid, pfjson, pforce, psilent
 
 Local aid, did, dtype, fid, foldername, guid, gver, gver_files, gverlong, hfjson, lnx, lnz, nselect
-Local ojson
+Local ojson, slug
 
 If Empty(m.pfjson) Or m.pfjson == '[]' Then
 
@@ -57,6 +57,8 @@ If Not Used('files_pjf')
 
 Endif
 
+m.slug = addons_pjf.slug
+
 *!* SPLIT EACH ELEMENT OF THE FILES JSON TO GET ONE JSON PER FILE
 
 m.hfjson = mr_filejsonsplit(m.pfjson)
@@ -100,6 +102,7 @@ For m.lnx = 1 To m.hfjson.Count
       files_pjf.aid With m.paid, ;
       files_pjf.altfileid With m.ojson.alternatefileid, ;
       files_pjf.aname With addons_pjf.aname, ;
+      files_pjf.slug With m.slug, ;
       files_pjf.dispname With m.ojson.displayname, ;
       files_pjf.filedate With m.ojson.filedate, ;
       files_pjf.fileext With Justext(m.ojson.filename), ;
@@ -127,7 +130,7 @@ For m.lnx = 1 To m.hfjson.Count
 
    Endif
 
-   *!* FIND mcmod.info OR fabric.mod.json MODULES
+   *!* FIND mcmod.info/fabric.mod.json/riftmod.json MODULES
 
    If Vartype(m.ojson.modules) = 'O'
 
@@ -146,6 +149,18 @@ For m.lnx = 1 To m.hfjson.Count
             Case 'fabric.mod.json' $ m.foldername
 
                Replace files_pjf.foldername With 'FABRIC' In 'files_pjf'
+
+               Exit
+
+            Case 'riftmod.json' $ m.foldername
+
+               Replace files_pjf.foldername With 'RIFT' In 'files_pjf'
+
+               Exit
+
+            Case 'litemod.json' $ m.foldername
+
+               Replace files_pjf.foldername With 'LITELOADER' In 'files_pjf'
 
                Exit
 
@@ -236,4 +251,4 @@ Use In 'reltype_pjf'
 
 Use In 'files_pjf'
 
-_restorearea(m.nselect)
+_restorearea(m.nselect) 

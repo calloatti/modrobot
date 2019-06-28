@@ -78,7 +78,7 @@ If m.winhttp.responsestatus = 201
          pastes_up.ptext With m.pcontents, ;
          pastes_up.pname With m.pname In 'pastes_up'
 
-      m.result = Messagebox(m.ojson.Link + 0h0d0a0d0a + 'Open link?', 4 + 64)
+      m.result = Messagebox(m.ojson.Link + 0h0d0a0d0a + 'Open link?', 4 + 64, 'MODROBOT')
 
       If m.result = 6
 
@@ -91,7 +91,7 @@ If m.winhttp.responsestatus = 201
 
 Else
 
-   m.result = Messagebox('Upload failed!', 48)
+   m.result = Messagebox('Upload failed!', 48, 'MODROBOT')
 
 Endif
 

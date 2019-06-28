@@ -2,6 +2,6 @@
 
 Lparameters ppage
 
-*!* https://minecraft.curseforge.com/mc-mods?filter-sort=1&page=1
+*!* https://www.curseforge.com/minecraft/mc-mods?filter-sort=1&page=1
 
-Return mr_geturlhome() + '/mc-mods?filter-sort=1&page=' + Transform(m.ppage)
+Return mr_geturlbase() + '/mc-mods?filter-sort=1&page=' + Transform(m.ppage)

@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IF0UGSCM</uniqueid>
-		<timestamp>1322555709</timestamp>
+		<timestamp>1322678136</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IG0SC3UX</uniqueid>
-		<timestamp>1322555709</timestamp>
+		<timestamp>1322678136</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,7 +127,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322555709</timestamp>
+		<timestamp>1322678136</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -229,7 +229,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322494030</timestamp>
+		<timestamp>1322678136</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -246,7 +246,11 @@ Name = "_tbcommand1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
+If Not Empty(_Cliptext)
+
 Replace mr_othermods.url With _Cliptext In 'mr_othermods'
+
+Endif
 
 Thisform.Refresh()
 ENDPROC
@@ -392,7 +396,7 @@ Name = "tbmenu"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IG0SC3VV</uniqueid>
-		<timestamp>1322547354</timestamp>
+		<timestamp>1322557634</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -404,7 +408,7 @@ Height = 28
 Width = 48
 Picture = ..\res\1x\outline_cloud_upload_black_18dp.png
 Caption = "UPLOAD LIST"
-ToolTipText = ""
+ToolTipText = "UPLOADS OTHER MODS LIST TO PASTE.EE TO SHARE WITH OTHER USERS"
 Name = "_tbcommand3"
 </properties>
 		<protected/>

@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321896359</timestamp>
+		<timestamp>1322940827</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>2</reserved2>
+		<reserved2>3</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,18 +59,19 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I611Q32O</uniqueid>
-		<timestamp>1322553881</timestamp>
+		<timestamp>1323020009</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor1</objname>
 		<parent>Dataenvironment</parent>
-		<properties>Top = 20
+		<properties>Top = 19
 Left = 10
 Height = 261
 Width = 338
 Alias = "mr_enum_gameversion"
-Order = ""
+Order = "gverlong"
+OrderDirection = 2
 Database = ..\data\data1.dbc
 CursorSource = "mr_enum_gameversion"
 Name = "Cursor1"
@@ -92,8 +93,41 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5IM0WLYWC</uniqueid>
+		<timestamp>1323020009</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 416
+Height = 169
+Width = 235
+Alias = "mr_enum_gameversion1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_enum_gameversion"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322553881</timestamp>
+		<timestamp>1323020009</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -123,18 +157,135 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322123779</timestamp>
+		<timestamp>1323020009</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
 		<parent>mr_enum_gameversion</parent>
-		<properties>Height = 456
+		<properties>Height = 300
 Left = 12
 Top = 36
 Width = 936
 _gridcontextmenulang = en
 Name = "gridmain"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IM0WIEU1</uniqueid>
+		<timestamp>1322941289</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbupdateall</objname>
+		<parent>mr_enum_gameversion</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 136
+Picture = ..\res\1x\outline_cloud_download_black_18dp.png
+Caption = "UPDATE LIST"
+ToolTipText = "UPDATES MINECRAFT VERSIONS LIST FROM MOJANG"
+ZOrderSet = 4
+tbmarginv = 4
+tbstyle = 7
+Name = "tbupdateall"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local gver, gverlong, json, lnx, ojson
+
+
+_logwrite('PROCESS START')
+
+m.json = mr_downloadstring('https://launchermeta.mojang.com/mc/game/version_manifest.json')
+
+If Not Empty(m.json)
+
+m.ojson = nfjsonread(m.json)
+
+For m.lnx = 1 To Alen(m.ojson.versions)
+
+If m.ojson.versions[m.lnx].Type = 'release'
+
+m.gver = m.ojson.versions[m.lnx].Id
+
+m.gverlong = mr_getgameversionlong(m.gver)
+
+If Seek(m.gver, 'mr_enum_gameversion1', 'gver') = .F.
+
+Append Blank In 'mr_enum_gameversion1'
+
+Replace ;
+mr_enum_gameversion1.gver With m.gver, ;
+mr_enum_gameversion1.gverlong With m.gverlong In 'mr_enum_gameversion1'
+
+Endif
+
+Endif
+
+Endfor
+
+Endif
+
+_logwrite('PROCESS END')
+
+Thisform.Refresh()
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IN1AZH4C</uniqueid>
+		<timestamp>1323020009</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_enum_gameversion</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
 </properties>
 		<protected/>
 		<methods/>
@@ -162,6 +313,8 @@ Name = "gridmain"
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 </properties>
 		<protected/>
 		<methods/>

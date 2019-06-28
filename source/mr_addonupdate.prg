@@ -59,7 +59,7 @@ If addons_up.haresponse = 0 Or m.pforce
 
       If m.haresponse = 200
 
-         m.hajson = Chrtran(m.winhttp.getresponse(), 0h09200a0d, '')
+         m.hajson = m.winhttp.getresponse()
 
          Replace addons_up.hajson With m.hajson In 'addons_up'
 

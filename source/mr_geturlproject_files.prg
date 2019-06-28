@@ -8,7 +8,7 @@ If Pcount() = 2
 
 Else
 
-   Return mr_geturlproject(m.paid) + '/files'
+   Return mr_geturlproject(m.paid) + '/files/all'
 
 Endif
 

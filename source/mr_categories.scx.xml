@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IG0ZBELE</uniqueid>
-		<timestamp>1322553943</timestamp>
+		<timestamp>1322610425</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -70,7 +70,7 @@ Left = 10
 Height = 90
 Width = 90
 Alias = "mr_categories"
-Order = "cname"
+Order = "cnamepath"
 Database = ..\data\data1.dbc
 CursorSource = "mr_categories"
 Name = "Cursor1"
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322553943</timestamp>
+		<timestamp>1322610425</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -144,7 +144,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>mr_fileversions</parent>
+		<parent>MR_CATEGORIES</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -183,7 +183,7 @@ Name = "edtlog"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_fileversions</parent>
+		<parent>MR_CATEGORIES</parent>
 		<properties>Height = 300
 Left = 12
 Top = 36
@@ -219,7 +219,7 @@ ENDPROC
 		<classloc/>
 		<baseclass>image</baseclass>
 		<objname>imgavatar</objname>
-		<parent>mr_fileversions</parent>
+		<parent>MR_CATEGORIES</parent>
 		<properties>Anchor = 12
 Picture = ..\res\noimage1.png
 Stretch = 2
@@ -245,6 +245,99 @@ Name = "imgavatar"
 		<user/>
 	</record>
 	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IH0RRMV7</uniqueid>
+		<timestamp>1322610425</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbrefreshall</objname>
+		<parent>MR_CATEGORIES</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "REFRESH"
+ToolTipText = "REFRESH CURSE DATA FOR ALL CATEGORIES"
+ZOrderSet = 4
+Name = "tbrefreshall"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Thisform.gridmain.Enabled = .f.
+
+mr_categories_update()
+
+Thisform.updateui()
+
+Thisform.gridmain.Enabled = .t.
+
+Thisform.Refresh()
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IH0TQPTB</uniqueid>
+		<timestamp>1322610425</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverview</objname>
+		<parent>MR_CATEGORIES</parent>
+		<properties>Top = 0
+Left = 840
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "OPEN"
+ToolTipText = "OPEN CATEGORY IN BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tboverview"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlbase() + '/' + mr_categories.slugpath)
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
 		<platform>COMMENT</platform>
 		<uniqueid>RESERVED</uniqueid>
 		<timestamp>0</timestamp>
@@ -256,6 +349,7 @@ Name = "imgavatar"
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>
 		<protected/>
 		<methods/>

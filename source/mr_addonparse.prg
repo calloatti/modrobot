@@ -84,6 +84,7 @@ Replace ;
    addons_pja.aauthname With m.aauthname, ;
    addons_pja.adcreated With m.ojson.datecreated, ;
    addons_pja.admodified With m.ojson.datemodified, ;
+   addons_pja.slug With m.ojson.slug, ;
    addons_pja.adreleased With m.ojson.datereleased In 'addons_pja'
 
 
@@ -140,30 +141,6 @@ If m.ojson.gameid = 432 And Type('m.ojson.attachments[1]') = 'O'
          mr_avatardownload(m.paid)
 
          Exit
-
-      Endif
-
-   Endfor
-
-Endif
-
-*!* CATEGORIES
-
-If Type('m.ojson.categories[1]') = 'O'
-
-   For m.lnx = 1 To Alen(m.ojson.categories)
-
-      If Seek(m.ojson.categories[m.lnx].categoryid, 'categories_pja', 'categoryid') = .F.
-
-         Append Blank In 'categories_pja'
-
-         Replace ;
-            categories_pja.categoryid With m.ojson.categories[m.lnx].categoryid, ;
-            categories_pja.avatarurl With m.ojson.categories[m.lnx].avatarurl, ;
-            categories_pja.cname With m.ojson.categories[m.lnx].Name, ;
-            categories_pja.gameid With m.ojson.categories[m.lnx].gameid In 'categories_pja'
-
-         Replace categories_pja.avatar With mr_downloadresource(categories_pja.avatarurl) In 'categories_pja'
 
       Endif
 

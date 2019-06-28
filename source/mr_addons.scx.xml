@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1322493958</timestamp>
+		<timestamp>1322957076</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6080T40</uniqueid>
-		<timestamp>1322493958</timestamp>
+		<timestamp>1322957076</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -158,7 +158,7 @@ Name = "Relation1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322493958</timestamp>
+		<timestamp>1322957076</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -495,7 +495,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZA</uniqueid>
-		<timestamp>1322489505</timestamp>
+		<timestamp>1322957076</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -515,7 +515,7 @@ Name = "tboverview"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject(mr_addons.aid))
+mr_shellexecute(mr_geturlproject(mr_addons.slug))
 
 
 
@@ -537,7 +537,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZF</uniqueid>
-		<timestamp>1322489505</timestamp>
+		<timestamp>1322956829</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -557,7 +557,7 @@ Name = "tbfiles"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject_files(mr_addons.aid))
+mr_shellexecute(mr_geturlproject_files(mr_addons.slug))
 
 ENDPROC
 </methods>
