@@ -1,0 +1,634 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1323859414</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>3</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IY0V5R68</uniqueid>
+		<timestamp>1323895511</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 90
+Alias = "mr_instances1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IY0V8FA6</uniqueid>
+		<timestamp>1323895511</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 90
+Width = 90
+Alias = "mr_instances"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1323895511</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_mods_jij</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "JIJ"
+uniqueid = 27BA27FF71AE410DB1203389AA8F7135
+Name = "MR_MODS_JIJ"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Destroy
+*!* destroy
+
+
+ENDPROC
+PROCEDURE init2
+*!* init2
+
+m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+Thisform.mr_setinstance(m.iguid)
+
+Thisform.updateui()
+ENDPROC
+PROCEDURE load2
+SELECT * FROM 'mr_jijs' INTO CURSOR 'sql_jijs1' readwrite
+
+USE DBF('sql_jijs1') AGAIN IN 0 ALIAS 'sql_jijs'
+ENDPROC
+PROCEDURE mr_filescan
+Lparameters pfilename, pfilenameordata, plevel
+
+Local filedata, jij, json, lnx, ojson
+
+If m.plevel = 1
+
+m.json = mr_getfilefromzip(m.pfilenameordata, 'fabric.mod.json')
+
+Else
+
+m.json = mr_getfilefromzipdata(m.pfilenameordata, 'fabric.mod.json')
+
+Endif
+
+If Not Empty(m.json)
+
+m.ojson = nfjsonread(m.json)
+
+If Type('m.ojson.jars[1].file') = 'C'
+
+For m.lnx = 1 To Alen(m.ojson.jars)
+
+m.jij = Justfname(m.ojson.jars[m.lnx].File)
+
+Append Blank In 'sql_jijs1'
+
+Replace sql_jijs1.filename With m.pfilename In 'sql_jijs1'
+Replace sql_jijs1.jij With m.jij In 'sql_jijs1'
+Replace sql_jijs1.jijlevel With m.plevel In 'sql_jijs1'
+
+If m.plevel = 1
+
+m.filedata = mr_getfilefromzip(m.pfilenameordata, m.ojson.jars[m.lnx].File)
+
+Else
+
+m.filedata =  mr_getfilefromzipdata(m.pfilenameordata, m.ojson.jars[m.lnx].File)
+
+Endif
+
+Replace sql_jijs1.jijsize With LEN(m.filedata) In 'sql_jijs1'
+
+Thisform.mr_filescan(m.pfilename + '/' + m.jij, m.filedata, m.plevel + 1)
+
+Endfor
+
+Else
+
+*Append Blank In 'sql_jijs1'
+
+*Replace sql_jijs1.filename With m.pfilename In 'sql_jijs1'
+
+
+Endif
+
+Endif
+ENDPROC
+PROCEDURE mr_folderscan
+Local afiles[1], filename, filespec, fileunc, ifolder, lnx, ncount
+
+_logwrite('SCAN START')
+
+*!* SCAN FOLDER FOR FILES
+
+m.ifolder = mr_instances.ifolder
+
+m.filespec = Addbs(m.ifolder) + '*.*'
+
+m.ncount = Adir(afiles, m.filespec, '', 1)
+
+For m.lnx = 1 To m.ncount
+
+m.filename	= m.afiles(m.lnx, 1)
+
+If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
+
+Loop
+
+Endif
+
+m.fileunc = Addbs(m.ifolder) + m.filename
+
+_logwrite(m.fileunc)
+
+Thisform.mr_filescan(m.filename, m.fileunc, 1)
+
+Endfor
+
+_logwrite('SCAN END')
+
+
+
+ENDPROC
+PROCEDURE mr_setinstance
+*!* mr_setinstance
+
+Lparameters piguid
+
+If m.piguid = '00000000' And Reccount('mr_instances') &gt; 0 Then
+
+Go Top In 'mr_instances'
+
+Endif
+
+If Seek(m.piguid, 'mr_instances', 'iguid') = .T.
+
+_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+
+If Empty(mr_instances.iname) Then
+
+Thisform.Caption = 'JIJ - ' + _shortenpath(mr_instances.iguid, 240)
+
+Else
+
+Thisform.Caption = 'JIJ - ' + _shortenpath(mr_instances.iname, 240)
+
+Endif
+
+
+Else
+
+Thisform.SetAll('ENABLED', .F.)
+
+Thisform.Caption = 'JIJ - NO INSTANCE SELECTED'
+
+
+Endif
+
+Delete All In 'sql_jijs'
+
+Thisform.updateui()
+
+Thisform.Refresh()
+ENDPROC
+PROCEDURE updateui
+*!* updateui
+
+Local sep
+
+m.sep = Space(3)
+
+Thisform.lblinstance.Caption = ' ' + ;
+'GUID: ' + mr_instances.iguid + m.sep + ;
+'NAME: ' + mr_instances.iname + m.sep + ;
+'VERSION ' + mr_instances.iminecraft + m.sep + ;
+'LOADER: ' + mr_instances.iloader + m.sep + ;
+'MINVER: ' + mr_instances.gver1 + m.sep + ;
+'MAXVER: ' + mr_instances.gver2 + m.sep + ;
+'PATH: ' + mr_instances.ifolder
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>*mr_setinstance 
+*mr_folderscan 
+*mr_filescan 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I6106W9K</uniqueid>
+		<timestamp>1323865558</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_mods_jij</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 324
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1323895511</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>mr_mods_jij</parent>
+		<properties>Height = 276
+Left = 12
+RecordSource = "sql_jijs"
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
+
+Thisform.updateui()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IY0VMAZ0</uniqueid>
+		<timestamp>1323895511</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>mr_mods_jij</parent>
+		<properties>Top = 0
+Left = 132
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "SCAN MODS FOLDER"
+ZOrderSet = 4
+tbstyle = 7
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+_logwrite('PROCESS START')
+
+Delete All In 'sql_jijs'
+
+Thisform.mr_folderscan()
+
+_logwrite('PROCESS END')
+
+GO TOP IN 'sql_jijs'
+
+Thisform.updateui()
+
+Thisform.Refresh()
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IY0V5R6M</uniqueid>
+		<timestamp>1323865110</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbinstances</objname>
+		<parent>mr_mods_jij</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_expand_more_black_18dp.png
+Caption = "INSTANCES"
+ToolTipText = "OPEN INSTANCES MENU"
+PicturePosition = 4
+ZOrderSet = 4
+tbmarginv = 4
+tbstyle = 7
+Name = "tbinstances"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local nselect, result
+
+m.nselect = Select()
+
+Select 'mr_instances1'
+
+Scan
+
+This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
+
+Endscan
+
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_instances1'
+
+Thisform.mr_setinstance(mr_instances1.iguid)
+
+Endif
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322123709</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbmenu</objname>
+		<parent>mr_mods_jij</parent>
+		<properties>Top = 0
+Left = 924
+Height = 28
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IY148ZB7</uniqueid>
+		<timestamp>1323865558</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>lblinstance</objname>
+		<parent>mr_mods_jij</parent>
+		<properties>FontSize = 8
+Anchor = 14
+Caption = ""
+Height = 15
+Left = 12
+Top = 480
+Width = 936
+autowidth = .F.
+Name = "lblinstance"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

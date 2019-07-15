@@ -6,7 +6,7 @@ Local lastfolder, selfolder
 
 m.lastfolder = _inigetvalue('ADD_INSTANCE_LAST_FOLDER', Set('Default'))
 
-m.selfolder = Getdir(m.lastfolder, 'Select MultimMC folder, MultimMC instances folder, instance folder or mods folder', '', 1 + 64)
+m.selfolder = Getdir(m.lastfolder, 'Select MultimMC folder, MultimMC instances folder, instance folder or mods folder', '', 1 + 64+16+32)
 
 If Not Empty(m.selfolder) Then
 

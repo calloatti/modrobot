@@ -62,7 +62,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -95,7 +95,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61EBSMR</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -128,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -162,7 +162,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70J9KXM</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -195,7 +195,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70K005Y</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -228,7 +228,7 @@ Name = "Cursor5"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FSB4G</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -263,7 +263,7 @@ Name = "Cursor7"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0IPOO1</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -297,7 +297,7 @@ Name = "Cursor8"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0K0IKM</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -330,7 +330,7 @@ Name = "Cursor9"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IF0UOCB5</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -363,7 +363,7 @@ Name = "Cursor10"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IG12MLGC</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -396,7 +396,7 @@ Name = "Cursor11"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1323019729</timestamp>
+		<timestamp>1323921259</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -406,10 +406,10 @@ Name = "Cursor11"
 Left = 0
 DoCreate = .T.
 Caption = "MODS"
-noavatar = 0
 gridrowcolor = 0
 mr_loader = 
 mr_iguid = 
+mr_noavatar = 0
 uniqueid = D74C4473368A4B07ADDB19F79B139BE9
 Name = "MR_MODS"
 tmrSql.Name = "tmrSql"
@@ -420,7 +420,7 @@ tmrSql.Name = "tmrSql"
 
 Local iguid
 
-Thisform.noavatar = Filetostr(Thisform.apppath + 'res\noimage.png')
+Thisform.mr_noavatar = Filetostr(Thisform.apppath + 'res\noimage.png')
 
 m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
 
@@ -484,7 +484,7 @@ PROCEDURE mr_getfolderdatascan
 *!* mr_getfolderdatascan
 
 Local afiles[1], fguid, filelen1, filename1, filespec, fileunc, hash1, ifolder, iguid, lnx, ncount
-Local omodprops, rguid
+Local omod, omodprops, rguid
 
 If Empty(Thisform.mr_iguid)
 
@@ -499,6 +499,12 @@ _logwrite('SCAN START')
 m.iguid = Thisform.mr_iguid
 
 Select 'mr_mods1'
+
+Scatter Blank Name m.omod
+
+m.omod.iguid = '00000000'
+m.omod.fguid = '00000000'
+m.omod.rguid = '0000000000000000'
 
 *!* FIRST SCAN EXISTING RECORDS TO CHECK FOR MISSING FILES
 
@@ -533,9 +539,11 @@ Endif
 
 Replace mr_log.ldatetime With Datetime() In 'mr_log'
 
-Replace mr_mods1.iguid With '00000000' In 'mr_mods1'
-Replace mr_mods1.fguid With '00000000' In 'mr_mods1'
-Replace mr_mods1.rguid With '0000000000000000' In 'mr_mods1'
+Gather Name m.omod
+
+*Replace mr_mods1.iguid With '00000000' In 'mr_mods1'
+*Replace mr_mods1.fguid With '00000000' In 'mr_mods1'
+*Replace mr_mods1.rguid With '0000000000000000' In 'mr_mods1'
 
 Endif
 
@@ -633,6 +641,7 @@ _logwrite('SCAN END')
 
 
 
+
 ENDPROC
 PROCEDURE mr_getnewverdata
 *!* mr_getnewverdata
@@ -641,7 +650,8 @@ Local lnx, loader1
 
 If mr_mods1.aid &gt; 0
 
-_logwrite('GET NEW FILE DATA START', mr_files.aid)
+
+_logwrite('GET NEW FILE DATA START', mr_mods1.aid)
 
 
 *!* TRY THE SEARCH 2 TIMES. FIRST USING THE LOADER PARAM, THEN
@@ -712,7 +722,7 @@ Endif
 
 Use In 'sqlresult'
 
-_logwrite('GET NEW FILE DATA END', mr_files.aid)
+_logwrite('GET NEW FILE DATA END', mr_mods1.aid)
 
 Endif
 ENDPROC
@@ -916,7 +926,7 @@ Local sep
 
 If Empty(mr_avatars.avatar)
 
-Thisform.imgavatar.PictureVal = Thisform.noavatar
+Thisform.imgavatar.PictureVal = Thisform.mr_noavatar
 
 Else
 
@@ -963,10 +973,10 @@ ENDPROC
 		<ole2/>
 		<reserved1/>
 		<reserved2/>
-		<reserved3>noavatar
-gridrowcolor
+		<reserved3>gridrowcolor
 mr_loader
 mr_iguid
+mr_noavatar
 *mr_refreshcurse 
 *mr_getfolderdatascan 
 *mr_getcursedatascan 
@@ -1028,7 +1038,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322582997</timestamp>
+		<timestamp>1323851465</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
@@ -1082,6 +1092,35 @@ m.lnDynamicBackColor = This.ColumnBackColor
 Endcase
 
 Return m.lnDynamicBackColor
+
+
+
+
+ENDPROC
+PROCEDURE getdynamicforecolor
+*!* GetDynamicForeColor
+
+Lparameters poColum As Column
+
+Local lnDynamicForeColor
+
+Do Case
+
+Case Justext(mr_mods.filename1) = 'disabled'
+
+m.lnDynamicForeColor = Rgb(128, 128, 128)
+
+Case _RgbToGray(This.GetDynamicBackColor()) &gt; 186
+
+m.lnDynamicForeColor = This.ForeColor
+
+Otherwise
+
+m.lnDynamicForeColor = This.ColumnBackColor
+
+Endcase
+
+Return m.lnDynamicForeColor
 
 
 

@@ -95,7 +95,7 @@ Endif
 
 If _file(m.file2)
 
-   _apideletefile(m.pfile2)
+   _apideletefile(m.file2)
 
 Endif
 

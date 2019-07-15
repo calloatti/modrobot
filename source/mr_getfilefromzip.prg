@@ -90,7 +90,7 @@ If Occurs(0h504b0506, m.bytes) > 0
          Fseek(m.hfile, m.lfh_offset + m.cdoff, 0)
 
          m.bytes = Fread(m.hfile, m.csize)
-       
+
          Do Case
 
             Case m.cmeth = 0
@@ -141,4 +141,3 @@ Return m.ubytes
 
 
 
- 
