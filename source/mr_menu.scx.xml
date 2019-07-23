@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1323865483</timestamp>
+		<timestamp>1324647770</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -472,7 +472,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I900L3UZ</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1324647770</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -495,7 +495,7 @@ Name = "_tbcommand10"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_MOD_DEPENDENCIES
+DO FORM MR_MODS_DEPENDENCIES
 ENDPROC
 </methods>
 		<objcode/>

@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1323017478</timestamp>
+		<timestamp>1324377530</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -62,7 +62,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -73,6 +73,7 @@ Left = 17
 Height = 407
 Width = 127
 Alias = "mr_mods"
+Order = "filename1"
 Database = ..\data\data1.dbc
 CursorSource = "mr_mods"
 Name = "Cursor1"
@@ -95,7 +96,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61EBSMR</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -128,7 +129,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -162,7 +163,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70J9KXM</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -195,7 +196,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70K005Y</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -228,7 +229,7 @@ Name = "Cursor5"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FSB4G</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -263,7 +264,7 @@ Name = "Cursor7"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0IPOO1</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -297,7 +298,7 @@ Name = "Cursor8"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0K0IKM</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -330,7 +331,7 @@ Name = "Cursor9"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IF0UOCB5</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -363,7 +364,7 @@ Name = "Cursor10"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IG12MLGC</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -396,7 +397,7 @@ Name = "Cursor11"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1323921259</timestamp>
+		<timestamp>1324814871</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -427,6 +428,60 @@ m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
 Thisform.mr_setinstance(m.iguid)
 
 
+
+
+ENDPROC
+PROCEDURE mr_disableall
+*!* mr_disableall
+
+Local filenamen, filenameo, result
+
+Select 'mr_mods1'
+
+Scan For mr_mods1.iguid == Thisform.mr_iguid And Upper(Justext(mr_mods1.filename1)) = 'JAR'
+
+m.filenameo = mr_mods1.filename1
+
+m.filenamen = mr_mods1.filename1 + '.disabled'
+
+m.result = _apimovefile(Addbs(mr_instances.ifolder) + m.filenameo, Addbs(mr_instances.ifolder) + m.filenamen)
+
+If m.result # 0
+
+Replace mr_mods1.filename1 With m.filenamen In 'mr_mods1'
+
+Endif
+
+Endscan
+
+Thisform.gridmain.Refresh()
+
+
+ENDPROC
+PROCEDURE mr_enableall
+*!* mr_enableall
+
+Local filenamen, filenameo, result
+
+Select 'mr_mods1'
+
+Scan For mr_mods1.iguid == Thisform.mr_iguid And Upper(Justext(mr_mods1.filename1)) = 'DISABLED'
+
+m.filenameo = mr_mods1.filename1
+
+m.filenamen = Juststem(Juststem(mr_mods1.filename1)) + '.jar'
+
+m.result = _apimovefile(Addbs(mr_instances.ifolder) + m.filenameo, Addbs(mr_instances.ifolder) + m.filenamen)
+
+If m.result # 0
+
+Replace mr_mods1.filename1 With m.filenamen In 'mr_mods1'
+
+Endif
+
+Endscan
+
+Thisform.gridmain.Refresh()
 
 
 ENDPROC
@@ -905,6 +960,8 @@ Else
 
 Thisform.SetAll('ENABLED', .F.)
 
+Thisform.tbinstances.Enabled = .T.
+
 Thisform.Caption = 'MODS - NO INSTANCE SELECTED'
 
 Set Filter To mr_mods.iguid == '99999999' In 'mr_mods'
@@ -920,7 +977,7 @@ ENDPROC
 PROCEDURE updateui
 *!* updateui
 
-Local sep
+Local icaption, sep
 
 = Seek(mr_mods.aid, 'mr_avatars', 'aid')
 
@@ -936,14 +993,18 @@ Endif
 
 m.sep = Space(3)
 
-Thisform.lblinstance.Caption = ' ' + ;
+m.icaption = ' ' + ;
 'GUID: ' + mr_instances.iguid + m.sep + ;
 'NAME: ' + mr_instances.iname + m.sep + ;
 'VERSION ' + mr_instances.iminecraft + m.sep + ;
 'LOADER: ' + mr_instances.iloader + m.sep + ;
 'MINVER: ' + mr_instances.gver1 + m.sep + ;
 'MAXVER: ' + mr_instances.gver2 + m.sep + ;
-'PATH: ' + mr_instances.ifolder
+'PATH: '
+
+m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - Len(m.icaption))
+
+Thisform.lblinstance.Caption = m.icaption
 
 *!* SET COLOR OF HIGHLIGHTED ROW IN GRID
 
@@ -962,6 +1023,7 @@ Otherwise
 Thisform.gridmain.HighlightBackColor = Thisform.gridmain.gethighlightbackcolor()
 
 Endcase
+
 
 
 
@@ -988,6 +1050,8 @@ mr_noavatar
 *mr_modupdate 
 *mr_modupdatescan 
 *mr_runinstance 
+*mr_enableall 
+*mr_disableall 
 </reserved3>
 		<reserved4/>
 		<reserved5/>
@@ -1221,6 +1285,48 @@ Name = "lblinstance"
 </properties>
 		<protected/>
 		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JA0ZQ8X7</uniqueid>
+		<timestamp>1324647751</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 576
+Height = 28
+Width = 48
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "JIJ"
+ToolTipText = "OPEN JAR IN JAR TAB"
+ZOrderSet = 4
+tbalign = 2
+tbstyle = 7
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+_inisetvalue('MR_INSTANCES_IGUID', Thisform.mr_iguid)
+
+Do Form mr_mods_jij
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -1647,15 +1753,15 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I80FSB4G</uniqueid>
-		<timestamp>1322678044</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1324647777</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbdependencies</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 576
+Left = 528
 Height = 28
 Width = 48
 Picture = ..\res\1x\outline_web_asset_black_18dp.png
@@ -1671,7 +1777,7 @@ Name = "tbdependencies"
 
 _inisetvalue('MR_INSTANCES_IGUID', Thisform.mr_iguid)
 
-Do Form mr_mod_dependencies
+Do Form mr_mods_dependencies
 ENDPROC
 </methods>
 		<objcode/>
@@ -2120,14 +2226,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IJ0R40QX</uniqueid>
-		<timestamp>1322739073</timestamp>
+		<timestamp>1324647682</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand3</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 528
+Left = 480
 Height = 28
 Width = 48
 Picture = ..\res\1x\outline_play_arrow_black_18dp.png
@@ -2161,7 +2267,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1323017738</timestamp>
+		<timestamp>1324793494</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -2190,15 +2296,25 @@ Name = "tbmenu"
 		<methods>PROCEDURE Click
 Local result, txt
 
-This.tbmenuitemadd(1, 0, 0, 0, 0, 'Generate mod list for GitHub')
+This.tbmenuitemadd(1, 0, 0, 0, 0, 'Enable All')
+This.tbmenuitemadd(2, 0, 0, 0, 0, 'Disable All')
+This.tbmenuitemadd(3, 0, 1, 0, 0, '-')
 
-This.tbmenuitemadd(2, 0, 1, 0, 0, '-')
-
-This.tbmenuitemadd(3, 0, 0, 0, 0, 'Run Instance')
+This.tbmenuitemadd(4, 0, 0, 0, 0, 'Generate mod list for GitHub')
 
 m.result = This.tbmenushow()
 
-If m.result = 1 Then
+Do Case
+
+Case m.result = 1
+
+Thisform.mr_enableall()
+
+Case m.result = 2
+
+Thisform.mr_disableall()
+
+Case m.result = 4
 
 m.txt = '**Loader**' + 0h0d0a + mr_instances.iminecraft + 0h0d0a
 
@@ -2286,12 +2402,7 @@ _Cliptext = m.txt
 
 Messagebox('Data copied to Clipboard', 64, 'MODROBOT')
 
-Endif
-
-If m.result = 3
-
-
-Endif
+Endcase
 
 
 

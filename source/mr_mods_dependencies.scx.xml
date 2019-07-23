@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID13H6P8</uniqueid>
-		<timestamp>1322493659</timestamp>
+		<timestamp>1324814885</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,11 +92,11 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322493659</timestamp>
+		<timestamp>1324814885</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_mod_dependencies</objname>
+		<objname>mr_mods_dependencies</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
@@ -104,7 +104,7 @@ DoCreate = .T.
 Caption = "MOD DEPENDENCIES"
 mr_iguid = 
 uniqueid = EE1A345833EC405592A6C539AA23C80F
-Name = "MR_MOD_DEPENDENCIES"
+Name = "MR_MODS_DEPENDENCIES"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
@@ -175,16 +175,22 @@ ENDPROC
 PROCEDURE updateui
 *!* updateui
 
+Local icaption, sep
+
 m.sep = Space(3)
 
-Thisform.lblinstance.Caption = ' ' + ;
+m.icaption = ' ' + ;
 'GUID: ' + mr_instances.iguid + m.sep + ;
 'NAME: ' + mr_instances.iname + m.sep + ;
 'VERSION ' + mr_instances.iminecraft + m.sep + ;
 'LOADER: ' + mr_instances.iloader + m.sep + ;
 'MINVER: ' + mr_instances.gver1 + m.sep + ;
 'MAXVER: ' + mr_instances.gver2 + m.sep + ;
-'PATH: ' + mr_instances.ifolder
+'PATH: '
+
+m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - Len(m.icaption))
+
+Thisform.lblinstance.Caption = m.icaption
 
 If Empty(mr_instances.iname) Then
 
@@ -220,7 +226,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>_gridview1</objname>
-		<parent>mr_mod_dependencies</parent>
+		<parent>MR_MODS_DEPENDENCIES</parent>
 		<properties>Height = 432
 Left = 12
 Top = 36
@@ -300,7 +306,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>mr_mod_dependencies</parent>
+		<parent>MR_MODS_DEPENDENCIES</parent>
 		<properties>Top = 0
 Left = 912
 Height = 28
@@ -411,7 +417,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfiles</objname>
-		<parent>mr_mod_dependencies</parent>
+		<parent>MR_MODS_DEPENDENCIES</parent>
 		<properties>Top = 0
 Left = 840
 Height = 28
@@ -451,7 +457,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>mr_mod_dependencies</parent>
+		<parent>MR_MODS_DEPENDENCIES</parent>
 		<properties>Top = 0
 Left = 768
 Height = 28
@@ -493,7 +499,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
 		<objname>lblinstance</objname>
-		<parent>mr_mod_dependencies</parent>
+		<parent>MR_MODS_DEPENDENCIES</parent>
 		<properties>FontSize = 8
 Anchor = 14
 Caption = ""
