@@ -1,0 +1,659 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1322553943</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 765
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1325483380</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_compare</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "COMPARE"
+uniqueid = 51D192E10638473B804F1EC9BE023A6C
+Name = "MR_COMPARE"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE init2
+Thisform.txtoldfolder.Value	= _inigetvalue('COMPARE_OLD_FOLDER', '')
+Thisform.txtnewfolder.Value	= _inigetvalue('COMPARE_NEW_FOLDER', '')
+
+Thisform.updateui()
+ENDPROC
+PROCEDURE load2
+Select * From 'mr_comparelog' Where 1 = 0 Into Cursor 'sql_log1' Readwrite
+
+Use Dbf('sql_log1') Again In 0 Alias 'sql_log'
+
+Select 'sql_log'
+
+Index On modid Tag 'modid'
+Index On filename2 Tag 'filename2'
+ENDPROC
+PROCEDURE mr_filescan
+*!* mr_filescan
+
+Lparameters pfilename, pfiledata, psource
+
+Local json, modid, modname, ojson
+
+m.json = mr_getfilefromzipdata(m.pfiledata, 'fabric.mod.json')
+
+If Not Empty(m.json)
+
+m.ojson = nfjsonread(m.json)
+
+m.modid	 = m.ojson.Id
+m.modname = m.ojson.Name
+
+Else
+
+m.modid	 = 'ERROR' + Sys(2015)
+m.modname = m.pfilename
+
+Endif
+
+If m.psource = 'OLD'
+
+Append Blank In 'sql_log'
+
+Replace sql_log.filename1 With m.pfilename In 'sql_log'
+Replace sql_log.filename2 With m.pfilename In 'sql_log'
+
+Replace sql_log.modid With m.modid In 'sql_log'
+Replace sql_log.modname With m.modname In 'sql_log'
+
+Replace sql_log.levent With 'REMOVED' In 'sql_log'
+
+Else
+
+If Seek(m.modid, 'sql_log', 'modid')
+
+Replace sql_log.filename2 With m.pfilename In 'sql_log'
+
+If sql_log.filename1 == sql_log.filename2
+
+Replace sql_log.levent With 'NOCHANGE' In 'sql_log'
+
+Else
+
+Replace sql_log.levent With 'UPDATED' In 'sql_log'
+
+Endif
+
+Else
+
+Append Blank In 'sql_log'
+
+Replace sql_log.filename2 With m.pfilename In 'sql_log'
+
+Replace sql_log.modid With m.modid In 'sql_log'
+Replace sql_log.modname With m.modname In 'sql_log'
+
+Replace sql_log.levent With 'NEW' In 'sql_log'
+
+Endif
+
+Endif
+
+
+
+
+
+
+
+
+ENDPROC
+PROCEDURE updateui
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>*mr_filescan 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IG0ZGZAY</uniqueid>
+		<timestamp>1325479554</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_compare</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1325479554</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>mr_compare</parent>
+		<properties>Height = 228
+Left = 12
+Top = 108
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
+
+Thisform.updateui()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0FGT4D</uniqueid>
+		<timestamp>1325482391</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>mr_compare</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "SCAN MODS FOLDER"
+ZOrderSet = 4
+tbstyle = 7
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local afiles[1], filename, filespec, fileunc, ifolder, lnx, ncount
+
+_logwrite('PROCESS START')
+
+Delete All In 'sql_log'
+
+*!* SCAN FOLDER FOR FILES
+
+m.ifolder = Alltrim(Thisform.txtoldfolder.Value)
+
+If Not Empty(m.ifolder) And Directory(m.ifolder)
+
+m.filespec = Addbs(m.ifolder) + '*.jar'
+
+m.ncount = Adir(afiles, m.filespec, '', 1)
+
+For m.lnx = 1 To m.ncount
+
+m.filename	= m.afiles(m.lnx, 1)
+
+If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
+
+Loop
+
+Endif
+
+m.fileunc = Addbs(m.ifolder) + m.filename
+
+_logwrite(m.fileunc)
+
+Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 'OLD')
+
+Endfor
+
+Endif
+
+m.afiles = Null
+
+m.ifolder = Alltrim(Thisform.txtnewfolder.Value)
+
+If Not Empty(m.ifolder) And Directory(m.ifolder)
+
+m.filespec = Addbs(m.ifolder) + '*.jar'
+
+m.ncount = Adir(afiles, m.filespec, '', 1)
+
+For m.lnx = 1 To m.ncount
+
+m.filename	= m.afiles(m.lnx, 1)
+
+If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
+
+Loop
+
+Endif
+
+m.fileunc = Addbs(m.ifolder) + m.filename
+
+_logwrite(m.fileunc)
+
+Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 'NEW')
+
+Endfor
+
+Endif
+
+Delete For sql_log.levent == 'NOCHANGE' In 'sql_log'
+
+
+_logwrite('PROCESS END')
+
+Go Top In 'sql_log'
+
+Thisform.updateui()
+
+Thisform.Refresh()
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0IENUB</uniqueid>
+		<timestamp>1325483380</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>mr_compare</parent>
+		<properties>Top = 0
+Left = 108
+Height = 28
+Width = 180
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "LIST TO CLIPBOARD"
+ToolTipText = "OPEN JSON IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local txt
+
+Select sql_log
+
+m.txt = '**New**' + 0h0d0a
+
+Scan For sql_log.levent == 'NEW'
+
+m.txt = m.txt + '- **' + sql_log.modname + '** (' + sql_log.filename2 + ')' + 0h0d0a
+
+Endscan
+
+m.txt = m.txt + 0h0d0a
+
+m.txt =  m.txt + '**Removed**' + 0h0d0a
+
+Scan For sql_log.levent == 'REMOVED'
+
+m.txt = m.txt + '- **' + sql_log.modname + '** (' + sql_log.filename2 + ')' + 0h0d0a
+
+Endscan
+
+m.txt = m.txt + 0h0d0a
+
+m.txt =  m.txt + '**Updated**' + 0h0d0a
+
+Scan For sql_log.levent == 'UPDATED'
+
+m.txt = m.txt + '- **' + sql_log.modname + '** (' + sql_log.filename1 + ' -&gt; ' + sql_log.filename2 + ')' + 0h0d0a
+
+Endscan
+
+_Cliptext = m.txt
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1325479682</timestamp>
+		<class>_textbox_character</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>textbox</baseclass>
+		<objname>txtoldfolder</objname>
+		<parent>mr_compare</parent>
+		<properties>Anchor = 10
+Height = 24
+Left = 12
+Top = 36
+Width = 888
+autosize = .F.
+hinttext = Old folder
+Name = "txtoldfolder"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0EPZED</uniqueid>
+		<timestamp>1325479682</timestamp>
+		<class>_textbox_character</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>textbox</baseclass>
+		<objname>txtnewfolder</objname>
+		<parent>mr_compare</parent>
+		<properties>Anchor = 10
+Height = 24
+Left = 12
+Top = 72
+Width = 888
+autosize = .F.
+hinttext = New folder
+Name = "txtnewfolder"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1325479972</timestamp>
+		<class>_commandbutton</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_commandbutton1</objname>
+		<parent>mr_compare</parent>
+		<properties>Top = 35
+Left = 912
+Height = 26
+Width = 38
+Anchor = 8
+Caption = "..."
+Name = "_commandbutton1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local cfolder, selfolder
+
+m.cfolder = Thisform.txtoldfolder.Value
+
+If Empty(m.cfolder)
+
+m.cfolder = Set('Default')
+
+Endif
+
+m.selfolder = Getdir(m.cfolder, 'Select old folder', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.selfolder) Then
+
+_inisetvalue('COMPARE_OLD_FOLDER', m.selfolder)
+
+Thisform.txtoldfolder.Value = m.selfolder
+
+Endif
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0ES59X</uniqueid>
+		<timestamp>1325480025</timestamp>
+		<class>_commandbutton</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_commandbutton2</objname>
+		<parent>mr_compare</parent>
+		<properties>Top = 71
+Left = 912
+Height = 26
+Width = 38
+Anchor = 8
+Caption = "..."
+Name = "_commandbutton2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local cfolder, selfolder
+
+m.cfolder = Thisform.txtnewfolder.Value
+
+If Empty(m.cfolder)
+
+m.cfolder = Set('Default')
+
+Endif
+
+m.selfolder = Getdir(m.cfolder, 'Select new folder', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.selfolder) Then
+
+_inisetvalue('COMPARE_NEW_FOLDER', m.selfolder)
+
+Thisform.txtnewfolder.Value = m.selfolder
+
+Endif
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+Tahoma, 0, 10, 6, 16, 13, 32, 3, 0
+Segoe UI, 0, 9, 6, 15, 12, 31, 3, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

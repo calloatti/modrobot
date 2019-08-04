@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1324647770</timestamp>
+		<timestamp>1325481366</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -640,8 +640,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IG1454BQ</uniqueid>
-		<timestamp>1323865483</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -707,6 +707,48 @@ Name = "_tbcommand15"
 		<protected/>
 		<methods>PROCEDURE Click
 DO FORM MR_MODS_JIJ
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0GLP6X</uniqueid>
+		<timestamp>1325481366</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand16</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 516
+Left = 456
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "COMPARE"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbalign = 0
+tbstyle = 3
+Name = "_tbcommand16"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_COMPARE
 ENDPROC
 </methods>
 		<objcode/>

@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322357540</timestamp>
+		<timestamp>1325633912</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>2</reserved2>
+		<reserved2>4</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID13H6P8</uniqueid>
-		<timestamp>1324814885</timestamp>
+		<timestamp>1325634054</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,8 +67,8 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 90
-Width = 90
+Height = 137
+Width = 126
 Alias = "mr_instances"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
@@ -91,8 +91,74 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5JM15EC3K</uniqueid>
+		<timestamp>1325634054</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 144
+Width = 126
+Alias = "mr_mods"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM16B76O</uniqueid>
+		<timestamp>1325634054</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 290
+Height = 190
+Width = 145
+Alias = "mr_mods1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1324814885</timestamp>
+		<timestamp>1325634054</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -114,56 +180,100 @@ tmrSql.Name = "tmrSql"
 thisform.updateui()
 ENDPROC
 PROCEDURE load2
-Thisform.mr_iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+Thisform.mr_setinstance(_inigetvalue('MR_INSTANCES_IGUID', '00000000'))
+
+
+ENDPROC
+PROCEDURE mr_setinstance
+*!* mr_setinstance
+
+Lparameters pguid
+
+Thisform.mr_iguid = m.pguid
 
 = Seek(Thisform.mr_iguid, 'mr_instances', 'iguid')
 
-Select mr_mods.aid As aid1, mr_mods.fid1 As fid1, mr_mods.filename1 As filename1, ;
-mr_dependencies_a.aid As aid2, mr_dependencies_a.aname As pname, ;
-mr_dependencies_a.dtype As dtype, mr_dependencies_a.dname, .F. As OK;
-FROM ;
-data1!mr_mods ;
-LEFT Outer Join data1!mr_dependencies mr_dependencies_a ;
-ON  mr_mods.fid1 = mr_dependencies_a.fid;
-WHERE  mr_mods.iguid = ?Thisform.mr_iguid Into Cursor sqlresult Readwrite
+Select * From mr_mods_dependencies Where 1 = 0 Into Cursor 'sql_deps0' Readwrite
 
+Select 'mr_mods'
 
-Use Dbf('sqlresult') Again In 0 Alias 'sqlresult2'
+Scan For mr_mods.iguid = Thisform.mr_iguid And mr_mods.dis = .F.
 
-Select 'sqlresult2'
-
-Scan
-
-If Isnull(sqlresult2.dtype) Then
-
-Replace sqlresult2.OK With .T. In 'sqlresult2'
-
-Endif
-
-If sqlresult2.dtype = 1 Then
-
-Replace sqlresult2.OK With .T. In 'sqlresult2'
-
-Endif
+Select * From mr_dependencies Where mr_dependencies.fid = mr_mods.fid1 Into Cursor sqlresult
 
 Select 'sqlresult'
 
-Locate For sqlresult.aid1 == sqlresult2.aid2
+Scan
 
-Select 'sqlresult2'
+Append Blank In 'sql_deps0'
 
-If Found('sqlresult')
+Replace sql_deps0.pid1 With mr_mods.aid In 'sql_deps0'
+Replace sql_deps0.fid With mr_mods.fid1 In 'sql_deps0'
+Replace sql_deps0.pid2 With sqlresult.aid In 'sql_deps0'
+Replace sql_deps0.pname With sqlresult.aname In 'sql_deps0'
+Replace sql_deps0.dtype With sqlresult.dtype In 'sql_deps0'
+Replace sql_deps0.dname With sqlresult.dname In 'sql_deps0'
 
-Replace sqlresult2.OK With .T. In 'sqlresult2'
+Replace sql_deps0.filename With mr_mods.filename1 In 'sql_deps0'
+
+If Isnull(sql_deps0.dtype) Then
+
+Replace sql_deps0.OK With .T. In 'sql_deps0'
+
+Endif
+
+If sql_deps0.dtype = 1 Then
+
+Replace sql_deps0.OK With .T. In 'sql_deps0'
+
+Endif
+
+Select 'mr_mods1'
+
+Locate For mr_mods1.aid == sqlresult.aid And mr_mods1.iguid == Thisform.mr_iguid And Not Deleted()
+
+
+If Found('mr_mods1')
+
+If mr_mods1.aid = 314633
+
+?mr_mods1.iguid, Thisform.mr_iguid, mr_mods1.aid
+
+Endif
+
+Replace sql_deps0.OK With .T. In 'sql_deps0'
 
 Endif
 
 Endscan
 
 
-Select 'sqlresult'
+Endscan
+
+If Vartype(Thisform._gridview1) = 'O'
+
+Thisform._gridview1.RecordSource = ''
+
+Endif
+
+Select Distinct * From 'sql_deps0' Order By filename, pname Into Cursor 'sql_deps' Readwrite
+
+If Vartype(Thisform._gridview1) = 'O'
+
+Thisform._gridview1.RecordSource = 'sql_deps'
+
+Endif
+
+Select 'sql_deps'
 
 Go Top
+
+Thisform.updateui()
+
+
+
+
+
 
 
 
@@ -190,7 +300,11 @@ m.icaption = ' ' + ;
 
 m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - Len(m.icaption))
 
+If Vartype(Thisform.lblinstance) = 'O'
+
 Thisform.lblinstance.Caption = m.icaption
+
+Endif
 
 If Empty(mr_instances.iname) Then
 
@@ -202,6 +316,7 @@ Thisform.Caption = 'DEPS - ' + mr_instances.iname
 
 Endif
 
+thisform.Refresh()
 ENDPROC
 </methods>
 		<objcode/>
@@ -210,6 +325,7 @@ ENDPROC
 		<reserved1/>
 		<reserved2/>
 		<reserved3>mr_iguid
+*mr_setinstance 
 </reserved3>
 		<reserved4/>
 		<reserved5/>
@@ -221,14 +337,15 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322357540</timestamp>
+		<timestamp>1325557537</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>_gridview1</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Height = 432
 Left = 12
+RecordSource = "sql_deps"
 Top = 36
 Width = 936
 _gridcontextmenulang = en
@@ -240,11 +357,11 @@ LPARAMETERS nColIndex
 
 Do Case
 
-Case  sqlresult.dtype = 2  And sqlresult.ok = .f.
+Case  sql_deps.dtype = 2  And sql_deps.ok = .f.
 
 This.HighlightBackColor = Rgb(255, 241, 118)
 
-Case sqlresult.dtype = 3  And sqlresult.ok = .f.
+Case sql_deps.dtype = 3  And sql_deps.ok = .f.
 
 This.HighlightBackColor = Rgb(229, 115, 115)
 
@@ -264,12 +381,12 @@ Local lnDynamicBackColor
 
 Do Case
 
-Case  sqlresult.dtype = 2 and sqlresult.ok = .f.
+Case  sql_deps.dtype = 2 and sql_deps.ok = .f.
 
 
 m.lnDynamicBackColor = Rgb(0xFF, 0xF9, 0xC4)
 
-Case  sqlresult.dtype = 3 and sqlresult.ok = .f.
+Case  sql_deps.dtype = 3 and sql_deps.ok = .f.
 
 m.lnDynamicBackColor = Rgb(0xFF, 0xCD, 0xD2)
 
@@ -306,7 +423,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Top = 0
 Left = 912
 Height = 28
@@ -412,12 +529,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID12N36G</uniqueid>
-		<timestamp>1322493659</timestamp>
+		<timestamp>1325506185</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfiles</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Top = 0
 Left = 840
 Height = 28
@@ -432,7 +549,7 @@ Name = "tbfiles"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject_files(sqlresult.aid2))
+mr_shellexecute(mr_geturlproject_files(sql_deps.pid2))
 
 ENDPROC
 </methods>
@@ -452,12 +569,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID12N36L</uniqueid>
-		<timestamp>1322493659</timestamp>
+		<timestamp>1325506185</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Top = 0
 Left = 768
 Height = 28
@@ -472,7 +589,74 @@ Name = "tboverview"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject(sqlresult.aid2))
+mr_shellexecute(mr_geturlproject(sql_deps.pid2))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JN0RNFDQ</uniqueid>
+		<timestamp>1325557797</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbinstances</objname>
+		<parent>mr_mods_dependencies</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_expand_more_black_18dp.png
+Caption = "INSTANCES"
+ToolTipText = "OPEN INSTANCES MENU"
+PicturePosition = 4
+ZOrderSet = 4
+tbmarginv = 4
+tbstyle = 7
+Name = "tbinstances"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local nselect, result
+
+m.nselect = Select()
+
+Select 'mr_instances'
+
+Scan
+
+This.tbmenuitemadd(Recno('mr_instances'), 0, 0, 0, 0, mr_instances.iname + ' - ' + mr_instances.ifolder)
+
+Endscan
+
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_instances'
+
+Thisform.mr_setinstance(mr_instances.iguid)
+
+Endif
+
+
 
 
 
@@ -499,7 +683,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
 		<objname>lblinstance</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>FontSize = 8
 Anchor = 14
 Caption = ""
