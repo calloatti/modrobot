@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1325829986</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1325829986</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,7 +127,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1325829986</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -276,16 +276,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61E37EP</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1325815229</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
 		<parent>mr_instances</parent>
 		<properties>Top = 0
-Left = 312
+Left = 420
 Height = 28
-Width = 60
+Width = 72
 Picture = ..\res\1x\outline_web_asset_black_18dp.png
 Caption = "OPEN"
 ToolTipText = "OPEN THE INSTANCE MODS TAB"
@@ -298,6 +298,66 @@ Name = "_tbcommand2"
 _inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
 
 Do Form MR_MODS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JR0N2PSC</uniqueid>
+		<timestamp>1325829986</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfolder</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 312
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_folder_black_18dp.png
+Caption = "SERVER FOLDER"
+ToolTipText = "SELECT A TARGET SERVER FOLDER TO CREATE A SERVER"
+ZOrderSet = 4
+tbmarginv = 4
+tbstyle = 7
+Name = "tbfolder"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local iserverfol, lastfolder
+
+If Empty(mr_instances.iserverfol)
+
+m.lastfolder = mr_instances.ifolder
+
+Else
+
+m.lastfolder = mr_instances.iserverfol
+
+Endif
+
+m.iserverfol = Getdir(m.lastfolder, 'Select target server folder for this instance', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.iserverfol) Then
+
+Replace mr_instances.iserverfol With m.iserverfol In 'mr_instances'
+
+Endif
+
+Thisform.Refresh()
+
 ENDPROC
 </methods>
 		<objcode/>

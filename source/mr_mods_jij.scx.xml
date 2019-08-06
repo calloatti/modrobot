@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0V5R68</uniqueid>
-		<timestamp>1325553490</timestamp>
+		<timestamp>1325814577</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0V8FA6</uniqueid>
-		<timestamp>1325553490</timestamp>
+		<timestamp>1325814577</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -125,7 +125,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1325553490</timestamp>
+		<timestamp>1325814577</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -160,70 +160,52 @@ Select * From 'mr_jijs' Into Cursor 'sql_jijs1' Readwrite
 Use Dbf('sql_jijs1') Again In 0 Alias 'sql_jijs'
 ENDPROC
 PROCEDURE mr_filescan
+*!* mr_filescan
+
 Lparameters pfilename, pfiledata, plevel
 
-Local filedata, json, lnx, ojson
+Local filedata, jijsize, lnx, omodprops
 
-m.json = mr_getfilefromzipdata(m.pfiledata, 'fabric.mod.json')
+m.omodprops = mr_getmodproperties('', m.pfiledata)
 
-If Not Empty(m.json)
-
-m.ojson = nfjsonread(m.json)
+m.jijsize = Len(m.pfiledata)
 
 Append Blank In 'sql_jijs1'
 
 Replace sql_jijs1.filename With m.pfilename In 'sql_jijs1'
 
-*If m.plevel &gt; 0 Then
-
 Replace sql_jijs1.jij With Justfname(m.pfilename) In 'sql_jijs1'
-
-*Endif
 
 Replace sql_jijs1.jijlevel With m.plevel In 'sql_jijs1'
 
-If '"requires"' $ m.json
+If Not Empty(m.omodprops.mod_requires)
 
 Replace sql_jijs1.requires With 1 In 'sql_jijs1'
 
 Endif
 
-If Type('m.ojson.environment') = 'C'
+Replace sql_jijs1.jenv With m.omodprops.mod_environment In 'sql_jijs1'
 
-Replace sql_jijs1.jenv With 'environment=' + m.ojson.environment In 'sql_jijs1'
+Replace sql_jijs1.modid With m.omodprops.mod_id In 'sql_jijs1'
 
-Endif
+Replace sql_jijs1.json With m.omodprops.jsonfabric In 'sql_jijs1'
 
-If Type('m.ojson.side') = 'C'
+Replace sql_jijs1.jijsize With m.jijsize In 'sql_jijs1'
 
-Replace sql_jijs1.jenv With 'side=' + m.ojson.side In 'sql_jijs1'
+If Type('m.omodprops.mod_jars[1].file') = 'C'
 
-Endif
+For m.lnx = 1 To Alen(m.omodprops.mod_jars)
 
+m.filedata =  mr_getfilefromzipdata(m.pfiledata, m.omodprops.mod_jars[m.lnx].File)
 
-If Type('m.ojson.id') = 'C'
-
-Replace sql_jijs1.modid With m.ojson.Id In 'sql_jijs1'
-
-Endif
-
-Replace sql_jijs1.json With m.json In 'sql_jijs1'
-
-Replace sql_jijs1.jijsize With Len(m.pfiledata) In 'sql_jijs1'
-
-If Type('m.ojson.jars[1].file') = 'C'
-
-For m.lnx = 1 To Alen(m.ojson.jars)
-
-m.filedata =  mr_getfilefromzipdata(m.pfiledata, m.ojson.jars[m.lnx].File)
-
-Thisform.mr_filescan(m.pfilename + '/' + Justfname(m.ojson.jars[m.lnx].File), m.filedata, m.plevel + 1)
+Thisform.mr_filescan(m.pfilename + '/' + Justfname(m.omodprops.mod_jars[m.lnx].File), m.filedata, m.plevel + 1)
 
 Endfor
 
 Endif
 
-Endif
+
+
 ENDPROC
 PROCEDURE mr_folderscan
 Local afiles[1], filename, filespec, fileunc, ifolder, lnx, ncount
@@ -257,8 +239,6 @@ Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 0)
 Endfor
 
 _logwrite('SCAN END')
-
-
 
 ENDPROC
 PROCEDURE mr_setinstance
@@ -478,54 +458,50 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IY0V5R6M</uniqueid>
-		<timestamp>1323865110</timestamp>
+		<uniqueid>_5JB1EWWS4</uniqueid>
+		<timestamp>1324815822</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbinstances</objname>
+		<objname>_tbcommand1</objname>
 		<parent>MR_MODS_JIJ</parent>
 		<properties>Top = 0
-Left = 12
+Left = 372
 Height = 28
-Width = 108
-Picture = ..\res\1x\outline_expand_more_black_18dp.png
-Caption = "INSTANCES"
-ToolTipText = "OPEN INSTANCES MENU"
-PicturePosition = 4
+Width = 84
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "LIST TO CLIPBOARD"
+ToolTipText = "OPEN JSON IN NOTEPAD"
 ZOrderSet = 4
 tbmarginv = 4
-tbstyle = 7
-Name = "tbinstances"
+Name = "_tbcommand1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local nselect, result
+Local txt
 
-m.nselect = Select()
+Select sql_jijs
 
-Select 'mr_instances1'
+Calculate Max(Len(sql_jijs.filename)) To m.padfilename
+Calculate Max(Len(sql_jijs.jij)) To m.padjij
+Calculate Max(Len(sql_jijs.modid )) To m.padmodid
+
+
+m.txt = ''
 
 Scan
 
-This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
+m.txt = m.txt + Padr(sql_jijs.filename, m.padfilename, ' ') + ','
+
+m.txt = m.txt + Padr(sql_jijs.jij, m.padjij, ' ') + ','
+
+m.txt = m.txt + Transform(sql_jijs.jijlevel) + ','
+
+m.txt = m.txt + sql_jijs.modid + 0h0d0a
 
 Endscan
 
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_instances1'
-
-Thisform.mr_setinstance(mr_instances1.iguid)
-
-Endif
-
-
-
+_Cliptext = m.txt
 
 
 ENDPROC
@@ -606,50 +582,54 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JB1EWWS4</uniqueid>
-		<timestamp>1324815822</timestamp>
+		<uniqueid>_5IY0V5R6M</uniqueid>
+		<timestamp>1323865110</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
+		<objname>tbinstances</objname>
 		<parent>MR_MODS_JIJ</parent>
 		<properties>Top = 0
-Left = 372
+Left = 12
 Height = 28
-Width = 84
-Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "LIST TO CLIPBOARD"
-ToolTipText = "OPEN JSON IN NOTEPAD"
+Width = 108
+Picture = ..\res\1x\outline_expand_more_black_18dp.png
+Caption = "INSTANCES"
+ToolTipText = "OPEN INSTANCES MENU"
+PicturePosition = 4
 ZOrderSet = 4
 tbmarginv = 4
-Name = "_tbcommand1"
+tbstyle = 7
+Name = "tbinstances"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local txt
+Local nselect, result
 
-Select sql_jijs
+m.nselect = Select()
 
-Calculate Max(Len(sql_jijs.filename)) To m.padfilename
-Calculate Max(Len(sql_jijs.jij)) To m.padjij
-Calculate Max(Len(sql_jijs.modid )) To m.padmodid
-
-
-m.txt = ''
+Select 'mr_instances1'
 
 Scan
 
-m.txt = m.txt + Padr(sql_jijs.filename, m.padfilename, ' ') + ','
-
-m.txt = m.txt + Padr(sql_jijs.jij, m.padjij, ' ') + ','
-
-m.txt = m.txt + Transform(sql_jijs.jijlevel) + ','
-
-m.txt = m.txt + sql_jijs.modid + 0h0d0a
+This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
 
 Endscan
 
-_Cliptext = m.txt
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_instances1'
+
+Thisform.mr_setinstance(mr_instances1.iguid)
+
+Endif
+
+
+
 
 
 ENDPROC
