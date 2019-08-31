@@ -1,7 +1,9 @@
 # modrobot
-Updates Minecraft mods
+Updates Minecraft mods of MultiMC instances
 
-Exports MultiMC instance
+Manage mod dependencies, check Fabric Jar in Jar files.
+
+Exports instances in MultiMC format
 
 Creates server folder from instance
 
