@@ -1,78 +1,78 @@
 *!* mr_dependencyupdate
 
-Lparameters podependency
+lparameters podependency
 
-Local aid, aname, did, dname, dtype, fid, filename, nselect
+local aid, aname, did, dname, dtype, fid, filename, nselect
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('mr_enumdep_up')
+if not used('mr_enumdep_up')
 
-   Use 'mr_enum_dependencies' In 0 Again Shared Alias 'mr_enumdep_up'
+	use 'mr_enum_dependencies' in 0 again shared alias 'mr_enumdep_up'
 
-Endif
+endif
 
-If Not Used('mr_dep_up')
+if not used('mr_dep_up')
 
-   Use 'mr_dependencies' In 0 Again Shared Alias 'mr_dep_up'
+	use 'mr_dependencies' in 0 again shared alias 'mr_dep_up'
 
-Endif
+endif
 
-If Not Used('mr_files_up')
+if not used('mr_files_up')
 
-   Use 'mr_files' In 0 Again Shared Alias 'mr_files_up'
+	use 'mr_files' in 0 again shared alias 'mr_files_up'
 
-Endif
+endif
 
-If Not Used('mr_addons_up')
+if not used('mr_addons_up')
 
-   Use 'mr_addons' In 0 Again Shared Alias 'mr_addons_up'
+	use 'mr_addons' in 0 again shared alias 'mr_addons_up'
 
-Endif
+endif
 
-m.did	= m.podependency.Id
+m.did	= m.podependency.id
 m.aid	= m.podependency.addonid
 m.fid	= m.podependency.fileid
-m.dtype	= m.podependency.Type
+m.dtype	= m.podependency.type
 
-If Seek(m.aid, 'mr_addons_up', 'aid') = .F.
+if seek(m.aid, 'mr_addons_up', 'aid') = .f.
 
-   *!* ADD DEPENDENCY ADDON ID TO ADDONS TABLE
+	*!* ADD DEPENDENCY ADDON ID TO ADDONS TABLE
 
-   mr_addonupdate(m.aid)
+	mr_addonupdate(m.aid)
 
-Endif
+endif
 
-= Seek(m.aid, 'mr_addons_up', 'aid')
-= Seek(m.dtype, 'mr_enumdep_up', 'eid')
-= Seek(m.fid, 'mr_files_up', 'fid')
+= seek(m.aid, 'mr_addons_up', 'aid')
+= seek(m.dtype, 'mr_enumdep_up', 'eid')
+= seek(m.fid, 'mr_files_up', 'fid')
 
 m.dname	   = mr_enumdep_up.ename
 m.aname	   = mr_addons_up.aname
 m.filename = mr_files_up.filename
 
-If Seek(m.did, 'mr_dep_up', 'did') = .F.
+if seek(m.did, 'mr_dep_up', 'did') = .f.
 
-   Append Blank In 'mr_dep_up'
+	append blank in 'mr_dep_up'
 
-   Replace mr_dep_up.did With m.did In 'mr_dep_up'
+	replace mr_dep_up.did with m.did in 'mr_dep_up'
 
-Endif
+endif
 
-Replace ;
-   mr_dep_up.aid With m.aid, ;
-   mr_dep_up.fid With m.fid, ;
-   mr_dep_up.dtype With m.dtype, ;
-   mr_dep_up.dname With m.dname, ;
-   mr_dep_up.aname With m.aname, ;
-   mr_dep_up.filename With m.filename In 'mr_dep_up'
+replace ;
+		mr_dep_up.aid	   with	m.aid, ;
+		mr_dep_up.fid	   with	m.fid, ;
+		mr_dep_up.dtype	   with	m.dtype, ;
+		mr_dep_up.dname	   with	m.dname, ;
+		mr_dep_up.aname	   with	m.aname, ;
+		mr_dep_up.filename with	m.filename in 'mr_dep_up'
 
-Use In 'mr_enumdep_up'
+use in 'mr_enumdep_up'
 
-Use In 'mr_dep_up'
+use in 'mr_dep_up'
 
-Use In 'mr_files_up'
+use in 'mr_files_up'
 
-Use In 'mr_addons_up'
+use in 'mr_addons_up'
 
 _restorearea(m.nselect)

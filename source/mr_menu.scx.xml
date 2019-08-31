@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1325481366</timestamp>
+		<timestamp>1327334262</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -94,7 +94,7 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -111,8 +111,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand1"
 </properties>
 		<protected/>
@@ -136,7 +137,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -153,8 +154,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand2"
 </properties>
 		<protected/>
@@ -178,7 +180,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLSQ</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -195,8 +197,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand3"
 </properties>
 		<protected/>
@@ -220,7 +223,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLSW</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -237,8 +240,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand4"
 </properties>
 		<protected/>
@@ -262,7 +266,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1321885826</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -279,8 +283,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand5"
 </properties>
 		<protected/>
@@ -303,8 +308,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I617KLT7</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1327327730</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -321,8 +326,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand6"
 </properties>
 		<protected/>
@@ -346,7 +352,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1323865483</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -363,8 +369,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand7"
 </properties>
 		<protected/>
@@ -387,8 +394,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I617KLTJ</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -405,8 +412,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand8"
 </properties>
 		<protected/>
@@ -430,30 +438,32 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1322350448</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand9</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 300
-Left = 24
+		<properties>Top = 624
+Left = 888
 Height = 96
 Width = 96
-Anchor = 6
+Anchor = 12
 Picture = ..\res\bookmark.png
-Caption = "STATS"
+Caption = "ABOUT"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
+tbalign = 2
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand9"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_STATS
+do form MR_ABOUT
 ENDPROC
 </methods>
 		<objcode/>
@@ -472,7 +482,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I900L3UZ</uniqueid>
-		<timestamp>1324647770</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -489,8 +499,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand10"
 </properties>
 		<protected/>
@@ -513,32 +524,33 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5ID0W4RMP</uniqueid>
-		<timestamp>1322407938</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand11</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 192
+		<properties>Top = 300
 Left = 24
 Height = 96
 Width = 96
 Anchor = 6
-Picture = ..\res\all_of_fabric_logo.png
-Caption = "ALL OF FABRIC"
-ToolTipText = "ALL OF FABRIC MODPACK HOME PAGE"
+Picture = ..\res\aof_normal_logo.png
+Caption = "ALL OF FABRIC|NORMAL"
+ToolTipText = ""
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpicturesize = 48
+tbpictureautosize = .F.
 Name = "_tbcommand11"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute('https://github.com/AK9Official/All-of-Fabric')
+mr_shellexecute('https://github.com/AllOfFabric/AOF-Normal')
 ENDPROC
 </methods>
 		<objcode/>
@@ -557,7 +569,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1323865483</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -569,18 +581,19 @@ Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "OTHER MODS"
+Caption = "MODIDS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand12"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_OTHERMODS
+DO FORM MR_MODIDS
 ENDPROC
 </methods>
 		<objcode/>
@@ -598,8 +611,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IG13878H</uniqueid>
-		<timestamp>1322553924</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -616,8 +629,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand13"
 </properties>
 		<protected/>
@@ -641,25 +655,27 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1321885826</timestamp>
+		<timestamp>1327080568</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand14</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 624
-Left = 672
+Left = 780
 Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "PASTES"
+Enabled = .F.
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand14"
 </properties>
 		<protected/>
@@ -683,7 +699,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY145XIY</uniqueid>
-		<timestamp>1323865483</timestamp>
+		<timestamp>1327067373</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -700,8 +716,9 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand15"
 </properties>
 		<protected/>
@@ -725,14 +742,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM0GLP6X</uniqueid>
-		<timestamp>1325481366</timestamp>
+		<timestamp>1327334262</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand16</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 516
-Left = 456
+Left = 564
 Height = 96
 Width = 96
 Anchor = 6
@@ -742,13 +759,188 @@ PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
 tbautowidth = .F.
-tbalign = 0
 tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
 Name = "_tbcommand16"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 DO FORM MR_COMPARE
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K60TEHWG</uniqueid>
+		<timestamp>1327067373</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand17</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 240
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "SERVER|BATCH FILES"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand17"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_BATCH
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K71B1C2A</uniqueid>
+		<timestamp>1327067373</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand18</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 624
+Left = 672
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "FILE BLACKLIST"
+ToolTipText = "FILES AND FOLDERS BLACKLISTED WHEN GENERATING ZIPS"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand18"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_BLACKLIST
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KA0U46LC</uniqueid>
+		<timestamp>1327067373</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand19</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 300
+Left = 132
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\all_of_fabric_logo.png
+Caption = "ALL OF FABRIC|STRAWBERRY"
+ToolTipText = ""
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand19"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/AllOfFabric/AOF-Strawberry')
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KE0ZA8XM</uniqueid>
+		<timestamp>1327334262</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand20</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 516
+Left = 456
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "ADDONS"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand20"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_ADDONS_API
 ENDPROC
 </methods>
 		<objcode/>

@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1325483380</timestamp>
+		<timestamp>1327137863</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -101,60 +101,75 @@ m.json = mr_getfilefromzipdata(m.pfiledata, 'fabric.mod.json')
 
 If Not Empty(m.json)
 
-m.ojson = nfjsonread(m.json)
+	m.ojson = nfjsonread(m.json)
 
-m.modid	 = m.ojson.Id
-m.modname = m.ojson.Name
+	m.modid	  = m.ojson.Id
+	m.modname = m.ojson.Name
 
 Else
 
-m.modid	 = 'ERROR' + Sys(2015)
-m.modname = m.pfilename
+	m.modid	  = 'ERROR' + Sys(2015)
+	m.modname = m.pfilename
 
 Endif
 
 If m.psource = 'OLD'
 
-Append Blank In 'sql_log'
+	Append Blank In 'sql_log'
 
-Replace sql_log.filename1 With m.pfilename In 'sql_log'
-Replace sql_log.filename2 With m.pfilename In 'sql_log'
+	Replace sql_log.filename1 With m.pfilename In 'sql_log'
+	Replace sql_log.filename2 With '' In 'sql_log'
 
-Replace sql_log.modid With m.modid In 'sql_log'
-Replace sql_log.modname With m.modname In 'sql_log'
+	Replace sql_log.modid With m.modid In 'sql_log'
+	Replace sql_log.modname With m.modname In 'sql_log'
 
-Replace sql_log.levent With 'REMOVED' In 'sql_log'
+	Replace sql_log.levent With 'REMOVED' In 'sql_log'
 
-Else
-
-If Seek(m.modid, 'sql_log', 'modid')
-
-Replace sql_log.filename2 With m.pfilename In 'sql_log'
-
-If sql_log.filename1 == sql_log.filename2
-
-Replace sql_log.levent With 'NOCHANGE' In 'sql_log'
+	Replace sql_log.passnum With 1 In 'sql_log'
 
 Else
 
-Replace sql_log.levent With 'UPDATED' In 'sql_log'
+	If Seek(m.modid, 'sql_log', 'modid') And sql_log.passnum = 1
+
+		Replace sql_log.filename2 With m.pfilename In 'sql_log'
+
+		Do Case
+
+		Case sql_log.filename1 == sql_log.filename2
+
+			Replace sql_log.levent With 'NOCHANGE' In 'sql_log'
+
+		Case Justext(sql_log.filename1) = 'disabled' And Justext(sql_log.filename2) = 'jar'
+
+			Replace sql_log.levent With 'ENABLED' In 'sql_log'
+
+		Case Justext(sql_log.filename1) = 'jar' And Justext(sql_log.filename2) = 'disabled'
+
+			Replace sql_log.levent With 'DISABLED' In 'sql_log'
+
+		Otherwise
+
+			Replace sql_log.levent With 'CHANGED' In 'sql_log'
+
+		Endcase
+
+	Else
+
+		Append Blank In 'sql_log'
+
+		Replace sql_log.filename2 With m.pfilename In 'sql_log'
+
+		Replace sql_log.modid With m.modid In 'sql_log'
+		Replace sql_log.modname With m.modname In 'sql_log'
+
+		Replace sql_log.levent With 'NEW' In 'sql_log'
+
+	Endif
+
+	Replace sql_log.passnum With 2 In 'sql_log'
 
 Endif
 
-Else
-
-Append Blank In 'sql_log'
-
-Replace sql_log.filename2 With m.pfilename In 'sql_log'
-
-Replace sql_log.modid With m.modid In 'sql_log'
-Replace sql_log.modname With m.modname In 'sql_log'
-
-Replace sql_log.levent With 'NEW' In 'sql_log'
-
-Endif
-
-Endif
 
 
 
@@ -163,8 +178,6 @@ Endif
 
 
 
-ENDPROC
-PROCEDURE updateui
 
 
 ENDPROC
@@ -191,7 +204,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -230,7 +243,7 @@ Name = "edtlog"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Height = 228
 Left = 12
 Top = 108
@@ -261,12 +274,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM0FGT4D</uniqueid>
-		<timestamp>1325482391</timestamp>
+		<timestamp>1326977971</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbscan</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
@@ -275,12 +288,14 @@ Picture = ..\res\1x\outline_autorenew_black_18dp.png
 Caption = "SCAN"
 ToolTipText = "SCAN MODS FOLDER"
 ZOrderSet = 4
-tbstyle = 7
 Name = "tbscan"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 Local afiles[1], filename, filespec, fileunc, ifolder, lnx, ncount
+
+_inisetvalue('COMPARE_OLD_FOLDER', Alltrim(Thisform.txtoldfolder.Value))
+_inisetvalue('COMPARE_NEW_FOLDER', Alltrim(Thisform.txtnewfolder.Value))
 
 _logwrite('PROCESS START')
 
@@ -292,29 +307,32 @@ m.ifolder = Alltrim(Thisform.txtoldfolder.Value)
 
 If Not Empty(m.ifolder) And Directory(m.ifolder)
 
-m.filespec = Addbs(m.ifolder) + '*.jar'
+	m.filespec = Addbs(m.ifolder) + '*.*'
 
-m.ncount = Adir(afiles, m.filespec, '', 1)
+	m.ncount = Adir(afiles, m.filespec, '', 1)
 
-For m.lnx = 1 To m.ncount
+	For m.lnx = 1 To m.ncount
 
-m.filename	= m.afiles(m.lnx, 1)
+		m.filename = m.afiles(m.lnx, 1)
 
-If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
+		If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
 
-Loop
+			Loop
+
+		Endif
+
+		m.fileunc = Addbs(m.ifolder) + m.filename
+
+* _logwrite(m.fileunc)
+
+		Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 'OLD')
+
+	Endfor
 
 Endif
 
-m.fileunc = Addbs(m.ifolder) + m.filename
 
-_logwrite(m.fileunc)
-
-Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 'OLD')
-
-Endfor
-
-Endif
+*!* SCAN NEW FOLDER
 
 m.afiles = Null
 
@@ -322,40 +340,40 @@ m.ifolder = Alltrim(Thisform.txtnewfolder.Value)
 
 If Not Empty(m.ifolder) And Directory(m.ifolder)
 
-m.filespec = Addbs(m.ifolder) + '*.jar'
+	m.filespec = Addbs(m.ifolder) + '*.*'
 
-m.ncount = Adir(afiles, m.filespec, '', 1)
+	m.ncount = Adir(afiles, m.filespec, '', 1)
 
-For m.lnx = 1 To m.ncount
+	For m.lnx = 1 To m.ncount
 
-m.filename	= m.afiles(m.lnx, 1)
+		m.filename	= m.afiles(m.lnx, 1)
 
-If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
+		If Not Inlist(Upper(Justext(m.filename)), 'JAR', 'DISABLED')
 
-Loop
+			Loop
+
+		Endif
+
+		m.fileunc = Addbs(m.ifolder) + m.filename
+
+* _logwrite(m.fileunc)
+
+		Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 'NEW')
+
+	Endfor
 
 Endif
 
-m.fileunc = Addbs(m.ifolder) + m.filename
-
-_logwrite(m.fileunc)
-
-Thisform.mr_filescan(m.filename, Filetostr(m.fileunc), 'NEW')
-
-Endfor
-
-Endif
-
-Delete For sql_log.levent == 'NOCHANGE' In 'sql_log'
+*Delete For sql_log.levent == 'NOCHANGE' In 'sql_log'
 
 
 _logwrite('PROCESS END')
 
 Go Top In 'sql_log'
 
-Thisform.updateui()
-
 Thisform.Refresh()
+
+
 
 
 
@@ -380,12 +398,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM0IENUB</uniqueid>
-		<timestamp>1325483380</timestamp>
+		<timestamp>1327137863</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Top = 0
 Left = 108
 Height = 28
@@ -423,9 +441,29 @@ Endscan
 
 m.txt = m.txt + 0h0d0a
 
-m.txt =  m.txt + '**Updated**' + 0h0d0a
+m.txt =  m.txt + '**Changed/Updated**' + 0h0d0a
 
-Scan For sql_log.levent == 'UPDATED'
+Scan For sql_log.levent == 'CHANGED'
+
+m.txt = m.txt + '- **' + sql_log.modname + '** (' + sql_log.filename1 + ' -&gt; ' + sql_log.filename2 + ')' + 0h0d0a
+
+Endscan
+
+m.txt = m.txt + 0h0d0a
+
+m.txt =  m.txt + '**Enabled/Disabled**' + 0h0d0a
+
+Scan For sql_log.levent == 'ENABLED' OR sql_log.levent == 'DISABLED'
+
+m.txt = m.txt + '- **' + sql_log.modname + '** (' + sql_log.filename1 + ' -&gt; ' + sql_log.filename2 + ')' + 0h0d0a
+
+Endscan
+
+m.txt = m.txt + 0h0d0a
+
+m.txt =  m.txt + '**NOCHANGE**' + 0h0d0a
+
+Scan For sql_log.levent == 'NOCHANGE'
 
 m.txt = m.txt + '- **' + sql_log.modname + '** (' + sql_log.filename1 + ' -&gt; ' + sql_log.filename2 + ')' + 0h0d0a
 
@@ -453,12 +491,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1325479682</timestamp>
+		<timestamp>1326209120</timestamp>
 		<class>_textbox_character</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>textbox</baseclass>
 		<objname>txtoldfolder</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Anchor = 10
 Height = 24
 Left = 12
@@ -486,12 +524,12 @@ Name = "txtoldfolder"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM0EPZED</uniqueid>
-		<timestamp>1325479682</timestamp>
+		<timestamp>1326209120</timestamp>
 		<class>_textbox_character</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>textbox</baseclass>
 		<objname>txtnewfolder</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Anchor = 10
 Height = 24
 Left = 12
@@ -524,7 +562,7 @@ Name = "txtnewfolder"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_commandbutton1</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Top = 35
 Left = 912
 Height = 26
@@ -580,7 +618,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_commandbutton2</objname>
-		<parent>mr_compare</parent>
+		<parent>MR_COMPARE</parent>
 		<properties>Top = 71
 Left = 912
 Height = 26

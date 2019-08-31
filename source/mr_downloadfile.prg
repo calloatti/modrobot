@@ -1,175 +1,173 @@
 *!* mr_downloadfile
 
-Lparameters premotefile, plocalfile
+lparameters premotefile, plocalfile, pproxy
 
 *!* NRESULT 0 FILE DOWNLOAD ERROR
 *!* NRESULT 1 FILE DOWNLOAD OK
 
-#Define MRDOWNLOAD_ERROR		0
-#Define MRDOWNLOAD_SUCCESS		1
-#Define MRDOWNLOAD_FILE_EXISTS	2
+#define MRDOWNLOAD_ERROR		0
+#define MRDOWNLOAD_SUCCESS		1
+#define MRDOWNLOAD_FILE_EXISTS	2
 
-Local winhttp as 'winhttp' OF 'winhttp'
-Local bytesdone, bytesperc, bytestotal, contentlength, contentrange, filehandle, nblocksize, nresult
-Local rangefrom, rangestr, rangeto, tempfile
+#define HTTPREQUEST_PROXYSETTING_PROXY	2
+
+local winhttp as 'winhttp' of 'winhttp'
+local bytesdone, bytesperc, bytestotal, contentlength, contentrange, filehandle, nblocksize, nresult
+local rangefrom, rangestr, rangeto, tempfile
+
 
 m.nblocksize =(1024 * 128) - 1
 
 *!* CHECK IF WE ALREADY HAVE THE FILE
 
 *!*	?'_file(m.plocalfile)',_file(m.plocalfile)
-*!*	?'_getfilesize(m.plocalfile)',_getfilesize(m.plocalfile) 
+*!*	?'_getfilesize(m.plocalfile)',_getfilesize(m.plocalfile)
 *!*	?'m.pfilesize',m.pfilesize
 
 m.tempfile = m.plocalfile + '.download'
 
-If Not _file(m.plocalfile)
+if not _file(m.plocalfile)
 
-   m.winhttp = Newobject('winhttp', 'winhttp')
+	m.winhttp = newobject('winhttp', 'winhttp')
 
-   *m.winhttp.setproxy(2, 'localhost:8888')
+	if not empty(m.pproxy) && 'localhost:8888'
 
-   m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
+		m.winhttp.setproxy(HTTPREQUEST_PROXYSETTING_PROXY, m.pproxy)
 
-   *!* DOWNLOAD IN CHUNKS
+	endif
 
-   *!* IF WE HAVE A PARTIAL DOWNLOAD, USE IT
+	m.winhttp.settimeouts(60000, 60000, 30000, 60000)
 
-   If File(m.tempfile) Then
+	*!* DOWNLOAD IN CHUNKS
 
-      m.rangefrom = _getfilesize(m.tempfile)
+	*!* IF WE HAVE A PARTIAL DOWNLOAD, USE IT
 
-      m.filehandle = Fopen(m.tempfile, 2)
+	if file(m.tempfile) then
 
-      Fseek(m.filehandle, 0, 2)
+		m.rangefrom = _getfilesize(m.tempfile)
 
-   Else
+		m.filehandle = fopen(m.tempfile, 2)
 
-      m.rangefrom = 0
+		fseek(m.filehandle, 0, 2)
 
-      *!* CREATE TEMP FILE
+	else
 
-      m.filehandle = Fcreate(m.tempfile, 0)
+		m.rangefrom = 0
 
-   Endif
+		*!* CREATE TEMP FILE
 
-   If m.filehandle = -1
+		m.filehandle = fcreate(m.tempfile, 0)
 
-      Error 'FOPEN/FCREATE ERROR'
+	endif
 
-   Endif
+	if m.filehandle = -1
 
-   Do While .T.
+		error 'FOPEN/FCREATE ERROR'
 
-      m.winhttp.Open('GET', m.premotefile, .T.)
+	endif
 
-      m.winhttp.setrequestheader('User-Agent', 'CurseClient/7.5 (Microsoft Windows NT 6.2.9200.0) CurseClient/7.5.7076.33481')
+	m.bytestotal = 0
 
-      m.rangeto = m.rangefrom + m.nblocksize - 1
+	do while .t.
 
-      m.rangestr = 'bytes=' + Transform(m.rangefrom) + '-' + Transform(m.rangeto)
+		m.winhttp.open('GET', m.premotefile, .t.)
 
-      m.winhttp.setrequestheader('Range', m.rangestr)
+		m.winhttp.setrequestheader('User-Agent', 'CurseClient/7.5 (Microsoft Windows NT 6.2.9200.0) CurseClient/7.5.7076.33481')
 
-      m.winhttp.Send()
+		m.rangeto = m.rangefrom + m.nblocksize - 1
 
-      Do While m.winhttp.waitforresponse(0) = 0
+		m.rangestr = 'bytes=' + transform(m.rangefrom) + '-' + transform(m.rangeto)
 
-         DoEvents
+		m.winhttp.setrequestheader('Range', m.rangestr)
 
-         _apisleep(50)
+		m.winhttp.send()
 
-      Enddo
+		do while m.winhttp.waitforresponse(0) = 0
 
-      *!* Content-Range: bytes 16777216-17182321/17182322
+			doevents
 
-      m.contentrange = m.winhttp.getresponseheader('Content-Range')
+			_apisleep(50)
 
-      m.bytesdone  = Int(Val(Strextract(m.contentrange, '-', '/')))
+		enddo
 
-      m.bytestotal = Int(Val(Strextract(m.contentrange, '/', '')))
+		*!* Content-Range: bytes 16777216-17182321/17182322
 
-      m.bytesperc  = Transform(Ceiling(m.bytesdone / m.bytestotal * 100), '999 %')
+		m.contentrange = m.winhttp.getresponseheader('Content-Range')
 
-      _logwrite('RESULT:', m.winhttp.responsestatus, m.bytesperc)
+		m.bytesdone  = int(val(strextract(m.contentrange, '-', '/')))
 
-      If m.winhttp.responsestatus # 206 Then
+		m.bytestotal = int(val(strextract(m.contentrange, '/', '')))
 
-         Exit
+		m.bytesperc  = transform(ceiling(m.bytesdone / m.bytestotal * 100), '999 %')
 
-      Endif
+		_logwrite('RESULT:', m.winhttp.responsestatus, m.bytesperc)
 
-      *!* WRITE CHUNK TO TEMP FILE
+		if m.winhttp.responsestatus # 206 then
 
-      Fwrite(m.filehandle, m.winhttp.responsebody)
+			exit
 
-      Fclose(m.filehandle)
+		endif
 
-      m.filehandle = Fopen(m.tempfile, 2)
+		*!* WRITE CHUNK TO TEMP FILE
 
-      Fseek(m.filehandle, 0, 2)
+		fwrite(m.filehandle, m.winhttp.responsebody)
 
-      m.contentlength = Val(m.winhttp.getresponseheader('Content-Length'))
+		fclose(m.filehandle)
 
-      If m.contentlength < m.nblocksize Then
+		m.filehandle = fopen(m.tempfile, 2)
 
-         Exit
+		fseek(m.filehandle, 0, 2)
 
-      Endif
+		m.contentlength = val(m.winhttp.getresponseheader('Content-Length'))
 
-      m.rangefrom = m.rangefrom + m.nblocksize
+		if m.contentlength < m.nblocksize then
 
-   Enddo
+			exit
 
-   *!* CLOSE TEMP FILE
+		endif
 
-   Fclose(m.filehandle)
+		m.rangefrom = m.rangefrom + m.nblocksize
 
-   *!* RENAME TEMP FILE
+	enddo
 
-   If Inlist(m.winhttp.responsestatus, 200, 206) Then
+	*!* CLOSE TEMP FILE
 
-      _apiMoveFile(m.tempfile, m.plocalfile)
+	fclose(m.filehandle)
 
-      _apisleep(100)
+	*!* RENAME TEMP FILE
 
-   Endif
+	if inlist(m.winhttp.responsestatus, 200, 206) then
 
-   *!* Requested Range Not Satisfiable
+		_apimovefile(m.tempfile, m.plocalfile)
 
-   If m.winhttp.responsestatus = 416  Then
+		_apisleep(100)
 
-      _apideletefile(m.tempfile)
+	endif
 
-      _apisleep(100)
+	*!* Requested Range Not Satisfiable
 
-   Endif
+	if m.winhttp.responsestatus = 416  then
 
-Endif
+		_apideletefile(m.tempfile)
 
-If _getfilesize(m.plocalfile) = m.bytestotal Then
+		_apisleep(100)
 
-   m.nresult = MRDOWNLOAD_SUCCESS
+	endif
 
-Else
+endif
 
-   _apideletefile(m.plocalfile)
+if _getfilesize(m.plocalfile) = m.bytestotal then
 
-   m.nresult = MRDOWNLOAD_ERROR
+	m.nresult = MRDOWNLOAD_SUCCESS
 
-Endif
+else
 
-Return m.nresult
+	_apideletefile(m.plocalfile)
 
+	m.nresult = MRDOWNLOAD_ERROR
 
+endif
 
+return m.nresult
 
 
-
-
-
-
-
-
-
- 

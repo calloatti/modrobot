@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322543525</timestamp>
+		<timestamp>1327341730</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>3</reserved2>
+		<reserved2>5</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IF0UGSCM</uniqueid>
-		<timestamp>1322678136</timestamp>
+		<uniqueid>_5JT04V7CW</uniqueid>
+		<timestamp>1327341762</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,12 +67,12 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 115
-Width = 153
-Alias = "mr_othermods"
+Height = 293
+Width = 90
+Alias = "mr_modids"
 Order = "modid"
 Database = ..\data\data1.dbc
-CursorSource = "mr_othermods"
+CursorSource = "mr_modids"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -92,21 +92,20 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IG0SC3UX</uniqueid>
-		<timestamp>1322678136</timestamp>
+		<uniqueid>_5JT04V7CX</uniqueid>
+		<timestamp>1327341762</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor2</objname>
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
-Left = 290
-Height = 188
-Width = 142
-Alias = "mr_othermods1"
-Order = "modid"
+Left = 150
+Height = 293
+Width = 90
+Alias = "mr_modids1"
 Database = ..\data\data1.dbc
-CursorSource = "mr_othermods"
+CursorSource = "mr_modids"
 Name = "Cursor2"
 </properties>
 		<protected/>
@@ -126,17 +125,83 @@ Name = "Cursor2"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5JV0EWHHD</uniqueid>
+		<timestamp>1327341762</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 290
+Height = 376
+Width = 90
+Alias = "mr_mods"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JV0EWHHE</uniqueid>
+		<timestamp>1327341762</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 430
+Height = 412
+Width = 148
+Alias = "mr_addons"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322678136</timestamp>
+		<timestamp>1327341762</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_othermods</objname>
+		<objname>mr_modids</objname>
 		<parent/>
 		<properties>DoCreate = .T.
-Caption = "OTHER MODS"
+Caption = "MODIDS"
 uniqueid = A20520F4060F4D6BA82879FF4484FE76
-Name = "MR_OTHERMODS"
+Name = "MR_MODIDS"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
@@ -144,6 +209,20 @@ tmrSql.Name = "tmrSql"
 DoDefault()
 
 Thisform.gridmain.Refresh()
+ENDPROC
+PROCEDURE Destroy
+*!* destroy
+
+_inisetvalue('MR_MODIDS_MODID', mr_modids.modid)
+ENDPROC
+PROCEDURE init2
+*!* init2
+
+If Seek(_inigetvalue('MR_MODIDS_MODID', mr_modids.modid), 'MR_MODIDS', 'MODID') = .F.
+
+Go Top In 'MR_MODIDS'
+
+Endif
 ENDPROC
 </methods>
 		<objcode/>
@@ -167,7 +246,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_othermods</parent>
+		<parent>mr_modids</parent>
 		<properties>Height = 456
 Left = 12
 Top = 36
@@ -193,14 +272,14 @@ Name = "gridmain"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322494030</timestamp>
+		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbvermin</objname>
-		<parent>mr_othermods</parent>
+		<parent>mr_modids</parent>
 		<properties>Top = 0
-Left = 12
+Left = 168
 Height = 28
 Width = 48
 Picture = ..\res\1x\outline_search_black_18dp.png
@@ -210,7 +289,7 @@ Name = "tbvermin"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute('https://www.google.com/search?q="' + mr_othermods.filename + '"')
+mr_shellexecute('https://www.google.com/search?q="' + mr_modids.filename + '"')
 ENDPROC
 </methods>
 		<objcode/>
@@ -229,16 +308,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322678136</timestamp>
+		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>mr_othermods</parent>
+		<parent>mr_modids</parent>
 		<properties>Top = 0
-Left = 60
+Left = 216
 Height = 28
-Width = 48
+Width = 108
 Picture = ..\res\1x\outline_file_copy_black_18dp.png
 Caption = "PASTE URL"
 ToolTipText = ""
@@ -248,7 +327,7 @@ Name = "_tbcommand1"
 		<methods>PROCEDURE Click
 If Not Empty(_Cliptext)
 
-Replace mr_othermods.url With _Cliptext In 'mr_othermods'
+Replace mr_modids.url With _Cliptext In 'mr_modids'
 
 Endif
 
@@ -271,12 +350,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IF0UVSCM</uniqueid>
-		<timestamp>1322493634</timestamp>
+		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>mr_othermods</parent>
+		<parent>mr_modids</parent>
 		<properties>Top = 0
 Left = 828
 Height = 28
@@ -291,9 +370,9 @@ Name = "tboverview"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-If Not Empty(mr_othermods.url)
+If Not Empty(mr_modids.url)
 
-mr_shellexecute(mr_othermods.url)
+mr_shellexecute(mr_modids.url)
 
 Endif
 
@@ -315,25 +394,103 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5JV0EWHI9</uniqueid>
+		<timestamp>1327328987</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>mr_modids</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "SCAN MODS FOLDER"
+ZOrderSet = 4
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+_logwrite('PROCESS START')
+
+select 'mr_mods'
+
+scan for not empty(mr_mods.modid)
+
+	if seek(mr_mods.modid, 'mr_modids1', 'modid') = .f.
+
+		append blank in 'mr_modids1'
+
+		replace mr_modids1.modid with mr_mods.modid in 'mr_modids1'
+
+	endif
+
+
+	replace mr_modids1.filename with mr_mods.filename1 in 'mr_modids1'
+
+	if 'CLIENT' $ upper(mr_mods.env)
+
+		replace mr_modids1.isclient with .t. in 'mr_modids1'
+
+	endif
+
+	if seek(mr_mods.aid, 'mr_addons', 'aid') and not empty(mr_addons.slug)
+
+		replace mr_modids1.url with mr_geturlproject(mr_addons.slug) in 'mr_modids1'
+
+	endif
+
+endscan
+
+
+_logwrite('PROCESS END')
+
+thisform.updateui()
+
+thisform.refresh()
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322543525</timestamp>
+		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>mr_othermods</parent>
+		<parent>mr_modids</parent>
 		<properties>Top = 0
-Left = 108
+Left = 360
 Height = 28
-Width = 48
-Picture = ..\res\1x\outline_clear_black_18dp.png
-Caption = "DELETE"
+Width = 108
+Picture = ..\res\1x\outline_toggle_on_black_18dp.png
+Caption = "TOGGLE CLIENT"
 ToolTipText = ""
 Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Delete Next 1 In 'mr_othermods'
+REPLACE mr_modids.isclient WITH NOT  mr_modids.isclient In 'mr_modids'
 
 Thisform.Refresh()
 ENDPROC
@@ -354,12 +511,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IF0UVSCG</uniqueid>
-		<timestamp>1322480400</timestamp>
+		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>mr_othermods</parent>
+		<parent>mr_modids</parent>
 		<properties>Top = 0
 Left = 924
 Height = 28
@@ -380,59 +537,6 @@ Name = "tbmenu"
 </properties>
 		<protected/>
 		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5IG0SC3VV</uniqueid>
-		<timestamp>1322557634</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand3</objname>
-		<parent>mr_othermods</parent>
-		<properties>Top = 0
-Left = 168
-Height = 28
-Width = 48
-Picture = ..\res\1x\outline_cloud_upload_black_18dp.png
-Caption = "UPLOAD LIST"
-ToolTipText = "UPLOADS OTHER MODS LIST TO PASTE.EE TO SHARE WITH OTHER USERS"
-Name = "_tbcommand3"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local contents
-
-Select 'mr_othermods1'
-
-m.contents = nfjsonformat(nfCursorToJson())
-
-Select 'mr_othermods'
-
-*!*	m.contents = ''
-
-*!*	Scan For Not Empty(mr_othermods1.url)
-
-*!*	   m.contents = m.contents + mr_othermods1.modid + '|' + mr_othermods1.filename + '|' + mr_othermods1.url + 0h0a
-
-*!*	Endscan
-
-
-mr_pasteupload('OTHER MODS LIST', m.contents)
-ENDPROC
-</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>

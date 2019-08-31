@@ -340,7 +340,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80A4E11</uniqueid>
-		<timestamp>1322484036</timestamp>
+		<timestamp>1327136361</timestamp>
 		<class>custom</class>
 		<classloc/>
 		<baseclass>custom</baseclass>
@@ -390,66 +390,67 @@ ENDPROC
 PROCEDURE fppost
 *!* FPPOST
 
-Local winhttp As 'winhttp' Of 'winhttp.vcx'
-Local payload, url
+Local winhttp as 'winhttp' of 'winhttp.vcx'
+Local ojson, payload, url
 
-If Empty(This.fphashes)
+if empty(this.fphashes)
 
-Return
+	return
 
-Endif
+endif
 
 _logwrite('FINGERPRINT START')
 
-This.fpresponse = 0
+this.fpresponse = 0
 
-This.fpresponsetext = ''
+this.fpresponsetext = ''
 
-This.fpojson = ''
+this.fpojson = ''
 
-m.payload = '[' + Rtrim(This.fphashes, 1, ',') + ']'
+m.payload = '[' + rtrim(this.fphashes, 1, ',') + ']'
 
-m.winhttp = Newobject('winhttp', 'winhttp.vcx')
+m.winhttp = newobject('winhttp', 'winhttp.vcx')
 
 *m.winhttp.setproxy(2, 'localhost:8888')
 
 m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
 
-m.winhttp.option_enableredirects = .T.
+m.winhttp.option_enableredirects = .t.
 
 m.url = mr_geturlapi() + '/fingerprint'
 
-m.winhttp.Open('POST', m.url, .T.)
+m.winhttp.open('POST', m.url, .t.)
 
 m.winhttp.setrequestheader('Accept', 'application/json')
 
 m.winhttp.setrequestheader('Content-Type', 'application/json')
 
-m.winhttp.Send(m.payload)
+m.winhttp.send(m.payload)
 
-Do While m.winhttp.waitforresponse(0) = 0
+do while m.winhttp.waitforresponse(0) = 0
 
-DoEvents
+	doevents
 
-_apisleep(50)
+	_apisleep(50)
 
-Enddo
+enddo
 
-This.fpresponse = m.winhttp.responsestatus
+this.fpresponse = m.winhttp.responsestatus
 
-This.fpresponsetext = m.winhttp.responsetext
+this.fpresponsetext = m.winhttp.responsetext
 
-If m.winhttp.responsestatus = 200 Then
+if m.winhttp.responsestatus = 200 then
 
-Public ojson
+	*public ojson
 
-m.ojson = nfjsonread(m.winhttp.responsetext)
+	m.ojson = nfjsonread(m.winhttp.responsetext)
 
-This.fpojson = m.ojson
+	this.fpojson = m.ojson
 
-Endif
+endif
 
-_logwrite('FINGERPRINT END', This.fpresponse)
+_logwrite('FINGERPRINT END', this.fpresponse)
+
 
 
 

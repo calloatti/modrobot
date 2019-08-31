@@ -1,158 +1,77 @@
 *!* mr_addonparse
 
-Lparameters paid, pajson
+*!* THIS ASSUMES THE ADDONS TABLE IS OPEN (addons_upd) AND POSITIONED ON THE RECORD TO BE UPDATED
 
-Local aauthname, aauthorsid, asecid, asecname, asecptype, aurl, lnx, nselect, ojson
+lparameters paid, pajson
 
-If Empty(m.pajson)
+local avatar, ojson
 
-   Return
+if m.paid # addons_upd.aid or m.paid = 0
 
-Endif
+	error 'PAID'
 
-m.nselect = Select()
-
-If Not Used('addons_pja')
-
-   Use 'mr_addons' Again Alias 'addons_pja' In 0
-
-Endif
-
-If Seek(m.paid, 'addons_pja', 'aid') = .F. Then
-
-   _restorearea(m.nselect)
-
-   Return
-
-Endif
-
-If Not Used('categories_pja')
-
-   Use 'mr_categories' Again Alias 'categories_pja' In 0
-
-Endif
-
-If Not Used('avatars_pja')
-
-   Use 'mr_avatars' Again Alias 'avatars_pja' In 0
-
-Endif
-
-If Not Used('pstatus_pja')
-
-   Use 'mr_enum_projectstatus' Again Alias 'pstatus_pja' In 0
-
-Endif
-
-_logwrite('ADDON PARSE START', m.paid)
+endif
 
 m.ojson = nfjsonread(m.pajson)
 
-If Type('m.ojson.authors[1].Id') # 'U'
-
-   m.aauthorsid	= m.ojson.authors[1].Id
-   m.aauthname	= m.ojson.authors[1].Name
-
-Else
-
-   m.aauthorsid	= ''
-   m.aauthname	= ''
-
-Endif
-
-If Type('m.ojson.categorysection.Id') # 'U'
-
-   m.asecid	   = m.ojson.categorysection.Id
-   m.asecname  = m.ojson.categorysection.Name
-   m.asecptype = m.ojson.categorysection.packagetype
-
-Else
-
-   m.asecid	   = 0
-   m.asecname  = ''
-   m.asecptype = 0
-
-Endif
-
 *!* TYPO IN JSON PROPERTY: "isexperiemental"
 
-Replace ;
-   addons_pja.asecid With m.asecid, ;
-   addons_pja.asecname With m.asecname, ;
-   addons_pja.asecptype With m.asecptype, ;
-   addons_pja.aauthorsid With m.aauthorsid, ;
-   addons_pja.aauthname With m.aauthname, ;
-   addons_pja.adcreated With m.ojson.datecreated, ;
-   addons_pja.admodified With m.ojson.datemodified, ;
-   addons_pja.slug With m.ojson.slug, ;
-   addons_pja.adreleased With m.ojson.datereleased In 'addons_pja'
+replace ;
+	addons_upd.asecid	  with m.ojson.categorysection_id, ;
+	addons_upd.asecname	  with m.ojson.categorysection_name, ;
+	addons_upd.asecptype  with m.ojson.categorysection_packagetype, ;
+	addons_upd.authorid   with m.ojson.author_userid, ;
+	addons_upd.authorname with m.ojson.author_name, ;
+	addons_upd.adcreated  with m.ojson.datecreated, ;
+	addons_upd.admodified with m.ojson.datemodified, ;
+	addons_upd.slug		  with m.ojson.slug, ;
+	addons_upd.adreleased with m.ojson.datereleased in 'addons_upd'
+
+replace ;
+	addons_upd.adowncount with m.ojson.downloadcount, ;
+	addons_upd.agameid	  with m.ojson.gameid, ;
+	addons_upd.agamename  with m.ojson.gamename, ;
+	addons_upd.aisavail	  with iif(m.ojson.isavailable, 1, 0), ;
+	addons_upd.aisexperim with iif(m.ojson.isexperiemental, 1, 0), ;
+	addons_upd.aname	  with m.ojson.name, ;
+	addons_upd.apcatid	  with m.ojson.primarycategoryid, ;
+	addons_upd.astatus	  with m.ojson.status, ;
+	addons_upd.astatusnam with mr_getprojectstatusname(m.ojson.status) in 'addons_upd'
+
+*!* UPDATE AVATAR
+
+if type('m.ojson.attachment_url') # 'U'
+
+	if not m.ojson.attachment_url == addons_upd.aurl then
+
+		replace addons_upd.aurl with m.ojson.attachment_url, addons_upd.avatar with '' in 'addons_upd'
+
+	endif
+
+endif
+
+if empty(addons_upd.avatar)
+
+	m.avatar = mr_downloadresource(addons_upd.aurl)
+
+	m.avatar = _jpgresizecrop(m.avatar, 128, 128)
+
+	replace addons_upd.avatar with m.avatar in 'addons_upd'
+
+endif
+
+if empty(addons_upd.avatar)
+
+	m.avatar = strconv('iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAB3RJTUUH4wgdEBMaTqwclwAAAAlwSFlzAAAeeAAAHngBy6sDHwAAAARnQU1BAACxjwv8YQUAAAADUExURT8/P2b1mHYAAAAmSURBVHja7cEBAQAAAIIg/69uSEABAAAAAAAAAAAAAAAAAAAA7wZAgAABHoWnEwAAAABJRU5ErkJggg==', 14)
+
+	replace addons_upd.avatar with m.avatar in 'addons_upd'
+
+endif
 
 
-Replace ;
-   addons_pja.adowncount With m.ojson.downloadcount, ;
-   addons_pja.agameid With m.ojson.gameid, ;
-   addons_pja.agamename With m.ojson.gamename, ;
-   addons_pja.aisavail With Iif(m.ojson.isavailable, 1, 0), ;
-   addons_pja.aisexperim With Iif(m.ojson.isexperiemental, 1, 0), ;
-   addons_pja.aname With m.ojson.Name, ;
-   addons_pja.apcatid With m.ojson.primarycategoryid, ;
-   addons_pja.astatus With m.ojson.Status In 'addons_pja'
 
-If Seek(addons_pja.astatus, 'pstatus_pja', 'eid') = .T.
 
-   Replace addons_pja.astatusnam With pstatus_pja.ename In 'addons_pja'
 
-Endif
 
-*!* SAVE AVATAR URL ONLY FOR MINECRAFT GAMES
 
-If m.ojson.gameid = 432 And Type('m.ojson.attachments[1]') = 'O'
 
-   For m.lnx = 1 To Alen(m.ojson.attachments)
-
-      If m.ojson.attachments[m.lnx].isDefault = .T. Then
-
-         If Seek(m.paid, 'avatars_pja', 'aid') = .F.
-
-            Append Blank In 'avatars_pja'
-
-            Replace avatars_pja.aid With m.paid In 'avatars_pja'
-
-         Endif
-
-         m.aurl = m.ojson.attachments[m.lnx].thumbnailUrl
-
-         If Empty(m.aurl)
-
-            m.aurl = m.ojson.attachments[m.lnx].url
-
-         Endif
-
-         *!* ONLY IF AVATAR URL CHANGED
-
-         If Not m.aurl == avatars_pja.aurl
-
-            Replace avatars_pja.aurl With m.aurl In 'avatars_pja'
-
-            Replace avatars_pja.avatar With ''  In 'avatars_pja'
-
-         Endif
-
-         mr_avatardownload(m.paid)
-
-         Exit
-
-      Endif
-
-   Endfor
-
-Endif
-
-_logwrite('ADDON PARSE END', m.paid)
-
-Use In 'addons_pja'
-Use In 'avatars_pja'
-Use In 'pstatus_pja'
-Use In 'categories_pja'
-
-_restorearea(m.nselect)

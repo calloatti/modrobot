@@ -1,55 +1,73 @@
 *!* mr_genmodlist_download
 
-Lparameters piguid
+lparameters piguid
 
-Local lf, nselect, txt, url
+local lf, nselect, txt, url, url1, url2
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('instances_gml')
+if not used('instances_gml')
 
-   Use 'mr_instances' Again Alias 'instances_gml' In 0
+	use 'mr_instances' again alias 'instances_gml' in 0
 
-Endif
+endif
 
-If Not Used('mods_gml')
+if not used('mods_gml')
 
-   Use 'mr_mods' Again Alias 'mods_dow' In 0
+	use 'mr_mods' again alias 'mods_gml' in 0
 
-   Set Order To Tag 'filename1'
+	set order to tag 'filename1'
 
-Endif
+endif
 
-= Seek(m.piguid, 'instances_gml', 'iguid')
+if not used('files_gml')
+
+	use 'mr_files' again alias 'files_gml' in 0
+
+endif
+
+= seek(m.piguid, 'instances_gml', 'iguid')
 
 m.lf = 0h0d0a
 
-m.txt = ''
+m.txt = 'set curlparams=--proxy "127.0.0.1:8888" --fail --insecure --progress-bar --location --user-agent "CurseClient/7.5 (Microsoft Windows NT 6.2.9200.0) CurseClient/7.5.7123.41619" --header "Connection: Keep-Alive"' + m.lf + m.lf
 
-m.reqheader = '"User-Agent: CurseClient/7.5 (Microsoft Windows NT 6.2.9200.0) CurseClient/7.5.7076.33481"'
+m.txt = 'set curlparams=--fail --insecure --progress-bar --location' + m.lf + m.lf
 
-Select 'mods_dow'
+select 'mods_gml'
 
-Scan For mods_dow.iguid = m.piguid And mods_dow.aid > 0 And Not Justext(mods_dow.filename1) = 'disabled'
+scan for mods_gml.iguid = m.piguid and mods_gml.fid1 > 0 && And Not Justext(mods_gml.filename1) = 'disabled'
 
-   m.url = mr_geturlfile1(mods_dow.fid1, mods_dow.filename1)
+	if seek(mods_gml.fid1, 'files_gml', 'fid') = .f. then
 
-   m.txt = m.txt + 'curl --header ' + m.reqheader + ' --progress-bar -o "%~dp0' + mods_dow.filename1 + '" ' + m.url + m.lf
+		loop
 
-   m.txt = m.txt + 'timeout 15 /nobreak' + m.lf
+	endif
 
-Endscan
+	m.url = mr_geturlfile1(files_gml.fid, files_gml.filename)
+
+	m.url = strtran(m.url, '%', '%%')
+
+	m.txt = m.txt + 'if not exist "%~dp0' + mods_gml.fid1 + '" curl %curlparams% -o "%~dp0' + mods_gml.fid1 + '" ^"' + m.url + '"' + m.lf
+
+endscan
 
 m.txt = m.txt + 'pause' + m.lf
 
-_Cliptext = m.txt
+strtofile(m.txt, addbs(instances_gml.ifolder) + '_gmlnload_mods.cmd')
 
-Strtofile(m.txt, Addbs(instances_gml.ifolder) + '_download_mods.cmd')
+messagebox('INSTANCE DOWNLOAD LIST SAVED TO ' + addbs(instances_gml.ifolder) + '_gmlnload_mods.cmd' + ' AND COPIED TO CLIPBOARD', 64, 'MODROBOT')
 
-Messagebox('INSTANCE DOWNLOAD LIST SAVED TO ' + Addbs(instances_gml.ifolder) + '_download_mods.cmd' + ' AND COPIED TO CLIPBOARD', 64, 'MODROBOT')
+use in 'files_gml'
 
-Use In 'mods_dow'
+use in 'mods_gml'
 
-Use In 'instances_gml'
+use in 'instances_gml'
 
 _restorearea(m.nselect)
+
+
+
+
+
+

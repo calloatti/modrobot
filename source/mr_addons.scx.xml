@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322481698</timestamp>
+		<timestamp>1327454824</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -36,7 +36,7 @@
 		<parent/>
 		<properties>Top = 225
 Left = 220
-Width = 765
+Width = 1118
 Height = 493
 InitialSelectedAlias = "mr_addons"
 DataSource = .NULL.
@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1322957076</timestamp>
+		<timestamp>1327456393</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,21 +93,20 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I6080T40</uniqueid>
-		<timestamp>1322957076</timestamp>
+		<uniqueid>_5KG0O9JCA</uniqueid>
+		<timestamp>1327456393</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor2</objname>
 		<parent>Dataenvironment</parent>
-		<properties>Top = 52
-Left = 389
-Height = 342
-Width = 223
-Alias = "mr_avatars"
-Order = "aid"
+		<properties>Top = 65
+Left = 568
+Height = 316
+Width = 90
+Alias = "mr_files"
 Database = ..\data\data1.dbc
-CursorSource = "mr_avatars"
+CursorSource = "mr_files"
 Name = "Cursor2"
 </properties>
 		<protected/>
@@ -127,8 +126,8 @@ Name = "Cursor2"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I60QMTN7</uniqueid>
-		<timestamp>1321886514</timestamp>
+		<uniqueid>_5KG0O9JCB</uniqueid>
+		<timestamp>1327454824</timestamp>
 		<class>relation</class>
 		<classloc/>
 		<baseclass>relation</baseclass>
@@ -136,7 +135,7 @@ Name = "Cursor2"
 		<parent>Dataenvironment</parent>
 		<properties>ParentAlias = "mr_addons"
 RelationalExpr = "aid"
-ChildAlias = "mr_avatars"
+ChildAlias = "mr_files"
 ChildOrder = "aid"
 Name = "Relation1"
 </properties>
@@ -158,7 +157,7 @@ Name = "Relation1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322957076</timestamp>
+		<timestamp>1327456393</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -197,9 +196,9 @@ ENDPROC
 PROCEDURE updateui
 *!* updateui
 
-Thisform._editbox1.Value =  nfjsonformat(mr_addons.hajson)
+thisform._editbox1.value =  nfjsonformat(_zlibuncompress(mr_addons.hajson))
 
-Thisform.tbjson.Enabled = Not Empty(mr_addons.hajson)
+thisform.tbjson.enabled = not empty(mr_addons.hajson)
 
 *!*	Thisform.tboverview.Enabled	= mr_addons.aisavail = 1
 *!*	Thisform.tbfile.Enabled		= mr_addons.aisavail = 1
@@ -209,15 +208,10 @@ Thisform.tbjson.Enabled = Not Empty(mr_addons.hajson)
 *!*	Thisform.tbsource.Enabled	= mr_addons.aisavail = 1
 
 
-If Empty(mr_avatars.avatar)
+thisform.imgavatar.pictureval = mr_addons.avatar
 
-Thisform.imgavatar.PictureVal = FILETOSTR(Thisform.apppath + 'res\noimage.png')
 
-Else
-
-Thisform.imgavatar.PictureVal = mr_avatars.avatar
-
-Endif
+thisform.tbfiles_local.Enabled = not EOF('mr_files')
 
 
 
@@ -240,7 +234,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321869320</timestamp>
+		<timestamp>1327328464</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -248,7 +242,7 @@ ENDPROC
 		<parent>mr_addons</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
-Anchor = 14
+Anchor = 6
 Height = 144
 Left = 12
 ReadOnly = .T.
@@ -316,7 +310,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50W8VO9</uniqueid>
-		<timestamp>1322493958</timestamp>
+		<timestamp>1327330164</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -335,25 +329,26 @@ Name = "tbjson"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local cfile
+local cfile
 
 m.cfile = _getapppath() + 'json'
 
-If Not Directory(m.cfile, 1)
+if not directory(m.cfile, 1)
 
-Mkdir(m.cfile)
+	mkdir(m.cfile)
 
-Endif
+endif
 
-m.cfile = m.cfile + '\a_' + Transform(mr_addons.aid, '@l 9999999999') + '.txt'
+m.cfile = m.cfile + '\a_' + transform(mr_addons.aid, '@l 9999999999') + '.txt'
 
-Strtofile(nfjsonformat(mr_addons.hajson), m.cfile)
+strtofile(nfjsonformat(_zlibuncompress(mr_addons.hajson)), m.cfile)
 
 mr_shellexecute(m.cfile)
 
 
 
 
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -371,32 +366,30 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IF0W6QM6</uniqueid>
-		<timestamp>1322489896</timestamp>
+		<uniqueid>_5KG0O7W7M</uniqueid>
+		<timestamp>1327454882</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand2</objname>
+		<objname>tbfiles_local</objname>
 		<parent>mr_addons</parent>
 		<properties>Top = 0
-Left = 276
+Left = 684
 Height = 28
-Width = 84
-Picture = ..\res\1x\outline_refresh_black_18dp.png
-Caption = "REFRESH"
-ToolTipText = "REFRESH PROJECT DATA"
+Width = 72
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "FILES"
+ToolTipText = "VIEW FILE IN NEW FILES TAB"
 ZOrderSet = 4
-Name = "_tbcommand2"
+tbalign = 2
+Name = "tbfiles_local"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_addonupdate(mr_addons.aid, .T.)
 
-Thisform.Refresh()
+_inisetvalue('MR_FILES_FID', mr_files.fid)
 
-
-
-
+Do Form mr_files
 ENDPROC
 </methods>
 		<objcode/>
@@ -414,68 +407,28 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYYZ</uniqueid>
-		<timestamp>1322489505</timestamp>
+		<uniqueid>_5I90JUYZF</uniqueid>
+		<timestamp>1326977940</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_files</objname>
+		<objname>tbfiles</objname>
 		<parent>mr_addons</parent>
 		<properties>Top = 0
-Left = 108
+Left = 852
 Height = 28
-Width = 84
+Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "API FILES"
-ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+Caption = "FILES"
+ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
 ZOrderSet = 4
+tbalign = 2
 tbmarginv = 4
-Name = "tbapi_files"
+Name = "tbfiles"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon_files(mr_addons.aid))
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYZ4</uniqueid>
-		<timestamp>1322489505</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_addon</objname>
-		<parent>mr_addons</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "API ADDON"
-ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbapi_addon"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon(mr_addons.aid))
-
+mr_shellexecute(mr_geturlproject_files(mr_addons.slug))
 
 ENDPROC
 </methods>
@@ -495,7 +448,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZA</uniqueid>
-		<timestamp>1322957076</timestamp>
+		<timestamp>1326977940</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -536,28 +489,111 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYZF</uniqueid>
-		<timestamp>1322956829</timestamp>
+		<uniqueid>_5I90JUYZ4</uniqueid>
+		<timestamp>1326977940</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbfiles</objname>
+		<objname>tbapi_addon</objname>
 		<parent>mr_addons</parent>
 		<properties>Top = 0
-Left = 852
+Left = 12
 Height = 28
-Width = 72
+Width = 96
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "FILES"
-ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
+Caption = "API ADDON"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
 ZOrderSet = 4
-tbalign = 2
 tbmarginv = 4
-Name = "tbfiles"
+Name = "tbapi_addon"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject_files(mr_addons.slug))
+mr_shellexecute(mr_geturlapi_addon(mr_addons.aid))
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I90JUYYZ</uniqueid>
+		<timestamp>1326977940</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_files</objname>
+		<parent>mr_addons</parent>
+		<properties>Top = 0
+Left = 108
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API FILES"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_files"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_files(mr_addons.aid))
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1327456393</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>mr_addons</parent>
+		<properties>Top = 0
+Left = 276
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "CURSE"
+ToolTipText = "REFRESH CURSE DATA FOR SELECTED PROJECT"
+ZOrderSet = 4
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_addonupdate(mr_addons.aid)
+
+Thisform.Refresh()
+
+
+
 
 ENDPROC
 </methods>
@@ -577,7 +613,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1321886265</timestamp>
+		<timestamp>1327328464</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -585,7 +621,7 @@ ENDPROC
 		<parent>mr_addons</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
-Anchor = 12
+Anchor = 14
 Height = 144
 Left = 480
 ReadOnly = .T.
@@ -644,13 +680,14 @@ Name = "_splitter1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6080T40</uniqueid>
-		<timestamp>1321886407</timestamp>
+		<timestamp>1327341077</timestamp>
 		<class>image</class>
 		<classloc/>
 		<baseclass>image</baseclass>
 		<objname>imgavatar</objname>
 		<parent>mr_addons</parent>
-		<properties>Anchor = 12
+		<properties>Tag = "NORESIZE"
+Anchor = 12
 Picture = ..\res\noimage1.png
 Stretch = 2
 Height = 144
@@ -677,7 +714,7 @@ Name = "imgavatar"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I81DYGAG</uniqueid>
-		<timestamp>1322123561</timestamp>
+		<timestamp>1326977940</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>

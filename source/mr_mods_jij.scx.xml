@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0V5R68</uniqueid>
-		<timestamp>1325814577</timestamp>
+		<timestamp>1326978052</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0V8FA6</uniqueid>
-		<timestamp>1325814577</timestamp>
+		<timestamp>1326978052</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -125,7 +125,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1325814577</timestamp>
+		<timestamp>1326978052</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -404,7 +404,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0VMAZ0</uniqueid>
-		<timestamp>1324726966</timestamp>
+		<timestamp>1326978052</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -418,7 +418,6 @@ Picture = ..\res\1x\outline_autorenew_black_18dp.png
 Caption = "SCAN"
 ToolTipText = "SCAN MODS FOLDER"
 ZOrderSet = 4
-tbstyle = 7
 Name = "tbscan"
 </properties>
 		<protected/>
@@ -458,8 +457,135 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5IY0V5R6M</uniqueid>
+		<timestamp>1326978052</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbinstances</objname>
+		<parent>MR_MODS_JIJ</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_expand_more_black_18dp.png
+Caption = "INSTANCES"
+ToolTipText = "OPEN INSTANCES MENU"
+PicturePosition = 4
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbinstances"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local nselect, result
+
+m.nselect = Select()
+
+Select 'mr_instances1'
+
+Scan
+
+This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
+
+Endscan
+
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_instances1'
+
+Thisform.mr_setinstance(mr_instances1.iguid)
+
+Endif
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1326978052</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbjson</objname>
+		<parent>MR_MODS_JIJ</parent>
+		<properties>Top = 0
+Left = 228
+Height = 28
+Width = 132
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "fabric.mod.json"
+ToolTipText = "OPEN JSON IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbjson"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local cfile
+
+m.cfile = _getapppath() + 'json'
+
+If Not Directory(m.cfile, 1)
+
+Mkdir(m.cfile)
+
+Endif
+
+If Not Empty(sql_jijs.modid)
+
+m.cfile = m.cfile + '\j_' + sql_jijs.modid + '.txt'
+
+Endif
+
+Strtofile(sql_jijs.json, m.cfile)
+
+mr_shellexecute(m.cfile)
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5JB1EWWS4</uniqueid>
-		<timestamp>1324815822</timestamp>
+		<timestamp>1326978052</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -522,135 +648,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1324746072</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbjson</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 228
-Height = 28
-Width = 132
-Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "fabric.mod.json"
-ToolTipText = "OPEN JSON IN NOTEPAD"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbjson"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local cfile
-
-m.cfile = _getapppath() + 'json'
-
-If Not Directory(m.cfile, 1)
-
-Mkdir(m.cfile)
-
-Endif
-
-If Not Empty(sql_jijs.modid)
-
-m.cfile = m.cfile + '\j_' + sql_jijs.modid + '.txt'
-
-Endif
-
-Strtofile(sql_jijs.json, m.cfile)
-
-mr_shellexecute(m.cfile)
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5IY0V5R6M</uniqueid>
-		<timestamp>1323865110</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbinstances</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 108
-Picture = ..\res\1x\outline_expand_more_black_18dp.png
-Caption = "INSTANCES"
-ToolTipText = "OPEN INSTANCES MENU"
-PicturePosition = 4
-ZOrderSet = 4
-tbmarginv = 4
-tbstyle = 7
-Name = "tbinstances"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local nselect, result
-
-m.nselect = Select()
-
-Select 'mr_instances1'
-
-Scan
-
-This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
-
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_instances1'
-
-Thisform.mr_setinstance(mr_instances1.iguid)
-
-Endif
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322123709</timestamp>
+		<timestamp>1326978052</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>

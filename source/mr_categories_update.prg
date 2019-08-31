@@ -1,125 +1,126 @@
 *!* mr_categories_update
 
-Local winhttp as 'winhttp' OF 'winhttp.vcx'
-Local cnamepath, lnx, nselect, ojson, parentid, result, slugpath, url
+local winhttp as 'winhttp' of 'winhttp.vcx'
+local cnamepath, lnx, nselect, ojson, parentid, result, slugpath, url
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('cat_upd')
+if not used('cat_upd')
 
-   Use 'mr_categories' Again Alias 'cat_upd' In 0
+	use 'mr_categories' again alias 'cat_upd' in 0
 
-Endif
+endif
 
-If Not Used('cat_seek')
+if not used('cat_seek')
 
-   Use 'mr_categories' Again Alias 'cat_seek' In 0
+	use 'mr_categories' again alias 'cat_seek' in 0
 
-Endif
+endif
 
 m.url = mr_geturlapi_category()
 
 _logwrite('CATEGORIES UPDATE START')
 
-m.winhttp = Newobject('winhttp', 'winhttp.vcx')
+m.winhttp = newobject('winhttp', 'winhttp.vcx')
 
 *m.winhttp.setproxy(2, 'localhost:8888')
 
-m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
+m.winhttp.settimeouts(60000, 60000, 30000, 60000)
 
-m.winhttp.gzip = .T.
+m.winhttp.gzip = .t.
 
-m.winhttp.option_enableredirects = .T.
+m.winhttp.option_enableredirects = .t.
 
-m.winhttp.Open('GET', m.url, .T.)
+m.winhttp.open('GET', m.url, .t.)
 
-m.result = m.winhttp.Send()
+m.result = m.winhttp.send()
 
-Do While m.winhttp.waitforresponse(0) = 0
+do while m.winhttp.waitforresponse(0) = 0
 
-   DoEvents
+	doevents
 
-   _apisleep(10)
+	_apisleep(10)
 
-Enddo
+enddo
 
-If m.winhttp.responsestatus = 200
+if m.winhttp.responsestatus = 200
 
-   m.ojson = nfjsonread(m.winhttp.getresponse())
+	m.ojson = nfjsonread(m.winhttp.getresponse())
 
-   If Type('m.ojson.array[1]') = 'O'
+	if type('m.ojson.array[1]') = 'O'
 
-      For m.lnx = 1 To Alen(m.ojson.Array)
+		for m.lnx = 1 to alen(m.ojson.array)
 
-         If m.ojson.Array[m.lnx].gameid # 432
+			if m.ojson.array[m.lnx].gameid # 432
 
-            Loop
+				loop
 
-         Endif
+			endif
 
-         _logwrite('UPDATE CATEGORY', m.ojson.Array[m.lnx].Name)
+			_logwrite('UPDATE CATEGORY', m.ojson.array[m.lnx].name)
 
-         If Seek(m.ojson.Array[m.lnx].Id, 'cat_upd', 'categoryid') = .F.
+			if seek(m.ojson.array[m.lnx].id, 'cat_upd', 'categoryid') = .f.
 
-            Append Blank In 'cat_upd'
+				append blank in 'cat_upd'
 
-         Endif
+			endif
 
-         Select 'cat_upd'
+			select 'cat_upd'
 
-         Replace ;
-            cat_upd.categoryid With m.ojson.Array[m.lnx].Id, ;
-            cat_upd.parentid With Nvl(m.ojson.Array[m.lnx].parentGameCategoryId, 0), ;
-            cat_upd.rootid With Nvl(m.ojson.Array[m.lnx].rootGameCategoryId, 0), ;
-            cat_upd.avatarurl With m.ojson.Array[m.lnx].avatarurl, ;
-            cat_upd.cname With m.ojson.Array[m.lnx].Name, ;
-            cat_upd.slug With m.ojson.Array[m.lnx].slug, ;
-            cat_upd.gameid With m.ojson.Array[m.lnx].gameid In 'cat_upd'
+			replace ;
+					cat_upd.categoryid with	m.ojson.array[m.lnx].id, ;
+					cat_upd.parentid   with	nvl(m.ojson.array[m.lnx].parentgamecategoryid, 0), ;
+					cat_upd.rootid	   with	nvl(m.ojson.array[m.lnx].rootgamecategoryid, 0), ;
+					cat_upd.avatarurl  with	m.ojson.array[m.lnx].avatarurl, ;
+					cat_upd.cname	   with	m.ojson.array[m.lnx].name, ;
+					cat_upd.slug	   with	m.ojson.array[m.lnx].slug, ;
+					cat_upd.gameid	   with	m.ojson.array[m.lnx].gameid in 'cat_upd'
 
-         Select 'cat_upd'
+			select 'cat_upd'
 
-         If Empty(cat_upd.avatar)
+			if empty(cat_upd.avatar)
 
-            Replace cat_upd.avatar With mr_downloadresource(cat_upd.avatarurl) In 'cat_upd'
+				replace cat_upd.avatar with mr_downloadresource(cat_upd.avatarurl) in 'cat_upd'
 
-         Endif
+			endif
 
-      Endfor
+		endfor
 
-   Endif
+	endif
 
-Endif
+endif
 
-Select 'cat_upd'
+select 'cat_upd'
 
-Scan
+scan
 
-   m.cnamepath = cat_upd.cname
+	m.cnamepath = cat_upd.cname
 
-   m.slugpath = cat_upd.slug
+	m.slugpath = cat_upd.slug
 
-   m.parentid = cat_upd.parentid
+	m.parentid = cat_upd.parentid
 
-   Do While m.parentid # 0
+	do while m.parentid # 0
 
-      = Seek(m.parentid, 'cat_seek', 'categoryid')
+		= seek(m.parentid, 'cat_seek', 'categoryid')
 
-      m.cnamepath = cat_seek.cname + '\' + m.cnamepath
+		m.cnamepath = cat_seek.cname + '\' + m.cnamepath
 
-      m.slugpath = cat_seek.slug + '/' + m.slugpath
+		m.slugpath = cat_seek.slug + '/' + m.slugpath
 
-      m.parentid = cat_seek.parentid
+		m.parentid = cat_seek.parentid
 
-   Enddo
+	enddo
 
-   Replace cat_upd.cnamepath With m.cnamepath In 'cat_upd'
-   Replace cat_upd.slugpath With m.slugpath In 'cat_upd'
+	replace ;
+			cat_upd.cnamepath with m.cnamepath, ;
+			cat_upd.slugpath  with m.slugpath in 'cat_upd'
 
-Endscan
+endscan
 
 
-Use In 'cat_upd'
-Use In 'cat_seek'
+use in 'cat_upd'
+use in 'cat_seek'
 
 _restorearea(m.nselect)
 
@@ -134,4 +135,6 @@ _logwrite('CATEGORIES UPDATE END')
 
 
 
- 
+
+
+

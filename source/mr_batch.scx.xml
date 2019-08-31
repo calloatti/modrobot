@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1321957072</timestamp>
+		<timestamp>1322034588</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I60ZL4VD</uniqueid>
-		<timestamp>1322123709</timestamp>
+		<uniqueid>_5K60STHG3</uniqueid>
+		<timestamp>1326804267</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -69,10 +69,9 @@ Name = "Dataenvironment"
 Left = 10
 Height = 90
 Width = 90
-Alias = "mr_avatars"
-Order = "aid"
+Alias = "mr_batch"
 Database = ..\data\data1.dbc
-CursorSource = "mr_avatars"
+CursorSource = "mr_batch"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -93,90 +92,70 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1322123709</timestamp>
+		<timestamp>1326804267</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_avatars</objname>
+		<objname>mr_batch</objname>
 		<parent/>
 		<properties>DoCreate = .T.
-Caption = "AVATARS"
-uniqueid = 2B2FB689310B4338A0FEEECABB9571AA
-Name = "MR_AVATARS"
+Caption = "SERVER BATCH FILES"
+uniqueid = 835DC860D29E43059AC6F2D59C1E9B8F
+Name = "MR_BATCH"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods>PROCEDURE Destroy
-*!* destroy
+		<methods>PROCEDURE Resize
+Local aheight, atop
 
-_inisetvalue('MR_AVATARS_AID', mr_avatars.aid)
-ENDPROC
-PROCEDURE init2
-*!* init2
+m.aheight =(Thisform._editbox1.Height - 12 * 3) / 4
 
-If Seek(_inigetvalue('MR_AVATARS_AID', mr_avatars.aid), 'MR_AVATARS', 'AID') = .F.
+m.atop = Thisform._editbox1.Top
 
-Go Top In 'mr_avatars'
+With Thisform._editbox2
+	.Anchor	= 0
+	.Top	= m.atop
+	.Height	= m.aheight
+	.Anchor	= 9
+Endwith
 
-Endif
+m.atop = m.atop + 12 + m.aheight
 
-Thisform.updateui()
-ENDPROC
-PROCEDURE updateui
-*!* updateui
 
-If Empty(mr_avatars.avatar)
+With Thisform._editbox3
+	.Anchor	= 0
+	.Top	= m.atop
+	.Height	= m.aheight
+	.Anchor	= 9
+Endwith
 
-Thisform.imgavatar.PictureVal = Filetostr(Thisform.apppath + 'res\noimage.png')
+m.atop = m.atop + 12 + m.aheight
 
-Else
+With Thisform._editbox4
+	.Anchor	= 0
+	.Top	= m.atop
+	.Height	= m.aheight
+	.Anchor	= 9
+Endwith
 
-Thisform.imgavatar.PictureVal = mr_avatars.avatar
+m.atop = m.atop + 12 + m.aheight
 
-Endif
+With Thisform._editbox5
+	.Anchor	= 0
+	.Top	= m.atop
+	.Height	= m.aheight
+	.Anchor	= 9
+Endwith
+
+
+
+
+
+
 
 
 ENDPROC
 </methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I6106W9K</uniqueid>
-		<timestamp>1321895588</timestamp>
-		<class>_editbox</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>editbox</baseclass>
-		<objname>edtlog</objname>
-		<parent>MR_AVATARS</parent>
-		<properties>FontName = "Consolas"
-FontSize = 8
-Anchor = 14
-Height = 144
-Left = 12
-ReadOnly = .T.
-TabIndex = 9
-Top = 348
-Width = 780
-ZOrderSet = 0
-Value = 
-IntegralHeight = .F.
-islog = .T.
-Name = "edtlog"
-</properties>
-		<protected/>
-		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -193,13 +172,14 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322123557</timestamp>
+		<timestamp>1326804020</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_AVATARS</parent>
-		<properties>Height = 300
+		<parent>mr_fileversions</parent>
+		<properties>Anchor = 11
+Height = 108
 Left = 12
 Top = 36
 Width = 936
@@ -208,9 +188,9 @@ Name = "gridmain"
 </properties>
 		<protected/>
 		<methods>PROCEDURE AfterRowColChange
-LPARAMETERS nColIndex
+Lparameters nColIndex
 
-Thisform.updateui()
+Thisform.Refresh()
 ENDPROC
 </methods>
 		<objcode/>
@@ -228,21 +208,21 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I6106W9L</uniqueid>
-		<timestamp>1321895588</timestamp>
-		<class>image</class>
-		<classloc/>
-		<baseclass>image</baseclass>
-		<objname>imgavatar</objname>
-		<parent>MR_AVATARS</parent>
-		<properties>Anchor = 12
-Picture = ..\res\noimage1.png
-Stretch = 2
-Height = 144
-Left = 804
-Top = 348
-Width = 144
-Name = "imgavatar"
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1326803994</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox1</objname>
+		<parent>mr_fileversions</parent>
+		<properties>FontName = "Consolas"
+Anchor = 15
+Height = 336
+Left = 12
+Top = 156
+Width = 456
+ControlSource = "mr_batch.btext"
+Name = "_editbox1"
 </properties>
 		<protected/>
 		<methods/>
@@ -262,29 +242,119 @@ Name = "imgavatar"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322123709</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbmenu</objname>
-		<parent>MR_AVATARS</parent>
-		<properties>Top = 0
-Left = 924
-Height = 28
-Width = 28
-FontSize = 8
-Picture = ..\res\3bars.png
-Caption = ""
-TabIndex = 7
-ToolTipText = "MENU"
-ZOrderSet = 21
-tbalign = 2
-tbautowidth = .F.
-tbpictureautosize = .F.
-tbmenuoffseth = 6
-tbautofontsize = .F.
-tbmarginv = 4
-Name = "tbmenu"
+		<timestamp>1326804088</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox2</objname>
+		<parent>mr_fileversions</parent>
+		<properties>FontName = "Consolas"
+Anchor = 9
+Height = 48
+Left = 480
+Top = 156
+Width = 468
+ControlSource = "mr_batch.javaparams"
+Name = "_editbox2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1326804088</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox3</objname>
+		<parent>mr_fileversions</parent>
+		<properties>FontName = "Consolas"
+Anchor = 9
+Height = 84
+Left = 480
+Top = 216
+Width = 468
+ControlSource = "mr_batch.bmodheader"
+Name = "_editbox3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1326804088</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox4</objname>
+		<parent>mr_fileversions</parent>
+		<properties>FontName = "Consolas"
+Anchor = 9
+Height = 84
+Left = 480
+Top = 312
+Width = 468
+ControlSource = "mr_batch.bmoditem"
+Name = "_editbox4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K60SZ7HZ</uniqueid>
+		<timestamp>1326804088</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox5</objname>
+		<parent>mr_fileversions</parent>
+		<properties>FontName = "Consolas"
+Anchor = 9
+Height = 84
+Left = 480
+Top = 408
+Width = 468
+ControlSource = "mr_batch.bmodfooter"
+Name = "_editbox5"
 </properties>
 		<protected/>
 		<methods/>
@@ -311,9 +381,8 @@ Name = "tbmenu"
 		<objname/>
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
-Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
-Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+Consolas, 0, 9, 7, 14, 11, 13, 3, 0
 </properties>
 		<protected/>
 		<methods/>

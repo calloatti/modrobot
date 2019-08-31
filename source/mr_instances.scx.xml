@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322006653</timestamp>
+		<timestamp>1327341643</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1325829986</timestamp>
+		<timestamp>1327341643</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -70,6 +70,7 @@ Left = 10
 Height = 292
 Width = 114
 Alias = "mr_instances"
+Order = "iname"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
 Name = "Cursor1"
@@ -92,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1325829986</timestamp>
+		<timestamp>1327341643</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1325829986</timestamp>
+		<timestamp>1327341643</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -140,6 +141,59 @@ Caption = "INSTANCES"
 uniqueid = 601C1595B05F46FDA00D1C22A3788D5B
 Name = "MR_INSTANCES"
 tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Destroy
+*!* destroy
+
+_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+ENDPROC
+PROCEDURE init2
+*!* init2
+
+If Seek(_inigetvalue('MR_INSTANCES_IGUID', mr_instances.iguid), 'MR_INSTANCES', 'IGUID') = .F.
+
+Go Top In 'MR_INSTANCES'
+
+Endif
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K814HRYR</uniqueid>
+		<timestamp>1326945969</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_instances</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
 </properties>
 		<protected/>
 		<methods/>
@@ -159,13 +213,14 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322294880</timestamp>
+		<timestamp>1326945969</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
 		<parent>mr_instances</parent>
-		<properties>Height = 456
+		<properties>Anchor = 15
+Height = 300
 Left = 12
 Top = 36
 Width = 936
@@ -196,7 +251,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1326978011</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -235,8 +290,330 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5K815OPIH</uniqueid>
+		<timestamp>1327047380</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand9</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 744
+Height = 28
+Width = 72
+Caption = "CLIENT ZIP"
+ToolTipText = "GENERATE MULTIMC INSTANCE ZIP"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand9"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_genclientzip(mr_instances.iguid)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1327341256</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand8</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 816
+Height = 28
+Width = 72
+Caption = "SERVER ZIP"
+ToolTipText = "GENERATE SERVER ZIP"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand8"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_instanceadd(mr_instances.ifolder)
+
+mr_genserverzip(mr_instances.iguid)
+
+thisform.refresh()
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K613VG42</uniqueid>
+		<timestamp>1326978011</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand7</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 408
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_folder_black_18dp.png
+Caption = "ZIPS FOLDER"
+ToolTipText = "SELECT A TARGET SERVER FOLDER TO CREATE A SERVER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand7"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local izipfolder, lastfolder
+
+If Empty(mr_instances.izipfolder)
+
+m.lastfolder = mr_instances.ifolder
+
+Else
+
+m.lastfolder = mr_instances.izipfolder
+
+Endif
+
+m.izipfolder = Getdir(m.lastfolder, 'Select target server folder for this instance', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.izipfolder) Then
+
+Replace mr_instances.izipfolder With m.izipfolder In 'mr_instances'
+
+Endif
+
+Thisform.Refresh()
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JT0DYIDR</uniqueid>
+		<timestamp>1326978011</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand5</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 504
+Height = 28
+Width = 60
+Caption = "REFRESH DATA"
+ToolTipText = "REFRESH DATA FOR SELECTED INSTANCE"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand5"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_instanceadd(mr_instances.ifolder)
+
+Thisform.Refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I61E37EP</uniqueid>
+		<timestamp>1326978011</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 576
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "OPEN"
+ToolTipText = "OPEN THE INSTANCE MODS TAB"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+
+Do Form MR_MODS
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1326978011</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfolder</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 312
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_folder_black_18dp.png
+Caption = "SERVER FOLDER"
+ToolTipText = "SELECT A TARGET SERVER FOLDER TO CREATE A SERVER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbfolder"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local isrvfolder, lastfolder
+
+If Empty(mr_instances.isrvfolder)
+
+m.lastfolder = mr_instances.ifolder
+
+Else
+
+m.lastfolder = mr_instances.isrvfolder
+
+Endif
+
+m.isrvfolder = Getdir(m.lastfolder, 'Select target server folder for this instance', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.isrvfolder) Then
+
+Replace mr_instances.isrvfolder With m.isrvfolder In 'mr_instances'
+
+Endif
+
+Thisform.Refresh()
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1327341256</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbserver</objname>
+		<parent>mr_instances</parent>
+		<properties>Top = 0
+Left = 648
+Height = 28
+Width = 72
+Caption = "SERVER"
+ToolTipText = "GENERATE SERVER FOLDER"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "tbserver"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_instanceadd(mr_instances.ifolder)
+
+mr_genserverfolder(mr_instances.iguid)
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1326978011</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -275,108 +652,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I61E37EP</uniqueid>
-		<timestamp>1325815229</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand2</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 420
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "OPEN"
-ToolTipText = "OPEN THE INSTANCE MODS TAB"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand2"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
-
-Do Form MR_MODS
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5JR0N2PSC</uniqueid>
-		<timestamp>1325829986</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbfolder</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 312
-Height = 28
-Width = 84
-Picture = ..\res\1x\outline_folder_black_18dp.png
-Caption = "SERVER FOLDER"
-ToolTipText = "SELECT A TARGET SERVER FOLDER TO CREATE A SERVER"
-ZOrderSet = 4
-tbmarginv = 4
-tbstyle = 7
-Name = "tbfolder"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local iserverfol, lastfolder
-
-If Empty(mr_instances.iserverfol)
-
-m.lastfolder = mr_instances.ifolder
-
-Else
-
-m.lastfolder = mr_instances.iserverfol
-
-Endif
-
-m.iserverfol = Getdir(m.lastfolder, 'Select target server folder for this instance', '', 1 + 64 + 16 + 32)
-
-If Not Empty(m.iserverfol) Then
-
-Replace mr_instances.iserverfol With m.iserverfol In 'mr_instances'
-
-Endif
-
-Thisform.Refresh()
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1326978011</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -441,7 +718,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FWCLJ</uniqueid>
-		<timestamp>1322493611</timestamp>
+		<timestamp>1326978011</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -509,6 +786,7 @@ ENDPROC
 		<objname/>
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>

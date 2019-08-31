@@ -1,136 +1,175 @@
 *!* mr_genmodlist_markdown
 
-Lparameters piguid
+lparameters piguid
 
-Local lf, nselect, txt
+local lf, nselect, txt
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('inst_gml')
+if not used('inst_gml')
 
-   Use 'mr_instances' Again Alias 'inst_gml' In 0
+	use 'mr_instances' again alias 'inst_gml' in 0
 
-Endif
+endif
 
-If Not Used('addo_gml')
+if not used('addo_gml')
 
-   Use 'mr_addons' Again Alias 'addons_gml' In 0
+	use 'mr_addons' again alias 'addons_gml' in 0
 
-Endif
+endif
 
-If Not Used('other_gml')
+if not used('modids_gml')
 
-   Use 'mr_othermods' Again Alias 'other_gml' In 0
+	use 'mr_modids' again alias 'modids_gml' in 0
 
-Endif
+endif
 
-If Not Used('mods_gml')
+if not used('mods_gml')
 
-   Use 'mr_mods' Again Alias 'mods_gml' In 0
+	use 'mr_mods' again alias 'mods_gml' in 0
 
-   Set Order To Tag 'filename1'
+	set order to tag 'filename1'
 
-Endif
+endif
 
 m.lf = 0h0d0a
 
-= Seek(m.piguid, 'inst_gml', 'iguid')
+= seek(m.piguid, 'inst_gml', 'iguid')
 
 m.txt = '**Loader**' + 0h0d0a + inst_gml.iminecraft + m.lf
 
-If 'fabric' $ Lower(inst_gml.iloader)
+if 'fabric' $ lower(inst_gml.iloader)
 
-   m.txt = m.txt + '[' + inst_gml.iloader + '](https://fabricmc.net)' + m.lf
+	m.txt = m.txt + '[' + inst_gml.iloader + '](https://fabricmc.net)' + m.lf
 
-Else
+else
 
-   m.txt = m.txt + inst_gml.iloader + m.lf
+	m.txt = m.txt + inst_gml.iloader + m.lf
 
-Endif
+endif
 
 m.txt = m.txt + m.lf + '**Mods**' + m.lf
 
-Select 'mods_gml'
+select 'mods_gml'
 
-Set Order To Tag 'filename1'
+set order to tag 'filename1'
 
-Scan For mods_gml.iguid = m.piguid And Not Justext(mods_gml.filename1) = 'disabled'
+scan for mods_gml.iguid = m.piguid and not justext(mods_gml.filename1) = 'disabled'
 
-   = Seek(mods_gml.aid, 'addons_gml', 'aid')
+	= seek(mods_gml.aid, 'addons_gml', 'aid')
 
-   = Seek(mods_gml.modid, 'other_gml', 'modid')
+	= seek(mods_gml.modid, 'modids_gml', 'modid')
 
-   If mods_gml.aid # 0 And addons_gml.apcatid = 421
+	if mods_gml.aid # 0 and addons_gml.apcatid = 421
 
-      Loop
+		loop
 
-   Endif
+	endif
 
-   If mods_gml.aid = 0
+	if mods_gml.aid = 0
 
-      If Not Empty(other_gml.url)
+		if not empty(modids_gml.url)
 
-         m.txt = m.txt + '- [' + Proper(mods_gml.modid) + ': ' + mods_gml.filename1 + '](' + other_gml.url + ')' + m.lf
+			m.txt = m.txt + '- [' + proper(mods_gml.modid) + ': ' + mods_gml.filename1 + '](' + modids_gml.url + ')' + m.lf
 
-      Else
+		else
 
-         If Empty(mods_gml.modid)
+			if empty(mods_gml.modid)
 
-            m.txt = m.txt + '- ' + mods_gml.filename1 + m.lf
+				m.txt = m.txt + '- ' + mods_gml.filename1 + m.lf
 
-         Else
+			else
 
-            m.txt = m.txt + '- ' + Proper(mods_gml.modid) + m.lf
+				m.txt = m.txt + '- ' + proper(mods_gml.modid) + m.lf
 
-         Endif
+			endif
 
-      Endif
+		endif
 
-   Else
+	else
 
-      m.txt = m.txt + '- [' + mods_gml.aname + ': ' + mods_gml.filename1 + '](' + mr_geturlproject(mods_gml.aid) + ')' + m.lf
+		m.txt = m.txt + '- [' + mods_gml.aname + ': ' + mods_gml.filename1 + '](' + mr_geturlproject(mods_gml.aid) + ')' + m.lf
 
-   Endif
+	endif
 
-Endscan
+endscan
 
 m.txt = m.txt + m.lf + '**APIs/LIBs**' + m.lf
 
-Scan For mods_gml.iguid = m.piguid And Not Justext(mods_gml.filename1) = 'disabled'
+scan for mods_gml.iguid = m.piguid and not justext(mods_gml.filename1) = 'disabled'
 
-   If mods_gml.aid = 0
+	if mods_gml.aid = 0
 
-      Loop
+		loop
 
-   Endif
+	endif
 
-   = Seek(mods_gml.aid, 'addons_gml', 'aid')
+	= seek(mods_gml.aid, 'addons_gml', 'aid')
 
-   If  addons_gml.apcatid # 421
+	if  addons_gml.apcatid # 421
 
-      Loop
+		loop
 
-   Endif
+	endif
 
-   m.txt = m.txt + '- [' + mods_gml.aname + ': ' + mods_gml.filename1 + '](' + mr_geturlproject(mods_gml.aid) + ')' + m.lf
+	m.txt = m.txt + '- [' + mods_gml.aname + ': ' + mods_gml.filename1 + '](' + mr_geturlproject(mods_gml.aid) + ')' + m.lf
 
-Endscan
+endscan
 
-Use In 'inst_gml'
+*!* DISABLED MODS
 
-Use In 'mods_gml'
+m.txt = m.txt + m.lf + '**DISABLED**' + m.lf
 
-Use In 'addons_gml'
+scan for mods_gml.iguid = m.piguid and justext(mods_gml.filename1) = 'disabled'
 
-Use In 'other_gml'
+	= seek(mods_gml.aid, 'addons_gml', 'aid')
+
+	= seek(mods_gml.modid, 'modids_gml', 'modid')
+
+	if mods_gml.aid = 0
+
+		if not empty(modids_gml.url)
+
+			m.txt = m.txt + '- [' + proper(mods_gml.modid) + ': ' + mods_gml.filename1 + '](' + modids_gml.url + ')' + m.lf
+
+		else
+
+			if empty(mods_gml.modid)
+
+				m.txt = m.txt + '- ' + mods_gml.filename1 + m.lf
+
+			else
+
+				m.txt = m.txt + '- ' + proper(mods_gml.modid) + m.lf
+
+			endif
+
+		endif
+
+	else
+
+		m.txt = m.txt + '- [' + mods_gml.aname + ': ' + mods_gml.filename1 + '](' + mr_geturlproject(mods_gml.aid) + ')' + m.lf
+
+	endif
+
+endscan
+
+
+
+use in 'inst_gml'
+
+use in 'mods_gml'
+
+use in 'addons_gml'
+
+use in 'modids_gml'
 
 _restorearea(m.nselect)
 
-_Cliptext = m.txt
+_cliptext = m.txt
 
-Messagebox('INSTANCE MODS LIST (MARKDOWN) COPIED TO CLIPBOARD', 64, 'MODROBOT')
-
-
+messagebox('INSTANCE MODS LIST (MARKDOWN) COPIED TO CLIPBOARD', 64, 'MODROBOT')
 
 
-  
+
+

@@ -1,25 +1,25 @@
 *!* mr_fingerprint
 
-Lparameters pfilename
+lparameters pfilename
 
-Local fp
+local fp
 
-If File(m.pfilename)
+if file(m.pfilename)
 
-   Declare Integer fingerprint In fingerprint.Dll String
+	declare integer fingerprint in fingerprint.dll string
 
-   m.fp = fingerprint(m.pfilename)
+	m.fp = fingerprint(m.pfilename)
 
-   If m.fp < 0
+	if m.fp < 0
 
-      m.fp = m.fp + Int(2^32)
+		m.fp = m.fp + int(2^32)
 
-   Endif
+	endif
 
-Else
+else
 
-   m.fp = 0
+	m.fp = 0
 
-Endif
+endif
 
-Return m.fp
+return m.fp

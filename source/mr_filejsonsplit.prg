@@ -2,27 +2,27 @@
 
 *!* SPLITS JSON ARRAY OF FILE ITEMS
 
-Lparameters pjson
+lparameters pjson
 
-Local ojson As 'collection'
-Local lnx
+local ojson as 'collection'
+local lnx
 
-m.pjson = Alltrim(m.pjson, 1, '[', ']')
+m.pjson = alltrim(m.pjson, 1, '[', ']')
 
-If Left(m.pjson, 1) # '{' Or Right(m.pjson, 1) # '}'
+if left(m.pjson, 1) # '{' or right(m.pjson, 1) # '}'
 
-   Error 'invalid json'
+	error 'invalid json'
 
-Endif
+endif
 
-m.ojson = Createobject('collection')
+m.ojson = createobject('collection')
 
-For m.lnx = 1 To Occurs('{"id"', m.pjson) - 1
+for m.lnx = 1 to occurs('{"id"', m.pjson) - 1
 
-   m.ojson.Add('{"id"' + Strextract(m.pjson, '{"id"', ',{"id"', m.lnx))
+	m.ojson.add('{"id"' + strextract(m.pjson, '{"id"', ',{"id"', m.lnx))
 
-Endfor
+endfor
 
-m.ojson.Add('{"id"' + Strextract(m.pjson, '{"id"', '', m.lnx))
+m.ojson.add('{"id"' + strextract(m.pjson, '{"id"', '', m.lnx))
 
-Return m.ojson
+return m.ojson

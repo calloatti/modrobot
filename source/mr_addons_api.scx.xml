@@ -1,0 +1,928 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL2</uniqueid>
+		<timestamp>1327455180</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 520
+Height = 406
+InitialSelectedAlias = "mr_addons_api"
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>4</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15C4CE</uniqueid>
+		<timestamp>1327457252</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 120
+Alias = "mr_addons_api"
+Order = "aid"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons_api"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15C4CF</uniqueid>
+		<timestamp>1327457252</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 320
+Width = 167
+Alias = "mr_addons_api1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons_api"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KE0WADV5</uniqueid>
+		<timestamp>1327457252</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 385
+Height = 90
+Width = 90
+Alias = "addons_upd"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL3</uniqueid>
+		<timestamp>1327457252</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_addons_api</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "ADDONS"
+mr_cancel = .F.
+mr_scanforvalue = 1
+uniqueid = C111FD5412F545CD9388224F2F814830
+Name = "MR_ADDONS_API"
+TMRSQL.Name = "TMRSQL"
+</properties>
+		<protected/>
+		<methods>PROCEDURE init2
+thisform.updateui()
+ENDPROC
+PROCEDURE mr_addaids
+*!* mr_addaids
+
+Local aid, aidmax, aidmin
+
+select 'mr_addons_api1'
+
+m.aidmax = mr_addongetmax()
+
+m.aidmin = 1
+
+_logwrite('ADDING NEW RECORDS', m.aidmin, m.aidmax)
+
+for m.aid = m.aidmax to m.aidmin step -1
+
+	if seek(m.aid, 'mr_addons_api1', 'aid') = .t.
+
+		exit
+
+	else
+
+		append blank in 'mr_addons_api1'
+
+		replace mr_addons_api1.aid with m.aid in 'mr_addons_api1'
+
+		doevents
+
+	endif
+
+endfor
+
+select 'mr_addons_api'
+
+thisform.refresh()
+
+
+
+
+ENDPROC
+PROCEDURE mr_download
+*!* mr_download
+
+Local winhttp as 'winhttp' of 'winhttp.vcx'
+Local hajson, haresponse, ojson, oreprocess, result, url
+
+m.winhttp = newobject('winhttp', 'winhttp.vcx')
+
+*m.winhttp.setproxy(2, 'localhost:8888')
+
+m.winhttp.settimeouts(60000, 60000, 30000, 60000)
+
+m.winhttp.gzip = .t.
+
+m.winhttp.option_enableredirects = .t.
+
+m.oreprocess = _savereprocess()
+
+set reprocess to 1
+
+select 'mr_addons_api1'
+
+set order to 'AID' descending
+
+thisform.mr_cancel = .f.
+
+_logwrite('DOWNLOAD START')
+
+scan for thisform.mr_scanfor() = .t.
+
+	doevents
+
+	if thisform.mr_cancel = .t.
+
+		_logwrite('CANCELLED')
+
+		exit
+
+	endif
+
+	if lock('mr_addons_api1') = .f.
+
+		_logwrite('LOCK FAIL', mr_addons_api1.aid)
+
+		loop
+
+	endif
+
+	m.url = mr_geturlapi_addon(mr_addons_api1.aid)
+
+	m.winhttp.open('GET', m.url, .t.)
+
+	m.result = m.winhttp.send()
+
+	do while m.winhttp.waitforresponse(0) = 0
+
+		doevents
+
+		_apisleep(10)
+
+	enddo
+
+	m.haresponse = m.winhttp.responsestatus
+
+	_logwrite('UPDATE', m.url, m.haresponse)
+
+	if m.haresponse = 200
+
+		m.hajson = m.winhttp.getresponse()
+
+		m.hajson = mr_addonflatten(m.hajson)
+
+		m.ojson = nfjsonread(m.hajson)
+
+		replace ;
+				mr_addons_api1.asecid	 with m.ojson.categorysection_id, ;
+				mr_addons_api1.asecptype with m.ojson.categorysection_packagetype, ;
+				mr_addons_api1.agameid	 with m.ojson.gameid in 'mr_addons_api1'
+
+		if mr_addons_api1.agameid = 432 and mr_addons_api1.asecid = 8 and mr_addons_api1.asecptype = 6
+
+			replace	mr_addons_api1.hajson	  with _zlibcompress(m.hajson), ;
+					mr_addons_api1.adcreated  with m.ojson.datecreated, ;
+					mr_addons_api1.admodified with m.ojson.datemodified, ;
+					mr_addons_api1.adreleased with m.ojson.datereleased	in 'mr_addons_api1'
+
+		endif
+
+	endif
+
+	replace mr_addons_api1.haresponse with m.haresponse, mr_addons_api1.hadatetime with datetime() in 'mr_addons_api1'
+
+	unlock in 'mr_addons_api1'
+
+endscan
+
+_logwrite('DOWNLOAD END')
+
+select 'mr_addons_api'
+
+thisform.refresh()
+
+_restorereprocess(m.oreprocess)
+
+
+
+
+
+
+
+
+ENDPROC
+PROCEDURE mr_scanfor
+*!* mr_scanfor
+
+Local result
+
+m.result = .f.
+
+do case
+
+case thisform.mr_scanforvalue = 1
+
+	if mr_addons_api1.haresponse = 0
+
+		m.result = .t.
+
+	endif
+
+case thisform.mr_scanforvalue = 2
+
+	if mr_addons_api1.haresponse = 0
+
+		m.result = .t.
+
+	endif
+
+	if mr_addons_api1.haresponse = 404 and datetime() - mr_addons_api1.hadatetime &gt;= 86400
+
+		m.result = .t.
+
+	endif
+
+case thisform.mr_scanforvalue = 3
+
+	if mr_addons_api1.haresponse = 0
+
+		m.result = .t.
+
+	endif
+
+	if mr_addons_api1.haresponse # 404 and mr_addons_api1.agameid = 432 and mr_addons_api1.asecid = 8 and mr_addons_api1.asecptype = 6 and datetime() - mr_addons_api1.hadatetime &gt;= 86400
+
+		m.result = .t.
+
+	endif
+
+endcase
+
+return m.result
+ENDPROC
+PROCEDURE mr_update
+*!* mr_update
+
+Local dofileupdate, fjson, oreprocess
+
+thisform.mr_cancel = .f.
+
+m.oreprocess = _savereprocess()
+
+set reprocess to 1
+
+select 'mr_addons_api1'
+
+_logwrite('UPDATE PROJECTS START')
+
+scan for mr_addons_api1.agameid = 432 and mr_addons_api1.asecid = 8 and mr_addons_api1.asecptype = 6
+
+	doevents
+
+	if thisform.mr_cancel = .t.
+
+		_logwrite('CANCELLED')
+
+		exit
+
+	endif
+
+	if seek(mr_addons_api1.aid, 'addons_upd', 'aid') = .f. then
+
+		append blank in 'addons_upd'
+
+		replace addons_upd.aid with mr_addons_api1.aid in 'addons_upd'
+
+	endif
+
+	if lock('addons_upd') = .f.
+
+		loop
+
+	endif
+
+	if mr_addons_api1.admodified &gt; addons_upd.admodified
+
+		if mr_addons_api1.adreleased &gt; addons_upd.adreleased
+
+			m.dofileupdate = .t.
+
+		else
+
+			m.dofileupdate = .f.
+
+		endif
+
+		_logwrite('PROJECT UPDATE', mr_addons_api1.aid)
+
+		replace ;
+				addons_upd.hajson	  with mr_addons_api1.hajson, ;
+				addons_upd.haresponse with mr_addons_api1.haresponse, ;
+				addons_upd.hadatetime with mr_addons_api1.hadatetime in 'addons_upd'
+
+		mr_addonparse(mr_addons_api1.aid, _zlibuncompress(mr_addons_api1.hajson))
+
+		if m.dofileupdate
+
+			m.fjson = mr_filegetjson(addons_upd.aid)
+
+			if not empty(m.fjson)
+
+				mr_fileparse(addons_upd.aid, m.fjson, addons_upd.aname, addons_upd.slug, addons_upd.authorname)
+
+			endif
+
+		endif
+
+	endif
+
+	unlock in 'addons_upd'
+
+endscan
+
+_restorereprocess(m.oreprocess)
+
+_logwrite('UPDATE PROJECTS END')
+
+
+
+
+
+ENDPROC
+PROCEDURE updateui
+
+Thisform._editbox1.Value =  nfjsonformat(_zlibuncompress(mr_addons_api.hajson))
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>mr_cancel
+mr_scanforvalue
+*mr_download 
+*mr_addaids 
+*mr_scanfor 
+*mr_update 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL6</uniqueid>
+		<timestamp>1327455296</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 6
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 756
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL4</uniqueid>
+		<timestamp>1327455296</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Anchor = 7
+Height = 300
+Left = 12
+RecordSource = "mr_addons_api"
+Top = 36
+Width = 756
+_gridcontextmenulang = en
+autowidth = .F.
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+lparameters nColIndex
+
+thisform.updateui()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL7</uniqueid>
+		<timestamp>1327455296</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox1</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 15
+Height = 456
+Left = 780
+ReadOnly = .T.
+Top = 36
+Width = 168
+IntegralHeight = .F.
+Name = "_editbox1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL2</uniqueid>
+		<timestamp>1327455729</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "CURSE NEW"
+ToolTipText = "DOWNLOADS NEW PROJECTS FROM CURSEFORGE"
+ZOrderSet = 4
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local msg, result
+
+if _inigetvalue('WARN_CURSE_NEW', 0) = 0
+
+	m.msg = 'THIS WILL DOWNLOAD PROJECT INFO FORM CURSEFORGE.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'THIS PROCESS COULD TAKE MANY HOURS IF DONE FOR THE FIRST TIME.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'YOU MAY CANCEL AT ANY TIME CLICKING ON THE CANCEL BUTTON.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'CONTINUE?'
+
+	m.result = messagebox(m.msg, 4+64+256, 'MODROBOT')
+
+	if m.result # 6
+
+		return
+
+	endif
+
+endif
+
+_inisetvalue('WARN_CURSE_NEW', 1)
+
+thisform.mr_scanforvalue = 1
+
+thisform.mr_addaids()
+
+thisform.mr_download()
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL2</uniqueid>
+		<timestamp>1327455729</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Top = 0
+Left = 132
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "CURSE UPDATE"
+ToolTipText = "UPDATES PROJECTS FROM CURSEFORGE"
+ZOrderSet = 4
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local msg, result
+
+if _inigetvalue('WARN_CURSE_UPDATE', 0) = 0
+
+	m.msg = 'THIS WILL UPDATE PROJECTS INFO FORM CURSEFORGE.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'THIS PROCESS COULD TAKE MANY HOURS IF THE PREVIOUS UPDATES ARE OLDER THAN 24 HOURS.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'YOU MAY CANCEL AT ANY TIME CLICKING ON THE CANCEL BUTTON.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'CONTINUE?'
+
+	m.result = messagebox(m.msg, 4+64+256, 'MODROBOT')
+
+	if m.result # 6
+
+		return
+
+	endif
+
+endif
+
+_inisetvalue('WARN_CURSE_UPDATE', 1)
+
+thisform.mr_scanforvalue = 3
+
+thisform.mr_download()
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KF0RP011</uniqueid>
+		<timestamp>1327455729</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand5</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Top = 0
+Left = 252
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "CURSE UPDATE 404"
+ToolTipText = "UPDATES 404 PROJECTS FROM CURSEFORGE"
+ZOrderSet = 4
+Name = "_tbcommand5"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local msg, result
+
+if _inigetvalue('WARN_CURSE_UPDATE_404', 0) = 0
+
+	m.msg = 'THIS WILL RECHECK 404 PROJECTS INFO FORM CURSEFORGE.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'THIS PROCESS COULD TAKE MANY HOURS IF THE PREVIOUS UPDATES ARE OLDER THAN 24 HOURS.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'YOU MAY CANCEL AT ANY TIME CLICKING ON THE CANCEL BUTTON.' + 0h0d0a0d0a
+
+	m.msg = m.msg + 'CONTINUE?'
+
+	m.result = messagebox(m.msg, 4+64+256, 'MODROBOT')
+
+	if m.result # 6
+
+		return
+
+	endif
+
+endif
+
+_inisetvalue('WARN_CURSE_UPDATE_404', 1)
+
+thisform.mr_scanforvalue = 2
+
+thisform.mr_download()
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KC15BGL2</uniqueid>
+		<timestamp>1327392622</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Top = 0
+Left = 384
+Height = 28
+Width = 120
+Caption = "UPDATE PROJECTS"
+ToolTipText = "ADDS MINECRAFT MOD ADDONS TO PROJECTS TABLE"
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local msg, result
+
+m.msg = 'THIS WILL ADD PROJECTS THAT ARE MINECRAFT MODS TO THE PROJECTS TABLE.' + 0h0d0a0d0a
+
+m.msg = m.msg + 'THIS PROCESS COULD TAKE MANY HOURS.' + 0h0d0a0d0a
+
+m.msg = m.msg + 'YOU MAY CANCEL AT ANY TIME CLICKING ON THE CANCEL BUTTON.' + 0h0d0a0d0a
+
+m.msg = m.msg + 'CONTINUE?'
+
+m.result = messagebox(m.msg, 4+64+256, 'UPDATE PROJECTS')
+
+if m.result # 6
+
+	return
+
+endif
+
+thisform.mr_update()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KE0XYU8E</uniqueid>
+		<timestamp>1327391577</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Top = 0
+Left = 504
+Caption = "CANCEL"
+ToolTipText = "ADDS MINECRAFT MOD ADDONS TO PROJECTS TABLE"
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_cancel = .t.
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

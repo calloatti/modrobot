@@ -1,0 +1,488 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I712ALKH</uniqueid>
+		<timestamp>1321963728</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 336
+Left = 244
+Width = 843
+Height = 348
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I712ALKM</uniqueid>
+		<timestamp>1327457472</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_about</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "ABOUT"
+uniqueid = 596C3CFDDB4E4182B8014ADF17C15A6E
+Name = "MR_ABOUT"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I91BVS1U</uniqueid>
+		<timestamp>1327067569</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 15
+Height = 456
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 36
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I712ALKH</uniqueid>
+		<timestamp>1327457472</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 12
+Picture = ..\res\1x\outline_clear_black_18dp.png
+Caption = "ZAP"
+ToolTipText = "DANGER ZONE: ZAPS TABLES WITH NO CONFIRMATION"
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+m.msg = 'THIS PROCESS WILL DELETE ALL DATA.' + 0h0d0a0d0a
+
+m.msg = m.msg + 'DELETE ALL DATA?'
+
+m.result = messagebox(m.msg, 4+64+256, 'MODROBOT')
+
+if m.result # 6
+
+	return
+
+endif
+
+close tables all
+
+_logwrite('ZAP START')
+
+use mr_addons exclusive
+pack
+
+use mr_addons_api exclusive
+pack
+
+use mr_blacklist exclusive
+zap
+
+use mr_categories exclusive
+pack
+
+
+use mr_dependencies exclusive
+zap
+
+use mr_files exclusive
+pack
+
+use mr_fileversions exclusive
+pack
+
+use mr_instances exclusive
+zap
+
+use mr_log exclusive
+zap
+
+use mr_modids exclusive
+zap
+
+use mr_mods exclusive
+zap
+
+use mr_pastes exclusive
+zap
+
+use
+
+alter table mr_log alter column lid I autoinc nextvalue 1
+
+use
+
+_apideletefile(addbs(thisform.apppath) + 'data\mr_log.bak')
+
+_logwrite('ZAP END')
+
+_logwrite('REINDEX TABLES START')
+
+_indextables()
+
+_logwrite('REINDEX TABLES END')
+
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IA0HBKS5</uniqueid>
+		<timestamp>1327073326</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 864
+Picture = ..\res\1x\outline_info_black_18dp.png
+Caption = "ABOUT"
+ToolTipText = "LIST MODROBO INFO"
+tbalign = 2
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local atables[1], lnx, ncount, olbl
+
+thisform.edtlog.logclear()
+
+m.items = agetfileversion(aitems, application.servername)
+
+_logwrite('EXECUTABLE FILE: ' + application.servername)
+
+_logwrite('Comments: ' + m.aitems(1))
+_logwrite('Company Name: ' + m.aitems(2))
+_logwrite('File Description: ' + m.aitems(3))
+_logwrite('File Version: ' + m.aitems(4))
+_logwrite('Internal Name: ' + m.aitems(5))
+_logwrite('Legal Copyright: ' + m.aitems(6))
+_logwrite('Legal Trademarks: ' + m.aitems(7))
+_logwrite('Original File Name: ' + m.aitems(8))
+_logwrite('Private Build: ' + m.aitems(9))
+_logwrite('Product Name: ' + m.aitems(10))
+_logwrite('Product Version: ' + m.aitems(11))
+_logwrite('Special Build: ' + m.aitems(12))
+_logwrite('OLE Self Registration: ' + m.aitems(13))
+_logwrite('Language: ' + m.aitems(14))
+_logwrite('Translation Code: ' + m.aitems(15))
+
+
+_logwrite('EXTERNAL CONFIG FILE: ' + sys(2019, 1))
+_logwrite('INTERNAL CONFIG FILE: ' + sys(2019, 2))
+_logwrite('START FOLDER: ' + sys(2004))
+_logwrite('TEMP PATH: ' + sys(2023))
+
+m.ncount = adir(adbfs, thisform.apppath + 'data\mr_*.dbf')
+
+for m.lnx = 1 to m.ncount
+
+	use m.adbfs[m.lnx, 1] again in 0 shared
+
+endfor
+
+m.ncount = aused(atables)
+
+= asort(m.atables)
+
+for m.lnx = 1 to m.ncount
+
+	_logwrite(m.atables[m.lnx, 1] + ': ' + transform(reccount(m.atables[m.lnx, 1])),'RECORDS')
+
+	use in   m.atables[m.lnx]
+
+endfor
+
+close tables all
+
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KA0UFA44</uniqueid>
+		<timestamp>1327067650</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 780
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "RELEASES"
+ToolTipText = "MODROBOT RELEASES"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/calloatti/modrobot/releases')
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I712ALKH</uniqueid>
+		<timestamp>1327067650</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblinkfile1</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 696
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "ISSUES"
+ToolTipText = "MODROBOT GITHUB ISSUES"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tblinkfile1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/calloatti/modrobot/issues')
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KA0UFA3T</uniqueid>
+		<timestamp>1327067650</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblinkhome</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 624
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "WIKI"
+ToolTipText = "MODROBOT WIKI"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tblinkhome"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/calloatti/modrobot/wiki')
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

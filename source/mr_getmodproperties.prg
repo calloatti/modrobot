@@ -19,6 +19,12 @@ AddProperty(m.omp, 'mod_depends', '')
 AddProperty(m.omp, 'mod_jars[1]', '')
 AddProperty(m.omp, 'jsonfabric', '')
 
+m.jsonfabric  = ''
+m.jsonforge	  = ''
+m.tomlforge	  = ''
+m.jsonrift	  = ''
+m.jsonlitemod = ''
+
 *!* FABRIC
 
 Do Case
@@ -31,9 +37,9 @@ Do Case
 
       m.tomlforge = mr_getfilefromzipfile(m.pfile, 'META_INF\mods.toml')
 
-      m.jsonrift = mr_getfilefromzipfile(m.pfile, 'riftmod.json')
+      *!*	      m.jsonrift = mr_getfilefromzipfile(m.pfile, 'riftmod.json')
 
-      m.jsonlitemod = mr_getfilefromzipfile(m.pfile, 'litemod.json')
+      *!*	      m.jsonlitemod = mr_getfilefromzipfile(m.pfile, 'litemod.json')
 
    Case Not Empty(m.pbytes)
 
@@ -43,9 +49,9 @@ Do Case
 
       m.tomlforge = mr_getfilefromzipdata(m.pbytes, 'META_INF\mods.toml')
 
-      m.jsonrift = mr_getfilefromzipdata(m.pbytes, 'riftmod.json')
+      *!*	      m.jsonrift = mr_getfilefromzipdata(m.pbytes, 'riftmod.json')
 
-      m.jsonlitemod = mr_getfilefromzipdata(m.pbytes, 'litemod.json')
+      *!*	      m.jsonlitemod = mr_getfilefromzipdata(m.pbytes, 'litemod.json')
 
    Otherwise
 
@@ -163,6 +169,32 @@ If Not Empty(m.jsonforge)
 
    Endif
 
+   
+   If Type('m.ojson.modList[1].modid') = 'C'
+
+      m.omp.mod_id = m.ojson.modList[1].modid
+
+   Endif
+
+   If Type('m.ojson.modList[1].name') = 'C'
+
+      m.omp.mod_name = m.ojson.modList[1].Name
+
+   Endif
+
+   If Type('m.ojson.modList[1].authorList[1]') = 'C'
+
+      m.omp.mod_authors = m.ojson.modList[1].authorList[1]
+
+   Endif
+
+   If Type('m.ojson.modList[1].version') = 'C'
+
+      m.omp.mod_version = m.ojson.modList[1].Version
+
+   Endif
+
+
 Endif
 
 *!* FORGE TOML
@@ -236,9 +268,19 @@ If Not Empty(m.jsonlitemod)
 
 Endif
 
+If Empty(m.omp.mod_id)
+
+   m.omp.mod_id = Upper(Juststem(m.pfile))
+
+Endif
+
 m.omp.mod_loader = Rtrim(m.omp.mod_loader, 1, '|')
 
 Return m.omp
+
+
+
+
 
 
 

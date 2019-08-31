@@ -1,254 +1,210 @@
 *!* mr_fileparse
 
-Lparameters paid, pfjson, pforce, psilent
+lparameters paid, pfjson, paname, pslug, pauthorname
 
-Local aid, did, dtype, fid, foldername, guid, gver, gver_files, gverlong, hfjson, lnx, lnz, nselect
-Local ojson, slug
+Local fid, foldername, guid, gver, gver_files, gverlong, hfjson, lnx, lnz, nselect, ofjson, ojson
+Local slug
 
-If Empty(m.pfjson) Or m.pfjson == '[]' Then
+if empty(m.pfjson) or m.pfjson == '[]' then
 
-   Return
+	return
 
-Endif
+endif
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('addons_pjf')
+if not used('filever_pjf')
 
-   Use 'mr_addons' Again Alias 'addons_pjf' In 0
+	use 'mr_fileversions' again alias 'filever_pjf' in 0
 
-Endif
+endif
 
-If Not Used('filever_pjf')
+if not used('gversion_pjf')
 
-   Use 'mr_fileversions' Again Alias 'filever_pjf' In 0
+	use 'mr_enum_gameversion' again alias 'gversion_pjf' in 0
 
-Endif
+endif
 
-If Seek(m.paid, 'addons_pjf', 'aid') = .F. Then
+if not used('reltype_pjf')
 
-   _restorearea(m.nselect)
+	use 'mr_enum_filereleasetype' again alias 'reltype_pjf' in 0
 
-   Return
+endif
 
-Endif
+if not used('files_pjf')
 
-If Not Used('gversion_pjf')
+	use 'mr_files' again alias 'files_pjf' in 0
 
-   Use 'mr_enum_gameversion' Again Alias 'gversion_pjf' In 0
+endif
 
-Endif
-
-If Not Used('fstatus_pjf')
-
-   Use 'mr_enum_filestatus' Again Alias 'fstatus_pjf' In 0
-
-Endif
-
-If Not Used('reltype_pjf')
-
-   Use 'mr_enum_filereleasetype' Again Alias 'reltype_pjf' In 0
-
-Endif
-
-If Not Used('files_pjf')
-
-   Use 'mr_files' Again Alias 'files_pjf' In 0
-
-Endif
-
-m.slug = addons_pjf.slug
+m.slug = m.pslug
 
 *!* SPLIT EACH ELEMENT OF THE FILES JSON TO GET ONE JSON PER FILE
 
-m.hfjson = mr_filejsonsplit(m.pfjson)
+m.ofjson = mr_filejsonsplit(m.pfjson)
 
-For m.lnx = 1 To m.hfjson.Count
+for m.lnx = 1 to m.ofjson.count
 
-   m.ojson = nfjsonread(m.hfjson.Item[m.lnx])
+	*!* GET ONE JSON ITEM
+	
+	m.hfjson = m.ofjson.item[m.lnx]
+	
+	*!* PARSE JSON
+	
+	m.ojson = nfjsonread(m.hfjson)
+	
+	*!* ZIP JSON
+	
+	m.hfjson = _zlibcompress(m.hfjson)
 
-   m.fid = m.ojson.Id
+	m.fid = m.ojson.id
 
-   If m.psilent = .F.
+	_logwrite('FILE PARSE', m.fid)
 
-      _logwrite('FILE PARSE START', m.fid)
+	if seek(m.fid, 'files_pjf', 'FID') = .f. then
 
-   Endif
+		append blank in 'files_pjf'
 
-   If Seek(m.fid, 'files_pjf', 'FID') = .F. Then
+		replace files_pjf.fid with m.fid in 'files_pjf'
 
-      Append Blank In 'files_pjf'
+	endif
 
-      Replace files_pjf.fid With m.fid In 'files_pjf'
+	if files_pjf.hfjson == m.hfjson
 
-   Endif
+		loop
 
-   If files_pjf.hfjson == m.hfjson.Item[m.lnx] And m.pforce = .F.
+	endif
 
-      If m.psilent = .F.
+	replace files_pjf.hfjson with m.hfjson in 'files_pjf'
 
-         _logwrite('FILE PARSE END', m.fid)
+	replace ;
+			files_pjf.authorname with m.pauthorname, ;
+			files_pjf.aid		 with m.paid, ;
+			files_pjf.aname		 with m.paname, ;
+			files_pjf.slug		 with m.slug, ;
+			files_pjf.dispname	 with m.ojson.displayname, ;
+			files_pjf.filedate	 with m.ojson.filedate, ;
+			files_pjf.fileext	 with justext(m.ojson.filename), ;
+			files_pjf.filelen	 with m.ojson.filelength, ;
+			files_pjf.filename	 with m.ojson.filename, ;
+			files_pjf.hash		 with m.ojson.packagefingerprint, ;
+			files_pjf.rtype		 with m.ojson.releasetype in 'files_pjf'
 
-      Endif
+	*!* RELEASE TYPE
 
-      Loop
+	if seek(files_pjf.rtype, 'reltype_pjf', 'eid') = .t.
 
-   Endif
+		replace files_pjf.rtypename with reltype_pjf.ename in 'files_pjf'
 
-   Replace files_pjf.hfjson With m.hfjson.Item[m.lnx] In 'files_pjf'
+	endif
 
-   Replace ;
-      files_pjf.aauthname With addons_pjf.aauthname, ;
-      files_pjf.aid With m.paid, ;
-      files_pjf.altfileid With m.ojson.alternatefileid, ;
-      files_pjf.aname With addons_pjf.aname, ;
-      files_pjf.slug With m.slug, ;
-      files_pjf.dispname With m.ojson.displayname, ;
-      files_pjf.filedate With m.ojson.filedate, ;
-      files_pjf.fileext With Justext(m.ojson.filename), ;
-      files_pjf.filelen With m.ojson.filelength, ;
-      files_pjf.filename With m.ojson.filename, ;
-      files_pjf.filestatus With m.ojson.filestatus, ;
-      files_pjf.isalt With Iif(m.ojson.isalternate, 1, 0), ;
-      files_pjf.isavail With Iif(m.ojson.isavailable, 1, 0), ;
-      files_pjf.hash With m.ojson.packagefingerprint, ;
-      files_pjf.rtype With m.ojson.ReleaseType, ;
-      files_pjf.spfileid With Nvl(m.ojson.serverpackfileid, 0) In 'files_pjf'
+	*!* FIND mcmod.info/fabric.mod.json/riftmod.json MODULES
 
+	if vartype(m.ojson.modules) = 'O'
 
-   *!*	   If Seek(files_pjf.filestatus, 'fstatus_pjf', 'eid') = .T.
+		for m.lnz = 1 to alen(m.ojson.modules)
 
-   *!*	      Replace files_pjf.filestatusname With fstatus_pjf.ename In 'files_pjf'
+			m.foldername = lower(m.ojson.modules[m.lnz].foldername )
 
-   *!*	   Endif
+			do case
 
-   *!* RELEASE TYPE
+			case 'mcmod.info' $ m.foldername
 
-   If Seek(files_pjf.rtype, 'reltype_pjf', 'eid') = .T.
+				replace files_pjf.foldername with 'FORGE' in 'files_pjf'
 
-      Replace files_pjf.rtypename With reltype_pjf.ename In 'files_pjf'
+				*!* NO EXIT HERE SINCE THE JAR CAN ALSO HAVE A fabric.mod.json INSIDE	            
 
-   Endif
+			case 'fabric.mod.json' $ m.foldername
 
-   *!* FIND mcmod.info/fabric.mod.json/riftmod.json MODULES
+				replace files_pjf.foldername with 'FABRIC' in 'files_pjf'
 
-   If Vartype(m.ojson.modules) = 'O'
+				exit
 
-      For m.lnz = 1 To Alen(m.ojson.modules)
+			case 'riftmod.json' $ m.foldername
 
-         m.foldername = Lower(m.ojson.modules[m.lnz].foldername )
+				replace files_pjf.foldername with 'RIFT' in 'files_pjf'
 
-         Do Case
+				exit
 
-            Case 'mcmod.info' $ m.foldername
+			case 'litemod.json' $ m.foldername
 
-               Replace files_pjf.foldername With 'FORGE' In 'files_pjf'
+				replace files_pjf.foldername with 'LITELOADER' in 'files_pjf'
 
-               *!* NO EXIT HERE SINCE THE JAR CAN ALSO HAVE A fabric.mod.json INSIDE	            
+				exit
 
-            Case 'fabric.mod.json' $ m.foldername
+			endcase
 
-               Replace files_pjf.foldername With 'FABRIC' In 'files_pjf'
+		endfor
 
-               Exit
+	endif
 
-            Case 'riftmod.json' $ m.foldername
+	*!* UPDATE MR_ENUM_GAMEVERSION
 
-               Replace files_pjf.foldername With 'RIFT' In 'files_pjf'
+	m.gver_files = ''
 
-               Exit
+	for m.lnz = 1 to alen(m.ojson.gameversion)
 
-            Case 'litemod.json' $ m.foldername
+		if vartype(m.ojson.gameversion[m.lnz]) = 'C'
 
-               Replace files_pjf.foldername With 'LITELOADER' In 'files_pjf'
+			m.gver = m.ojson.gameversion[m.lnz]
 
-               Exit
+			m.gver_files = m.gver_files + m.gver + '|'
 
-         Endcase
+			if left(m.gver, 2) = '1.'
 
-      Endfor
+				m.gverlong = mr_getgameversionlong(m.gver)
 
-   Endif
+				*!* ADD TO VERSIONS TABLE
 
-   *!* UPDATE MR_ENUM_GAMEVERSION
+				if seek(m.gver, 'gversion_pjf', 'gver') = .f.
 
-   m.gver_files = ''
+					append blank in 'gversion_pjf'
 
-   For m.lnz = 1 To Alen(m.ojson.gameversion)
+					replace	gversion_pjf.gver with m.gver, gversion_pjf.gverlong with m.gverlong in 'gversion_pjf'
 
-      If Vartype(m.ojson.gameversion[m.lnz]) = 'C'
+				endif
 
-         m.gver = m.ojson.gameversion[m.lnz]
+				*!* ADD TO FILEVERSIONS TABLE
 
-         m.gver_files = m.gver_files + m.gver + '|'
+				m.guid = _md5hashstring(m.gverlong + transform(m.fid))
 
-         If Left(m.gver, 2) = '1.'
+				if seek(m.guid, 'filever_pjf', 'guid') = .f.
 
-            m.gverlong = mr_getgameversionlong(m.gver)
+					append blank in 'filever_pjf'
 
-            *!* ADD TO VERSIONS TABLE
+				endif
 
-            If Seek(m.gver, 'gversion_pjf', 'gver') = .F.
+				replace ;
+						filever_pjf.guid	 with m.guid, ;
+						filever_pjf.aid		 with files_pjf.aid, ;
+						filever_pjf.fid		 with files_pjf.fid, ;
+						filever_pjf.filedate with files_pjf.filedate, ;
+						filever_pjf.filename with files_pjf.filename, ;
+						filever_pjf.gver	 with m.gver, ;
+						filever_pjf.gverlong with m.gverlong, ;
+						filever_pjf.loader	 with files_pjf.foldername, ;
+						filever_pjf.hash	 with files_pjf.hash in 'filever_pjf'
 
-               Append Blank In 'gversion_pjf'
+			endif
 
-               Replace ;
-                  gversion_pjf.gver With m.gver, ;
-                  gversion_pjf.gverlong With m.gverlong In 'gversion_pjf'
+		endif
 
-            Endif
+	endfor
 
-            *!* ADD TO FILEVERSIONS TABLE
+	*!* UPDATE THE MC VERSION LIST
 
-            m.guid = _md5hashstring(m.gverlong + Transform(m.fid))
+	m.gver_files = rtrim(m.gver_files, 1, '|')
 
-            If Seek(m.guid, 'filever_pjf', 'guid') = .F.
+	replace files_pjf.gver with m.gver_files in 'files_pjf'
 
-               Append Blank In 'filever_pjf'
+endfor
 
-            Endif
+*!*	use in 'filever_pjf'
 
-            Replace ;
-               filever_pjf.guid With m.guid, ;
-               filever_pjf.aid With files_pjf.aid, ;
-               filever_pjf.fid With files_pjf.fid, ;
-               filever_pjf.filedate With files_pjf.filedate, ;
-               filever_pjf.filename With files_pjf.filename, ;
-               filever_pjf.gver With m.gver, ;
-               filever_pjf.gverlong With m.gverlong, ;
-               filever_pjf.loader With files_pjf.foldername, ;
-               filever_pjf.hash With files_pjf.hash In 'filever_pjf'
+*!*	use in 'gversion_pjf'
 
-         Endif
+*!*	use in 'reltype_pjf'
 
-      Endif
+*!*	use in 'files_pjf'
 
-      If m.psilent = .F.
-
-         _logwrite('FILE PARSE END', m.fid)
-
-      Endif
-
-   Endfor
-
-   *!* UPDATE THE MC VERSION LIST
-
-   m.gver_files = Rtrim(m.gver_files, 1, '|')
-
-   Replace files_pjf.gver With m.gver_files In 'files_pjf'
-
-Endfor
-
-Use In 'addons_pjf'
-
-Use In 'filever_pjf'
-
-Use In 'gversion_pjf'
-
-Use In 'fstatus_pjf'
-
-Use In 'reltype_pjf'
-
-Use In 'files_pjf'
-
-_restorearea(m.nselect) 
+_restorearea(m.nselect)  

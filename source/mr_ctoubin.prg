@@ -2,18 +2,18 @@
 
 *!* Converts a binary character representation to an unsigned numeric value
 
-Lparameters pbytes
+lparameters pbytes
 
-Local lnx, res
+local lnx, res
 
 m.res = 0
 
-For m.lnx = 1 To Len(m.pbytes)
+for m.lnx = 1 to len(m.pbytes)
 
-   m.res = m.res + Asc(Substr(m.pbytes, m.lnx, 1)) * 2^((m.lnx - 1) * 8)
+	m.res = m.res + asc(substr(m.pbytes, m.lnx, 1)) * 2^((m.lnx - 1) * 8)
 
-Endfor
+endfor
 
-m.res = Int(m.res)
+m.res = int(m.res)
 
-Return m.res
+return m.res

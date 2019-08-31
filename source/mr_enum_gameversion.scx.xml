@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I611Q32O</uniqueid>
-		<timestamp>1323020009</timestamp>
+		<timestamp>1326977988</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IM0WLYWC</uniqueid>
-		<timestamp>1323020009</timestamp>
+		<timestamp>1326977988</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,7 +127,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1323020009</timestamp>
+		<timestamp>1326977988</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -138,6 +138,45 @@ Caption = "MINECRAFT VERSIONS"
 uniqueid = 94367B182D364EE5979FFEED6AB92076
 Name = "MR_ENUM_GAMEVERSION"
 tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IN1AZH4C</uniqueid>
+		<timestamp>1323020009</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_enum_gameversion</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
 </properties>
 		<protected/>
 		<methods/>
@@ -188,7 +227,7 @@ Name = "gridmain"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IM0WIEU1</uniqueid>
-		<timestamp>1322941289</timestamp>
+		<timestamp>1326977988</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -203,7 +242,6 @@ Caption = "UPDATE LIST"
 ToolTipText = "UPDATES MINECRAFT VERSIONS LIST FROM MOJANG"
 ZOrderSet = 4
 tbmarginv = 4
-tbstyle = 7
 Name = "tbupdateall"
 </properties>
 		<protected/>
@@ -264,45 +302,6 @@ ENDPROC
 		<user/>
 	</record>
 	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5IN1AZH4C</uniqueid>
-		<timestamp>1323020009</timestamp>
-		<class>_editbox</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>editbox</baseclass>
-		<objname>edtlog</objname>
-		<parent>mr_enum_gameversion</parent>
-		<properties>FontName = "Consolas"
-FontSize = 8
-Anchor = 14
-Height = 144
-Left = 12
-ReadOnly = .T.
-TabIndex = 9
-Top = 348
-Width = 936
-ZOrderSet = 0
-Value = 
-IntegralHeight = .F.
-islog = .T.
-Name = "edtlog"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
 		<platform>COMMENT</platform>
 		<uniqueid>RESERVED</uniqueid>
 		<timestamp>0</timestamp>
@@ -312,9 +311,9 @@ Name = "edtlog"
 		<objname/>
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
-Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 </properties>
 		<protected/>
 		<methods/>

@@ -1,39 +1,39 @@
 *!* mr_createprocess
 
-Lparameters lpApplicationName, lpCommandLine
+lparameters lpapplicationname, lpcommandline
 
-Local cProcessInfo, cStartupInfo, hProcess, hThread, lpProcessInformation, lpStartupInfo, result
+local cprocessinfo, cstartupinfo, hprocess, hthread, lpprocessinformation, lpstartupinfo, result
 
-Declare Integer CreateProcess In WIN32API As _apiCreateProcess_sss ;
-   String  lpApplicationName, ;
-   String  lpCommandLine, ;
-   Integer lpProcessAttributes, ;
-   Integer lpThreadAttributes, ;
-   Integer bInheritHandles, ;
-   Integer dwCreationFlags, ;
-   Integer lpEnvironment, ;
-   String  lpCurrentDirectory, ;
-   String  lpStartupInfo, ;
-   String  @lpProcessInformation
+declare integer CreateProcess in WIN32API as _apicreateprocess_sss ;
+	string  lpApplicationName, ;
+	string  lpCommandLine, ;
+	integer lpProcessAttributes, ;
+	integer lpThreadAttributes, ;
+	integer bInheritHandles, ;
+	integer dwCreationFlags, ;
+	integer lpEnvironment, ;
+	string  lpCurrentDirectory, ;
+	string  lpStartupInfo, ;
+	string  @lpProcessInformation
 
-m.lpProcessInformation = Replicate(Chr(0), 16)
+m.lpprocessinformation = replicate(chr(0), 16)
 
-m.lpStartupInfo = 0h44000000 + Replicate(Chr(0), 64)
+m.lpstartupinfo = 0h44000000 + replicate(chr(0), 64)
 
-If Empty(m.lpCommandLine)
+if empty(m.lpcommandline)
 
-   m.lpCommandLine = ''
+	m.lpcommandline = ''
 
-Endif
+endif
 
-m.lpCurrentDirectory = Justpath(m.lpApplicationName)
+m.lpcurrentdirectory = justpath(m.lpapplicationname)
 
-m.result = _apiCreateProcess_sss(m.lpApplicationName, m.lpCommandLine, 0, 0, 1, 0, 0, m.lpCurrentDirectory, m.lpStartupInfo, @m.lpProcessInformation)
+m.result = _apicreateprocess_sss(m.lpapplicationname, m.lpcommandline, 0, 0, 1, 0, 0, m.lpcurrentdirectory, m.lpstartupinfo, @m.lpprocessinformation)
 
-m.hProcess = mr_ctoubin(Substr(m.lpProcessInformation, 1, 4))
-m.hThread  = mr_ctoubin(Substr(m.lpProcessInformation, 5, 4))
+m.hprocess = mr_ctoubin(substr(m.lpprocessinformation, 1, 4))
+m.hthread  = mr_ctoubin(substr(m.lpprocessinformation, 5, 4))
 
-_apiCloseHandle(m.hProcess)
-_apiCloseHandle(m.hThread)
+_apiclosehandle(m.hprocess)
+_apiclosehandle(m.hthread)
 
-Return m.result
+return m.result

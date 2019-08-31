@@ -21,9 +21,9 @@ If m.hfile < 0
 
 Endif
 
-Fseek(m.hfile, -4096, 2)
+Fseek(m.hfile, -8192, 2)
 
-m.bytes = Fread(m.hfile, 4096)
+m.bytes = Fread(m.hfile, 8192)
 
 *!* EOCDR [end of central directory record]
 

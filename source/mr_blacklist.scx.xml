@@ -1,0 +1,696 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1327072316</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 142
+Left = 197
+Width = 765
+Height = 493
+InitialSelectedAlias = "mr_blacklist"
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>5</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K6187AE0</uniqueid>
+		<timestamp>1327369937</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 90
+Width = 90
+Alias = "mr_blacklist"
+Order = "blpath"
+Database = ..\data\data1.dbc
+CursorSource = "mr_blacklist"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K618BJJZ</uniqueid>
+		<timestamp>1327369937</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 150
+Height = 195
+Width = 194
+Alias = "mr_instances"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K81CUSFI</uniqueid>
+		<timestamp>1327369937</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 412
+Height = 169
+Width = 144
+Alias = "mr_blacklist1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_blacklist"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KA0YVNHQ</uniqueid>
+		<timestamp>1327369937</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 624
+Height = 211
+Width = 101
+Alias = "mr_blacklist2"
+Database = ..\data\data1.dbc
+CursorSource = "mr_blacklist"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1327369937</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_blacklist</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "FILE AND FOLDER BLACKLIST"
+uniqueid = 350909A4F90540D9BC9950CF00596E2C
+Name = "MR_BLACKLIST"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KF03OZ27</uniqueid>
+		<timestamp>1327369581</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_blacklist</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1327369581</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>mr_blacklist</parent>
+		<properties>Anchor = 15
+Height = 300
+Left = 12
+RecordSource = "mr_blacklist"
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+lparameters nColIndex
+
+this.sethighlightbackcolor()
+ENDPROC
+PROCEDURE DblClick
+replace mr_blacklist.blblack with not mr_blacklist.blblack in 'mr_blacklist'
+
+this.sethighlightbackcolor()
+ENDPROC
+PROCEDURE getdynamicbackcolor
+lparameters poColum as column
+
+*!* http://materialuicolors.co/?utm_source=launchers
+
+local lnDynamicBackColor
+
+if mr_blacklist.blblack = .t.
+
+	m.lnDynamicBackColor = rgb(0xFF, 0xCD, 0xD2)
+
+else
+
+	m.lnDynamicBackColor = this.ColumnBackColor
+
+
+endif
+
+return m.lnDynamicBackColor
+
+
+
+
+ENDPROC
+PROCEDURE sethighlightbackcolor
+
+if mr_blacklist.blblack = .t.
+
+	this.highlightbackcolor = rgb(229, 115, 115)
+
+else
+
+	this.highlightbackcolor = this.gethighlightbackcolor()
+
+
+endif
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IA00IMUK</uniqueid>
+		<timestamp>1322123727</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbmenu</objname>
+		<parent>mr_blacklist</parent>
+		<properties>Top = 0
+Left = 924
+Height = 28
+Width = 28
+FontSize = 8
+Picture = ..\res\3bars.png
+Caption = ""
+TabIndex = 7
+ToolTipText = "MENU"
+ZOrderSet = 21
+tbalign = 2
+tbautowidth = .F.
+tbpictureautosize = .F.
+tbmenuoffseth = 6
+tbautofontsize = .F.
+tbmarginv = 4
+Name = "tbmenu"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1327369794</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>mr_blacklist</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "UPDATE LIST OF FILES AND FOLDERS"
+ZOrderSet = 4
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local blblack, blpath, instancefolder, nrec
+
+m.nrec = recno('mr_blacklist')
+
+select 'mr_instances'
+
+_logwrite('SCAN START')
+
+scan
+
+	doevents
+
+	m.instancefolder = mr_getinstancefolderfrommodsfolder(mr_instances.ifolder)
+
+	_logwrite('SCAN FOLDERS START')
+
+	_findfilesinfoldertree(m.instancefolder, '*.*')
+
+	_logwrite('SCAN FOLDERS END')
+
+	select 'foundfiles'
+
+	replace foundfiles.filename with _zipgetzfilepath(foundfiles.filename, m.instancefolder) all in 'foundfiles'
+
+	scan
+
+		m.blpath = foundfiles.filename
+
+		if recno('foundfiles') % 50 = 0
+
+			_logwrite('CHECKING', m.blpath)
+
+		endif
+
+		select 'mr_blacklist1'
+
+		*!* CHECK IF ITEM OR PARENT FOLDER(S) ARE NOT BLACKLISTED
+
+		locate for mr_blacklist1.blpath == m.blpath and not deleted('mr_blacklist1')
+
+		if found('mr_blacklist1')
+
+			loop
+
+		endif
+
+		m.blblack = .f.
+
+		m.blpath = justpath(m.blpath)
+
+		do while not empty(m.blpath)
+
+			locate for mr_blacklist1.blpath == m.blpath
+
+			if found('mr_blacklist1') and mr_blacklist1.blblack = .t.
+
+				m.blblack = .t.
+
+				exit
+
+			endif
+
+			m.blpath = justpath(m.blpath)
+
+		enddo
+
+		if m.blblack = .t.
+
+			loop
+
+		endif
+
+		* ! * ADD ITEM
+
+		m.blpath = foundfiles.filename
+
+		append blank in 'mr_blacklist1'
+
+		replace mr_blacklist1.blpath with m.blpath in 'mr_blacklist1'
+
+		* ! * ADD FOLDERS OF ITEM
+
+		m.blpath = justpath(m.blpath)
+
+		do while not empty(m.blpath)
+
+			locate for mr_blacklist1.blpath == m.blpath
+
+			if not found('mr_blacklist1')
+
+				append blank in 'mr_blacklist1'
+
+				replace mr_blacklist1.blpath with m.blpath in 'mr_blacklist1'
+
+			endif
+
+			m.blpath = justpath(m.blpath)
+
+		enddo
+
+		select 'foundfiles'
+
+	endscan
+
+	use in 'foundfiles'
+
+endscan
+
+select 'mr_blacklist'
+
+go m.nrec in 'mr_blacklist'
+
+_logwrite('SCAN END')
+
+
+thisform.refresh()
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KA0YVNID</uniqueid>
+		<timestamp>1327369937</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>mr_blacklist</parent>
+		<properties>Top = 0
+Left = 96
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "CLEAN UP"
+ToolTipText = "REMOVE BLACKLISTED CHILD FILES AND FOLDERS"
+ZOrderSet = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local blpath, instancefolder, nrec, zipbasefolder
+
+
+m.nrec = recno('mr_blacklist')
+
+select 'mr_blacklist1'
+
+_logwrite('CLEANUP START')
+
+scan
+
+	m.blpath = justpath(mr_blacklist1.blpath)
+
+	do while not empty(m.blpath)
+
+		doevents
+
+		select 'mr_blacklist2'
+
+		locate for mr_blacklist2.blpath == m.blpath
+
+		if found('mr_blacklist2') and mr_blacklist2.blblack = .t.
+
+			replace mr_blacklist1.blpath with '***DELETE***' in 'mr_blacklist1'
+
+		endif
+
+		m.blpath = justpath(m.blpath)
+
+	enddo
+
+endscan
+
+delete for mr_blacklist1.blpath == '***DELETE***' in 'mr_blacklist1'
+
+select 'mr_blacklist'
+
+go m.nrec in 'mr_blacklist'
+
+_logwrite('CLEANUP END')
+
+thisform.refresh()
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K618STAR</uniqueid>
+		<timestamp>1327072950</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbtoggleenabled</objname>
+		<parent>mr_blacklist</parent>
+		<properties>Top = 0
+Left = 300
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_toggle_off_black_18dp.png
+Caption = "TOGGLE BLACKLIST"
+ToolTipText = "TOOGLE BLACKLIST"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbtoggleenabled"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+replace mr_blacklist.blblack with not mr_blacklist.blblack in 'mr_blacklist'
+
+thisform.gridmain.sethighlightbackcolor()
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

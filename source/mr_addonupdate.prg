@@ -1,141 +1,110 @@
 *!* mr_addonupdate
 
-Lparameters paid, pforce
+lparameters paid
 
-Local winhttp As 'winhttp' Of 'winhttp.vcx'
-Local hajson, haresponse, hfjson, hfresponse, nselect, result, url
+Local winhttp as 'winhttp' OF 'winhttp.vcx'
+Local dofileupdate, fjson, hajson, haresponse, nselect, ojson, result, url
 
-m.nselect = Select()
+if empty(m.paid)
 
-If Not Used('addons_up')
+	return
 
-   Use 'mr_addons' In 0 Again Shared Order Tag 'aid' Descending Alias 'addons_up'
+endif
 
-Endif
+m.nselect = select()
 
-If Seek(m.paid, 'addons_up', 'aid') = .F. Then
+if not used('addons_upd')
 
-   Append Blank In 'addons_up'
+	use 'mr_addons' in 0 again shared order tag 'aid' descending alias 'addons_upd'
 
-   Replace addons_up.aid With m.paid In 'addons_up'
+endif
 
-Endif
+select 'addons_upd'
 
-If addons_up.haresponse = 0 Or m.pforce
+if seek(m.paid, 'addons_upd', 'aid') = .f. then
 
-   _logwrite('ADDON UPDATE START', m.paid)
+	append blank in 'addons_upd'
 
-   m.winhttp = Newobject('winhttp', 'winhttp.vcx')
+	replace addons_upd.aid with m.paid in 'addons_upd'
 
-   *m.winhttp.setproxy(2, 'localhost:8888')
+endif
 
-   m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
+_logwrite('PROJECT UPDATE', m.paid)
 
-   m.winhttp.gzip = .T.
+m.winhttp = newobject('winhttp', 'winhttp.vcx')
 
-   m.winhttp.option_enableredirects = .T.
+*m.winhttp.setproxy(2, 'localhost:8888')
 
-   m.url = mr_geturlapi_addon(addons_up.aid)
+m.winhttp.settimeouts(60000, 60000, 30000, 60000)
 
-   m.winhttp.Open('GET', m.url, .T.)
+m.winhttp.gzip = .t.
 
-   m.result = m.winhttp.Send()
+m.winhttp.option_enableredirects = .t.
 
-   Do While m.winhttp.waitforresponse(0) = 0
+m.url = mr_geturlapi_addon(addons_upd.aid)
 
-      DoEvents
+m.winhttp.open('GET', m.url, .t.)
 
-      _apisleep(10)
+m.result = m.winhttp.send()
 
-   Enddo
+do while m.winhttp.waitforresponse(0) = 0
 
-   m.haresponse = m.winhttp.responsestatus
+	doevents
 
-   *!* IF NO INTERNET, SKIP
+	_apisleep(10)
 
-   If m.haresponse # 0 Then
+enddo
 
-      *!* ONLY IF SUCESS UPDATE DATA
+m.haresponse = m.winhttp.responsestatus
 
-      If m.haresponse = 200
+if m.haresponse = 200
 
-         m.hajson = m.winhttp.getresponse()
+	m.hajson = m.winhttp.getresponse()
 
-         Replace addons_up.hajson With m.hajson In 'addons_up'
+	m.hajson = mr_addonflatten(m.hajson)
 
-         mr_addonparse(addons_up.aid, m.hajson)
+	m.ojson = nfjsonread(m.hajson)
 
-      Endif
+	if m.ojson.datereleased > addons_upd.adreleased
 
-      *!* UPDATE GET FIELDS
+		m.dofileupdate = .t.
 
-      Replace addons_up.haresponse With m.haresponse, addons_up.hadatetime With Datetime() In 'addons_up'
+	else
 
-   Endif
+		m.dofileupdate = .f.
 
-   _logwrite('ADDON UPDATE END', m.paid)
+	endif
 
-Endif
+	if m.ojson.datemodified > addons_upd.admodified
 
-If addons_up.haresponse = 200 And addons_up.agameid = 432
+		replace addons_upd.hajson with _zlibcompress(m.hajson) in 'addons_upd'
 
-   If addons_up.hfresponse = 0 Or m.pforce
+		mr_addonparse(addons_upd.aid, m.hajson)
 
-      _logwrite('FILES UPDATE START', m.paid)
+	endif
 
-      m.winhttp = Newobject('winhttp', 'winhttp.vcx')
+endif
 
-      *m.winhttp.setproxy(2, 'localhost:8888')
+*!* UPDATE GET FIELDS
 
-      m.winhttp.SetTimeouts(60000, 60000, 30000, 60000)
+replace addons_upd.haresponse with m.haresponse, addons_upd.hadatetime with datetime() in 'addons_upd'
 
-      m.winhttp.gzip = .T.
+*!* GET FILES
 
-      m.winhttp.option_enableredirects = .T.
+if m.dofileupdate = .t. and addons_upd.agameid = 432
 
-      m.url = mr_geturlapi_addon_files(addons_up.aid)
+	m.fjson = mr_filegetjson(addons_upd.aid)
 
-      m.winhttp.Open('GET', m.url, .T.)
+	if not empty(m.fjson)
 
-      m.result = m.winhttp.Send()
+		mr_fileparse(addons_upd.aid, m.fjson, addons_upd.aname, addons_upd.slug, addons_upd.authorname)
 
-      Do While m.winhttp.waitforresponse(0) = 0
+	endif
 
-         DoEvents
+endif
 
-         _apisleep(10)
-
-      Enddo
-
-      m.hfresponse = m.winhttp.responsestatus
-
-      *!* IF NO INTERNET, SKIP
-
-      If m.hfresponse # 0 Then
-
-         *!* ONLY IF SUCESS UPDATE DATA
-
-         If m.hfresponse = 200
-
-            m.hfjson = m.winhttp.getresponse()
-
-            mr_fileparse(addons_up.aid, m.hfjson, m.pforce)
-
-         Endif
-
-         *!* UPDATE GET FIELDS
-
-         Replace addons_up.hfresponse With m.hfresponse, addons_up.hfdatetime With Datetime() In 'addons_up'
-
-      Endif
-
-      _logwrite('FILES UPDATE END', m.paid)
-
-   Endif
-
-Endif
-
-Use In 'addons_up'
+use in 'addons_upd'
 
 _restorearea(m.nselect)
 
+  
