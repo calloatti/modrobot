@@ -1,7 +1,10 @@
 # modrobot
 Updates Minecraft mods
+
 Exports MultiMC instance
+
 Creates server folder from instance
+
 Creates server zip with batch files for installing fabric and downloading mods
 
 Windows only
