@@ -13,7 +13,7 @@ Windows only
 
 [Wiki](https://github.com/calloatti/modrobot/wiki)
 
-[Discord](https://discord.gg/ySMEEd)
+[Discord](https://discord.gg/y8xf9FF)
 
 [Screenshots](https://github.com/calloatti/modrobot/wiki/Screenshots)
 
