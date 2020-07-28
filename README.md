@@ -13,6 +13,9 @@ Windows only
 
 [Wiki](https://github.com/calloatti/modrobot/wiki)
 
+[Discord](https://discord.gg/y8xf9FF)
+
 [Screenshots](https://github.com/calloatti/modrobot/wiki/Screenshots)
 
 ![modrobot](https://github.com/calloatti/modrobot/blob/master/images/readme.png?raw=true)
+
