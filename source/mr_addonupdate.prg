@@ -75,6 +75,11 @@ if m.haresponse = 200
 
 	endif
 
+	*!* FORCE FILE UPDATE 2020/20/01
+	
+	
+	m.dofileupdate = .T.
+	
 	if m.ojson.datemodified > addons_upd.admodified
 
 		replace addons_upd.hajson with _zlibcompress(m.hajson) in 'addons_upd'

@@ -27,17 +27,17 @@
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322034588</timestamp>
+		<uniqueid>_5KG17JJ0H</uniqueid>
+		<timestamp>1327473243</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 220
-Left = 1
-Width = 765
-Height = 493
+		<properties>Top = 0
+Left = 0
+Width = 0
+Height = 0
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
@@ -47,9 +47,9 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>2</reserved2>
+		<reserved2>1</reserved2>
 		<reserved3/>
-		<reserved4>2</reserved4>
+		<reserved4>1</reserved4>
 		<reserved5/>
 		<reserved6/>
 		<reserved7/>
@@ -58,51 +58,28 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I818GZZJ</uniqueid>
-		<timestamp>1357823415</timestamp>
-		<class>cursor</class>
+		<uniqueid>_5KG17JJ0I</uniqueid>
+		<timestamp>1327474329</timestamp>
+		<class>form</class>
 		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor1</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 10
-Height = 90
-Width = 90
-Alias = "mr_fileversions"
-Database = ..\data\data1.dbc
-CursorSource = "mr_fileversions"
-Name = "Cursor1"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1357823415</timestamp>
-		<class>_form</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_fileversions</objname>
+		<objname>mr_clipboard</objname>
 		<parent/>
-		<properties>DoCreate = .T.
-Caption = "FILE VERSIONS"
-uniqueid = ECBEF52B9382456195D50456FC41A3D7
-Name = "MR_FILEVERSIONS"
-tmrSql.Name = "tmrSql"
+		<properties>BorderStyle = 0
+Top = 0
+Left = 0
+Height = 48
+Width = 384
+ShowWindow = 2
+DoCreate = .T.
+Caption = "Form1"
+MaxButton = .F.
+MinButton = .F.
+AlwaysOnTop = .T.
+BackColor = 47,47,53
+AllowOutput = .F.
+uniqueid = F36D12D360294FC990BFA0D92559D746
+Name = "MR_CLIPBOARD"
 </properties>
 		<protected/>
 		<methods/>
@@ -121,22 +98,51 @@ tmrSql.Name = "tmrSql"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322123844</timestamp>
-		<class>_gridview</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>grid</baseclass>
-		<objname>gridmain</objname>
-		<parent>MR_FILEVERSIONS</parent>
-		<properties>Height = 456
-Left = 12
-Top = 36
-Width = 936
-_gridcontextmenulang = en
-Name = "gridmain"
+		<uniqueid>_5KG180PGO</uniqueid>
+		<timestamp>1327474329</timestamp>
+		<class>commandbutton</class>
+		<classloc/>
+		<baseclass>commandbutton</baseclass>
+		<objname>Command1</objname>
+		<parent>Form1</parent>
+		<properties>Top = 12
+Left = 264
+Height = 27
+Width = 84
+Caption = "Command1"
+Name = "Command1"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE Click
+
+#define SPI_GETWORKAREA		0x0030
+
+
+m.rect = 0h00000000000000000000000000000000
+
+?_apiSystemParametersInfo_string(SPI_GETWORKAREA, 0, @m.rect, 0)
+
+?m.rect
+
+m.nright = ctobin(substr(m.rect, 9, 4), '4rs')
+
+m.nbottom = ctobin(substr(m.rect, 13, 4), '4rs')
+
+thisform.top = m.nbottom - thisform.height - sysmetric(9) - 6
+
+thisform.left = m.nright - thisform.width - 6
+
+for m.lnx = thisform.left to m.nright step 10
+
+	_apisleep(80)
+
+	thisform.left = m.lnx
+
+endfor
+
+thisform.Release()
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -159,8 +165,7 @@ Name = "gridmain"
 		<baseclass/>
 		<objname/>
 		<parent/>
-		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
-Arial, 0, 9, 5, 15, 12, 32, 3, 0
+		<properties>Arial, 0, 9, 5, 15, 12, 32, 3, 0
 </properties>
 		<protected/>
 		<methods/>

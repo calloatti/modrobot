@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKM</uniqueid>
-		<timestamp>1327457472</timestamp>
+		<timestamp>1357422361</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -130,7 +130,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1327457472</timestamp>
+		<timestamp>1356427575</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -145,11 +145,13 @@ Name = "_tbcommand1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-m.msg = 'THIS PROCESS WILL DELETE ALL DATA.' + 0h0d0a0d0a
+local msg, result
+
+m.msg = 'THIS PROCESS WILL DELETE ALL DATA. CLOSE ALL OPEN TABS NOW.' + 0H0D0A0D0A
 
 m.msg = m.msg + 'DELETE ALL DATA?'
 
-m.result = messagebox(m.msg, 4+64+256, 'MODROBOT')
+m.result = messagebox(M.msg, 4 + 64 + 256, 'MODROBOT')
 
 if m.result # 6
 
@@ -159,60 +161,109 @@ endif
 
 close tables all
 
-_logwrite('ZAP START')
+_logwrite('ZAP/PACK START')
 
-use mr_addons exclusive
+_logwrite('ZAP MR_ADDONS')
+
+use MR_ADDONS exclusive
+
+zap
+
+_logwrite('ZAP MR_ADDONS_API ')
+
+use MR_ADDONS_API exclusive
+
+zap
+
+_logwrite('PACK MR_ADDONS_EXC ')
+
+use MR_ADDONS_EXC exclusive
+
 pack
 
-use mr_addons_api exclusive
+_logwrite('PACK MR_BATCH ')
+
+use MR_BATCH exclusive
+
 pack
 
-use mr_blacklist exclusive
+_logwrite('ZAP MR_BLACKLIST ')
+
+use MR_BLACKLIST exclusive
+
 zap
 
-use mr_categories exclusive
+_logwrite('PACK MR_CATEGORIES ')
+
+use MR_CATEGORIES exclusive
+
 pack
 
+_logwrite('ZAP MR_DEPENDENCIES ')
 
-use mr_dependencies exclusive
+use MR_DEPENDENCIES exclusive
+
 zap
 
-use mr_files exclusive
-pack
+_logwrite('ZAP MR_FILES ')
 
-use mr_fileversions exclusive
-pack
+use MR_FILES exclusive
 
-use mr_instances exclusive
 zap
 
-use mr_log exclusive
+_logwrite('ZAP MR_FILEVERSIONS ')
+
+use MR_FILEVERSIONS exclusive
+
 zap
 
-use mr_modids exclusive
+_logwrite('ZAP MR_INSTANCES ')
+
+use MR_INSTANCES exclusive
+
 zap
 
-use mr_mods exclusive
+_logwrite('ZAP MR_LOG ')
+
+use MR_LOG exclusive
+
 zap
 
-use mr_pastes exclusive
+_logwrite('ZAP MR_MODIDS ')
+
+use MR_MODIDS exclusive
+
+zap
+
+_logwrite('ZAP MR_MODS ')
+
+use MR_MODS exclusive
+
+zap
+
+_logwrite('ZAP MR_PASTES ')
+
+use MR_PASTES exclusive
+
 zap
 
 use
 
-alter table mr_log alter column lid I autoinc nextvalue 1
+alter table MR_LOG  alter column LID I autoinc nextvalue 1
 
 use
 
-_apideletefile(addbs(thisform.apppath) + 'data\mr_log.bak')
+_apideletefile(addbs(thisform.apppath) + 'DATA\MR_LOG.BAK')
 
-_logwrite('ZAP END')
+_logwrite('ZAP/PACK END')
 
 _logwrite('REINDEX TABLES START')
 
 _indextables()
 
 _logwrite('REINDEX TABLES END')
+
+
 
 
 
@@ -329,30 +380,28 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KA0UFA44</uniqueid>
-		<timestamp>1327067650</timestamp>
+		<uniqueid>_5I712ALKH</uniqueid>
+		<timestamp>1357422361</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand3</objname>
+		<objname>tblinkhome</objname>
 		<parent>MR_ABOUT</parent>
 		<properties>Top = 0
-Left = 780
+Left = 624
 Height = 28
-Width = 84
+Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "RELEASES"
-ToolTipText = "MODROBOT RELEASES"
+Caption = "DISCORD"
+ToolTipText = "MODROBOT WIKI"
 ZOrderSet = 4
 tbalign = 2
 tbmarginv = 4
-Name = "_tbcommand3"
+Name = "tblinkhome"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute('https://github.com/calloatti/modrobot/releases')
-
-
+mr_shellexecute(_inigetvalue('DISCORD_LINK', 'https://discord.gg/y8xf9FF'))
 
 
 
@@ -417,15 +466,59 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KA0UFA3T</uniqueid>
+		<uniqueid>_5KA0UFA44</uniqueid>
 		<timestamp>1327067650</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tblinkhome</objname>
+		<objname>_tbcommand3</objname>
 		<parent>MR_ABOUT</parent>
 		<properties>Top = 0
-Left = 624
+Left = 780
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "RELEASES"
+ToolTipText = "MODROBOT RELEASES"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/calloatti/modrobot/releases')
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ST0T99HH</uniqueid>
+		<timestamp>1356426465</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand5</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 552
 Height = 28
 Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
@@ -434,11 +527,71 @@ ToolTipText = "MODROBOT WIKI"
 ZOrderSet = 4
 tbalign = 2
 tbmarginv = 4
-Name = "tblinkhome"
+Name = "_tbcommand5"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 mr_shellexecute('https://github.com/calloatti/modrobot/wiki')
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5SE0FVGT5</uniqueid>
+		<timestamp>1355430668</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 108
+Height = 28
+Width = 86
+Caption = "REINDEX"
+ToolTipText = "RECREATES TABLES INDEXES. CLOSE ALL OTHER OPEN TABS."
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+m.msg = 'THIS WILL REGENERATE AL INDEXES, PLEASE CLOSE ALL OPEN TABS.' + 0h0d0a0d0a
+
+m.msg = m.msg + 'REINDEX?'
+
+m.result = messagebox(m.msg, 4+64+256, 'MODROBOT')
+
+if m.result # 6
+
+	return
+
+endif
+
+close tables all
+
+_logwrite('REINDEX TABLES START')
+
+_indextables()
+
+_logwrite('REINDEX TABLES END')
+
+
+
+
 
 
 

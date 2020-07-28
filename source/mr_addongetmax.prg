@@ -19,6 +19,15 @@ m.url = mr_geturlprojectsnew(1)
 
 m.winhttp.open('GET', m.url, .t.)
 
+
+m.winhttp.setrequestheader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8')
+
+m.winhttp.setrequestheader('Accept-Language', 'en-US,en;q=0.5')
+
+m.winhttp.setrequestheader('user-agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0')
+
+m.winhttp.setrequestheader('Upgrade-Insecure-Requests', '1')
+
 _logwrite('GET LAST ADDON URL', m.url)
 
 m.result = m.winhttp.send()
@@ -33,9 +42,12 @@ enddo
 
 _logwrite('RESULT', m.winhttp.responsestatus)
 
+_cliptext = m.winhttp.getresponse()
+
+
 if m.winhttp.responsestatus # 200 then
 
-	return
+	RETURN 0
 
 endif
 
@@ -69,7 +81,7 @@ _logwrite('RESULT', m.winhttp.responsestatus)
 
 if m.winhttp.responsestatus # 200 then
 
-	return
+	RETURN 0 
 
 endif
 

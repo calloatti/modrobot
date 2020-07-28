@@ -28,14 +28,14 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1324815029</timestamp>
+		<timestamp>1356481492</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 220
-Left = 1
+		<properties>Top = 241
+Left = -3
 Width = 765
 Height = 493
 DataSource = .NULL.
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>3</reserved2>
+		<reserved2>4</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0V5R68</uniqueid>
-		<timestamp>1326978052</timestamp>
+		<timestamp>1357082137</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,8 +67,8 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 90
-Width = 90
+Height = 250
+Width = 170
 Alias = "mr_instances1"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0V8FA6</uniqueid>
-		<timestamp>1326978052</timestamp>
+		<timestamp>1357082137</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -100,8 +100,8 @@ Name = "Cursor1"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 150
-Height = 90
-Width = 90
+Height = 232
+Width = 251
 Alias = "mr_instances"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
@@ -124,8 +124,41 @@ Name = "Cursor2"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5ST0ZULU0</uniqueid>
+		<timestamp>1357082137</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 469
+Height = 90
+Width = 90
+Alias = "sql_jijs"
+Database = ..\data\data1.dbc
+CursorSource = "sql_jijs"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1326978052</timestamp>
+		<timestamp>1357082137</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -154,11 +187,6 @@ Thisform.mr_setinstance(m.iguid)
 
 Thisform.updateui()
 ENDPROC
-PROCEDURE load2
-Select * From 'mr_jijs' Into Cursor 'sql_jijs1' Readwrite
-
-Use Dbf('sql_jijs1') Again In 0 Alias 'sql_jijs'
-ENDPROC
 PROCEDURE mr_filescan
 *!* mr_filescan
 
@@ -170,27 +198,33 @@ m.omodprops = mr_getmodproperties('', m.pfiledata)
 
 m.jijsize = Len(m.pfiledata)
 
-Append Blank In 'sql_jijs1'
+Append Blank In 'sql_jijs'
 
-Replace sql_jijs1.filename With m.pfilename In 'sql_jijs1'
+Replace sql_jijs.filename With m.pfilename In 'sql_jijs'
 
-Replace sql_jijs1.jij With Justfname(m.pfilename) In 'sql_jijs1'
+Replace sql_jijs.jij With Justfname(m.pfilename) In 'sql_jijs'
 
-Replace sql_jijs1.jijlevel With m.plevel In 'sql_jijs1'
+Replace sql_jijs.jijlevel With m.plevel In 'sql_jijs'
 
 If Not Empty(m.omodprops.mod_requires)
 
-Replace sql_jijs1.requires With 1 In 'sql_jijs1'
+Replace sql_jijs.requires With 1 In 'sql_jijs'
 
 Endif
 
-Replace sql_jijs1.jenv With m.omodprops.mod_environment In 'sql_jijs1'
+Replace sql_jijs.jenv With m.omodprops.mod_environment In 'sql_jijs'
 
-Replace sql_jijs1.modid With m.omodprops.mod_id In 'sql_jijs1'
+Replace sql_jijs.modid With m.omodprops.mod_id In 'sql_jijs'
 
-Replace sql_jijs1.json With m.omodprops.jsonfabric In 'sql_jijs1'
+Replace sql_jijs.jmod With m.omodprops.jsonfabric In 'sql_jijs'
 
-Replace sql_jijs1.jijsize With m.jijsize In 'sql_jijs1'
+Replace sql_jijs.jijsize With m.jijsize In 'sql_jijs'
+
+Replace sql_jijs.dfabric With m.omodprops.depends.fabric In 'sql_jijs'
+
+Replace sql_jijs.dfloader With m.omodprops.depends.fabricloader In 'sql_jijs'
+
+Replace sql_jijs.dmc With m.omodprops.depends.minecraft In 'sql_jijs'
 
 If Type('m.omodprops.mod_jars[1].file') = 'C'
 
@@ -216,7 +250,7 @@ _logwrite('SCAN START')
 
 m.ifolder = mr_instances.ifolder
 
-m.filespec = Addbs(m.ifolder) + '*.jar'
+m.filespec = Addbs(m.ifolder) + '*.*'
 
 m.ncount = Adir(afiles, m.filespec, '', 1)
 
@@ -367,18 +401,20 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1323895511</timestamp>
+		<timestamp>1357082137</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
 		<parent>MR_MODS_JIJ</parent>
-		<properties>Height = 276
+		<properties>Anchor = 15
+Height = 276
 Left = 12
 RecordSource = "sql_jijs"
 Top = 36
 Width = 936
 _gridcontextmenulang = en
+autowidth = .F.
 Name = "gridmain"
 </properties>
 		<protected/>
@@ -404,20 +440,21 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY0VMAZ0</uniqueid>
-		<timestamp>1326978052</timestamp>
+		<timestamp>1356435621</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbscan</objname>
 		<parent>MR_MODS_JIJ</parent>
 		<properties>Top = 0
-Left = 132
+Left = 828
 Height = 28
 Width = 84
 Picture = ..\res\1x\outline_autorenew_black_18dp.png
 Caption = "SCAN"
 ToolTipText = "SCAN MODS FOLDER"
 ZOrderSet = 4
+tbalign = 2
 Name = "tbscan"
 </properties>
 		<protected/>
@@ -436,6 +473,130 @@ Go Top In 'sql_jijs'
 Thisform.updateui()
 
 Thisform.Refresh()
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JB1EWWS4</uniqueid>
+		<timestamp>1326978052</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_MODS_JIJ</parent>
+		<properties>Top = 0
+Left = 372
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "LIST TO CLIPBOARD"
+ToolTipText = "OPEN JSON IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local txt
+
+Select sql_jijs
+
+Calculate Max(Len(sql_jijs.filename)) To m.padfilename
+Calculate Max(Len(sql_jijs.jij)) To m.padjij
+Calculate Max(Len(sql_jijs.modid )) To m.padmodid
+
+
+m.txt = ''
+
+Scan
+
+m.txt = m.txt + Padr(sql_jijs.filename, m.padfilename, ' ') + ','
+
+m.txt = m.txt + Padr(sql_jijs.jij, m.padjij, ' ') + ','
+
+m.txt = m.txt + Transform(sql_jijs.jijlevel) + ','
+
+m.txt = m.txt + sql_jijs.modid + 0h0d0a
+
+Endscan
+
+_Cliptext = m.txt
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1357081397</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbjson</objname>
+		<parent>MR_MODS_JIJ</parent>
+		<properties>Top = 0
+Left = 228
+Height = 28
+Width = 132
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "fabric.mod.json"
+ToolTipText = "OPEN JSON IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbjson"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local cfile
+
+m.cfile = _getapppath() + 'json'
+
+If Not Directory(m.cfile, 1)
+
+Mkdir(m.cfile)
+
+Endif
+
+If Not Empty(sql_jijs.modid)
+
+m.cfile = m.cfile + '\' + sql_jijs.modid + '-fabric.mod.json.txt'
+
+Endif
+
+Strtofile(sql_jijs.jmod, m.cfile)
+
+mr_shellexecute(m.cfile)
+
 
 
 
@@ -504,130 +665,6 @@ Endif
 
 
 
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978052</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbjson</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 228
-Height = 28
-Width = 132
-Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "fabric.mod.json"
-ToolTipText = "OPEN JSON IN NOTEPAD"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbjson"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local cfile
-
-m.cfile = _getapppath() + 'json'
-
-If Not Directory(m.cfile, 1)
-
-Mkdir(m.cfile)
-
-Endif
-
-If Not Empty(sql_jijs.modid)
-
-m.cfile = m.cfile + '\j_' + sql_jijs.modid + '.txt'
-
-Endif
-
-Strtofile(sql_jijs.json, m.cfile)
-
-mr_shellexecute(m.cfile)
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5JB1EWWS4</uniqueid>
-		<timestamp>1326978052</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 372
-Height = 28
-Width = 84
-Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "LIST TO CLIPBOARD"
-ToolTipText = "OPEN JSON IN NOTEPAD"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand1"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local txt
-
-Select sql_jijs
-
-Calculate Max(Len(sql_jijs.filename)) To m.padfilename
-Calculate Max(Len(sql_jijs.jij)) To m.padjij
-Calculate Max(Len(sql_jijs.modid )) To m.padmodid
-
-
-m.txt = ''
-
-Scan
-
-m.txt = m.txt + Padr(sql_jijs.filename, m.padfilename, ' ') + ','
-
-m.txt = m.txt + Padr(sql_jijs.jij, m.padjij, ' ') + ','
-
-m.txt = m.txt + Transform(sql_jijs.jijlevel) + ','
-
-m.txt = m.txt + sql_jijs.modid + 0h0d0a
-
-Endscan
-
-_Cliptext = m.txt
 
 
 ENDPROC

@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15BGL2</uniqueid>
-		<timestamp>1327455180</timestamp>
+		<timestamp>1354603997</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -36,7 +36,7 @@
 		<parent/>
 		<properties>Top = 220
 Left = 1
-Width = 520
+Width = 871
 Height = 406
 InitialSelectedAlias = "mr_addons_api"
 DataSource = .NULL.
@@ -48,7 +48,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>4</reserved2>
+		<reserved2>5</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15C4CE</uniqueid>
-		<timestamp>1327457252</timestamp>
+		<timestamp>1354605039</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15C4CF</uniqueid>
-		<timestamp>1327457252</timestamp>
+		<timestamp>1354605039</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -105,6 +105,7 @@ Left = 150
 Height = 320
 Width = 167
 Alias = "mr_addons_api1"
+Order = "aid"
 Database = ..\data\data1.dbc
 CursorSource = "mr_addons_api"
 Name = "Cursor2"
@@ -127,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KE0WADV5</uniqueid>
-		<timestamp>1327457252</timestamp>
+		<timestamp>1354605039</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -135,8 +136,8 @@ Name = "Cursor2"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 385
-Height = 90
-Width = 90
+Height = 178
+Width = 172
 Alias = "addons_upd"
 Database = ..\data\data1.dbc
 CursorSource = "mr_addons"
@@ -159,8 +160,41 @@ Name = "Cursor3"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5S216EFX5</uniqueid>
+		<timestamp>1354605039</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 625
+Height = 159
+Width = 132
+Alias = "mr_addons_exc"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons_exc"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15BGL3</uniqueid>
-		<timestamp>1327457252</timestamp>
+		<timestamp>1354605039</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -170,6 +204,7 @@ Name = "Cursor3"
 Caption = "ADDONS"
 mr_cancel = .F.
 mr_scanforvalue = 1
+aidmax = 0
 uniqueid = C111FD5412F545CD9388224F2F814830
 Name = "MR_ADDONS_API"
 TMRSQL.Name = "TMRSQL"
@@ -181,17 +216,17 @@ ENDPROC
 PROCEDURE mr_addaids
 *!* mr_addaids
 
-Local aid, aidmax, aidmin
+Local aid, aidmin
 
-select 'mr_addons_api1'
-
-m.aidmax = mr_addongetmax()
+thisform.aidmax = thisform.mr_addongetmax()
 
 m.aidmin = 1
 
-_logwrite('ADDING NEW RECORDS', m.aidmin, m.aidmax)
+_logwrite('ADDING NEW RECORDS', m.aidmin, thisform.aidmax)
 
-for m.aid = m.aidmax to m.aidmin step -1
+select 'mr_addons_api1'
+
+for m.aid = thisform.aidmax to m.aidmin step - 1
 
 	if seek(m.aid, 'mr_addons_api1', 'aid') = .t.
 
@@ -216,12 +251,115 @@ thisform.refresh()
 
 
 
+
+
+
+ENDPROC
+PROCEDURE mr_addongetmax
+*!* mr_addongetmax
+
+Local winhttp as 'winhttp' OF 'winhttp.vcx'
+Local delta, failcount, haresponse, idmax, idmaxfound, idmin, result, url
+
+m.winhttp = newobject('winhttp', 'winhttp.vcx')
+
+*m.winhttp.setproxy(2, 'localhost:8888')
+
+m.winhttp.settimeouts(60000, 60000, 30000, 60000)
+
+m.winhttp.gzip = .t.
+
+m.winhttp.option_enableredirects = .t.
+
+
+*!* get last addon id on table
+
+select top 1 * from mr_addons_api1 order by mr_addons_api1.aid desc where mr_addons_api1.haresponse = 200 into cursor sql_result
+
+m.idmin = sql_result.aid
+
+m.delta = 1000
+
+m.idmax = m.idmin + m.delta
+
+m.idmaxfound = m.idmin
+
+_logwrite('FIND MAX ADDON ID START',m.idmax)
+
+m.failcount = 0
+
+do while .t.
+
+	m.url = mr_geturlapi_addon(m.idmax)
+
+	m.winhttp.open('GET', m.url, .t.)
+
+	m.result = m.winhttp.send()
+
+	do while m.winhttp.waitforresponse(0) = 0
+
+		doevents
+
+		_apisleep(10)
+
+	enddo
+
+	m.haresponse = m.winhttp.responsestatus
+
+	_logwrite('FIND MAX ADDON ID', m.url, m.haresponse,m.idmax)
+
+	if m.haresponse = 200
+
+		m.idmaxfound = m.idmax
+
+		m.failcount = 0
+
+	else
+
+		m.failcount = m.failcount + 1
+
+	endif
+
+	m.idmax = m.idmax + m.delta
+
+	if m.failcount &gt; 10
+
+		m.idmax = m.idmaxfound
+
+		m.delta = int(m.delta / 2)
+
+		if m.delta = 1 then
+
+			exit
+
+		endif
+
+	endif
+
+enddo
+
+_logwrite('FIND MAX ADDON ID', m.idmaxfound)
+
+_logwrite('FIND MAX ADDON ID END')
+
+return m.idmaxfound
+
+
+
+
+
+
+
+
+
+
+
 ENDPROC
 PROCEDURE mr_download
 *!* mr_download
 
-Local winhttp as 'winhttp' of 'winhttp.vcx'
-Local hajson, haresponse, ojson, oreprocess, result, url
+local winhttp as 'winhttp' of 'winhttp.vcx'
+local hajson, haresponse, ojson, oreprocess, result, url
 
 m.winhttp = newobject('winhttp', 'winhttp.vcx')
 
@@ -306,8 +444,15 @@ scan for thisform.mr_scanfor() = .t.
 		endif
 
 	endif
+	
+	if m.haresponse = 404 and mr_addons_api1.aid &gt; thisform.aidmax
+
+		*m.haresponse = 0
+
+	endif
 
 	replace mr_addons_api1.haresponse with m.haresponse, mr_addons_api1.hadatetime with datetime() in 'mr_addons_api1'
+
 
 	unlock in 'mr_addons_api1'
 
@@ -332,7 +477,7 @@ ENDPROC
 PROCEDURE mr_scanfor
 *!* mr_scanfor
 
-Local result
+local result
 
 m.result = .f.
 
@@ -354,7 +499,13 @@ case thisform.mr_scanforvalue = 2
 
 	endif
 
-	if mr_addons_api1.haresponse = 404 and datetime() - mr_addons_api1.hadatetime &gt;= 86400
+	if mr_addons_api1.haresponse = 404 and datetime() - mr_addons_api1.hadatetime &gt;= 86400 and seek(mr_addons_api1.aid, 'mr_addons_exc', 'aid') = .f.
+
+		m.result = .t.
+
+	endif
+
+	if mr_addons_api1.haresponse = 0
 
 		m.result = .t.
 
@@ -480,10 +631,12 @@ ENDPROC
 		<reserved2/>
 		<reserved3>mr_cancel
 mr_scanforvalue
+aidmax
 *mr_download 
 *mr_addaids 
 *mr_scanfor 
 *mr_update 
+*mr_addongetmax 
 </reserved3>
 		<reserved4/>
 		<reserved5/>
@@ -608,7 +761,7 @@ Name = "_editbox1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15BGL2</uniqueid>
-		<timestamp>1327455729</timestamp>
+		<timestamp>1354594478</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -626,7 +779,7 @@ Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-local msg, result
+local aidmax, msg, result
 
 if _inigetvalue('WARN_CURSE_NEW', 0) = 0
 
@@ -655,10 +808,6 @@ thisform.mr_scanforvalue = 1
 thisform.mr_addaids()
 
 thisform.mr_download()
-
-
-
-
 
 
 ENDPROC
@@ -746,7 +895,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KF0RP011</uniqueid>
-		<timestamp>1327455729</timestamp>
+		<timestamp>1327479888</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -791,6 +940,7 @@ _inisetvalue('WARN_CURSE_UPDATE_404', 1)
 thisform.mr_scanforvalue = 2
 
 thisform.mr_download()
+
 
 
 
@@ -865,8 +1015,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KE0XYU8E</uniqueid>
-		<timestamp>1327391577</timestamp>
+		<uniqueid>_5KC15BGL2</uniqueid>
+		<timestamp>1354605039</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -875,12 +1025,99 @@ ENDPROC
 		<properties>Top = 0
 Left = 504
 Caption = "CANCEL"
-ToolTipText = "ADDS MINECRAFT MOD ADDONS TO PROJECTS TABLE"
+ToolTipText = "CANCEL THE CURRENT PROCESS"
 Name = "_tbcommand3"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 thisform.mr_cancel = .t.
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5S216EFYO</uniqueid>
+		<timestamp>1354605039</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand6</objname>
+		<parent>MR_ADDONS_API</parent>
+		<properties>Top = 0
+Left = 636
+Caption = "GEN EXC"
+ToolTipText = "GENERATES EXCLUSION LIST FOR ADDONS 404"
+Name = "_tbcommand6"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local aid, excludecount, idmax, idmin
+
+select 'mr_addons_api1'
+
+m.excludecount = 0
+
+m.idmin	= 0
+m.idmax	= 0
+
+scan
+
+	if mr_addons_api1.haresponse = 404
+
+		if m.excludecount = 0
+
+			m.idmin = mr_addons_api1.aid
+
+		endif
+
+		m.idmax = mr_addons_api1.aid
+
+		m.excludecount = m.excludecount + 1
+
+	else
+
+		if m.excludecount &gt;= 50
+
+			_logwrite('ADD EXCLUSIONS', m.idmin, m.idmax)
+
+			for m.aid = m.idmin to m.idmax
+
+				if seek(m.aid, 'mr_addons_exc', 'aid') = .f.
+
+					append blank in 'mr_addons_exc'
+
+					replace mr_addons_exc.aid with m.aid in 'mr_addons_exc'
+
+				endif
+
+			endfor
+
+		endif
+
+		m.excludecount = 0
+
+	endif
+
+endscan
+
+
+
+
+
+
+
 ENDPROC
 </methods>
 		<objcode/>

@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K60STHG3</uniqueid>
-		<timestamp>1326804267</timestamp>
+		<timestamp>1358607397</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1326804267</timestamp>
+		<timestamp>1358607397</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -108,18 +108,18 @@ tmrSql.Name = "tmrSql"
 		<methods>PROCEDURE Resize
 Local aheight, atop
 
-m.aheight =(Thisform._editbox1.Height - 12 * 3) / 4
+m.aheight =(Thisform._editbox1.Height - 12 * 2) / 3
 
 m.atop = Thisform._editbox1.Top
 
-With Thisform._editbox2
-	.Anchor	= 0
-	.Top	= m.atop
-	.Height	= m.aheight
-	.Anchor	= 9
-Endwith
+*!*	With Thisform._editbox2
+*!*		.Anchor	= 0
+*!*		.Top	= m.atop
+*!*		.Height	= m.aheight
+*!*		.Anchor	= 11
+*!*	Endwith
 
-m.atop = m.atop + 12 + m.aheight
+*m.atop = m.atop + 12 + m.aheight
 
 
 With Thisform._editbox3
@@ -177,7 +177,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_fileversions</parent>
+		<parent>mr_batch</parent>
 		<properties>Anchor = 11
 Height = 108
 Left = 12
@@ -209,17 +209,18 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326803994</timestamp>
+		<timestamp>1358606991</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox1</objname>
-		<parent>mr_fileversions</parent>
+		<parent>mr_batch</parent>
 		<properties>FontName = "Consolas"
 Anchor = 15
-Height = 336
+Height = 276
 Left = 12
-Top = 156
+ToolTipText = "INSTALL SERVER BATCH FILE"
+Top = 216
 Width = 456
 ControlSource = "mr_batch.btext"
 Name = "_editbox1"
@@ -242,18 +243,19 @@ Name = "_editbox1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326804088</timestamp>
+		<timestamp>1358607026</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox2</objname>
-		<parent>mr_fileversions</parent>
+		<parent>mr_batch</parent>
 		<properties>FontName = "Consolas"
-Anchor = 9
+Anchor = 11
 Height = 48
-Left = 480
+Left = 12
+ToolTipText = "START SERVER BATCH FILE JAVA PARAMETERS"
 Top = 156
-Width = 468
+Width = 936
 ControlSource = "mr_batch.javaparams"
 Name = "_editbox2"
 </properties>
@@ -274,17 +276,72 @@ Name = "_editbox2"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5TO1BS0OQ</uniqueid>
+		<timestamp>1358607397</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand6</objname>
+		<parent>mr_batch</parent>
+		<properties>Top = 0
+Left = 900
+Height = 28
+Width = 48
+Caption = "-Dmixin.debug.export=true"
+ZOrderSet = 4
+tbalign = 2
+Name = "_tbcommand6"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local javaparams1, javaparams2
+
+m.javaparams1 = alltrim(strextract(mr_batch.javaparams, '', ' -jar '))
+
+m.javaparams2 = '-jar ' + alltrim(strextract(mr_batch.javaparams, ' -jar ', ''))
+
+if '-Dmixin.debug.export=true' $ m.javaparams1
+
+	m.javaparams1 = alltrim(strtran(m.javaparams1, '-Dmixin.debug.export=true', ''))
+
+else
+
+	m.javaparams1 = m.javaparams1 + ' ' + '-Dmixin.debug.export=true'
+
+endif
+
+replace  mr_batch.javaparams with m.javaparams1 + ' ' +  m.javaparams2 in 'mr_batch'
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326804088</timestamp>
+		<timestamp>1358607083</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox3</objname>
-		<parent>mr_fileversions</parent>
+		<parent>mr_batch</parent>
 		<properties>FontName = "Consolas"
 Anchor = 9
 Height = 84
 Left = 480
+ToolTipText = "INSTALL MODS BATCH FILE HEADER"
 Top = 216
 Width = 468
 ControlSource = "mr_batch.bmodheader"
@@ -308,16 +365,17 @@ Name = "_editbox3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326804088</timestamp>
+		<timestamp>1358607083</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox4</objname>
-		<parent>mr_fileversions</parent>
+		<parent>mr_batch</parent>
 		<properties>FontName = "Consolas"
 Anchor = 9
 Height = 84
 Left = 480
+ToolTipText = "INSTALL MODS BATCH FILE BODY"
 Top = 312
 Width = 468
 ControlSource = "mr_batch.bmoditem"
@@ -341,16 +399,17 @@ Name = "_editbox4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K60SZ7HZ</uniqueid>
-		<timestamp>1326804088</timestamp>
+		<timestamp>1358607083</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox5</objname>
-		<parent>mr_fileversions</parent>
+		<parent>mr_batch</parent>
 		<properties>FontName = "Consolas"
 Anchor = 9
 Height = 84
 Left = 480
+ToolTipText = "INSTALL MODS BATCH FILE FOOTER"
 Top = 408
 Width = 468
 ControlSource = "mr_batch.bmodfooter"
@@ -383,6 +442,7 @@ Name = "_editbox5"
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
 Consolas, 0, 9, 7, 14, 11, 13, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>
 		<protected/>
 		<methods/>

@@ -1,27 +1,38 @@
 *!* mr_geturlproject
 
-Lparameters paidorslug
+*!* this still works https://minecraft.curseforge.com/projects/<id>
 
-Local nselect, url
+lparameters paidorslug
 
-If Vartype(m.paidorslug) = 'N' Then
+local nselect, url
 
-   m.nselect = Select()
+if vartype(m.paidorslug) = 'N' then
 
-   Use 'mr_addons' Again In 0 Alias 'addons_seek'
+	if m.paidorslug = 0
 
-   = Seek(m.paidorslug, 'addons_seek', 'aid')
+		m.url = ''
 
-   m.url = mr_geturlbase() + '/mc-mods/' + addons_seek.slug
+	else
 
-   Use In 'addons_seek'
+		m.nselect = select()
 
-   _restorearea(m.nselect)
+		use 'mr_addons' again in 0 alias 'addons_seek'
 
-Else
+		= seek(m.paidorslug, 'addons_seek', 'aid')
 
-   m.url = mr_geturlbase() + '/mc-mods/' + m.paidorslug
+		m.url = mr_geturlbase() + '/mc-mods/' + addons_seek.slug
 
-Endif
+		use in 'addons_seek'
 
-Return m.url
+		_restorearea(m.nselect)
+
+	endif
+
+else
+
+	m.url = mr_geturlbase() + '/mc-mods/' + m.paidorslug
+
+endif
+
+return m.url
+

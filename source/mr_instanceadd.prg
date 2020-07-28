@@ -1,91 +1,105 @@
 *!* mr_instanceadd
 
-Lparameters pfolder
+lparameters pfolder
 
-Local cdata, cfile, ifolder, iguid, iloader, iminecraft, iname, lny, nselect, ojson
+local cdata, cfile, ifolder, iguid, iloader, iminecraft, iname, lny, nselect, ojson
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('instance_add')
+if not used('instance_add')
 
-   Use 'mr_instances' In 0 Again Shared Alias 'instance_add'
+	use 'mr_instances' in 0 again shared alias 'instance_add'
 
-Endif
+endif
 
-m.iminecraft = ''
-m.iloader	 = 'None'
-m.iname		 = ''
+m.iminecraft = 'N/A'
+m.iloader	 = 'N/A'
+m.iname		 = 'N/A'
+
 m.ifolder	 = m.pfolder
 
-m.cfile = Addbs(m.pfolder) + '..\..\instance.cfg'
+m.cfile = addbs(m.pfolder) + '..\..\instance.cfg'
 
-If File(m.cfile)
+if file(m.cfile)
 
-   m.cdata = Chrtran(Filetostr(m.cfile), 0h0a, '|')
+	m.cdata = chrtran(filetostr(m.cfile), 0h0a, '|')
 
-   m.iname = Strextract(m.cdata, 'name=', '|')
+	m.iname = strextract(m.cdata, 'name=', '|')
 
-Endif
+endif
 
-If Empty(m.iname)
+if empty(m.iname)
 
-   m.iname = Justfname(Justfname(Justfname(m.pfolder)))
+	m.iname = justfname(justfname(justfname(m.pfolder)))
 
-Endif
+endif
 
-m.cfile = Addbs(m.pfolder) + '..\..\mmc-pack.json'
+m.cfile = addbs(m.pfolder) + '..\..\mmc-pack.json'
 
-If File(m.cfile)
+if file(m.cfile)
 
-   m.ojson = nfjsonread(Filetostr(m.cfile))
+	m.ojson = nfjsonread(filetostr(m.cfile))
 
-   If Type('m.ojson.components[1]') = 'O'
+	if type('m.ojson.components[1]') = 'O'
 
-      For m.lny = 1 To Alen(m.ojson.components)
+		for m.lny = 1 to alen(m.ojson.components)
 
-         Do Case
+			do case
 
-            Case m.ojson.components[m.lny].cachedname == 'Minecraft'
+			case type('m.ojson.components[m.lny].cachedname') # 'C'
 
-               m.iminecraft = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].Version
+			case m.ojson.components[m.lny].cachedname == 'Minecraft'
 
-            Case m.ojson.components[m.lny].cachedname == 'Forge'
+				m.iminecraft = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].version
 
-               m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].Version
+			case m.ojson.components[m.lny].cachedname == 'Forge'
 
-            Case m.ojson.components[m.lny].cachedname == 'FabricLoader'
+				m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].version
 
-               m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].cachedversion
+			case m.ojson.components[m.lny].cachedname == 'FabricLoader'
 
-            Case m.ojson.components[m.lny].cachedname == 'Fabric Loader'
+				m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].cachedversion
 
-               m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].Version
+			case m.ojson.components[m.lny].cachedname == 'Fabric Loader'
 
-         Endcase
+				m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].version
 
-      Endfor
+			endcase
 
-   Endif
+		endfor
 
-Endif
+	endif
+
+endif
 
 m.iguid =  mr_crc32(m.ifolder)
 
-If Seek(m.iguid, 'instance_add', 'iguid') = .F.
+if seek(m.iguid, 'instance_add', 'iguid') = .f.
 
-   Append Blank In 'instance_add'
+	append blank in 'instance_add'
 
-   Replace instance_add.iguid With m.iguid In 'instance_add'
-   Replace instance_add.ifolder With m.ifolder In 'instance_add'
+	replace instance_add.iguid with m.iguid in 'instance_add'
+	replace instance_add.ifolder with m.ifolder in 'instance_add'
 
-Endif
+endif
 
-Replace instance_add.iname With m.iname In 'instance_add'
-Replace instance_add.iminecraft With m.iminecraft In 'instance_add'
-Replace instance_add.iloader With m.iloader In 'instance_add'
+replace instance_add.iname with m.iname in 'instance_add'
+replace instance_add.iminecraft with m.iminecraft in 'instance_add'
+replace instance_add.iloader with m.iloader in 'instance_add'
 
-Use In 'instance_add'
+if empty(instance_add.icfdata)
+
+	replace instance_add.icfdata with '"name": "ModpackName"' + 0h0d0a + '"version": "1.0.0"' + 0h0d0a + '"author": "AuthorNameCF"' in 'instance_add'
+
+endif
+
+_inisetvalue('MR_INSTANCES_IGUID', instance_add.iguid)
+
+use in 'instance_add'
 
 _restorearea(m.nselect)
+
+
+
 
 

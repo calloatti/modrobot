@@ -1,8 +1,8 @@
 * ! * mr_genserverzip
 
-lparameters piguid
+lparameters piguid, pserverfolder
 
-Local fail, zfilepath, instancefolder, nselect, zipbasefolder, zipfilename
+Local fail, nselect, serverfolder, zfilepath, zipbasefolder, zipfilename
 
 m.nselect = select()
 
@@ -32,9 +32,19 @@ endif
 
 * ! * SERVER
 
-if m.fail = .f. and empty(inst_giz.isrvfolder)
+if empty(m.pserverfolder)
 
-	messagebox('ERROR: INSTANCE INPUT SERVER FOLDER NOT SPECIFIED', 64, 'MODROBOT')
+	m.serverfolder = rtrim(inst_giz.isrvfolder, 1, '\')
+
+else
+
+	m.serverfolder = rtrim(m.pserverfolder, 1, '\')
+
+endif
+
+if m.fail = .f. and empty(m.serverfolder)
+
+	messagebox('ERROR: SERVER FOLDER NOT SPECIFIED', 64, 'MODROBOT')
 
 	m.fail = .t.
 
@@ -42,19 +52,19 @@ endif
 
 if m.fail = .f.
 
-	m.instancefolder = rtrim(inst_giz.isrvfolder, 1, '\')
+	m.zipbasefolder = justpath(m.serverfolder)
 
-	m.zipbasefolder = justpath(m.instancefolder)
+	*m.zipfilename = lower(inst_giz.izipfolder + justfname(_zipgetzfilepath(m.serverfolder, m.zipbasefolder)) + '.zip')
 
-	m.zipfilename = inst_giz.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + '.zip'
+	m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + '_server.zip')
 
 	_logwrite('GENERATE SERVER ZIP START')
 
-	_logwrite('SOURCE FOLDER:', m.instancefolder)
+	_logwrite('SOURCE FOLDER:', m.serverfolder)
 
 	_logwrite('ZIP FILE:', m.zipfilename)
 
-	_findfilesinfoldertree(m.instancefolder, '*.*')
+	_findfilesinfoldertree(m.serverfolder, '*.*')
 
 	_zipopen()
 
@@ -62,7 +72,9 @@ if m.fail = .f.
 
 	scan
 
-		m.zfilepath = _zipgetzfilepath(foundfiles.filename, m.zipbasefolder)
+		*m.zfilepath = _zipgetzfilepath(foundfiles.filename, m.zipbasefolder)
+
+		m.zfilepath = _zipgetzfilepath(foundfiles.filename, m.serverfolder)
 
 		_logwrite(m.zfilepath)
 
@@ -71,12 +83,15 @@ if m.fail = .f.
 	endscan
 
 	_zipclose(m.zipfilename)
+	
+	mr_rezipthezip(m.zipfilename)
 
-	_logwrite('GENERATE SERVER ZIP END:', m.zipfilename)
+	_logwrite('GENERATE SERVER ZIP END')
 
 endif
 
 use in 'inst_giz'
 
 _restorearea(m.nselect)
+
  

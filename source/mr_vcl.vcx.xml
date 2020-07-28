@@ -509,4 +509,100 @@ fpojson
 		<reserved8/>
 		<user/>
 	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KG18WIC1</uniqueid>
+		<timestamp>1327783274</timestamp>
+		<class>timer</class>
+		<classloc/>
+		<baseclass>timer</baseclass>
+		<objname>cliptimer</objname>
+		<parent/>
+		<properties>Height = 23
+Width = 23
+Enabled = .F.
+Interval = 1000
+clipvalue = 
+Name = "cliptimer"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Init
+this.clipvalue = _cliptext
+
+bindevent(thisform, 'activate', this, 'form_activate')
+bindevent(thisform, 'deactivate', this, 'form_deactivate')
+
+
+
+
+
+ENDPROC
+PROCEDURE Timer
+
+if not _cliptext == this.clipvalue
+
+	this.clipvalue = _cliptext
+
+	thisform.rm_cliptimer(this.clipvalue)
+
+endif
+
+
+
+
+
+
+ENDPROC
+PROCEDURE form_activate
+this.clipvalue = _cliptext
+
+this.enabled = .t.
+
+
+ENDPROC
+PROCEDURE form_deactivate
+this.enabled = .f.
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>Class</reserved1>
+		<reserved2>1</reserved2>
+		<reserved3>clipvalue
+*form_activate 
+*form_deactivate 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6>Pixels</reserved6>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname>cliptimer</objname>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
 </VFPData>

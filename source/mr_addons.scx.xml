@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327454824</timestamp>
+		<timestamp>1357855236</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -48,7 +48,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>4</reserved2>
+		<reserved2>5</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1327456393</timestamp>
+		<timestamp>1357855357</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KG0O9JCA</uniqueid>
-		<timestamp>1327456393</timestamp>
+		<timestamp>1357855357</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -156,8 +156,42 @@ Name = "Relation1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5TD0FKV44</uniqueid>
+		<timestamp>1357855357</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 71
+Left = 713
+Height = 293
+Width = 164
+Alias = "mr_addons1"
+Order = "aid"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1327456393</timestamp>
+		<timestamp>1357855357</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -239,7 +273,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 6
@@ -278,7 +312,7 @@ Name = "edtlog"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>Anchor = 15
 Height = 300
 Left = 12
@@ -310,12 +344,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50W8VO9</uniqueid>
-		<timestamp>1327330164</timestamp>
+		<timestamp>1333692449</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbjson</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>Top = 0
 Left = 204
 Height = 28
@@ -366,216 +400,13 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KG0O7W7M</uniqueid>
-		<timestamp>1327454882</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbfiles_local</objname>
-		<parent>mr_addons</parent>
-		<properties>Top = 0
-Left = 684
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "FILES"
-ToolTipText = "VIEW FILE IN NEW FILES TAB"
-ZOrderSet = 4
-tbalign = 2
-Name = "tbfiles_local"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-_inisetvalue('MR_FILES_FID', mr_files.fid)
-
-Do Form mr_files
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYZF</uniqueid>
-		<timestamp>1326977940</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbfiles</objname>
-		<parent>mr_addons</parent>
-		<properties>Top = 0
-Left = 852
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "FILES"
-ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tbfiles"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject_files(mr_addons.slug))
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYZA</uniqueid>
-		<timestamp>1326977940</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tboverview</objname>
-		<parent>mr_addons</parent>
-		<properties>Top = 0
-Left = 756
-Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "OVERVIEW"
-ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tboverview"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlproject(mr_addons.slug))
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYZ4</uniqueid>
-		<timestamp>1326977940</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_addon</objname>
-		<parent>mr_addons</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "API ADDON"
-ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbapi_addon"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon(mr_addons.aid))
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I90JUYYZ</uniqueid>
-		<timestamp>1326977940</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbapi_files</objname>
-		<parent>mr_addons</parent>
-		<properties>Top = 0
-Left = 108
-Height = 28
-Width = 84
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "API FILES"
-ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbapi_files"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlapi_addon_files(mr_addons.aid))
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327456393</timestamp>
+		<timestamp>1327454824</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>Top = 0
 Left = 276
 Height = 28
@@ -612,13 +443,280 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5I90JUYYZ</uniqueid>
+		<timestamp>1333692449</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_files</objname>
+		<parent>MR_ADDONS</parent>
+		<properties>Top = 0
+Left = 108
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API FILES"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_files"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon_files(mr_addons.aid))
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I90JUYZ4</uniqueid>
+		<timestamp>1333692449</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_addon</objname>
+		<parent>MR_ADDONS</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "API ADDON"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_addon"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlapi_addon(mr_addons.aid))
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I90JUYZA</uniqueid>
+		<timestamp>1333692449</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverview</objname>
+		<parent>MR_ADDONS</parent>
+		<properties>Top = 0
+Left = 756
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "OVERVIEW"
+ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tboverview"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject(mr_addons.slug))
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I90JUYZF</uniqueid>
+		<timestamp>1333692449</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles</objname>
+		<parent>MR_ADDONS</parent>
+		<properties>Top = 0
+Left = 852
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "FILES"
+ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute(mr_geturlproject_files(mr_addons.slug))
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5KG0O7W7M</uniqueid>
+		<timestamp>1333692449</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles_local</objname>
+		<parent>MR_ADDONS</parent>
+		<properties>Top = 0
+Left = 684
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "FILES"
+ToolTipText = "VIEW FILE IN NEW FILES TAB"
+ZOrderSet = 4
+tbalign = 2
+Name = "tbfiles_local"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+_inisetvalue('MR_FILES_FID', mr_files.fid)
+
+Do Form mr_files
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TD0FKV5L</uniqueid>
+		<timestamp>1357855357</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_ADDONS</parent>
+		<properties>Top = 0
+Left = 396
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "CHECK"
+Enabled = .F.
+ToolTipText = "REFRESH CURSE DATA FOR SELECTED PROJECT"
+ZOrderSet = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local aid
+
+select 'mr_addons1'
+
+go top
+
+m.aid = 0
+
+scan
+
+	if m.aid = mr_addons1.aid
+
+		?mr_addons1.aid
+		replace mr_addons1.agameid WITH 0 IN 'mr_addons1'
+
+	endif
+
+	m.aid = mr_addons1.aid
+
+endscan
+
+thisform.refresh()
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
 		<timestamp>1327328464</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox1</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -653,7 +751,7 @@ Name = "_editbox1"
 		<classloc>..\..\shared\_splitter.vcx</classloc>
 		<baseclass>shape</baseclass>
 		<objname>_splitter1</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>Top = 336
 Left = 12
 Height = 12
@@ -685,7 +783,7 @@ Name = "_splitter1"
 		<classloc/>
 		<baseclass>image</baseclass>
 		<objname>imgavatar</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>Tag = "NORESIZE"
 Anchor = 12
 Picture = ..\res\noimage1.png
@@ -714,12 +812,12 @@ Name = "imgavatar"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I81DYGAG</uniqueid>
-		<timestamp>1326977940</timestamp>
+		<timestamp>1333692449</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>mr_addons</parent>
+		<parent>MR_ADDONS</parent>
 		<properties>Top = 0
 Left = 924
 Height = 28

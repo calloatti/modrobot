@@ -7,7 +7,7 @@ Local lfh_offset, np, ubytes, usize, xflen
 
 If Not _file(m.pfile)
 
-   Error 'FILE NOT FOUND'
+   Error 'FILE NOT FOUND: ' + m.pfile
 
 Endif
 

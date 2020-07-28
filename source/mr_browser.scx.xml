@@ -1,0 +1,284 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5MY17613Q</uniqueid>
+		<timestamp>1333633293</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+Width = 0
+Height = 0
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5MY17613R</uniqueid>
+		<timestamp>1357456812</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_browser</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+currentstep = 0
+uniqueid = D781CD67B39F4FEBA5521A5F65F00D9D
+Name = "MR_BROWSER"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>currentstep
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5MZ0LP9DA</uniqueid>
+		<timestamp>1333678320</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_browser</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 104
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 396
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5MY17613Q</uniqueid>
+		<timestamp>1357456812</timestamp>
+		<class>commandbutton</class>
+		<classloc/>
+		<baseclass>commandbutton</baseclass>
+		<objname>Command1</objname>
+		<parent>mr_browser</parent>
+		<properties>Top = 12
+Left = 12
+Height = 27
+Width = 84
+Caption = "Command1"
+Name = "Command1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local html, lnx, pid, url
+
+
+*!*	Thisform.oBrowser1.Navigate2('about:blank')
+
+*!*	thisform.oBrowser1.Navigate2('https://www.curseforge.com')
+
+
+
+thisform.currentstep = 0
+
+*thisform.oBrowser1.Navigate2('https://www.curseforge.com/minecraft/mc-mods/beenfo/files/2992221')
+
+thisform.oBrowser1.Navigate2('http://www.alanwood.net/demos/browserinfo.html',null,null,null,"User-Agent: Here Put The User Agent" + 0h0d0a)
+
+do while thisform.oBrowser1.busy = .t. or thisform.oBrowser1.readyState &lt;&gt; 4
+
+	_logwrite('BROWSER READYSTATE', thisform.oBrowser1.readyState)
+
+	doevents
+
+	_apisleep(1000)
+
+enddo
+
+_logwrite('BROWSER DONE')
+
+*!*	m.html = thisform.oBrowser1.document.DocumentElement.OuterHtml
+
+*!*	m.url = 'https://www.curseforge.com' + strextract(m.html, '&lt;a class="my-auto" href="', '"&gt;')
+
+*!*	thisform.oBrowser1.Navigate2(m.url)
+
+*!*	do while thisform.oBrowser1.busy = .t. or thisform.oBrowser1.readyState &lt;&gt; 4
+
+*!*		_logwrite('BROWSER READYSTATE', thisform.oBrowser1.readyState)
+
+*!*		doevents
+
+*!*		_apisleep(1000)
+
+*!*	enddo
+
+*!*	_logwrite('BROWSER DONE')
+
+*!*	m.html = thisform.oBrowser1.document.DocumentElement.OuterHtml
+
+*!*	m.pid = strextract(m.html, '&lt;span&gt;Project ID&lt;/span&gt;', '&lt;/div&gt;')
+
+*!*	m.pid = strextract(m.pid, '&lt;span&gt;', '&lt;/span&gt;')
+
+*!*	m.pid = INT(val(m.pid))
+
+_logwrite(m.pid)
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5MY17613S</uniqueid>
+		<timestamp>1357456792</timestamp>
+		<class>olecontrol</class>
+		<classloc/>
+		<baseclass>olecontrol</baseclass>
+		<objname>oBrowser1</objname>
+		<parent>mr_browser</parent>
+		<properties>Tag = "SPLIT1"
+Top = 48
+Left = 12
+Height = 336
+Width = 936
+TabIndex = 19
+ZOrderSet = 3
+Anchor = 15
+Name = "oBrowser1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole>0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7////+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAND8vebEVdYBAwAAAEABAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArAAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA4AAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAABwAAAAAAAAAAwAAAP7////+////BAAAAP7///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9h+VaICjTQEalrAMBP1wWiTAAAAL1gAAC6IgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAOAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIALAAAAQWRkcmVzc0JhcgAFAAAATAEAAABBZGRyZXNzQmFyAAUAAABMAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAA4NBXAHM1zxGuaQgAKy4SYggAAAAAAAAATAAAAAEUAgAAAAAAwAAAAAAAAEaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</ole>
+		<ole2>OLEObject = C:\Windows\SysWOW64\ieframe.dll
+</ole2>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

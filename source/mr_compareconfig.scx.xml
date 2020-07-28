@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TG16RSDP</uniqueid>
-		<timestamp>1358719083</timestamp>
+		<timestamp>1358130765</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,7 +92,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TG16RSDQ</uniqueid>
-		<timestamp>1358719083</timestamp>
+		<timestamp>1358130765</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -125,24 +125,24 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1358719083</timestamp>
+		<timestamp>1358130765</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_compare</objname>
+		<objname>mr_compareconfig</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
 DoCreate = .T.
-Caption = "COMPARE"
-uniqueid = 51D192E10638473B804F1EC9BE023A6C
-Name = "MR_COMPARE"
+Caption = "COMPARE CONFIG"
+uniqueid = CD1B8D66C8634067ABD58B2D71493C6B
+Name = "MR_COMPARECONFIG"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
 		<methods>PROCEDURE init2
-Thisform.txtfolder1.Value	= _inigetvalue('COMPARE_FOLDER1', '')
-Thisform.txtfolder2.Value	= _inigetvalue('COMPARE_FOLDER2', '')
+Thisform.txtfolder1.Value	= _inigetvalue('COMPARECONFIG_FOLDER1', '')
+Thisform.txtfolder2.Value	= _inigetvalue('COMPARECONFIG_FOLDER2', '')
 
 Thisform.updateui()
 ENDPROC
@@ -153,9 +153,43 @@ Use Dbf('sql_log1') Again In 0 Alias 'sql_log'
 
 Select 'sql_log'
 
-Index On modid Tag 'modid'
-Index On filename2 Tag 'filename2'
-Index On guid Tag 'guid'
+index on sql_log.filename1 tag 'filename1'
+
+index on sql_log.guid tag 'guid'
+
+ENDPROC
+PROCEDURE mr_compare
+local file1, file2, params, winmerge
+
+do case
+
+case sql_log.hash1 = 0
+
+	mr_shellexecute('"' + addbs(thisform.txtfolder2.value) + sql_log.filename2 + '"')
+
+case sql_log.hash2 = 0
+
+	mr_shellexecute('"' + addbs(thisform.txtfolder1.value) + sql_log.filename1 + '"')
+
+case  sql_log.hash1 = sql_log.hash2
+
+	mr_shellexecute('"' + addbs(thisform.txtfolder2.value) + sql_log.filename2 + '"')
+
+otherwise
+
+	m.file1 = '"' + addbs(thisform.txtfolder1.value) + sql_log.filename1 + '"'
+
+	m.file2 = '"' + addbs(thisform.txtfolder2.value) + sql_log.filename2 + '"'
+
+	m.params = ' /e /s /u ' + m.file1 + space(1) + m.file2
+
+	m.winmerge = _inigetvalue('WINMERGE_EXE_PATH', 'C:\Program Files\WinMerge\WinMergeU.exe')
+
+	mr_createprocess(m.winmerge, m.params)
+
+endcase
+
+
 ENDPROC
 PROCEDURE mr_genlist
 *!* mr_genlist
@@ -294,11 +328,11 @@ endscan
 
 m.txt = m.txt + m.eol
 
-m.txt =  m.txt + '**No Change**' + m.eol
+m.txt =  m.txt + '**NO CHANGES**' + m.eol
 
 scan for empty(sql_log.levent)
 
-	m.txt = m.txt + '- ' + sql_log.modname + ' (' + sql_log.filename1 + ')' + m.eol
+	m.txt = m.txt + '- ' + sql_log.modname + ' (' + sql_log.filename1 + ' -&gt; ' + sql_log.filename2 + ')' + m.eol
 
 endscan
 
@@ -311,39 +345,118 @@ ENDPROC
 PROCEDURE mr_scan
 *!* mr_scan
 
+local filename, folder1, folder2
+
 _logwrite('PROCESS START')
 
 delete all in 'sql_log'
 
-thisform.mr_scanfolder(rtrim(alltrim(thisform.txtfolder1.value), 1, '\'), 1)
+m.folder1 = rtrim(alltrim(thisform.txtfolder1.value), 1, '\')
 
-thisform.mr_scanfolder(rtrim(alltrim(thisform.txtfolder2.value), 1, '\'), 2)
+m.folder2 = rtrim(alltrim(thisform.txtfolder2.value), 1, '\')
 
-select 'sql_log'
+_findfilesinfoldertree(m.folder1)
 
-SET ORDER TO
+select 'foundfiles'
 
-scan
+scan for foundfiles.filefolder = .f.
 
-	if empty(sql_log.filename1)
+	m.filename = ltrim(strextract(foundfiles.filename, m.folder1, '', 1, 1), 1, '\')
 
-		replace sql_log.guid with sql_log.filename2 in 'sql_log'
+	append blank in 'sql_log'
+
+	if '\' $ m.filename
+
+		replace sql_log.guid with '1' + m.filename in 'sql_log'
 
 	else
 
-		replace sql_log.guid with sql_log.filename1 in 'sql_log'
+		replace sql_log.guid with '2' + m.filename in 'sql_log'
 
 	endif
 
+	replace sql_log.filename1 with m.filename in 'sql_log'
+
+	replace sql_log.hash1 with mr_fingerprint(foundfiles.filename) in 'sql_log'
+
 endscan
 
-set order to tag 'guid'
+
+_findfilesinfoldertree(m.folder2)
+
+select 'foundfiles'
+
+scan for foundfiles.filefolder = .f.
+
+	m.filename = ltrim(strextract(foundfiles.filename, m.folder2, '', 1, 1), 1, '\')
+
+	if seek(m.filename, 'sql_log', 'filename1') = .f.
+
+		append blank in 'sql_log'
+
+		if '\' $ m.filename
+
+			replace sql_log.guid with '1' + m.filename in 'sql_log'
+
+		else
+
+			replace sql_log.guid with '2' + m.filename in 'sql_log'
+
+		endif
+
+	endif
+
+	replace sql_log.filename2 with m.filename in 'sql_log'
+
+	replace sql_log.hash2 with mr_fingerprint(foundfiles.filename) in 'sql_log'
+
+endscan
+
+select 'sql_log'
+
+m.passnum = 1
+
+scan
+
+	replace sql_log.passnum with m.passnum
+
+	m.passnum = m.passnum + 1
+
+	if sql_log.hash1 = 0
+
+		replace sql_log.levent with 'NEW'
+
+		loop
+
+	endif
+
+	if sql_log.hash2 = 0
+
+		replace sql_log.levent with 'DELETED'
+
+		loop
+
+	endif
+
+	if sql_log.hash1 # sql_log.hash2
+
+		replace sql_log.levent with 'CHANGED'
+
+		loop
+
+	endif
+
+
+endscan
 
 _logwrite('PROCESS END')
 
 go top in 'sql_log'
 
+thisform.updateui()
+
 thisform.refresh()
+
 
 
 
@@ -535,13 +648,13 @@ if not empty(m.selfolder) then
 
 	if m.pfoldernum = 1
 
-		_inisetvalue('COMPARE_FOLDER1', m.selfolder)
+		_inisetvalue('COMPARECONFIG_FOLDER1', m.selfolder)
 
 		thisform.txtfolder1.value = m.selfolder
 
 	else
 
-		_inisetvalue('COMPARE_FOLDER2', m.selfolder)
+		_inisetvalue('COMPARECONFIG_FOLDER2', m.selfolder)
 
 		thisform.txtfolder2.value = m.selfolder
 
@@ -551,6 +664,39 @@ endif
 
 
 
+
+ENDPROC
+PROCEDURE updateui
+
+if sql_log.hash1 = 0
+
+	thisform.tbeditl.enabled = .f.
+
+else
+
+	thisform.tbeditl.enabled = .t.
+
+endif
+
+if sql_log.hash2 = 0
+
+	thisform.tbeditr.enabled = .f.
+
+else
+
+	thisform.tbeditr.enabled = .t.
+
+endif
+
+if sql_log.hash1 = sql_log.hash2 or sql_log.hash1 = 0 or sql_log.hash2 = 0
+
+	thisform.tbwinmerge.enabled = .f.
+
+else
+
+	thisform.tbwinmerge.enabled = .t.
+
+endif
 
 ENDPROC
 </methods>
@@ -564,6 +710,7 @@ ENDPROC
 *mr_genlist 
 *mr_scanfolder 
 *mr_scanfile 
+*mr_compare 
 </reserved3>
 		<reserved4/>
 		<reserved5/>
@@ -580,7 +727,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -614,12 +761,12 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1358085897</timestamp>
+		<timestamp>1358105632</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Height = 228
 Left = 12
 Top = 108
@@ -633,7 +780,14 @@ lparameters nColIndex
 
 this.sethighlightbackcolor()
 
+thisform.updateui()
 
+
+
+
+ENDPROC
+PROCEDURE DblClick
+thisform.mr_compare()
 ENDPROC
 PROCEDURE getdynamicbackcolor
 lparameters poColum as column
@@ -699,12 +853,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM0FGT4D</uniqueid>
-		<timestamp>1358076433</timestamp>
+		<timestamp>1358103282</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbscan</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
@@ -735,27 +889,111 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JM0IENUB</uniqueid>
-		<timestamp>1358077739</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358105632</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>MR_COMPARE</parent>
+		<objname>tbeditl</objname>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Top = 0
 Left = 108
 Height = 28
-Width = 180
+Width = 96
 Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "LIST TO CLIPBOARD"
-ToolTipText = "OPEN JSON IN NOTEPAD"
+Caption = "EDIT LEFT"
+ToolTipText = "OPEN FILE IN NOTEPAD"
 ZOrderSet = 4
 tbmarginv = 4
-Name = "_tbcommand1"
+Name = "tbeditl"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-thisform.mr_genlist()
+if not empty(sql_log.filename1)
+
+	mr_shellexecute('"' + addbs(thisform.txtfolder1.value) + sql_log.filename1 + '"')
+
+endif
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358105632</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbeditr</objname>
+		<parent>MR_COMPARECONFIG</parent>
+		<properties>Top = 0
+Left = 216
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "EDIT RIGHT"
+ToolTipText = "OPEN FILE IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbeditr"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+if not empty(sql_log.filename2)
+
+	mr_shellexecute('"' + addbs(thisform.txtfolder2.value) + sql_log.filename2 + '"')
+
+endif
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TH036IOT</uniqueid>
+		<timestamp>1358105632</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbwinmerge</objname>
+		<parent>MR_COMPARECONFIG</parent>
+		<properties>Top = 0
+Left = 324
+Height = 28
+Width = 96
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "WINMERGE"
+ToolTipText = "OPEN WITH WINMERGE"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbwinmerge"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_compare()
 ENDPROC
 </methods>
 		<objcode/>
@@ -779,7 +1017,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>textbox</baseclass>
 		<objname>txtfolder1</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Anchor = 10
 Height = 24
 Left = 12
@@ -813,7 +1051,7 @@ Name = "txtfolder1"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>textbox</baseclass>
 		<objname>txtfolder2</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Anchor = 10
 Height = 24
 Left = 12
@@ -842,12 +1080,12 @@ Name = "txtfolder2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1358076268</timestamp>
+		<timestamp>1358103282</timestamp>
 		<class>_commandbutton</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_commandbutton1</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Top = 35
 Left = 912
 Height = 26
@@ -878,12 +1116,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM0ES59X</uniqueid>
-		<timestamp>1358076268</timestamp>
+		<timestamp>1358103282</timestamp>
 		<class>_commandbutton</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_commandbutton2</objname>
-		<parent>MR_COMPARE</parent>
+		<parent>MR_COMPARECONFIG</parent>
 		<properties>Top = 71
 Left = 912
 Height = 26

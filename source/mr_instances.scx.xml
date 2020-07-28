@@ -28,14 +28,14 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327341643</timestamp>
+		<timestamp>1358633521</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 220
-Left = 1
+		<properties>Top = 155
+Left = 502
 Width = 765
 Height = 493
 DataSource = .NULL.
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>3</reserved2>
+		<reserved2>4</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1327341643</timestamp>
+		<timestamp>1358712494</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1327341643</timestamp>
+		<timestamp>1358712494</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -101,8 +101,8 @@ Name = "Cursor1"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 150
-Height = 90
-Width = 90
+Height = 279
+Width = 241
 Alias = "mr_enum_gameversion"
 Order = "gverlong"
 OrderDirection = 2
@@ -127,8 +127,41 @@ Name = "Cursor2"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5TP0721F8</uniqueid>
+		<timestamp>1358712494</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 459
+Height = 363
+Width = 182
+Alias = "mr_mods"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1327341643</timestamp>
+		<timestamp>1358712494</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -157,13 +190,44 @@ Go Top In 'MR_INSTANCES'
 
 Endif
 ENDPROC
+PROCEDURE mr_deleteinstance
+*!* mr_deleteinstance
+
+local omod
+
+if not empty(mr_instances.iguid)
+
+	select 'mr_mods'
+
+	scatter blank name m.omod
+
+	m.omod.iguid = '00000000'
+	m.omod.fguid = '00000000'
+	m.omod.rguid = '0000000000000000'
+
+
+	scan for mr_mods.iguid = mr_instances.iguid
+
+		gather name m.omod
+
+	endscan
+
+	select 'mr_instances'
+
+	delete next 1 in 'mr_instances'
+
+	thisform.refresh()
+
+endif
+ENDPROC
 </methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
 		<reserved1/>
 		<reserved2/>
-		<reserved3/>
+		<reserved3>*mr_deleteinstance 
+</reserved3>
 		<reserved4/>
 		<reserved5/>
 		<reserved6/>
@@ -174,12 +238,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K814HRYR</uniqueid>
-		<timestamp>1326945969</timestamp>
+		<timestamp>1358671893</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -188,7 +252,7 @@ Left = 12
 ReadOnly = .T.
 TabIndex = 9
 Top = 348
-Width = 936
+Width = 552
 ZOrderSet = 0
 Value = 
 IntegralHeight = .F.
@@ -213,23 +277,27 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1326945969</timestamp>
+		<timestamp>1358672309</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Anchor = 15
 Height = 300
 Left = 12
 Top = 36
 Width = 936
 _gridcontextmenulang = en
-showmemocolumns = .T.
 Name = "gridmain"
 </properties>
 		<protected/>
-		<methods>PROCEDURE DblClick
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
+
+thisform.Refresh()
+ENDPROC
+PROCEDURE DblClick
 _inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
 
 Do Form MR_MODS
@@ -251,12 +319,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978011</timestamp>
+		<timestamp>1357870126</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand6</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
@@ -271,6 +339,12 @@ Name = "_tbcommand6"
 		<protected/>
 		<methods>PROCEDURE Click
 mr_instancegetfolder()
+
+If Seek(_inigetvalue('MR_INSTANCES_IGUID', mr_instances.iguid), 'MR_INSTANCES', 'IGUID') = .F.
+
+Go Top In 'MR_INSTANCES'
+
+Endif
 
 Thisform.gridmain.Refresh()
 ENDPROC
@@ -290,210 +364,31 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5K815OPIH</uniqueid>
-		<timestamp>1327047380</timestamp>
+		<uniqueid>_5TP19HKG2</uniqueid>
+		<timestamp>1358674262</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand9</objname>
-		<parent>mr_instances</parent>
+		<objname>_tbcommand16</objname>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 744
 Height = 28
-Width = 72
-Caption = "CLIENT ZIP"
-ToolTipText = "GENERATE MULTIMC INSTANCE ZIP"
+Width = 60
+Caption = "CF ZIP"
+ToolTipText = "GENERATES THE CF MODPACK ZIP"
 ZOrderSet = 4
 tbmarginv = 4
 tbalign = 2
-Name = "_tbcommand9"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_genclientzip(mr_instances.iguid)
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327341256</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand8</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 816
-Height = 28
-Width = 72
-Caption = "SERVER ZIP"
-ToolTipText = "GENERATE SERVER ZIP"
-ZOrderSet = 4
-tbmarginv = 4
-tbalign = 2
-Name = "_tbcommand8"
+Name = "_tbcommand16"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 mr_instanceadd(mr_instances.ifolder)
 
-mr_genserverzip(mr_instances.iguid)
+mr_gencfmodpackzip(mr_instances.iguid)
 
 thisform.refresh()
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5K613VG42</uniqueid>
-		<timestamp>1326978011</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand7</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 408
-Height = 28
-Width = 84
-Picture = ..\res\1x\outline_folder_black_18dp.png
-Caption = "ZIPS FOLDER"
-ToolTipText = "SELECT A TARGET SERVER FOLDER TO CREATE A SERVER"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand7"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local izipfolder, lastfolder
-
-If Empty(mr_instances.izipfolder)
-
-m.lastfolder = mr_instances.ifolder
-
-Else
-
-m.lastfolder = mr_instances.izipfolder
-
-Endif
-
-m.izipfolder = Getdir(m.lastfolder, 'Select target server folder for this instance', '', 1 + 64 + 16 + 32)
-
-If Not Empty(m.izipfolder) Then
-
-Replace mr_instances.izipfolder With m.izipfolder In 'mr_instances'
-
-Endif
-
-Thisform.Refresh()
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5JT0DYIDR</uniqueid>
-		<timestamp>1326978011</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand5</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 504
-Height = 28
-Width = 60
-Caption = "REFRESH DATA"
-ToolTipText = "REFRESH DATA FOR SELECTED INSTANCE"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand5"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_instanceadd(mr_instances.ifolder)
-
-Thisform.Refresh()
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I61E37EP</uniqueid>
-		<timestamp>1326978011</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand2</objname>
-		<parent>mr_instances</parent>
-		<properties>Top = 0
-Left = 576
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "OPEN"
-ToolTipText = "OPEN THE INSTANCE MODS TAB"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand2"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
-
-Do Form MR_MODS
 ENDPROC
 </methods>
 		<objcode/>
@@ -512,18 +407,102 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978011</timestamp>
+		<timestamp>1358633521</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 72
+Height = 28
+Width = 60
+Picture = ..\res\1x\outline_clear_black_18dp.png
+Caption = "DELETE"
+ToolTipText = "DELETE SELECTED INSTANCE"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_deleteinstance()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358670638</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbserver</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 588
+Height = 28
+Width = 48
+Caption = "SERVER"
+ToolTipText = "GENERATE SERVER FOLDER - WILL DELETE CURRENT SERVER MODS FOLDER"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "tbserver"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local onlycfmods
+
+m.onlycfmods = .f.
+
+mr_instanceadd(mr_instances.ifolder)
+
+mr_genserverfolder(mr_instances.iguid, m.onlycfmods)
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1357869748</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfolder</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
-Left = 312
+Left = 252
 Height = 28
-Width = 84
+Width = 60
 Picture = ..\res\1x\outline_folder_black_18dp.png
-Caption = "SERVER FOLDER"
+Caption = "SF"
 ToolTipText = "SELECT A TARGET SERVER FOLDER TO CREATE A SERVER"
 ZOrderSet = 4
 tbmarginv = 4
@@ -570,31 +549,30 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327341256</timestamp>
+		<uniqueid>_5I61E37EP</uniqueid>
+		<timestamp>1358670252</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbserver</objname>
-		<parent>mr_instances</parent>
+		<objname>_tbcommand2</objname>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
-Left = 648
+Left = 492
 Height = 28
-Width = 72
-Caption = "SERVER"
-ToolTipText = "GENERATE SERVER FOLDER"
+Width = 48
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "MODS"
+ToolTipText = "OPEN THE INSTANCE MODS TAB"
 ZOrderSet = 4
 tbmarginv = 4
 tbalign = 2
-Name = "tbserver"
+Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_instanceadd(mr_instances.ifolder)
+_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
 
-mr_genserverfolder(mr_instances.iguid)
-
-thisform.refresh()
+Do Form MR_MODS
 ENDPROC
 </methods>
 		<objcode/>
@@ -612,27 +590,27 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978011</timestamp>
+		<uniqueid>_5JT0DYIDR</uniqueid>
+		<timestamp>1357869924</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>mr_instances</parent>
+		<objname>_tbcommand5</objname>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
-Left = 84
+Left = 408
 Height = 28
-Width = 60
-Picture = ..\res\1x\outline_clear_black_18dp.png
-Caption = "DELETE"
-ToolTipText = "DELETE SELECTED INSTANCE"
+Width = 36
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "RI"
+ToolTipText = "REFRESH INSTANCE DATA"
 ZOrderSet = 4
 tbmarginv = 4
-Name = "_tbcommand1"
+Name = "_tbcommand5"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Delete Next 1 In 'mr_instances'
+mr_instanceadd(mr_instances.ifolder)
 
 Thisform.Refresh()
 ENDPROC
@@ -653,14 +631,435 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978011</timestamp>
+		<timestamp>1358655121</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand7</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 312
+Height = 28
+Width = 48
+Picture = ..\res\1x\outline_folder_black_18dp.png
+Caption = "ZF"
+ToolTipText = "SELECT A TARGET FOLDER FOR ZIP FILES"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand7"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local izipfolder, lastfolder
+
+If Empty(mr_instances.izipfolder)
+
+m.lastfolder = mr_instances.ifolder
+
+Else
+
+m.lastfolder = mr_instances.izipfolder
+
+Endif
+
+m.izipfolder = Getdir(m.lastfolder, 'Select target zip folder for this instance', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.izipfolder) Then
+
+Replace mr_instances.izipfolder With m.izipfolder In 'mr_instances'
+
+Endif
+
+Thisform.Refresh()
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358670638</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand8</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 864
+Height = 28
+Width = 48
+Caption = "SERVER ZIP"
+ToolTipText = "GENERATE SERVER ZIP"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand8"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+local onlycfmods
+
+mr_instanceadd(mr_instances.ifolder)
+
+m.onlycfmods = .t.
+
+mr_genserverfolder(mr_instances.iguid, m.onlycfmods, addbs(thisform.apppath) + 'temp_server')
+
+mr_genserverzip(mr_instances.iguid, addbs(thisform.apppath) + 'temp_server')
+
+thisform.refresh()
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5K815OPIH</uniqueid>
+		<timestamp>1358712494</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand9</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 816
+Height = 28
+Width = 48
+Caption = "MULTIMC ZIP"
+ToolTipText = "GENERATE MULTIMC INSTANCE ZIP"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand9"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_genmultimczip(mr_instances.iguid)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358670252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand10</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 540
+Height = 28
+Width = 48
+Caption = "SERVER SYNC"
+ToolTipText = "SYNC SERVER CONFIG AND MODS FOLDERS"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand10"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_syncserverfolder(mr_instances.iguid)
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5ST0TL50G</uniqueid>
+		<timestamp>1358672128</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand11</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 444
+Height = 28
+Width = 36
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "RF"
+ToolTipText = "REDOWNLOAD FABRIC INSTALLER DATA"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand11"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_getfabricinstallerversion(.t.)
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TD0US49J</uniqueid>
+		<timestamp>1357869748</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand12</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 360
+Height = 28
+Width = 48
+Picture = ..\res\1x\outline_folder_black_18dp.png
+Caption = "TF"
+ToolTipText = "SELECT A TARGET TWITCH INSTANCE FOLDER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand12"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local itwifolder, lastfolder
+
+If Empty(mr_instances.itwifolder)
+
+m.lastfolder = mr_instances.ifolder
+
+Else
+
+m.lastfolder = mr_instances.itwifolder
+
+Endif
+
+m.itwifolder = Getdir(m.lastfolder, 'Select target twitch instance folder', '', 1 + 64 + 16 + 32)
+
+If Not Empty(m.itwifolder) Then
+
+Replace mr_instances.itwifolder With m.itwifolder In 'mr_instances'
+
+Endif
+
+Thisform.Refresh()
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358670252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand13</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 684
+Height = 28
+Width = 60
+Caption = "CF SYNC"
+ToolTipText = "SYNCS THE CF LAUNCHER INSTANCE"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand13"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_instanceadd(mr_instances.ifolder)
+
+mr_synctwitchfolder(mr_instances.iguid)
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TK00VZW9</uniqueid>
+		<timestamp>1358670252</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand14</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 636
+Height = 28
+Width = 48
+Caption = "START.CMD"
+ToolTipText = "RUN SERVER START.CMD"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand14"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+if not empty(mr_instances.isrvfolder)
+
+	if _FILE(addbs(mr_instances.isrvfolder) + 'start.cmd')
+
+		?mr_createprocess(addbs(mr_instances.isrvfolder) + 'start.cmd', '')
+
+	endif
+
+endif
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TP19FPGD</uniqueid>
+		<timestamp>1358671015</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand15</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>Top = 0
+Left = 912
+Height = 28
+Width = 48
+Caption = "EXTRAS ZIP"
+ToolTipText = "GENERATE EXTRAS ZIP WITH MODS NOT ON CF"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand15"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_genextraszip(mr_instances.iguid)
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1327696573</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand3</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
-Left = 156
+Left = 132
 Height = 28
 Width = 60
 Picture = ..\res\1x\outline_bottom_black_18dp.png
@@ -718,16 +1117,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FWCLJ</uniqueid>
-		<timestamp>1326978011</timestamp>
+		<timestamp>1327696573</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand4</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
-Left = 228
+Left = 192
 Height = 28
-Width = 72
+Width = 60
 Picture = ..\res\1x\outline_top_black_18dp.png
 Caption = "MAXVER"
 ToolTipText = "SETS THE MAX MINECRAFT VERSION OF THE INSTANCE WHEN SEARCHING FOR MODS"
@@ -777,6 +1176,40 @@ ENDPROC
 		<user/>
 	</record>
 	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TP1B60S5</uniqueid>
+		<timestamp>1358671950</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox5</objname>
+		<parent>MR_INSTANCES</parent>
+		<properties>FontName = "Consolas"
+Anchor = 12
+Height = 144
+Left = 576
+ToolTipText = "CURSEFORGE MODPACK DATA"
+Top = 348
+Width = 372
+ControlSource = "mr_instances.icfdata"
+Name = "_editbox5"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
 		<platform>COMMENT</platform>
 		<uniqueid>RESERVED</uniqueid>
 		<timestamp>0</timestamp>
@@ -789,6 +1222,7 @@ ENDPROC
 Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+Consolas, 0, 9, 7, 14, 11, 13, 3, 0
 </properties>
 		<protected/>
 		<methods/>

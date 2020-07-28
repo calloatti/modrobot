@@ -2,7 +2,7 @@
 
 lparameters paid, pfjson, paname, pslug, pauthorname
 
-Local fid, foldername, guid, gver, gver_files, gverlong, hfjson, lnx, lnz, nselect, ofjson, ojson
+Local fid, foldername, guid, gver, gveritem, gverlong, hfjson, lnx, lnz, nselect, ofjson, ojson
 Local slug
 
 if empty(m.pfjson) or m.pfjson == '[]' then
@@ -41,20 +41,20 @@ m.slug = m.pslug
 
 *!* SPLIT EACH ELEMENT OF THE FILES JSON TO GET ONE JSON PER FILE
 
-m.ofjson = mr_filejsonsplit(m.pfjson)
+m.ofjson = nfjsonsplitmem(m.pfjson)
 
 for m.lnx = 1 to m.ofjson.count
 
 	*!* GET ONE JSON ITEM
-	
+
 	m.hfjson = m.ofjson.item[m.lnx]
-	
+
 	*!* PARSE JSON
-	
+
 	m.ojson = nfjsonread(m.hfjson)
-	
+
 	*!* ZIP JSON
-	
+
 	m.hfjson = _zlibcompress(m.hfjson)
 
 	m.fid = m.ojson.id
@@ -69,6 +69,12 @@ for m.lnx = 1 to m.ofjson.count
 
 	endif
 
+	replace ;
+		files_pjf.authorname with m.pauthorname, ;
+		files_pjf.aid		 with m.paid, ;
+		files_pjf.aname		 with m.paname, ;
+		files_pjf.slug		 with m.slug in 'files_pjf'
+
 	if files_pjf.hfjson == m.hfjson
 
 		loop
@@ -78,17 +84,13 @@ for m.lnx = 1 to m.ofjson.count
 	replace files_pjf.hfjson with m.hfjson in 'files_pjf'
 
 	replace ;
-			files_pjf.authorname with m.pauthorname, ;
-			files_pjf.aid		 with m.paid, ;
-			files_pjf.aname		 with m.paname, ;
-			files_pjf.slug		 with m.slug, ;
-			files_pjf.dispname	 with m.ojson.displayname, ;
-			files_pjf.filedate	 with m.ojson.filedate, ;
-			files_pjf.fileext	 with justext(m.ojson.filename), ;
-			files_pjf.filelen	 with m.ojson.filelength, ;
-			files_pjf.filename	 with m.ojson.filename, ;
-			files_pjf.hash		 with m.ojson.packagefingerprint, ;
-			files_pjf.rtype		 with m.ojson.releasetype in 'files_pjf'
+		files_pjf.dispname	 with m.ojson.displayname, ;
+		files_pjf.filedate	 with m.ojson.filedate, ;
+		files_pjf.fileext	 with justext(m.ojson.filename), ;
+		files_pjf.filelen	 with m.ojson.filelength, ;
+		files_pjf.filename	 with m.ojson.filename, ;
+		files_pjf.hash		 with m.ojson.packagefingerprint, ;
+		files_pjf.rtype		 with m.ojson.releasetype in 'files_pjf'
 
 	*!* RELEASE TYPE
 
@@ -140,27 +142,29 @@ for m.lnx = 1 to m.ofjson.count
 
 	*!* UPDATE MR_ENUM_GAMEVERSION
 
-	m.gver_files = ''
+	m.gver = ''
+
+	asort(m.ojson.gameversion)
 
 	for m.lnz = 1 to alen(m.ojson.gameversion)
 
 		if vartype(m.ojson.gameversion[m.lnz]) = 'C'
 
-			m.gver = m.ojson.gameversion[m.lnz]
+			m.gveritem = m.ojson.gameversion[m.lnz]
 
-			m.gver_files = m.gver_files + m.gver + '|'
+			m.gver = m.gver + m.gveritem + '|'
 
-			if left(m.gver, 2) = '1.'
+			if left(m.gveritem, 2) = '1.'
 
-				m.gverlong = mr_getgameversionlong(m.gver)
+				m.gverlong = mr_getgameversionlong(m.gveritem)
 
 				*!* ADD TO VERSIONS TABLE
 
-				if seek(m.gver, 'gversion_pjf', 'gver') = .f.
+				if seek(m.gveritem, 'gversion_pjf', 'gver') = .f.
 
 					append blank in 'gversion_pjf'
 
-					replace	gversion_pjf.gver with m.gver, gversion_pjf.gverlong with m.gverlong in 'gversion_pjf'
+					replace	gversion_pjf.gver with m.gveritem, gversion_pjf.gverlong with m.gverlong in 'gversion_pjf'
 
 				endif
 
@@ -175,15 +179,15 @@ for m.lnx = 1 to m.ofjson.count
 				endif
 
 				replace ;
-						filever_pjf.guid	 with m.guid, ;
-						filever_pjf.aid		 with files_pjf.aid, ;
-						filever_pjf.fid		 with files_pjf.fid, ;
-						filever_pjf.filedate with files_pjf.filedate, ;
-						filever_pjf.filename with files_pjf.filename, ;
-						filever_pjf.gver	 with m.gver, ;
-						filever_pjf.gverlong with m.gverlong, ;
-						filever_pjf.loader	 with files_pjf.foldername, ;
-						filever_pjf.hash	 with files_pjf.hash in 'filever_pjf'
+					filever_pjf.guid	 with m.guid, ;
+					filever_pjf.aid		 with files_pjf.aid, ;
+					filever_pjf.fid		 with files_pjf.fid, ;
+					filever_pjf.filedate with files_pjf.filedate, ;
+					filever_pjf.filename with files_pjf.filename, ;
+					filever_pjf.gver	 with m.gveritem, ;
+					filever_pjf.gverlong with m.gverlong, ;
+					filever_pjf.loader	 with files_pjf.foldername, ;
+					filever_pjf.hash	 with files_pjf.hash in 'filever_pjf'
 
 			endif
 
@@ -193,9 +197,9 @@ for m.lnx = 1 to m.ofjson.count
 
 	*!* UPDATE THE MC VERSION LIST
 
-	m.gver_files = rtrim(m.gver_files, 1, '|')
+	m.gver = rtrim(m.gver, 1, '|')
 
-	replace files_pjf.gver with m.gver_files in 'files_pjf'
+	replace files_pjf.gver with m.gver in 'files_pjf'
 
 endfor
 
@@ -207,4 +211,4 @@ endfor
 
 *!*	use in 'files_pjf'
 
-_restorearea(m.nselect)  
+_restorearea(m.nselect) 

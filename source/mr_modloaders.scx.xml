@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1358366003</timestamp>
+		<timestamp>1358673327</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>3</reserved2>
+		<reserved2>2</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5ID0HUYIC</uniqueid>
-		<timestamp>1358366057</timestamp>
+		<uniqueid>_5TP1CS0ZA</uniqueid>
+		<timestamp>1358711778</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,11 +67,11 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 343
-Width = 117
-Alias = "mr_log"
+Height = 90
+Width = 90
+Alias = "mr_modloaders"
 Database = ..\data\data1.dbc
-CursorSource = "mr_log"
+CursorSource = "mr_modloaders"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -91,25 +91,24 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5TL01BLA0</uniqueid>
-		<timestamp>1358366057</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor2</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 150
-Height = 90
-Width = 90
-Alias = "mr_instances"
-Order = "iname"
-Database = ..\data\data1.dbc
-CursorSource = "mr_instances"
-Name = "Cursor2"
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1358711778</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_modloaders</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "MODLOADERS (Just Forge really)"
+uniqueid = 4C0C2525C32244509FF1F8CB8D6C7FFD
+Name = "MR_MODLOADERS"
+tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE init2
+Thisform.updateui()
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -125,89 +124,36 @@ Name = "Cursor2"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1358366057</timestamp>
-		<class>_form</class>
+		<uniqueid>_5IG0ZGZAY</uniqueid>
+		<timestamp>1358673327</timestamp>
+		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>form</baseclass>
-		<objname>mr_log</objname>
-		<parent/>
-		<properties>DoCreate = .T.
-Caption = "LOG"
-mr_iguid = .F.
-uniqueid = 592EF988041C45D1957EF7B8A89F58A1
-Name = "MR_LOG"
-tmrSql.Name = "tmrSql"
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>mr_modloaders</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
 </properties>
 		<protected/>
-		<methods>PROCEDURE init2
-*!* init2
-
-local iguid
-
-m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
-
-thisform.mr_setinstance(m.iguid)
-
-go bottom in 'mr_log'
-ENDPROC
-PROCEDURE mr_setinstance
-*!* mr_setinstance
-
-lparameters piguid
-
-thisform.mr_iguid = m.piguid
-
-if m.piguid = '00000000' and reccount('mr_instances') &gt; 0 then
-
-	go top in 'mr_instances'
-
-	thisform.mr_iguid = mr_instances.iguid
-
-endif
-
-if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
-
-	_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
-
-	if empty(mr_instances.iname) then
-
-		thisform.caption = 'LOG - ' + _shortenpath(mr_instances.iguid, 240)
-
-	else
-
-		thisform.caption = 'LOG - ' + _shortenpath(mr_instances.iname, 240)
-
-	endif
-
-
-else
-
-	thisform.setall('ENABLED', .f.)
-
-	thisform.tbinstances.enabled = .t.
-
-	thisform.caption = 'LOG - NO INSTANCE SELECTED'
-
-endif
-
-select 'mr_log'
-
-set filter to mr_log.iguid == thisform.mr_iguid
-
-thisform.updateui()
-
-thisform.refresh()
-ENDPROC
-</methods>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
 		<reserved1/>
 		<reserved2/>
-		<reserved3>mr_iguid
-*mr_setinstance 
-</reserved3>
+		<reserved3/>
 		<reserved4/>
 		<reserved5/>
 		<reserved6/>
@@ -218,13 +164,13 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322123575</timestamp>
+		<timestamp>1358673327</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_log</parent>
-		<properties>Height = 456
+		<parent>mr_modloaders</parent>
+		<properties>Height = 300
 Left = 12
 Top = 36
 Width = 936
@@ -232,7 +178,12 @@ _gridcontextmenulang = en
 Name = "gridmain"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
+
+Thisform.updateui()
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -248,92 +199,35 @@ Name = "gridmain"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IA00IMUK</uniqueid>
-		<timestamp>1322123727</timestamp>
+		<uniqueid>_5IH0RRMV7</uniqueid>
+		<timestamp>1358711778</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbmenu</objname>
-		<parent>mr_log</parent>
-		<properties>Top = 0
-Left = 924
-Height = 28
-Width = 28
-FontSize = 8
-Picture = ..\res\3bars.png
-Caption = ""
-TabIndex = 7
-ToolTipText = "MENU"
-ZOrderSet = 21
-tbalign = 2
-tbautowidth = .F.
-tbpictureautosize = .F.
-tbmenuoffseth = 6
-tbautofontsize = .F.
-tbmarginv = 4
-Name = "tbmenu"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5TL01BLAC</uniqueid>
-		<timestamp>1358366003</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbinstances</objname>
-		<parent>mr_log</parent>
+		<objname>tbrefreshall</objname>
+		<parent>mr_modloaders</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
-Width = 112
-Picture = ..\res\1x\outline_expand_more_black_18dp.png
-Caption = "INSTANCES"
-ToolTipText = "OPEN INSTANCES MENU"
-PicturePosition = 4
+Width = 96
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "REFRESH"
+ToolTipText = "REFRESH CURSE DATA"
 ZOrderSet = 4
-tbmarginv = 4
-Name = "tbinstances"
+Name = "tbrefreshall"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local nselect, result
+Thisform.gridmain.Enabled = .f.
 
-m.nselect = Select()
+mr_modloaders_update()
 
-Select 'mr_instances'
+Thisform.updateui()
 
-Scan
+Thisform.gridmain.Enabled = .t.
 
-This.tbmenuitemadd(Recno('mr_instances'), 0, 0, 0, 0, mr_instances.iname + ' - ' + mr_instances.ifolder)
+Thisform.Refresh()
 
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_instances'
-
-Thisform.mr_setinstance(mr_instances.iguid)
-
-Endif
 
 
 
@@ -364,6 +258,7 @@ ENDPROC
 		<objname/>
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>

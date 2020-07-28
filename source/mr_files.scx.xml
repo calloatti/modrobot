@@ -28,16 +28,17 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327454778</timestamp>
+		<timestamp>1357823523</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 220
-Left = 1
+		<properties>Top = 279
+Left = 356
 Width = 765
 Height = 493
+InitialSelectedAlias = "mr_files"
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
@@ -47,7 +48,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>4</reserved2>
+		<reserved2>5</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I30I2W6R</uniqueid>
-		<timestamp>1327456399</timestamp>
+		<timestamp>1357823523</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +94,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KE0SDUV0</uniqueid>
-		<timestamp>1327456399</timestamp>
+		<timestamp>1357823523</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -155,8 +156,41 @@ Name = "Relation1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5TC1F1SIA</uniqueid>
+		<timestamp>1357823523</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 82
+Left = 609
+Height = 90
+Width = 90
+Alias = "mr_fileversions"
+Database = ..\data\data1.dbc
+CursorSource = "mr_fileversions"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1327456399</timestamp>
+		<timestamp>1357823523</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -323,6 +357,52 @@ Name = "_editbox1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5TC1EPBLZ</uniqueid>
+		<timestamp>1357823523</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>mr_files</parent>
+		<properties>Top = 0
+Left = 408
+Height = 28
+Width = 84
+Caption = "DELETE"
+ToolTipText = "DELETES THE CURRENT ROW"
+ZOrderSet = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+delete all for mr_fileversions.fid = mr_files.fid in 'mr_fileversions'
+
+delete next 1 in 'mr_files'
+
+thisform.refresh()
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5KG0O7QLN</uniqueid>
 		<timestamp>1327454778</timestamp>
 		<class>_tbcommand</class>
@@ -364,8 +444,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IF14KCKP</uniqueid>
-		<timestamp>1327456399</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1327454778</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>

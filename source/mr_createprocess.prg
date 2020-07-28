@@ -2,6 +2,8 @@
 
 lparameters lpapplicationname, lpcommandline
 
+?lpapplicationname, lpcommandline
+
 local cprocessinfo, cstartupinfo, hprocess, hthread, lpprocessinformation, lpstartupinfo, result
 
 declare integer CreateProcess in WIN32API as _apicreateprocess_sss ;
@@ -24,11 +26,23 @@ if empty(m.lpcommandline)
 
 	m.lpcommandline = ''
 
+else
+
+	m.lpcommandline = space(1) + ltrim(m.lpcommandline)
+
 endif
 
-m.lpcurrentdirectory = justpath(m.lpapplicationname)
+if '\' $ m.lpapplicationname
 
-m.result = _apicreateprocess_sss(m.lpapplicationname, m.lpcommandline, 0, 0, 1, 0, 0, m.lpcurrentdirectory, m.lpstartupinfo, @m.lpprocessinformation)
+	m.lpCurrentDirectory = justpath(m.lpapplicationname)
+
+else
+
+	m.lpCurrentDirectory = null
+
+endif
+
+m.result = _apicreateprocess_sss(m.lpapplicationname, m.lpcommandline, 0, 0, 0, 0, 0, m.lpCurrentDirectory, m.lpstartupinfo, @m.lpprocessinformation)
 
 m.hprocess = mr_ctoubin(substr(m.lpprocessinformation, 1, 4))
 m.hthread  = mr_ctoubin(substr(m.lpprocessinformation, 5, 4))

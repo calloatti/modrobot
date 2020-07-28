@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327072316</timestamp>
+		<timestamp>1357937739</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -36,8 +36,8 @@
 		<parent/>
 		<properties>Top = 142
 Left = 197
-Width = 765
-Height = 493
+Width = 1116
+Height = 475
 InitialSelectedAlias = "mr_blacklist"
 DataSource = .NULL.
 Name = "Dataenvironment"
@@ -48,7 +48,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>5</reserved2>
+		<reserved2>6</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K6187AE0</uniqueid>
-		<timestamp>1327369937</timestamp>
+		<timestamp>1358702740</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K618BJJZ</uniqueid>
-		<timestamp>1327369937</timestamp>
+		<timestamp>1358702740</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -105,6 +105,7 @@ Left = 150
 Height = 195
 Width = 194
 Alias = "mr_instances"
+Order = "iname"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
 Name = "Cursor2"
@@ -127,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K81CUSFI</uniqueid>
-		<timestamp>1327369937</timestamp>
+		<timestamp>1358702740</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -160,7 +161,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KA0YVNHQ</uniqueid>
-		<timestamp>1327369937</timestamp>
+		<timestamp>1358702740</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -192,20 +193,22 @@ Name = "Cursor4"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1327369937</timestamp>
-		<class>_form</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>form</baseclass>
-		<objname>mr_blacklist</objname>
-		<parent/>
-		<properties>Top = 0
-Left = 0
-DoCreate = .T.
-Caption = "FILE AND FOLDER BLACKLIST"
-uniqueid = 350909A4F90540D9BC9950CF00596E2C
-Name = "MR_BLACKLIST"
-tmrSql.Name = "tmrSql"
+		<uniqueid>_5T8089LI2</uniqueid>
+		<timestamp>1358702740</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor5</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 99
+Left = 784
+Height = 280
+Width = 287
+Alias = "mr_instances1"
+Order = "iname"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor5"
 </properties>
 		<protected/>
 		<methods/>
@@ -224,8 +227,127 @@ tmrSql.Name = "tmrSql"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1358702740</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_blacklist</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "FILE AND FOLDER BLACKLIST"
+mr_iguid = .F.
+uniqueid = 350909A4F90540D9BC9950CF00596E2C
+Name = "MR_BLACKLIST"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE init2
+*!* init2
+
+Local iguid
+
+m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+Thisform.mr_setinstance(m.iguid)
+
+
+ENDPROC
+PROCEDURE mr_setinstance
+*!* mr_setinstance
+
+lparameters piguid
+
+thisform.mr_iguid = m.piguid
+
+if m.piguid = '00000000' and reccount('mr_instances') &gt; 0 then
+
+	go top in 'mr_instances'
+
+	thisform.mr_iguid = mr_instances.iguid
+
+endif
+
+if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
+
+	_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
+
+	if empty(mr_instances.iname) then
+
+		thisform.caption = 'FILE BLACKLIST - ' + _shortenpath(mr_instances.iguid, 240)
+
+	else
+
+		thisform.caption = 'FILE BLACKLIST - ' + _shortenpath(mr_instances.iname, 240)
+
+	endif
+
+
+else
+
+	thisform.setall('ENABLED', .f.)
+
+	thisform.tbinstances.enabled = .t.
+
+	thisform.caption = 'FILE BLACKLIST - NO INSTANCE SELECTED'
+
+endif
+
+select 'mr_blacklist'
+
+set filter to mr_blacklist.iguid == thisform.mr_iguid
+
+thisform.updateui()
+
+thisform.refresh()
+ENDPROC
+PROCEDURE updateui
+*!* updateui
+
+local icaption, sep
+
+
+m.sep = space(3)
+
+m.icaption = ' ' + ;
+	'GUID: ' + mr_instances.iguid + m.sep + ;
+	'NAME: ' + mr_instances.iname + m.sep + ;
+	'VERSION ' + mr_instances.iminecraft + m.sep + ;
+	'LOADER: ' + mr_instances.iloader + m.sep + ;
+	'MINVER: ' + mr_instances.gver1 + m.sep + ;
+	'MAXVER: ' + mr_instances.gver2 + m.sep + ;
+	'PATH: '
+
+m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - len(m.icaption))
+
+thisform.lblinstance.caption = m.icaption
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>mr_iguid
+*mr_setinstance 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5KF03OZ27</uniqueid>
-		<timestamp>1327369581</timestamp>
+		<timestamp>1357520588</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -238,7 +360,7 @@ Height = 144
 Left = 12
 ReadOnly = .T.
 TabIndex = 9
-Top = 348
+Top = 324
 Width = 936
 ZOrderSet = 0
 Value = 
@@ -264,14 +386,14 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1327369581</timestamp>
+		<timestamp>1357520588</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
 		<parent>mr_blacklist</parent>
 		<properties>Anchor = 15
-Height = 300
+Height = 276
 Left = 12
 RecordSource = "mr_blacklist"
 Top = 36
@@ -389,14 +511,80 @@ Name = "tbmenu"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327369794</timestamp>
+		<timestamp>1358365907</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbinstances</objname>
+		<parent>mr_blacklist</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 144
+Picture = ..\res\1x\outline_expand_more_black_18dp.png
+Caption = "INSTANCES"
+ToolTipText = "OPEN INSTANCES MENU"
+PicturePosition = 4
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbinstances"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local nselect, result
+
+m.nselect = Select()
+
+Select 'mr_instances1'
+
+Scan
+
+This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
+
+Endscan
+
+_restorearea(m.nselect)
+
+m.result = This.tbmenushow()
+
+If m.result &gt; 0 Then
+
+Go m.result In 'mr_instances1'
+
+Thisform.mr_setinstance(mr_instances1.iguid)
+
+Endif
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358702600</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbscan</objname>
 		<parent>mr_blacklist</parent>
 		<properties>Top = 0
-Left = 12
+Left = 216
 Height = 28
 Width = 72
 Picture = ..\res\1x\outline_autorenew_black_18dp.png
@@ -407,124 +595,9 @@ Name = "tbscan"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-local blblack, blpath, instancefolder, nrec
-
-m.nrec = recno('mr_blacklist')
-
-select 'mr_instances'
-
-_logwrite('SCAN START')
-
-scan
-
-	doevents
-
-	m.instancefolder = mr_getinstancefolderfrommodsfolder(mr_instances.ifolder)
-
-	_logwrite('SCAN FOLDERS START')
-
-	_findfilesinfoldertree(m.instancefolder, '*.*')
-
-	_logwrite('SCAN FOLDERS END')
-
-	select 'foundfiles'
-
-	replace foundfiles.filename with _zipgetzfilepath(foundfiles.filename, m.instancefolder) all in 'foundfiles'
-
-	scan
-
-		m.blpath = foundfiles.filename
-
-		if recno('foundfiles') % 50 = 0
-
-			_logwrite('CHECKING', m.blpath)
-
-		endif
-
-		select 'mr_blacklist1'
-
-		*!* CHECK IF ITEM OR PARENT FOLDER(S) ARE NOT BLACKLISTED
-
-		locate for mr_blacklist1.blpath == m.blpath and not deleted('mr_blacklist1')
-
-		if found('mr_blacklist1')
-
-			loop
-
-		endif
-
-		m.blblack = .f.
-
-		m.blpath = justpath(m.blpath)
-
-		do while not empty(m.blpath)
-
-			locate for mr_blacklist1.blpath == m.blpath
-
-			if found('mr_blacklist1') and mr_blacklist1.blblack = .t.
-
-				m.blblack = .t.
-
-				exit
-
-			endif
-
-			m.blpath = justpath(m.blpath)
-
-		enddo
-
-		if m.blblack = .t.
-
-			loop
-
-		endif
-
-		* ! * ADD ITEM
-
-		m.blpath = foundfiles.filename
-
-		append blank in 'mr_blacklist1'
-
-		replace mr_blacklist1.blpath with m.blpath in 'mr_blacklist1'
-
-		* ! * ADD FOLDERS OF ITEM
-
-		m.blpath = justpath(m.blpath)
-
-		do while not empty(m.blpath)
-
-			locate for mr_blacklist1.blpath == m.blpath
-
-			if not found('mr_blacklist1')
-
-				append blank in 'mr_blacklist1'
-
-				replace mr_blacklist1.blpath with m.blpath in 'mr_blacklist1'
-
-			endif
-
-			m.blpath = justpath(m.blpath)
-
-		enddo
-
-		select 'foundfiles'
-
-	endscan
-
-	use in 'foundfiles'
-
-endscan
-
-select 'mr_blacklist'
-
-go m.nrec in 'mr_blacklist'
-
-_logwrite('SCAN END')
-
+mr_blacklist_scan(mr_instances.iguid, mr_instances.ifolder)
 
 thisform.refresh()
-
-
 
 
 ENDPROC
@@ -545,48 +618,65 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KA0YVNID</uniqueid>
-		<timestamp>1327369937</timestamp>
+		<timestamp>1358702740</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
+		<objname>tbcleanup</objname>
 		<parent>mr_blacklist</parent>
 		<properties>Top = 0
-Left = 96
+Left = 300
 Height = 28
 Width = 96
 Picture = ..\res\1x\outline_autorenew_black_18dp.png
 Caption = "CLEAN UP"
 ToolTipText = "REMOVE BLACKLISTED CHILD FILES AND FOLDERS"
 ZOrderSet = 4
-Name = "_tbcommand1"
+Name = "tbcleanup"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-local blpath, instancefolder, nrec, zipbasefolder
-
-
-m.nrec = recno('mr_blacklist')
+local blmd5, blpath, instancefolder, nrec, zipbasefolder
 
 select 'mr_blacklist1'
 
 _logwrite('CLEANUP START')
 
+m.instancefolder = mr_getinstancefolderfrommodsfolder(mr_instances.ifolder)
+
 scan
+
+	if not mr_blacklist1.iguid == mr_instances.iguid
+
+		loop
+
+	endif
+
+	_logwrite(mr_blacklist1.blpath)
+
+	if mr_blacklist1.blblack = .f.
+
+		replace mr_blacklist1.iguid with '00000000' in 'mr_blacklist1'
+		replace mr_blacklist1.blpath with '' in 'mr_blacklist1'
+		replace mr_blacklist1.isfolder with .f. in 'mr_blacklist1'
+		replace mr_blacklist1.blmd5 with '' in 'mr_blacklist1'
+
+		loop
+
+	endif
 
 	m.blpath = justpath(mr_blacklist1.blpath)
 
-	do while not empty(m.blpath)
+	do while not lower(m.blpath) == lower(m.instancefolder)
 
-		doevents
+		m.blmd5 = _md5hashstring(lower(m.blpath))
 
-		select 'mr_blacklist2'
+		if seek(m.blmd5, 'mr_blacklist2', 'blmd5') = .t. and mr_blacklist2.blblack = .t.
 
-		locate for mr_blacklist2.blpath == m.blpath
-
-		if found('mr_blacklist2') and mr_blacklist2.blblack = .t.
-
-			replace mr_blacklist1.blpath with '***DELETE***' in 'mr_blacklist1'
+			replace mr_blacklist1.iguid with '00000000' in 'mr_blacklist1'
+			replace mr_blacklist1.blpath with '' in 'mr_blacklist1'
+			replace mr_blacklist1.isfolder with .f. in 'mr_blacklist1'
+			replace mr_blacklist1.blmd5 with '' in 'mr_blacklist1'
 
 		endif
 
@@ -596,15 +686,18 @@ scan
 
 endscan
 
-delete for mr_blacklist1.blpath == '***DELETE***' in 'mr_blacklist1'
-
 select 'mr_blacklist'
-
-go m.nrec in 'mr_blacklist'
 
 _logwrite('CLEANUP END')
 
 thisform.refresh()
+
+
+
+
+
+
+
 
 
 ENDPROC
@@ -625,14 +718,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K618STAR</uniqueid>
-		<timestamp>1327072950</timestamp>
+		<timestamp>1357520493</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbtoggleenabled</objname>
 		<parent>mr_blacklist</parent>
 		<properties>Top = 0
-Left = 300
+Left = 408
 Height = 28
 Width = 108
 Picture = ..\res\1x\outline_toggle_off_black_18dp.png
@@ -651,6 +744,40 @@ thisform.gridmain.sethighlightbackcolor()
 thisform.refresh()
 ENDPROC
 </methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5T808DFHC</uniqueid>
+		<timestamp>1357520588</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>lblinstance</objname>
+		<parent>mr_blacklist</parent>
+		<properties>FontSize = 8
+Anchor = 14
+Caption = ""
+Height = 15
+Left = 12
+Top = 479
+Width = 936
+autowidth = .F.
+Name = "lblinstance"
+</properties>
+		<protected/>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>

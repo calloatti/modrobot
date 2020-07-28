@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1327334262</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -94,7 +94,7 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -106,7 +106,8 @@ Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "INSTANCES"
+Caption = "INSTANCES|(START HERE)"
+ToolTipText = "INSTANCES - START HERE TO ADD A NEW INSTANCE"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -137,7 +138,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -150,6 +151,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "MODS"
+ToolTipText = "MANAGE THE MODS OF AN INSTANCE"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -180,7 +182,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLSQ</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -193,6 +195,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "PROJECTS"
+ToolTipText = "LIST OF CURSEFORGE PROJECTS - DATA FROM CF"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -223,7 +226,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I617KLSW</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -236,6 +239,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "FILES"
+ToolTipText = "LIST OF PROJECT FILES - DATA FROM CF"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -266,7 +270,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -279,6 +283,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "MINECRAFT|VERSIONS"
+ToolTipText = "MINECRAFT VERSIONS - DATA FROM CF"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -309,7 +314,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327327730</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -322,6 +327,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "FILE|DEPENDENCIES"
+ToolTipText = "LIST OF FILE DEPENDENCIES - DATA FROM CF"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -352,7 +358,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -365,6 +371,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "CHANGELOG"
+ToolTipText = "INSTANCE CHANGELOG - KEEPS TRACK OF MOD UPDATES, DELETIONS, NEW MODS, ETC"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -395,7 +402,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1321885826</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -408,6 +415,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "FILE|VERSIONS"
+ToolTipText = "LIST OF FILES FOR EACH MC VERSION - DATA FROM CF"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -438,7 +446,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -451,6 +459,7 @@ Width = 96
 Anchor = 12
 Picture = ..\res\bookmark.png
 Caption = "ABOUT"
+ToolTipText = "ABOUT MODROBOT AND SOME UTILITIES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -482,7 +491,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I900L3UZ</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -495,6 +504,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "DEPENDENCIES"
+ToolTipText = "CHECK MOD DEPENDENCIES FOR AN INSTANCE - USES CURSEFORGE DATA ON DEPENDENCIES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -525,51 +535,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand11</objname>
-		<parent>MR_MENU</parent>
-		<properties>Top = 300
-Left = 24
-Height = 96
-Width = 96
-Anchor = 6
-Picture = ..\res\aof_normal_logo.png
-Caption = "ALL OF FABRIC|NORMAL"
-ToolTipText = ""
-PicturePosition = 13
-ForeColor = 250,250,250
-tbpicturealpha = 200
-tbautowidth = .F.
-tbstyle = 3
-tbpicturesize = 48
-tbpictureautosize = .F.
-Name = "_tbcommand11"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute('https://github.com/AllOfFabric/AOF-Normal')
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -582,6 +548,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "MODIDS"
+ToolTipText = "LIST OF ALL MOD IDS FOUND. USE TO FORCE MODS AS CLIENT SIDE, ADD MOD URLS FOR NON CF MODS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -612,7 +579,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -625,6 +592,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "CATEGORIES"
+ToolTipText = "CURSEFORGE CATEGORIES - DATA FROM CF"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -699,7 +667,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IY145XIY</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -712,6 +680,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "JAR IN JAR"
+ToolTipText = "LIST JAR IN JARS OF MODS IN AN INSTANCE AND OTHER INFO ABOUT MODS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -741,8 +710,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JM0GLP6X</uniqueid>
-		<timestamp>1327334262</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -754,7 +723,8 @@ Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "COMPARE"
+Caption = "COMPARE|MODS"
+ToolTipText = "COMPARES MODS FOLDER OF TWO INSTANCES - GENERATES CHANGELOG REPORT"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -785,19 +755,20 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K60TEHWG</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand17</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 408
-Left = 240
+Left = 348
 Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "SERVER|BATCH FILES"
+ToolTipText = "EDIT SERVER BATCH FILES - USED WHEN GENERATING SERVER AND MULTIMC ZIPS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -828,7 +799,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K71B1C2A</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -840,8 +811,8 @@ Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "FILE BLACKLIST"
-ToolTipText = "FILES AND FOLDERS BLACKLISTED WHEN GENERATING ZIPS"
+Caption = "FILE|BLACKLIST"
+ToolTipText = "MANAGE FILES AND FOLDERS BLACKLISTED WHEN GENERATING ZIPS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -871,21 +842,21 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KA0U46LC</uniqueid>
-		<timestamp>1327067373</timestamp>
+		<uniqueid>_5KE0ZA8XM</uniqueid>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand19</objname>
+		<objname>_tbcommand20</objname>
 		<parent>MR_MENU</parent>
-		<properties>Top = 300
-Left = 132
+		<properties>Top = 516
+Left = 456
 Height = 96
 Width = 96
 Anchor = 6
-Picture = ..\res\all_of_fabric_logo.png
-Caption = "ALL OF FABRIC|STRAWBERRY"
-ToolTipText = ""
+Picture = ..\res\bookmark.png
+Caption = "ADDONS"
+ToolTipText = "CF ADDONS - NO NEED TO USE THIS FOR INSTANCE AND MOD MANAGEMENT"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -893,11 +864,11 @@ tbautowidth = .F.
 tbstyle = 3
 tbpictureautosize = .F.
 tbpicturesize = 48
-Name = "_tbcommand19"
+Name = "_tbcommand20"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute('https://github.com/AllOfFabric/AOF-Strawberry')
+DO FORM MR_ADDONS_API
 ENDPROC
 </methods>
 		<objcode/>
@@ -915,20 +886,21 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KE0ZA8XM</uniqueid>
-		<timestamp>1327334262</timestamp>
+		<uniqueid>_5TH03HYVC</uniqueid>
+		<timestamp>1358712188</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand20</objname>
+		<objname>_tbcommand11</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 516
-Left = 456
+Left = 672
 Height = 96
 Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
-Caption = "ADDONS"
+Caption = "COMPARE|CONFIG"
+ToolTipText = "COMPARES CONFIG FOLDER OF TWO INSTANCES"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -936,11 +908,56 @@ tbautowidth = .F.
 tbstyle = 3
 tbpictureautosize = .F.
 tbpicturesize = 48
-Name = "_tbcommand20"
+Name = "_tbcommand11"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_ADDONS_API
+DO FORM MR_COMPARECONFIG
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TQ0KUXDD</uniqueid>
+		<timestamp>1358712188</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand19</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 240
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "MODLOADERS"
+ToolTipText = "MODLOADER LIST - DATA FROM CF (ONLY FORGE REALLY)"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand19"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_MODLOADERS
+
 ENDPROC
 </methods>
 		<objcode/>

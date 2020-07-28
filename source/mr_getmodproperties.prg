@@ -1,23 +1,31 @@
 *!* mr_getmodproperties
 
-Lparameters pfile, pbytes
+lparameters pfile, pbytes
 
-Local omp As 'empty'
-Local jsonfabric, jsonforge, jsonlitemod, jsonrift, laprops[1], lnc, lnx, ojson, tomlforge
+local omp as 'empty'
+local jsonfabric, jsonforge, jsonlitemod, jsonrift, laprops[1], lnc, lnx, ojson, tomlforge
 
-m.omp = Createobject('empty')
+m.omp = createobject('empty')
 
-AddProperty(m.omp, 'mod_id', '')
-AddProperty(m.omp, 'mod_name', '')
-AddProperty(m.omp, 'mod_authors', '')
-AddProperty(m.omp, 'mod_environment', '')
-AddProperty(m.omp, 'mod_loader', '')
-AddProperty(m.omp, 'mod_version', '')
-AddProperty(m.omp, 'mod_environment', '')
-AddProperty(m.omp, 'mod_requires', '')
-AddProperty(m.omp, 'mod_depends', '')
-AddProperty(m.omp, 'mod_jars[1]', '')
-AddProperty(m.omp, 'jsonfabric', '')
+addproperty(m.omp, 'mod_id', '')
+addproperty(m.omp, 'mod_name', '')
+addproperty(m.omp, 'mod_authors', '')
+addproperty(m.omp, 'mod_environment', '')
+addproperty(m.omp, 'mod_loader', '')
+addproperty(m.omp, 'mod_version', '')
+addproperty(m.omp, 'mod_environment', '')
+addproperty(m.omp, 'mod_requires', '')
+addproperty(m.omp, 'mod_depends', '')
+addproperty(m.omp, 'mod_jars[1]', '')
+addproperty(m.omp, 'jsonfabric', '')
+addproperty(m.omp, 'jsonmixins', '')
+addproperty(m.omp, 'jsonrefmap', '')
+
+addproperty(m.omp, 'depends', createobject('empty'))
+
+addproperty(m.omp.depends, 'fabric', '')
+addproperty(m.omp.depends, 'fabricloader', '')
+addproperty(m.omp.depends, 'minecraft', '')
 
 m.jsonfabric  = ''
 m.jsonforge	  = ''
@@ -27,256 +35,288 @@ m.jsonlitemod = ''
 
 *!* FABRIC
 
-Do Case
+do case
 
-   Case Not Empty(m.pfile) And File(m.pfile)
+case not empty(m.pfile) and file(m.pfile)
 
-      m.jsonfabric = mr_getfilefromzipfile(m.pfile, 'fabric.mod.json')
+	m.jsonfabric = mr_getfilefromzipfile(m.pfile, 'fabric.mod.json')
 
-      m.jsonforge = mr_getfilefromzipfile(m.pfile, 'mcmod.info')
+	m.jsonforge = mr_getfilefromzipfile(m.pfile, 'mcmod.info')
 
-      m.tomlforge = mr_getfilefromzipfile(m.pfile, 'META_INF\mods.toml')
+	m.tomlforge = mr_getfilefromzipfile(m.pfile, 'META_INF\mods.toml')
 
-      *!*	      m.jsonrift = mr_getfilefromzipfile(m.pfile, 'riftmod.json')
+	*!*	      m.jsonrift = mr_getfilefromzipfile(m.pfile, 'riftmod.json')
 
-      *!*	      m.jsonlitemod = mr_getfilefromzipfile(m.pfile, 'litemod.json')
+	*!*	      m.jsonlitemod = mr_getfilefromzipfile(m.pfile, 'litemod.json')
 
-   Case Not Empty(m.pbytes)
+case not empty(m.pbytes)
 
-      m.jsonfabric = mr_getfilefromzipdata(m.pbytes, 'fabric.mod.json')
+	m.jsonfabric = mr_getfilefromzipdata(m.pbytes, 'fabric.mod.json')
 
-      m.jsonforge = mr_getfilefromzipdata(m.pbytes, 'mcmod.info')
+	m.jsonforge = mr_getfilefromzipdata(m.pbytes, 'mcmod.info')
 
-      m.tomlforge = mr_getfilefromzipdata(m.pbytes, 'META_INF\mods.toml')
+	m.tomlforge = mr_getfilefromzipdata(m.pbytes, 'META_INF\mods.toml')
 
-      *!*	      m.jsonrift = mr_getfilefromzipdata(m.pbytes, 'riftmod.json')
+	*!*	      m.jsonrift = mr_getfilefromzipdata(m.pbytes, 'riftmod.json')
 
-      *!*	      m.jsonlitemod = mr_getfilefromzipdata(m.pbytes, 'litemod.json')
+	*!*	      m.jsonlitemod = mr_getfilefromzipdata(m.pbytes, 'litemod.json')
 
-   Otherwise
+otherwise
 
-      Error 'FILE NOT FOUND AND NO FILE DATA PARAMETER'
+	error 'FILE NOT FOUND AND NO FILE DATA PARAMETER'
 
-Endcase
+endcase
 
 *!* FABRIC
 
-If Not Empty(m.jsonfabric)
+if not empty(m.jsonfabric)
 
-   m.omp.jsonfabric = m.jsonfabric
+	m.omp.jsonfabric = m.jsonfabric
 
-   m.omp.mod_loader = m.omp.mod_loader + 'FABRIC|'
+	m.omp.mod_loader = m.omp.mod_loader + 'FABRIC|'
 
-   m.ojson = nfjsonread(m.jsonfabric)
+	m.ojson = nfjsonread(m.jsonfabric)
 
-   If Type('m.ojson.name') = 'C'
+	if type('m.ojson.name') = 'C'
 
-      m.omp.mod_name = m.ojson.Name
+		m.omp.mod_name = m.ojson.name
 
-   Endif
+	endif
 
-   If Type('m.ojson.authors[1]') = 'C'
+	if type('m.ojson.authors[1]') = 'C'
 
-      m.omp.mod_authors = m.ojson.authors[1]
+		m.omp.mod_authors = m.ojson.authors[1]
 
-   Endif
+	endif
 
-   m.omp.mod_id = m.ojson.Id
+	m.omp.mod_id = m.ojson.id
 
-   If Type('m.ojson.version') = 'C'
+	if type('m.ojson.version') = 'C'
 
-      m.omp.mod_version = m.ojson.Version
+		m.omp.mod_version = m.ojson.version
 
-   Endif
+	endif
 
-   If Type('m.ojson.environment') = 'C'
+	if type('m.ojson.environment') = 'C'
 
-      m.omp.mod_environment = m.ojson.Environment
+		m.omp.mod_environment = m.ojson.environment
 
-   Endif
+	endif
 
-   If Type('m.ojson.requires') = 'O'
+	if type('m.ojson.requires') = 'O'
 
-      m.lnc = Amembers(laprops, m.ojson.requires)
+		m.lnc = amembers(laprops, m.ojson.requires)
 
-      For m.lnx = 1 To m.lnc
+		for m.lnx = 1 to m.lnc
 
-         If Lower(m.laprops[m.lnx]) == 'fabricloader'
+			if lower(m.laprops[m.lnx]) == 'fabricloader'
 
-            Loop
+				loop
 
-         Endif
+			endif
 
-         m.omp.mod_requires = m.omp.mod_requires + Lower(m.laprops[m.lnx]) + '|'
+			m.omp.mod_requires = m.omp.mod_requires + lower(m.laprops[m.lnx]) + '|'
 
-      Endfor
+		endfor
 
-      m.omp.mod_requires = Rtrim(m.omp.mod_requires, 1, '|')
+		m.omp.mod_requires = rtrim(m.omp.mod_requires, 1, '|')
 
-   Endif
+	endif
 
-   If Type('m.ojson.jars[1].file') = 'C'
+	if type('m.ojson.jars[1].file') = 'C'
 
-      = Acopy(m.ojson.jars, m.omp.mod_jars)
+		= acopy(m.ojson.jars, m.omp.mod_jars)
 
-   Endif
+	endif
 
-Endif
+endif
 
-If Type('m.ojson.depends') = 'O'
+if type('m.ojson.depends') = 'O'
 
-   m.lnc = Amembers(laprops, m.ojson.depends)
+	m.lnc = amembers(laprops, m.ojson.depends)
 
-   For m.lnx = 1 To m.lnc
+	for m.lnx = 1 to m.lnc
 
-      m.omp.mod_depends = m.omp.mod_depends + m.laprops[m.lnx] + '|'
+		m.omp.mod_depends = m.omp.mod_depends + m.laprops[m.lnx] + '|'
 
-   Endfor
+	endfor
 
-   m.omp.mod_depends = Rtrim(m.omp.mod_depends, 1, '|')
+	m.omp.mod_depends = rtrim(m.omp.mod_depends, 1, '|')
 
-Endif
+endif
+
+if type('m.ojson.depends.fabricloader') = 'C'
+
+	m.omp.depends.fabricloader = m.ojson.depends.fabricloader
+
+endif
+
+if type('m.ojson.depends.fabric') = 'C'
+
+	m.omp.depends.fabric = m.ojson.depends.fabric
+
+endif
+
+if type('m.ojson.depends.minecraft') = 'C'
+
+	m.omp.depends.minecraft = m.ojson.depends.minecraft
+
+endif
+
+
+if type('m.ojson.requires.fabricloader') = 'C'
+
+	m.omp.depends.fabricloader = m.ojson.requires.fabricloader
+
+endif
+
+if type('m.ojson.requires.fabric') = 'C'
+
+	m.omp.depends.fabric = m.ojson.requires.fabric
+
+endif
 
 *!* FORGE
 
-If Not Empty(m.jsonforge)
+if not empty(m.jsonforge)
 
-   m.omp.mod_loader = m.omp.mod_loader + 'FORGE|'
+	m.omp.mod_loader = m.omp.mod_loader + 'FORGE|'
 
-   m.ojson = nfjsonread(m.jsonforge)
+	m.ojson = nfjsonread(m.jsonforge)
 
-   If Type('m.ojson.array[1].modid') = 'C'
+	if type('m.ojson.array[1].modid') = 'C'
 
-      m.omp.mod_id = m.ojson.Array[1].modid
+		m.omp.mod_id = m.ojson.array[1].modid
 
-   Endif
+	endif
 
-   If Type('m.ojson.array[1].name') = 'C'
+	if type('m.ojson.array[1].name') = 'C'
 
-      m.omp.mod_name = m.ojson.Array[1].Name
+		m.omp.mod_name = m.ojson.array[1].name
 
-   Endif
+	endif
 
-   If Type('m.ojson.array[1].authorList[1]') = 'C'
+	if type('m.ojson.array[1].authorList[1]') = 'C'
 
-      m.omp.mod_authors = m.ojson.Array[1].authorList[1]
+		m.omp.mod_authors = m.ojson.array[1].authorList[1]
 
-   Endif
+	endif
 
-   If Type('m.ojson.array[1].version') = 'C'
+	if type('m.ojson.array[1].version') = 'C'
 
-      m.omp.mod_version = m.ojson.Array[1].Version
+		m.omp.mod_version = m.ojson.array[1].version
 
-   Endif
-
-   
-   If Type('m.ojson.modList[1].modid') = 'C'
-
-      m.omp.mod_id = m.ojson.modList[1].modid
-
-   Endif
-
-   If Type('m.ojson.modList[1].name') = 'C'
-
-      m.omp.mod_name = m.ojson.modList[1].Name
-
-   Endif
-
-   If Type('m.ojson.modList[1].authorList[1]') = 'C'
-
-      m.omp.mod_authors = m.ojson.modList[1].authorList[1]
-
-   Endif
-
-   If Type('m.ojson.modList[1].version') = 'C'
-
-      m.omp.mod_version = m.ojson.modList[1].Version
-
-   Endif
+	endif
 
 
-Endif
+	if type('m.ojson.modList[1].modid') = 'C'
+
+		m.omp.mod_id = m.ojson.modList[1].modid
+
+	endif
+
+	if type('m.ojson.modList[1].name') = 'C'
+
+		m.omp.mod_name = m.ojson.modList[1].name
+
+	endif
+
+	if type('m.ojson.modList[1].authorList[1]') = 'C'
+
+		m.omp.mod_authors = m.ojson.modList[1].authorList[1]
+
+	endif
+
+	if type('m.ojson.modList[1].version') = 'C'
+
+		m.omp.mod_version = m.ojson.modList[1].version
+
+	endif
+
+
+endif
 
 *!* FORGE TOML
 
-If Not Empty(m.tomlforge)
+if not empty(m.tomlforge)
 
-   m.omp.mod_loader = m.omp.mod_loader + 'FORGET|'
+	m.omp.mod_loader = m.omp.mod_loader + 'FORGET|'
 
-   m.omp.mod_id = Strextract(m.tomlforge, 'modId="', '"')
+	m.omp.mod_id = strextract(m.tomlforge, 'modId="', '"')
 
-   m.omp.mod_name = Strextract(m.tomlforge, 'displayName="', '"')
+	m.omp.mod_name = strextract(m.tomlforge, 'displayName="', '"')
 
-   m.omp.mod_authors = Strextract(m.tomlforge, 'authors="', '"')
+	m.omp.mod_authors = strextract(m.tomlforge, 'authors="', '"')
 
-   m.omp.mod_version = Strextract(m.tomlforge, 'version="', '"')
+	m.omp.mod_version = strextract(m.tomlforge, 'version="', '"')
 
-Endif
+endif
 
 
 *!* RIFT
 
-If Not Empty(m.jsonrift)
+if not empty(m.jsonrift)
 
-   m.omp.mod_loader = m.omp.mod_loader + 'RIFT|'
+	m.omp.mod_loader = m.omp.mod_loader + 'RIFT|'
 
-   m.ojson = nfjsonread(m.jsonrift)
+	m.ojson = nfjsonread(m.jsonrift)
 
-   m.omp.mod_id = m.ojson.Id
+	m.omp.mod_id = m.ojson.id
 
-   If Type('m.ojson.name') = 'C'
+	if type('m.ojson.name') = 'C'
 
-      m.omp.mod_name = m.ojson.Name
+		m.omp.mod_name = m.ojson.name
 
-   Endif
+	endif
 
-   If Type('m.ojson.authors[1]') = 'C'
+	if type('m.ojson.authors[1]') = 'C'
 
-      m.omp.mod_authors = m.ojson.authors[1]
+		m.omp.mod_authors = m.ojson.authors[1]
 
-   Endif
+	endif
 
-Endif
+endif
 
 *!* LITEMOD
 
-If Not Empty(m.jsonlitemod)
+if not empty(m.jsonlitemod)
 
-   m.omp.mod_loader = m.omp.mod_loader + 'LITELOADER|'
+	m.omp.mod_loader = m.omp.mod_loader + 'LITELOADER|'
 
-   m.ojson = nfjsonread(m.jsonlitemod)
+	m.ojson = nfjsonread(m.jsonlitemod)
 
-   m.omp.mod_id = m.ojson.Name
+	m.omp.mod_id = m.ojson.name
 
-   If Type('m.ojson.displayName') = 'C'
+	if type('m.ojson.displayName') = 'C'
 
-      m.omp.mod_name = m.ojson.displayName
+		m.omp.mod_name = m.ojson.displayName
 
-   Endif
+	endif
 
-   If Type('m.ojson.author') = 'C'
+	if type('m.ojson.author') = 'C'
 
-      m.omp.mod_authors = m.ojson.author
+		m.omp.mod_authors = m.ojson.author
 
-   Endif
+	endif
 
-   If Type('m.ojson.version') = 'C'
+	if type('m.ojson.version') = 'C'
 
-      m.omp.mod_version = m.ojson.Version
+		m.omp.mod_version = m.ojson.version
 
-   Endif
+	endif
 
-Endif
+endif
 
-If Empty(m.omp.mod_id)
+if empty(m.omp.mod_id)
 
-   m.omp.mod_id = Upper(Juststem(m.pfile))
+	m.omp.mod_id = upper(juststem(m.pfile))
 
-Endif
+endif
 
-m.omp.mod_loader = Rtrim(m.omp.mod_loader, 1, '|')
+m.omp.mod_loader = rtrim(m.omp.mod_loader, 1, '|')
 
-Return m.omp
+return m.omp
+
 
 
 
