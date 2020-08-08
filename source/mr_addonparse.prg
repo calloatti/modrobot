@@ -1,14 +1,22 @@
 *!* mr_addonparse
 
-*!* THIS ASSUMES THE ADDONS TABLE IS OPEN (addons_upd) AND POSITIONED ON THE RECORD TO BE UPDATED
-
 lparameters paid, pajson
 
-local avatar, ojson
+local avatar, nselect, ojson
 
-if m.paid # addons_upd.aid or m.paid = 0
+m.nselect = select()
 
-	error 'PAID'
+if not used('par_addons')
+
+	use 'mr_addons' in 0 again shared alias 'par_addons'
+
+endif
+
+select 'par_addons'
+
+if seek(m.paid, 'par_addons', 'aid') = .f.
+
+	error 'PAID # PAR_ADDONS.AID'
 
 endif
 
@@ -17,57 +25,52 @@ m.ojson = nfjsonread(m.pajson)
 *!* TYPO IN JSON PROPERTY: "isexperiemental"
 
 replace ;
-	addons_upd.asecid	  with m.ojson.categorysection_id, ;
-	addons_upd.asecname	  with m.ojson.categorysection_name, ;
-	addons_upd.asecptype  with m.ojson.categorysection_packagetype, ;
-	addons_upd.authorid   with m.ojson.author_userid, ;
-	addons_upd.authorname with m.ojson.author_name, ;
-	addons_upd.adcreated  with m.ojson.datecreated, ;
-	addons_upd.admodified with m.ojson.datemodified, ;
-	addons_upd.slug		  with m.ojson.slug, ;
-	addons_upd.adreleased with m.ojson.datereleased in 'addons_upd'
+	par_addons.asecid	  with m.ojson.categorysection_id, ;
+	par_addons.asecname	  with m.ojson.categorysection_name, ;
+	par_addons.asecptype  with m.ojson.categorysection_packagetype, ;
+	par_addons.authorid	  with m.ojson.author_userid, ;
+	par_addons.authorname with m.ojson.author_name, ;
+	par_addons.adcreated  with m.ojson.datecreated, ;
+	par_addons.admodified with m.ojson.datemodified, ;
+	par_addons.slug		  with m.ojson.slug, ;
+	par_addons.adreleased with m.ojson.datereleased in 'par_addons'
 
 replace ;
-	addons_upd.adowncount with m.ojson.downloadcount, ;
-	addons_upd.agameid	  with m.ojson.gameid, ;
-	addons_upd.agamename  with m.ojson.gamename, ;
-	addons_upd.aisavail	  with iif(m.ojson.isavailable, 1, 0), ;
-	addons_upd.aisexperim with iif(m.ojson.isexperiemental, 1, 0), ;
-	addons_upd.aname	  with m.ojson.name, ;
-	addons_upd.apcatid	  with m.ojson.primarycategoryid, ;
-	addons_upd.astatus	  with m.ojson.status, ;
-	addons_upd.astatusnam with mr_getprojectstatusname(m.ojson.status) in 'addons_upd'
+	par_addons.adowncount with m.ojson.downloadcount, ;
+	par_addons.agameid	  with m.ojson.gameid, ;
+	par_addons.agamename  with m.ojson.gamename, ;
+	par_addons.aisavail	  with iif(m.ojson.isavailable, 1, 0), ;
+	par_addons.aisexperim with iif(m.ojson.isexperiemental, 1, 0), ;
+	par_addons.aname	  with m.ojson.name, ;
+	par_addons.apcatid	  with m.ojson.primarycategoryid, ;
+	par_addons.astatus	  with m.ojson.status, ;
+	par_addons.astatusnam with mr_getprojectstatusname(m.ojson.status) in 'par_addons'
 
 *!* UPDATE AVATAR
 
 if type('m.ojson.attachment_url') # 'U'
 
-	if not m.ojson.attachment_url == addons_upd.aurl then
+	if not m.ojson.attachment_url == par_addons.aurl then
 
-		replace addons_upd.aurl with m.ojson.attachment_url, addons_upd.avatar with '' in 'addons_upd'
+		replace par_addons.aurl with m.ojson.attachment_url, par_addons.avatar with '' in 'par_addons'
 
 	endif
 
 endif
 
-if empty(addons_upd.avatar)
+if empty(par_addons.avatar)
 
-	m.avatar = mr_downloadresource(addons_upd.aurl)
+	m.avatar = mr_downloadresource(par_addons.aurl)
 
 	m.avatar = _jpgresizecrop(m.avatar, 128, 128)
 
-	replace addons_upd.avatar with m.avatar in 'addons_upd'
+	replace par_addons.avatar with m.avatar in 'par_addons'
 
 endif
 
-if empty(addons_upd.avatar)
+use in 'par_addons'
 
-	m.avatar = strconv('iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAB3RJTUUH4wgdEBMaTqwclwAAAAlwSFlzAAAeeAAAHngBy6sDHwAAAARnQU1BAACxjwv8YQUAAAADUExURT8/P2b1mHYAAAAmSURBVHja7cEBAQAAAIIg/69uSEABAAAAAAAAAAAAAAAAAAAA7wZAgAABHoWnEwAAAABJRU5ErkJggg==', 14)
-
-	replace addons_upd.avatar with m.avatar in 'addons_upd'
-
-endif
-
+_restorearea(m.nselect)
 
 
 

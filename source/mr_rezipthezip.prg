@@ -4,14 +4,49 @@ lparameters pzipfilename
 
 *!* STUPID HACK TO TRY TO CREATE A CF COMPATIBLE ZIP FILE
 
-Local foldername
+Local foldername, nselect, tempfoldername, tempzipname
 
-do zip.prg
+zipinit()
 
-m.foldername = justpath(m.pzipfilename) + '\' + juststem(m.pzipfilename)
+m.tempfoldername = justpath(m.pzipfilename) + '\' + sys(2015)
 
-UnzipQuick(m.pzipfilename, m.foldername)
+m.tempzipname = m.tempfoldername + '.zip'
 
-ZipFolderQuick(m.foldername)
+unzipquick(m.pzipfilename, m.tempfoldername)
 
-_deletefolder(m.foldername, _vfp.hwnd, 0x0010 + 0x0004 + 0x0400) 
+*!*	m.nselect = select()
+
+*!*	zipopen(m.tempzipname)
+
+*!*	_findfilesinfoldertree(m.tempfoldername)
+
+*!*	select 'foundfiles'
+
+*!*	scan
+
+*!*		zipfilerelative(foundfiles.filename, JUSTPATH(_zipgetzfilepath(foundfiles.filename, m.tempfoldername)))
+
+*!*	endscan
+
+*!*	zipclose()
+
+*!*	use in 'foundfiles'
+
+*!*	_restorearea(m.nselect)
+
+zipfolderquick(m.tempfoldername)
+
+if application.startmode # 0
+
+	_deletefolder(m.tempfoldername, _vfp.hwnd, 0x0010 + 0x0004 + 0x0400)
+
+endif
+
+_apideletefile(m.pzipfilename)
+
+_apimovefile(m.tempzipname, m.pzipfilename)
+
+
+
+
+ 

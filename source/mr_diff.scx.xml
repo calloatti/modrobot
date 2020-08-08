@@ -1,0 +1,290 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00L6C07</uniqueid>
+		<timestamp>1359433418</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+Width = 0
+Height = 0
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>1</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00L6C08</uniqueid>
+		<timestamp>1359435279</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_diff</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "DIFF"
+uniqueid = A869504B04B446B483B67242E310EC93
+Name = "MR_DIFF"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Resize
+*!* resize
+
+thisform.edit1.width = (thisform.width - 36) / 2
+thisform.edit2.width = (thisform.width - 36) / 2
+
+thisform.edit2.left = thisform.edit1.width + 24
+
+thisform.label1.width = thisform.edit1.width
+thisform.label2.width = thisform.edit2.width
+thisform.label2.left  = thisform.edit2.left
+
+
+thisform.edit1.height = thisform.height - 12 - thisform.edit1.top
+thisform.edit2.height = thisform.height - 12 - thisform.edit2.top
+
+if not empty(thisform.p1)
+
+	thisform.label1.caption	= _shortenpathtocontrolwidth(thisform.p1, thisform.label1)
+
+endif
+
+if not empty(thisform.p2)
+
+	thisform.label2.caption	= _shortenpathtocontrolwidth(thisform.p2, thisform.label2)
+
+endif
+ENDPROC
+PROCEDURE init2
+
+thisform.label1.caption	= ''
+thisform.label2.caption	= ''
+
+if not empty(thisform.p1)
+
+	thisform.edit1.value	= filetostr(thisform.p1)
+
+endif
+
+if not empty(thisform.p2)
+
+	thisform.edit2.value	= filetostr(thisform.p2)
+
+endif
+
+thisform.resize()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00L8AZ7</uniqueid>
+		<timestamp>1359435279</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edit1</objname>
+		<parent>mr_diff</parent>
+		<properties>FontName = "Consolas"
+Anchor = 0
+Height = 456
+Left = 12
+ReadOnly = .T.
+Top = 36
+Width = 462
+Name = "edit1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00L8AZ8</uniqueid>
+		<timestamp>1359435279</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edit2</objname>
+		<parent>mr_diff</parent>
+		<properties>FontName = "Consolas"
+Height = 456
+Left = 486
+ReadOnly = .T.
+Top = 36
+Width = 462
+Name = "edit2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00L6C07</uniqueid>
+		<timestamp>1359434516</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>label1</objname>
+		<parent>mr_diff</parent>
+		<properties>Height = 24
+Left = 12
+Top = 12
+Width = 456
+autowidth = .F.
+Name = "label1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00LHTE3</uniqueid>
+		<timestamp>1359434516</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>label2</objname>
+		<parent>mr_diff</parent>
+		<properties>Height = 24
+Left = 486
+Top = 12
+Width = 456
+autowidth = .F.
+Name = "label2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 9, 7, 14, 11, 13, 3, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

@@ -1,197 +1,213 @@
 *!* mr_modupdate
 
-Lparameters prguid
+lparameters prguid
 
-Local bfolder, file1, file2, file1a, hfile, nselect, remotefile, result
+Local bfolder, file1, file1backup, file2, hfile, nselect, remotefile, result
 
-m.nselect = Select()
+m.nselect = select()
 
-If Not Used('mods_um')
+if not used('mup_mods')
 
-   Use 'mr_mods' Again Alias 'mods_um' In 0
+	use 'mr_mods' again alias 'mup_mods' in 0
 
-Endif
+endif
 
-If Not Used('instances_um')
+if not used('mup_instances')
 
-   Use 'mr_instances' Again Alias 'instances_um' In 0
+	use 'mr_instances' again alias 'mup_instances' in 0
 
-Endif
+endif
 
-If Not Used('log_um')
+if not used('mup_log')
 
-   Use 'mr_log' Again Alias 'log_um' In 0
+	use 'mr_log' again alias 'mup_log' in 0
 
-Endif
+endif
 
-If Seek(m.prguid, 'mods_um', 'rguid') = .F.
+if seek(m.prguid, 'mup_mods', 'rguid') = .f.
 
-   _restorearea(m.nselect)
+	_logwrite('MODUPDATE ERROR: RGUID NOT FOUND IN MR_MODS')
+	
+	mr_modupdate_cleanup(m.nselect)
 
-   Return
+	return
 
-Endif
+endif
 
-If Seek(mods_um.iguid, 'instances_um', 'iguid') = .F.
+if seek(mup_mods.iguid, 'mup_instances', 'iguid') = .f.
 
-   _restorearea(m.nselect)
+	_logwrite('MODUPDATE ERROR: IGUID NOT FOUND IN MR_INSTANCES')
 
-   Return
+	mr_modupdate_cleanup(m.nselect)
 
-Endif
+	return
 
-If mods_um.fid1 = 0 Or mods_um.fid2 = 0 Or mods_um.fid1 = mods_um.fid2
+endif
 
-   _restorearea(m.nselect)
+if mup_mods.fid1 = 0 or mup_mods.fid2 = 0 or mup_mods.fid1 = mup_mods.fid2
 
-   Return
+	mr_modupdate_cleanup(m.nselect)
 
-Endif
+	return
 
+endif
 
-m.file1	= Addbs(instances_um.ifolder) + mods_um.filename1
-
+m.file1	= addbs(mup_instances.ifolder) + mup_mods.filename1
 
 *!* DO NOT UPDATE DISABLED MODS
 
-If Justext(m.file1) = 'disabled'
+if justext(m.file1) = 'disabled'
 
-   _restorearea(m.nselect)
+	_logwrite('MODUPDATE ERROR: MOD IS DISABLED')
 
-   Return
+	mr_modupdate_cleanup(m.nselect)
 
-Endif
+	return
 
+endif
 
 *!* CHECK IF OLD FILE CAN BE OPENED EXCLUSIVE, IF NOT MC MAY BE RUNNING
 
 m.hfile = _apicreatefile(m.file1, 0x40000000, 0, 0, 3, 0, 0)
 
-If m.hfile = -1
+if m.hfile = -1
 
-   _logwrite('UPDATE ERROR: FILE LOCKED, IS MINECRAFT RUNNING?')
+	_logwrite('MODUPDATE ERROR: UNABLE TO LOCK FILE, IS MINECRAFT RUNNING?')
 
-   _restorearea(m.nselect)
+	mr_modupdate_cleanup(m.nselect)
 
-   Return
+	return
 
-Endif
+endif
 
 _apiclosehandle(m.hfile)
 
 *!* CHECK IF FILE TO DOWNLOAD ALREADY EXISTS AND HAS CORRECT HASH
 
-m.file2	= Addbs(instances_um.ifolder) + mods_um.filename2
+m.file2	= addbs(mup_instances.ifolder) + mup_mods.filename2
 
-If _file(m.file2) And mr_fingerprint(m.file2) = mods_um.hash2
+if _file(m.file2)
 
-   _logwrite('UPDATE ERROR: FILE EXISTS', m.file2)
+	if mr_fingerprint(m.file2) = mup_mods.hash2
 
-   _restorearea(m.nselect)
+		_logwrite('MODUPDATE ERROR: FILE ALREADY EXISTS', m.file2)
 
-   Return
+		mr_modupdate_cleanup(m.nselect)
 
-Endif
+		return
 
-If _file(m.file2)
+	else
 
-   _apideletefile(m.file2)
+		*!* DELETE FILE WITH WRONG HASH
 
-Endif
+		_apideletefile(m.file2)
 
-m.remotefile = mr_geturlfile1(mods_um.fid2, mods_um.filename2)
+	endif
 
-_logwrite('UPDATE START', m.remotefile)
+endif
 
-m.result = mr_downloadfile(m.remotefile, m.file2)
+*!* MOVE OLD FILE TO BACKUP FIRST, JUST IN CASE NEW FILE HAS THE SAME NAME
 
-If m.result = 0
-
-   _logwrite('UPDATE ERROR: DOWNLOAD FAILED')
-
-   _restorearea(m.nselect)
-
-   Return
-
-Endif
-
-If mods_um.hash2 # mr_fingerprint(m.file2)
-
-   _apideletefile(m.pfile2)
-
-   _logwrite('UPDATE ERROR: FILE HAS WRONG HASH')
-
-   _restorearea(m.nselect)
-
-   Return
-
-Endif
-
-m.bfolder = Addbs(instances_um.ifolder) + '..\mods.backup'
+m.bfolder = addbs(mup_instances.ifolder) + '..\mods.backup'
 
 _apiCreateDirectory(m.bfolder, 0)
 
-m.file1a = Addbs(m.bfolder) + mods_um.filename1
+m.file1backup = addbs(m.bfolder) + mup_mods.filename1
 
-If _file(m.file1a) And mr_fingerprint(m.file1a) = mods_um.hash1
+if _file(m.file1)
 
-   _apideletefile(m.file1)
+	*!* IF THERE IS ALREADY A BACKUP OF FILE1, JUST DELETE IT
 
-Endif
+	if _file(m.file1backup) and mr_fingerprint(m.file1backup) = mup_mods.hash1
 
-If _file(m.file1a)
+		_apideletefile(m.file1)
 
-   m.file1a = Addbs(m.bfolder) + mods_um.filename1 + '.' + Sys(2015)
+	endif
 
-Endif
+	*!* IF THERE IS A BACKUP WITH THE SAME NAME BUT # HASH, ADD RANDOM EXTENSION
 
-If _file(m.file1)
+	if _file(m.file1backup)
 
-   _apimovefile(m.file1, m.file1a)
+		m.file1backup = addbs(m.bfolder) + mup_mods.filename1 + '.' + sys(2015)
 
-Endif
+	endif
+
+	_apimovefile(m.file1, m.file1backup)
+
+endif
+
+*!* DO ACTUAL DOWNLOAD
+
+m.remotefile = mr_geturlfile1(mup_mods.fid2, mup_mods.filename2)
+
+_logwrite('MODUPDATE START', m.remotefile)
+
+m.result = mr_downloadfile(m.remotefile, m.file2)
+
+if m.result = 0 or mup_mods.hash2 # mr_fingerprint(m.file2)
+
+	_apideletefile(m.pfile2)
+
+	_logwrite('MODUPDATE ERROR: DOWNLOAD FAILED')
+
+	*!* RESTORE ORIGINAL FILE
+
+	if _file(m.file1backup)
+
+		_apimovefile(m.file1backup, m.file1)
+
+	endif
+
+	mr_modupdate_cleanup(m.nselect)
+
+	return
+
+endif
 
 *!* UPDATE LOG TABLE
 
-Append Blank In 'log_um'
+append blank in 'mup_log'
 
-Replace log_um.fid1 With mods_um.fid1 In 'log_um'
-Replace log_um.fid2 With mods_um.fid2 In 'log_um'
-Replace log_um.filename1 With mods_um.filename1 In 'log_um'
-Replace log_um.filename2 With mods_um.filename2 In 'log_um'
-Replace log_um.hash1 With mods_um.hash1 In 'mr_mods1'
-Replace log_um.hash2 With mods_um.hash2 In 'mr_mods1'
+replace mup_log.fid1 with mup_mods.fid1 in 'mup_log'
+replace mup_log.fid2 with mup_mods.fid2 in 'mup_log'
+replace mup_log.filename1 with mup_mods.filename1 in 'mup_log'
+replace mup_log.filename2 with mup_mods.filename2 in 'mup_log'
+replace mup_log.hash1 with mup_mods.hash1 in 'mr_mods1'
+replace mup_log.hash2 with mup_mods.hash2 in 'mr_mods1'
 
-Replace log_um.ifolder With instances_um.ifolder In 'log_um'
-Replace log_um.iguid With mods_um.iguid In 'log_um'
+replace mup_log.ifolder with mup_instances.ifolder in 'mup_log'
+replace mup_log.iguid with mup_mods.iguid in 'mup_log'
 
-Replace log_um.ldatetime With Datetime() In 'log_um'
+replace mup_log.ldatetime with datetime() in 'mup_log'
 
-Replace log_um.ldesc With 'UPDATED' In 'log_um'
+replace mup_log.ldesc with 'UPDATED' in 'mup_log'
 
 *!* UPDATE MODS TABLE
 
-Replace mods_um.fid1 With mods_um.fid2 In 'mods_um'
-Replace mods_um.filedate1 With mods_um.filedate2 In 'mods_um'
-Replace mods_um.filelen1 With mods_um.filelen2 In 'mods_um'
-Replace mods_um.filename1 With mods_um.filename2 In 'mods_um'
-Replace mods_um.gver1 With mods_um.gver2 In 'mods_um'
-Replace mods_um.loader1 With mods_um.loader2 In 'mods_um'
-Replace mods_um.rtypename1 With mods_um.rtypename2 In 'mods_um'
-Replace mods_um.hash1 With mods_um.hash2 In 'mods_um'
+replace mup_mods.fid1 with mup_mods.fid2 in 'mup_mods'
+replace mup_mods.filedate1 with mup_mods.filedate2 in 'mup_mods'
+replace mup_mods.filelen1 with mup_mods.filelen2 in 'mup_mods'
+replace mup_mods.filename1 with mup_mods.filename2 in 'mup_mods'
+replace mup_mods.gver1 with mup_mods.gver2 in 'mup_mods'
+replace mup_mods.loader1 with mup_mods.loader2 in 'mup_mods'
+replace mup_mods.rtypename1 with mup_mods.rtypename2 in 'mup_mods'
+replace mup_mods.hash1 with mup_mods.hash2 in 'mup_mods'
 
-Replace mods_um.fguid With Strconv(_ubintoc(mods_um.hash1), 15) In 'mods_um'
+replace mup_mods.fguid with strconv(_ubintoc(mup_mods.hash1), 15) in 'mup_mods'
 
-Replace mods_um.rguid With mods_um.iguid + mods_um.fguid In 'mods_um'
+replace mup_mods.rguid with mup_mods.iguid + mup_mods.fguid in 'mup_mods'
 
-_logwrite('UPDATE END')
+_logwrite('MODUPDATE END')
 
-Use In 'mods_um'
-Use In 'instances_um'
-Use In 'log_um'
+procedure mr_modupdate_cleanup
 
-_restorearea(m.nselect)
+lparameters pnselect
 
+use in 'mup_mods'
+use in 'mup_instances'
+use in 'mup_log'
 
+_restorearea(m.pnselect)
 
-
+endproc
+ 

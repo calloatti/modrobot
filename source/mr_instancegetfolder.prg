@@ -1,56 +1,57 @@
 *!* mr_instancegetfolder
 
-Lparameters pfolder
+Local iguid, lastfolder, selfolder
 
-Local lastfolder, selfolder
+m.lastfolder = _inigetvalue('ADD_INSTANCE_LAST_FOLDER', set('Default'))
 
-m.lastfolder = _inigetvalue('ADD_INSTANCE_LAST_FOLDER', Set('Default'))
+m.selfolder = getdir(m.lastfolder, 'Select MultimMC folder, MultimMC instances folder, instance folder or mods folder', '', 1 + 64 + 16 + 32)
 
-m.selfolder = Getdir(m.lastfolder, 'Select MultimMC folder, MultimMC instances folder, instance folder or mods folder', '', 1 + 64+16+32)
+m.iguid = ''
 
-If Not Empty(m.selfolder) Then
+if not empty(m.selfolder) then
 
-   _inisetvalue('ADD_INSTANCE_LAST_FOLDER', m.selfolder)
+	_inisetvalue('ADD_INSTANCE_LAST_FOLDER', m.selfolder)
 
-   Do Case
+	do case
 
-      Case File(Addbs(m.selfolder) + 'multimc.exe')
+	case file(addbs(m.selfolder) + 'multimc.exe')
 
-         *!* multimc root
+		*!* multimc root
 
-         mr_instanceaddfolder(Addbs(m.selfolder) + 'instances')
+		m.iguid = mr_instanceaddfolder(addbs(m.selfolder) + 'instances')
 
-      Case Lower(Justfname(Rtrim(m.selfolder, 1, '\'))) == 'instances'
+	case lower(justfname(rtrim(m.selfolder, 1, '\'))) == 'instances'
 
-         *!* multimc instances root
+		*!* multimc instances root
 
-         mr_instanceaddfolder(Rtrim(m.selfolder, 1, '\'))
+		m.iguid = mr_instanceaddfolder(rtrim(m.selfolder, 1, '\'))
 
-      Case Directory(Addbs(m.selfolder) + '.minecraft\mods')
+	case directory(addbs(m.selfolder) + '.minecraft\mods')
 
-         *!* instance folder
+		*!* instance folder
 
-         mr_instanceadd(Addbs(m.selfolder) + '.minecraft\mods')
+		m.iguid = mr_instanceadd(addbs(m.selfolder) + '.minecraft\mods')
 
-      Case Directory(Addbs(m.selfolder) + 'minecraft\mods')
+	case directory(addbs(m.selfolder) + 'minecraft\mods')
 
-         *!* instance folder
+		*!* instance folder
 
-         mr_instanceadd(Addbs(m.selfolder) + 'minecraft\mods')
+		m.iguid = mr_instanceadd(addbs(m.selfolder) + 'minecraft\mods')
 
-      Case Directory(Addbs(m.selfolder) + 'mods')
+	case directory(addbs(m.selfolder) + 'mods')
 
-         *!* minecraft folder
+		*!* minecraft folder
 
-         mr_instanceadd(Addbs(m.selfolder) + 'mods')
+		m.iguid = mr_instanceadd(addbs(m.selfolder) + 'mods')
 
-      Otherwise
+	otherwise
 
-         *!* mods folder?
+		*!* mods folder?
 
-         mr_instanceadd(Rtrim(m.selfolder, 1, '\'))
+		m.iguid = mr_instanceadd(rtrim(m.selfolder, 1, '\'))
 
-   Endcase
+	endcase
 
-Endif
+endif
 
+return m.iguid 

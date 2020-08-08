@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<timestamp>1359432568</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -711,7 +711,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<timestamp>1359432569</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -736,7 +736,7 @@ Name = "_tbcommand16"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_COMPARE
+DO FORM MR_COMPAREMODS
 ENDPROC
 </methods>
 		<objcode/>
@@ -754,8 +754,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5K60TEHWG</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -843,7 +843,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KE0ZA8XM</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<timestamp>1359153261</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -856,6 +856,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "ADDONS"
+Enabled = .F.
 ToolTipText = "CF ADDONS - NO NEED TO USE THIS FOR INSTANCE AND MOD MANAGEMENT"
 PicturePosition = 13
 ForeColor = 250,250,250
@@ -887,7 +888,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TH03HYVC</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<timestamp>1359432569</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -912,7 +913,7 @@ Name = "_tbcommand11"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-DO FORM MR_COMPARECONFIG
+DO FORM MR_COMPARECONFIGS
 ENDPROC
 </methods>
 		<objcode/>
@@ -958,6 +959,50 @@ Name = "_tbcommand19"
 		<methods>PROCEDURE Click
 DO FORM MR_MODLOADERS
 
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0DZU4Z</uniqueid>
+		<timestamp>1359164544</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand21</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 408
+Left = 456
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "SERVER|PROPERTIES"
+ToolTipText = "EDIT DEFAULT SERVER.PROPERTIES"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand21"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_SERVER_PROPERTIES
 ENDPROC
 </methods>
 		<objcode/>

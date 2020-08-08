@@ -2,8 +2,8 @@
 
 lparameters piguid, ponlycfmods, pfoldertargetroot
 
-Local btext, crlf, fabricinstallerversion, filesource, filetarget, foldersource, foldertarget
-Local foldertargetroot, itext, nselect, result, url
+local btext, crlf, fabricinstallerversion, filesource, filetarget, foldersource, foldertarget
+local foldertargetroot, includemod, itext, nselect, result, url
 
 m.nselect = select()
 
@@ -73,7 +73,7 @@ endif
 
 m.crlf = 0h0d0a
 
-_logwrite('GENERATE SERVER INSTANCE START', m.pfoldertargetroot)
+_logwrite('GENERATE SERVER INSTANCE START', m.foldertargetroot)
 
 *!* COPY MODS OR ADD TO INSTALLMODS BATCH
 
@@ -107,24 +107,62 @@ scan
 
 		endif
 
+		*!* ONLY INCLUDE CF MODS
+
+		if mods_gsf.fid1 = 0 and m.ponlycfmods = .t.
+
+			loop
+
+		endif
+
+		m.includemod = .f.
+
+		if mods_gsf.env == '*'
+
+			m.includemod = .t.
+
+		endif
+
+		if lower(mods_gsf.env) == 'server'
+
+			m.includemod = .t.
+
+		endif
+
 		if lower(mods_gsf.env) == 'client'
 
+			m.includemod = .f.
+
+		endif
+
+		if seek(mods_gsf.modid, 'modids_gsf', 'modid') = .t.
+
+			if modids_gsf.isclient = .t.
+
+				m.includemod = .f.
+
+			else
+
+				m.includemod = .t.
+
+			endif
+
+		endif
+
+		if empty(mods_gsf.modid)
+
+			m.includemod = .f.
+
+		endif
+
+		if m.includemod = .f.
+
 			loop
 
 		endif
 
-		if seek(mods_gsf.modid, 'modids_gsf', 'modid') = .t. and modids_gsf.isclient = .t.
-
-			loop
-
-		endif
-
-		if m.ponlycfmods = .t. and mods_gsf.fid1 = 0
-
-			loop
-
-		endif
-
+		*!* INCLUDE NON CF MODS IN SERVER ZIP
+		
 		if mods_gsf.fid1 = 0
 
 			m.filesource = m.foldersource + mods_gsf.filename1
@@ -177,11 +215,11 @@ scan
 
 		m.btext = strtran(m.btext, 0h0d0a, 0h0a)
 
-		strtofile(m.btext, addbs(m.pfoldertargetroot) + '_install_mods.sh')
+		strtofile(m.btext, addbs(m.foldertargetroot) + '_install_mods.sh')
 
 	else
 
-		strtofile(m.btext, addbs(m.pfoldertargetroot) + '_install_mods.cmd')
+		strtofile(m.btext, addbs(m.foldertargetroot) + '_install_mods.cmd')
 
 	endif
 
@@ -237,9 +275,9 @@ endscan
 
 *!* COPY SERVER ICON
 
-_apicopyfile(addbs(inst_gsf.ifolder) + '..\..\server-icon.png', addbs(m.pfoldertargetroot) + 'server-icon.png', 0)
+_apicopyfile(addbs(inst_gsf.ifolder) + '..\..\server-icon.png', addbs(m.foldertargetroot) + 'server-icon.png', 0)
 
-_logwrite('GENERATE SERVER INSTANCE END', m.pfoldertargetroot)
+_logwrite('GENERATE SERVER INSTANCE END', m.foldertargetroot)
 
 use in 'inst_gsf'
 
@@ -253,7 +291,7 @@ use in 'files_gsf'
 
 if empty(m.pfoldertargetroot)
 
-	messagebox('SERVER FILES GENERATED IN ' + m.pfoldertargetroot, 64, 'MODROBOT')
+	messagebox('SERVER FILES GENERATED IN ' + m.foldertargetroot, 64, 'MODROBOT')
 
 endif
 
@@ -263,4 +301,4 @@ _restorearea(m.nselect)
 
 
 
- 
+

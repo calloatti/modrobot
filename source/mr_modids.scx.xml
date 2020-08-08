@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JT04V7CW</uniqueid>
-		<timestamp>1357747908</timestamp>
+		<timestamp>1359131016</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JT04V7CX</uniqueid>
-		<timestamp>1357747908</timestamp>
+		<timestamp>1359131016</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -126,7 +126,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JV0EWHHD</uniqueid>
-		<timestamp>1357747908</timestamp>
+		<timestamp>1359131016</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -159,7 +159,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JV0EWHHE</uniqueid>
-		<timestamp>1357747908</timestamp>
+		<timestamp>1359131016</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -192,7 +192,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1357747908</timestamp>
+		<timestamp>1359131016</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -246,7 +246,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_modids</parent>
+		<parent>MR_MODIDS</parent>
 		<properties>Height = 456
 Left = 12
 Top = 36
@@ -277,7 +277,7 @@ Name = "gridmain"
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbvermin</objname>
-		<parent>mr_modids</parent>
+		<parent>MR_MODIDS</parent>
 		<properties>Top = 0
 Left = 168
 Height = 28
@@ -313,7 +313,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>mr_modids</parent>
+		<parent>MR_MODIDS</parent>
 		<properties>Top = 0
 Left = 216
 Height = 28
@@ -349,96 +349,13 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JV0EWHI9</uniqueid>
-		<timestamp>1357747908</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbscan</objname>
-		<parent>mr_modids</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_autorenew_black_18dp.png
-Caption = "SCAN"
-ToolTipText = "SCAN MODS FOLDER"
-ZOrderSet = 4
-Name = "tbscan"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-_logwrite('PROCESS START')
-
-select 'mr_mods'
-
-scan for not empty(mr_mods.modid)
-
-	if seek(mr_mods.modid, 'mr_modids1', 'modid') = .f.
-
-		append blank in 'mr_modids1'
-
-		replace mr_modids1.modid with mr_mods.modid in 'mr_modids1'
-
-	endif
-
-
-	replace mr_modids1.filename with mr_mods.filename1 in 'mr_modids1'
-
-	if 'CLIENT' $ upper(mr_mods.env)
-
-		replace mr_modids1.isclient with .t. in 'mr_modids1'
-
-	endif
-
-	if empty(mr_modids1.url)
-
-		if seek(mr_mods.aid, 'mr_addons', 'aid') and not empty(mr_addons.slug)
-
-			replace mr_modids1.url with mr_geturlproject(mr_addons.slug) in 'mr_modids1'
-
-		endif
-
-	endif
-
-endscan
-
-
-_logwrite('PROCESS END')
-
-thisform.updateui()
-
-thisform.refresh()
-
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5IF0UVSCM</uniqueid>
 		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>mr_modids</parent>
+		<parent>MR_MODIDS</parent>
 		<properties>Top = 0
 Left = 828
 Height = 28
@@ -477,13 +394,94 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5JV0EWHI9</uniqueid>
+		<timestamp>1359131016</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>MR_MODIDS</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "SCAN MODS FOLDER"
+ZOrderSet = 4
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+_logwrite('PROCESS START')
+
+select 'mr_mods'
+
+scan for not empty(mr_mods.modid)
+
+	if seek(mr_mods.modid, 'mr_modids1', 'modid') = .f.
+
+		append blank in 'mr_modids1'
+
+		replace mr_modids1.modid with mr_mods.modid in 'mr_modids1'
+
+		if 'CLIENT' $ upper(mr_mods.env)
+
+			replace mr_modids1.isclient with .t. in 'mr_modids1'
+
+		endif
+
+	endif
+
+	replace mr_modids1.filename with mr_mods.filename1 in 'mr_modids1'
+
+	if seek(mr_mods.aid, 'mr_addons', 'aid') and not empty(mr_addons.slug)
+
+		replace mr_modids1.url with mr_geturlproject(mr_addons.slug) in 'mr_modids1'
+
+	endif
+
+endscan
+
+_logwrite('PROCESS END')
+
+thisform.updateui()
+
+thisform.refresh()
+
+
+
+
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
 		<timestamp>1326978027</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>mr_modids</parent>
+		<parent>MR_MODIDS</parent>
 		<properties>Top = 0
 Left = 360
 Height = 28
@@ -521,7 +519,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>mr_modids</parent>
+		<parent>MR_MODIDS</parent>
 		<properties>Top = 0
 Left = 924
 Height = 28

@@ -28,14 +28,14 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1358404827</timestamp>
+		<timestamp>1359311344</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 575
-Left = -401
+		<properties>Top = 358
+Left = 65
 Width = 1570
 Height = 663
 DataSource = .NULL.
@@ -50,7 +50,7 @@ ENDPROC
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>9</reserved2>
+		<reserved2>8</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -62,7 +62,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -96,7 +96,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I61EBSMR</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -107,6 +107,7 @@ Left = 179
 Height = 362
 Width = 106
 Alias = "mr_instances"
+Order = "iname"
 Database = ..\data\data1.dbc
 CursorSource = "mr_instances"
 Name = "Cursor2"
@@ -129,7 +130,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -137,7 +138,7 @@ Name = "Cursor2"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 18
 Left = 319
-Height = 351
+Height = 524
 Width = 112
 Alias = "mr_mods1"
 Order = ""
@@ -163,7 +164,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I70J9KXM</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -196,7 +197,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80FSB4G</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -230,42 +231,8 @@ Name = "Cursor7"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IA0IPOO1</uniqueid>
-		<timestamp>1358633084</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor8</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 322
-Left = 617
-Height = 162
-Width = 107
-Alias = "mr_instances1"
-Order = "iname"
-Database = ..\data\data1.dbc
-CursorSource = "mr_instances"
-Name = "Cursor8"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5IG12MLGC</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -298,7 +265,7 @@ Name = "Cursor11"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JT058YZE</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -331,7 +298,7 @@ Name = "Cursor10"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1358633084</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -339,31 +306,48 @@ Name = "Cursor10"
 		<parent/>
 		<properties>Top = 0
 Left = 0
+Height = 504
+Width = 1320
 DoCreate = .T.
 Caption = "MODS"
 gridrowcolor = 0
 mr_loader = 
 mr_iguid = 
 uniqueid = D74C4473368A4B07ADDB19F79B139BE9
+_memberdata =      312&lt;VFPData&gt;
+	&lt;memberdata name="init2" type="method" display="Init2"/&gt;
+	&lt;memberdata name="load2" type="method" display="Load2"/&gt;
+	&lt;memberdata name="load1" type="method" display="Load1"/&gt;
+	&lt;memberdata name="init1" type="method" display="Init1"/&gt;
+	&lt;memberdata name="mr_enabledtoggle" favorites="True"/&gt;&lt;/VFPData&gt;
 Name = "MR_MODS"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods>PROCEDURE init2
-*!* init2
-
-Local iguid
-
-m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
-
-Thisform.mr_setinstance(m.iguid)
-
-
+		<methods>PROCEDURE Destroy
+_inisetvalue('MR_INSTANCES_IGUID', thisform.mr_iguid)
 
 
 ENDPROC
-PROCEDURE mr_disableall
-*!* mr_disableall
+PROCEDURE init2
+*!* init2
+
+local iguid
+
+if not empty(thisform.p1)
+
+	thisform.mr_iguid = thisform.p1
+
+else
+
+	thisform.mr_iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+endif
+
+thisform.mr_setinstance()
+ENDPROC
+PROCEDURE mr_enabledoff
+*!* mr_enabledoff
 
 local filenamen, filenameo, pfid1, pfid2, pfilename1, pfilename2, phash1, phash2, pifolder, piguid
 local pldesc, pmodid, result
@@ -389,26 +373,31 @@ scan for mr_mods1.iguid == thisform.mr_iguid and upper(justext(mr_mods1.filename
 		m.pifolder	 = mr_instances.ifolder
 		m.piguid	 = mr_mods.iguid
 		m.pldesc	 = 'DISABLED'
-		m.pmodid		 = mr_mods.modid
+		m.pmodid	 = mr_mods.modid
 
-		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, pmodid)
+		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, m.pmodid)
 
 		replace mr_mods1.filename1 with m.filenamen in 'mr_mods1'
-		replace mr_mods1.dis with .t. in 'mr_mods1'
+		replace mr_mods1.ena with .f. in 'mr_mods1'
 
 	endif
 
 endscan
 
-thisform.gridmain.refresh()
+thisform.gridmain.sethighlightbackcolor()
+
+thisform.updateui()
+
+thisform.refresh()
+
 
 
 ENDPROC
-PROCEDURE mr_enableall
-*!* mr_enableall
+PROCEDURE mr_enabledon
+*!* mr_enabledon
 
-Local filenamen, filenameo, pfid1, pfid2, pfilename1, pfilename2, phash1, phash2, pifolder, piguid
-Local pldesc, pmodid, result
+local filenamen, filenameo, pfid1, pfid2, pfilename1, pfilename2, phash1, phash2, pifolder, piguid
+local pldesc, pmodid, result
 
 select 'mr_mods1'
 
@@ -431,18 +420,22 @@ scan for mr_mods1.iguid == thisform.mr_iguid and upper(justext(mr_mods1.filename
 		m.pifolder	 = mr_instances.ifolder
 		m.piguid	 = mr_mods.iguid
 		m.pldesc	 = 'ENABLED'
-		m.pmodid		 = mr_mods.modid
+		m.pmodid	 = mr_mods.modid
 
-		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, pmodid)
+		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, m.pmodid)
 
 		replace mr_mods1.filename1 with m.filenamen in 'mr_mods1'
-		replace mr_mods1.dis with .f. in 'mr_mods1'
+		replace mr_mods1.ena with .t. in 'mr_mods1'
 
 	endif
 
 endscan
 
-thisform.gridmain.refresh()
+thisform.gridmain.sethighlightbackcolor()
+
+thisform.updateui()
+
+thisform.refresh()
 
 
 
@@ -450,8 +443,8 @@ ENDPROC
 PROCEDURE mr_enabledtoggle
 *!* mr_enabledtoggle
 
-Local filenamen, filenameo, pfid1, pfid2, pfilename1, pfilename2, phash1, phash2, pifolder, piguid
-Local pldesc, pmodid, result
+local filenamen, filenameo, pfid1, pfid2, pfilename1, pfilename2, phash1, phash2, pifolder, piguid
+local pldesc, pmodid, result
 
 m.result = 0
 
@@ -476,12 +469,12 @@ case upper(justext(mr_mods.filename1)) = 'JAR'
 		m.pifolder	 = mr_instances.ifolder
 		m.piguid	 = mr_mods.iguid
 		m.pldesc	 = 'DISABLED'
-		m.pmodid		 = mr_mods.modid
+		m.pmodid	 = mr_mods.modid
 
-		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, pmodid)
+		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, m.pmodid)
 
 		replace mr_mods.filename1 with m.filenamen in 'mr_mods'
-		replace mr_mods.dis with .t. in 'mr_mods'
+		replace mr_mods.ena with .f. in 'mr_mods'
 
 	endif
 
@@ -504,18 +497,22 @@ case upper(justext(mr_mods.filename1)) = 'DISABLED'
 		m.pifolder	 = mr_instances.ifolder
 		m.piguid	 = mr_mods.iguid
 		m.pldesc	 = 'ENABLED'
-		m.pmodid		 = mr_mods.modid
+		m.pmodid	 = mr_mods.modid
 
-		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, pmodid)
+		mr_logaddrecord(m.pfid1, m.pfid2, m.pfilename1, m.pfilename2, m.phash1, m.phash2, m.pifolder, m.piguid, m.pldesc, m.pmodid)
 
 		replace mr_mods.filename1 with m.filenamen in 'mr_mods'
-		replace mr_mods.dis with .f. in 'mr_mods'
+		replace mr_mods.ena with .t. in 'mr_mods'
 
 	endif
 
 endcase
 
-thisform.gridmain.refresh()
+thisform.gridmain.sethighlightbackcolor()
+
+thisform.updateui()
+
+thisform.refresh()
 
 
 
@@ -717,30 +714,38 @@ for m.lnx = 1 to m.ncount
 	replace mr_mods1.aname with m.omodprops.mod_name in 'mr_mods1'
 	replace mr_mods1.authorname with m.omodprops.mod_authors in 'mr_mods1'
 	replace mr_mods1.env with m.omodprops.mod_environment in 'mr_mods1'
+	replace mr_mods1.guidicon with m.omodprops.mod_icon in 'mr_mods1'
+
+	if empty(mr_mods1.guidicon)
+
+		replace mr_mods1.guidicon with mr_getblankavatar() in 'mr_mods1'
+
+	endif
 
 	if upper(justext(mr_mods1.filename1)) = 'JAR'
 
-		replace mr_mods1.dis with .f. in 'mr_mods1'
+		replace mr_mods1.ena with .t. in 'mr_mods1'
 
 	endif
 
 	if upper(justext(mr_mods1.filename1)) = 'DISABLED'
 
-		replace mr_mods1.dis with .t. in 'mr_mods1'
+		replace mr_mods1.ena with .f. in 'mr_mods1'
 
 	endif
 
 	*!* DONT DO THIS! mr_syncserverfolder checks mr_mods1.env and mr_modids.isclient ALREADY!
-	
+
 	*!* if seek(mr_mods1.modid, 'mr_modids', 'modid') = .t. and mr_modids.isclient = .t.
 
-		*!* replace mr_mods1.env with 'client' in 'mr_mods1'
+	*!* replace mr_mods1.env with 'client' in 'mr_mods1'
 
 	*!* endif
 
 endfor
 
 _logwrite('SCAN END')
+
 
 ENDPROC
 PROCEDURE mr_getnewverdata
@@ -842,18 +847,18 @@ ENDPROC
 PROCEDURE mr_modupdatescan
 *!* mr_modupdatescan
 
-Select 'mr_mods1'
+select 'mr_mods1'
 
-Scan For mr_mods1.iguid == Thisform.mr_iguid
+scan for mr_mods1.iguid == thisform.mr_iguid and mr_mods1.upd = .t.
 
-DoEvents
+	doevents
 
-mr_modupdate(mr_mods1.rguid)
+	mr_modupdate(mr_mods1.rguid)
 
-Endscan
+endscan
 ENDPROC
 PROCEDURE mr_refreshcurse
-*!* refreshcurse
+*!* mr_refreshcurse
 
 lparameters phashes
 
@@ -939,64 +944,10 @@ Endscan
 
 Thisform.mr_refreshcurse(m.hashes)
 ENDPROC
-PROCEDURE mr_runinstance
-*!* mr_runinstance
-
-local cinst, cmmc, lnx
-
-m.cmmc = ''
-
-for m.lnx = 1 to getwordcount(mr_instances.ifolder, '\')
-
-	m.cmmc = m.cmmc + getwordnum(mr_instances.ifolder, m.lnx, '\') + '\'
-
-	if _file(m.cmmc + 'multimc.exe')
-
-		m.cmmc = m.cmmc + 'multimc.exe'
-
-		exit
-
-	endif
-
-endfor
-
-
-*!* GET INSTANCE FOLDER NAME
-
-m.cinst = ''
-
-for m.lnx = 1 to getwordcount(mr_instances.ifolder, '\')
-
-	m.cinst = m.cinst + getwordnum(mr_instances.ifolder, m.lnx, '\') + '\'
-
-	if _file(m.cinst + 'mmc-pack.json')
-
-		m.cinst = '-l ' + '"' + getwordnum(mr_instances.ifolder, m.lnx, '\') + '"'
-
-		exit
-
-	endif
-
-endfor
-
-_logwrite('CREATEPROCESS', m.cmmc, m.cinst)
-
-if not empty(m.cmmc) and not empty(m.cinst)
-
-	mr_createprocess(m.cmmc, m.cinst)
-
-endif
-
-
-ENDPROC
 PROCEDURE mr_setinstance
 *!* mr_setinstance
 
-Lparameters piguid
-
-Thisform.mr_iguid = m.piguid
-
-If m.piguid = '00000000' And Reccount('mr_instances') &gt; 0 Then
+If Thisform.mr_iguid = '00000000' And Reccount('mr_instances') &gt; 0 Then
 
 Go Top In 'mr_instances'
 
@@ -1008,8 +959,6 @@ If Seek(Thisform.mr_iguid, 'mr_instances', 'iguid') = .T.
 
 Set Filter To mr_mods.iguid == Thisform.mr_iguid In 'mr_mods'
 
-_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
-
 If Empty(mr_instances.iname) Then
 
 Thisform.Caption = 'MODS - ' + _shortenpath(mr_instances.iguid, 240)
@@ -1019,7 +968,6 @@ Else
 Thisform.Caption = 'MODS - ' + _shortenpath(mr_instances.iname, 240)
 
 Endif
-
 
 Else
 
@@ -1038,6 +986,16 @@ Go Top In 'mr_mods'
 Thisform.updateui()
 
 Thisform.Refresh()
+ENDPROC
+PROCEDURE mr_updatetoggle
+replace mr_mods.upd with not mr_mods.upd in 'mr_mods'
+
+thisform.gridmain.sethighlightbackcolor()
+
+thisform.updateui()
+
+thisform.refresh()
+
 ENDPROC
 PROCEDURE rm_cliptimer
 lparameters pcliptext
@@ -1154,9 +1112,35 @@ PROCEDURE updateui
 
 local icaption, sep
 
-= seek(mr_mods.aid, 'mr_addons', 'aid')
+if seek(mr_mods.aid, 'mr_addons', 'aid') = .t.
 
-thisform.imgavatar.pictureval = mr_addons.avatar
+	thisform.imgavatar.pictureval = mr_addons.avatar
+
+else
+
+	thisform.imgavatar.pictureval = mr_mods.guidicon
+
+endif
+
+if mr_mods.ena = .t.
+
+	thisform.tbena.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAAcklEQVR4Aa3RgQWAYBRF4QMJoCGqAUIzJLRRgLZpgkSNVAIJxY + L3BQ6D3g + Hh4 / lzEymxnJUT2LRQu9TFgo7N6j5B01bBQeiXAwEDmU3Ig5V7JSA5WIQTETOy27iEEEdop4FFgnYpEy6Ptb0scHp / zaBa7PVhPkf310AAAAAElFTkSuQmCC', 14)
+
+else
+
+	thisform.tbena.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAPElEQVR4AWMY1EAViPcA8QFiMFStGjaD1gDxBxIM + gDWgw7gCvACTPWDyqBRg0YNomkWUSE104L1DFoAADDLRfQgho5aAAAAAElFTkSuQmCC', 14)
+
+endif
+
+if mr_mods.upd = .t.
+
+	thisform.tbupd.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAAcklEQVR4Aa3RgQWAYBRF4QMJoCGqAUIzJLRRgLZpgkSNVAIJxY + L3BQ6D3g + Hh4 / lzEymxnJUT2LRQu9TFgo7N6j5B01bBQeiXAwEDmU3Ig5V7JSA5WIQTETOy27iEEEdop4FFgnYpEy6Ptb0scHp / zaBa7PVhPkf310AAAAAElFTkSuQmCC', 14)
+
+else
+
+	thisform.tbupd.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAPElEQVR4AWMY1EAViPcA8QFiMFStGjaD1gDxBxIM + gDWgw7gCvACTPWDyqBRg0YNomkWUSE104L1DFoAADDLRfQgho5aAAAAAElFTkSuQmCC', 14)
+
+endif
 
 m.sep = space(3)
 
@@ -1172,6 +1156,8 @@ m.icaption = ' ' + ;
 m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - len(m.icaption))
 
 thisform.lblinstance.caption = m.icaption
+
+
 
 
 
@@ -1197,11 +1183,11 @@ mr_iguid
 *mr_setinstance 
 *mr_refreshcursescan 
 *mr_modupdatescan 
-*mr_runinstance 
-*mr_enableall 
-*mr_disableall 
 *rm_cliptimer 
 *mr_enabledtoggle 
+*mr_enabledon 
+*mr_enabledoff 
+*mr_updatetoggle 
 </reserved3>
 		<reserved4/>
 		<reserved5/>
@@ -1213,7 +1199,7 @@ mr_iguid
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322338953</timestamp>
+		<timestamp>1359312089</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -1227,7 +1213,7 @@ Left = 12
 ReadOnly = .T.
 TabIndex = 9
 Top = 324
-Width = 780
+Width = 1140
 ZOrderSet = 0
 Value = 
 IntegralHeight = .F.
@@ -1252,7 +1238,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1358330944</timestamp>
+		<timestamp>1359461489</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
@@ -1264,7 +1250,7 @@ HighlightRow = .T.
 Left = 12
 RecordSource = "mr_mods"
 Top = 36
-Width = 936
+Width = 1296
 HighlightStyle = 0
 _gridcontextmenulang = en
 Name = "gridmain"
@@ -1278,64 +1264,39 @@ this.sethighlightbackcolor()
 thisform.updateui()
 ENDPROC
 PROCEDURE DblClick
-
-Replace mr_mods.upd With Not mr_mods.upd In 'mr_mods'
+thisform.mr_enabledtoggle()
 ENDPROC
 PROCEDURE getdynamicbackcolor
-Lparameters poColum As Column
+lparameters pocolum as column
 
 *!* http://materialuicolors.co/?utm_source=launchers
 
-Local lnDynamicBackColor
+local ncolor
 
-Do Case
+do case
 
-Case  mr_mods.fid1 # 0 And mr_mods.fid1 # mr_mods.fid2
+case mr_mods.ena = .f.
 
-m.lnDynamicBackColor = Rgb(0xFF, 0xF9, 0xC4)
+	m.ncolor = _hsl(300, 90, 90)
 
-Case mr_mods.fid1 = 0
+case  mr_mods.fid1 # 0 and mr_mods.fid1 # mr_mods.fid2
 
-m.lnDynamicBackColor = Rgb(0xFF, 0xCD, 0xD2)
+	m.ncolor = _hsl(60, 90, 90)
 
+case mr_mods.fid1 = 0
 
-Otherwise
+	m.ncolor = _hsl(0, 90, 90)
 
-m.lnDynamicBackColor = This.ColumnBackColor
+otherwise
 
-
-Endcase
-
-Return m.lnDynamicBackColor
+	m.ncolor = this.columnbackcolor
 
 
+endcase
+
+return m.ncolor
 
 
-ENDPROC
-PROCEDURE getdynamicforecolor
-*!* GetDynamicForeColor
-
-Lparameters poColum As Column
-
-Local lnDynamicForeColor
-
-Do Case
-
-Case Justext(mr_mods.filename1) = 'disabled'
-
-m.lnDynamicForeColor = Rgb(128, 128, 128)
-
-Case _RgbToGray(This.GetDynamicBackColor()) &gt; 186
-
-m.lnDynamicForeColor = This.ForeColor
-
-Otherwise
-
-m.lnDynamicForeColor = This.ColumnBackColor
-
-Endcase
-
-Return m.lnDynamicForeColor
 
 
 
@@ -1357,7 +1318,8 @@ this.ContextMenu.add('MAIN', 'COPYFILE2URL', 'Copy file 2 URL')
 
 this.ContextMenu.add('MAIN', sys(2015), '-')
 
-this.ContextMenu.add('MAIN', 'ENABLEDTOGGLED', 'Toggle enabled')
+this.ContextMenu.add('MAIN', 'TOGGLEENABLED', 'Toggle enabled')
+this.ContextMenu.add('MAIN', 'TOGGLEUPDATE', 'Toggle update')
 
 *!*	If mr_mods.aid &gt; 0
 
@@ -1429,9 +1391,13 @@ case m.choice = 'COPYFILE2URL'
 
 	endif
 
-case m.choice = 'ENABLEDTOGGLED'
+case m.choice = 'TOGGLEENABLED'
 
 	thisform.mr_enabledtoggle()
+
+case m.choice = 'TOGGLEUPDATE'
+
+	thisform.mr_updatetoggle()
 
 endcase
 
@@ -1439,27 +1405,6 @@ endcase
 
 
 
-
-ENDPROC
-PROCEDURE sethighlightbackcolor
-
-*!* SET COLOR OF HIGHLIGHTED ROW IN GRID
-
-Do Case
-
-Case  mr_mods.fid1 # 0 And mr_mods.fid2 # 0 And mr_mods.fid1 # mr_mods.fid2
-
-This.HighlightBackColor = Rgb(255, 241, 118)
-
-Case mr_mods.fid1 = 0
-
-This.HighlightBackColor = Rgb(229, 115, 115)
-
-Otherwise
-
-This.HighlightBackColor = This.gethighlightbackcolor()
-
-Endcase
 
 ENDPROC
 </methods>
@@ -1479,7 +1424,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1356572371</timestamp>
+		<timestamp>1359314810</timestamp>
 		<class>_label</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
@@ -1491,7 +1436,7 @@ Caption = ""
 Height = 15
 Left = 12
 Top = 479
-Width = 936
+Width = 1296
 autowidth = .F.
 Name = "lblinstance"
 </properties>
@@ -1512,28 +1457,131 @@ Name = "lblinstance"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978033</timestamp>
+		<uniqueid>_5TZ0GT0LG</uniqueid>
+		<timestamp>1359365361</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand3</objname>
+		<objname>tbupd</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 480
+Left = 576
 Height = 28
-Width = 48
-Picture = ..\res\1x\outline_play_arrow_black_18dp.png
-Caption = "RUN"
-ToolTipText = "RUN MULTIMC INSTANCE"
+Width = 84
+Picture = ..\res\1x\outline_check_box_black_18dp.png
+Caption = "UPDATE"
+ToolTipText = 'ENABLE/DISABLE MOD|APPENDS ".disabled" TO FILE NAME'
 ZOrderSet = 4
 tbmarginv = 4
-tbalign = 2
-Name = "_tbcommand3"
+Name = "tbupd"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Thisform.mr_runinstance()
+if mr_mods.upd = .t.
+
+	this.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAPElEQVR4AWMY1EAViPcA8QFiMFStGjaD1gDxBxIM + gDWgw7gCvACTPWDyqBRg0YNomkWUSE104L1DFoAADDLRfQgho5aAAAAAElFTkSuQmCC', 14)
+
+else
+
+	this.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAAcklEQVR4Aa3RgQWAYBRF4QMJoCGqAUIzJLRRgLZpgkSNVAIJxY + L3BQ6D3g + Hh4 / lzEymxnJUT2LRQu9TFgo7N6j5B01bBQeiXAwEDmU3Ig5V7JSA5WIQTETOy27iEEEdop4FFgnYpEy6Ptb0scHp / zaBa7PVhPkf310AAAAAElFTkSuQmCC', 14)
+
+endif
+
+thisform.mr_updatetoggle()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JA0ZQ8X7</uniqueid>
+		<timestamp>1359436117</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 900
+Height = 28
+Width = 48
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "JIJ"
+ToolTipText = "OPEN JAR IN JAR IN NEW TAB"
+ZOrderSet = 4
+tbalign = 2
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+do form mr_mods_jij with thisform.mr_iguid
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359355762</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblinkfile2</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 1248
+Height = 28
+Width = 36
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "FILE2"
+ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tblinkfile2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+If mr_mods.aid &gt; 0
+
+Do Case
+
+Case mr_mods.fid2 &gt; 0
+
+mr_shellexecute(mr_geturlproject_files(mr_mods.aid, mr_mods.fid2))
+
+Otherwise
+
+mr_shellexecute(mr_geturlproject_files(mr_mods.aid))
+
+Endcase
+
+Endif
+
+
+
 
 ENDPROC
 </methods>
@@ -1552,27 +1600,30 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1357953302</timestamp>
+		<uniqueid>_5I50Z6RB2</uniqueid>
+		<timestamp>1359436117</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbtoggleenabled</objname>
+		<objname>tbfolder</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 360
+Left = 1128
 Height = 28
 Width = 48
-Picture = ..\res\1x\outline_toggle_off_black_18dp.png
-Caption = "E/D"
-ToolTipText = 'ENABLE/DISABLE MOD. APPENDS ".disabled" TO FILE NAME'
+Picture = ..\res\1x\outline_folder_black_18dp.png
+Caption = "FOLDER"
+ToolTipText = "OPEN MODS FOLDER IN NEW WINDOW"
 ZOrderSet = 4
+tbalign = 2
 tbmarginv = 4
-Name = "tbtoggleenabled"
+Name = "tbfolder"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-thisform.mr_enabledtoggle()
+mr_explorerhere(Addbs(mr_instances.ifolder) + mr_mods.filename1)
+
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -1590,37 +1641,218 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IE0KY8D3</uniqueid>
-		<timestamp>1327794621</timestamp>
+		<uniqueid>_5I61EBSMR</uniqueid>
+		<timestamp>1359355762</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbupdate</objname>
+		<objname>tbrefresh</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 336
+Left = 300
 Height = 28
-Width = 24
-Picture = ..\res\1x\outline_cloud_download_black_18dp.png
+Width = 36
+Picture = ..\res\1x\outline_refresh_black_18dp.png
 Caption = ""
-ToolTipText = "UPDATE SELECTED MOD"
+ToolTipText = "REFRESH CURSE DATA FOR SELECTED MOD"
 ZOrderSet = 4
-tbmarginv = 4
-Name = "tbupdate"
+Name = "tbrefresh"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-_logwrite('PROCESS START')
+
+if empty(mr_mods.hash1)
+
+	return
+
+endif
+
+thisform.mr_refreshcurse(transform(mr_mods.hash1))
 
 = seek(mr_mods.rguid, 'mr_mods1', 'rguid')
 
-mr_modupdate(mr_mods1.rguid)
+thisform.mr_getcursedata()
 
-thisform.updateui()
+thisform.mr_getnewverdata()
+
+go recno('mr_mods') in 'mr_mods'
 
 thisform.gridmain.sethighlightbackcolor()
 
+thisform.updateui()
+
+thisform.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I70HWZP6</uniqueid>
+		<timestamp>1359355762</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 156
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "SCAN MODS FOLDER"
+ZOrderSet = 4
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+If Empty(mr_instances.gverlong1) Or Empty(mr_instances.gverlong2)
+
+Messagebox('SELECT MIN AND MAX MINECRAFT VERSIONS WITH "MINVER" AND "MAXVER" BUTTONS', 0 + 64, 'MODROBOT')
+
+Return
+
+Endif
+
+_logwrite('PROCESS START')
+
+Thisform.mr_getfolderdatascan()
+
+Thisform.mr_getcursedatascan()
+
+Thisform.mr_getnewverdatascan()
+
 _logwrite('PROCESS END')
+
+Thisform.updateui()
+
+Thisform.Refresh()
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I70J9KXM</uniqueid>
+		<timestamp>1359355762</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbrefreshall</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 228
+Height = 28
+Width = 72
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "CURSE"
+ToolTipText = "REFRESH CURSE DATA FOR ALL MODS"
+ZOrderSet = 4
+Name = "tbrefreshall"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+
+_logwrite('PROCESS START')
+
+Thisform.mr_refreshcursescan()
+
+Thisform.mr_getcursedatascan()
+
+Thisform.mr_getnewverdatascan()
+
+_logwrite('PROCESS END')
+
+Thisform.updateui()
+
+Thisform.Refresh()
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I70K005Y</uniqueid>
+		<timestamp>1359355762</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblinkfile1</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 1212
+Height = 28
+Width = 36
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "FILE1"
+ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tblinkfile1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+If mr_mods.aid &gt; 0
+
+Do Case
+
+Case mr_mods.fid1 &gt; 0
+
+mr_shellexecute(mr_geturlproject_files(mr_mods.aid, mr_mods.fid1))
+
+Otherwise
+
+mr_shellexecute(mr_geturlproject_files(mr_mods.aid))
+
+Endcase
+
+Endif
+
+
 
 
 ENDPROC
@@ -1641,39 +1873,200 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327467175</timestamp>
+		<timestamp>1359355762</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbupdateall</objname>
+		<objname>tbdependencies</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 276
+Left = 840
 Height = 28
 Width = 60
-Picture = ..\res\1x\outline_cloud_download_black_18dp.png
-Caption = "DOWNLOAD"
-ToolTipText = "UPDATE ALL MODS (UPD COLUMN CHECKED)"
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "DEPS"
+ToolTipText = "OPEN DEPENDENCIES TAB"
 ZOrderSet = 4
+tbalign = 2
+Name = "tbdependencies"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+do form mr_mods_dependencies with thisform.mr_iguid
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IA0IPOO1</uniqueid>
+		<timestamp>1359355762</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblinkhome</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 1176
+Height = 28
+Width = 36
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "OVERVIEW"
+ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
 tbmarginv = 4
-Name = "tbupdateall"
+Name = "tblinkhome"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+If mr_mods.aid &gt; 0
+
+mr_shellexecute(mr_geturlproject(mr_mods.aid))
+
+Else
+
+If Not Empty(mr_mods.modid) And Seek(mr_mods.modid, 'mr_modids', 'modid') = .T.
+
+mr_shellexecute(mr_modids.url)
+
+Endif
+
+Endif
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359436117</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbprojects</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 1008
+Height = 28
+Width = 60
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "PROJECT"
+ToolTipText = "OPEN PROJECTS IN NEW TAB"
+ZOrderSet = 4
+tbalign = 2
+Name = "tbprojects"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 
-_logwrite('PROCESS START')
+_inisetvalue('MR_ADDONS_AID', mr_mods.aid)
 
-thisform.mr_modupdatescan()
+Do Form mr_addons
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I50Z6RB2</uniqueid>
+		<timestamp>1359436117</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbfiles</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 1068
+Height = 28
+Width = 60
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "FILE"
+ToolTipText = "OPEN FILES IN NEW TAB"
+ZOrderSet = 4
+tbalign = 2
+Name = "tbfiles"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
 
-_logwrite('PROCESS END')
+_inisetvalue('MR_FILES_FID', mr_mods.fid1)
 
-thisform.updateui()
-
-thisform.gridmain.sethighlightbackcolor()
-
-thisform.refresh()
-
-
+Do Form mr_files
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I50EU5DF</uniqueid>
+		<timestamp>1359436117</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblog</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 948
+Height = 28
+Width = 60
+Picture = ..\res\1x\outline_web_asset_black_18dp.png
+Caption = "LOG"
+ToolTipText = "OPEN LOG IN NEW TAB"
+ZOrderSet = 4
+tbalign = 2
+Name = "tblog"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+do form mr_log with thisform.mr_iguid
 ENDPROC
 </methods>
 		<objcode/>
@@ -1692,14 +2085,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1327455941</timestamp>
+		<timestamp>1359355762</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbversions</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 252
+Left = 336
 Height = 28
 Width = 24
 Picture = ..\res\1x\outline_list_alt_black_18dp.png
@@ -1772,500 +2165,42 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I50EU5DF</uniqueid>
-		<timestamp>1326978033</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tblog</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 624
-Height = 28
-Width = 48
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "LOG"
-ToolTipText = "OPEN CHANGE LOG TAB"
-ZOrderSet = 4
-tbalign = 2
-Name = "tblog"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Do Form mr_log
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1327454722</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbfiles</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 720
-Height = 28
-Width = 48
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "FILE"
-ToolTipText = "VIEW FILE IN NEW FILES TAB"
-ZOrderSet = 4
-tbalign = 2
-Name = "tbfiles"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-_inisetvalue('MR_FILES_FID', mr_mods.fid1)
-
-Do Form mr_files
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327454722</timestamp>
+		<timestamp>1359356059</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbprojects</objname>
+		<objname>tbupdateall</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 672
+Left = 360
 Height = 28
-Width = 48
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "PROJECT"
-ToolTipText = "VIEW PROJECT IN NEW PROJECTS TAB"
-ZOrderSet = 4
-tbalign = 2
-Name = "tbprojects"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-_inisetvalue('MR_ADDONS_AID', mr_mods.aid)
-
-Do Form mr_addons
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5IA0IPOO1</uniqueid>
-		<timestamp>1326978033</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tblinkhome</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 816
-Height = 28
-Width = 36
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "OVERVIEW"
-ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tblinkhome"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-If mr_mods.aid &gt; 0
-
-mr_shellexecute(mr_geturlproject(mr_mods.aid))
-
-Else
-
-If Not Empty(mr_mods.modid) And Seek(mr_mods.modid, 'mr_modids', 'modid') = .T.
-
-mr_shellexecute(mr_modids.url)
-
-Endif
-
-Endif
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978033</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbdependencies</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 528
-Height = 28
-Width = 48
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "DEPS"
-ToolTipText = "OPEN DEPENDENCIES TAB"
-ZOrderSet = 4
-tbalign = 2
-Name = "tbdependencies"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-_inisetvalue('MR_INSTANCES_IGUID', Thisform.mr_iguid)
-
-Do Form mr_mods_dependencies
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1356572371</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbinstances</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 36
-Picture = ..\res\1x\outline_expand_more_black_18dp.png
-Caption = "INSTANCES"
-ToolTipText = "OPEN INSTANCES MENU"
-PicturePosition = 4
+Width = 108
+Picture = ..\res\1x\outline_cloud_download_black_18dp.png
+Caption = "UPDATE MODS"
+ToolTipText = "UPDATE ALL MODS WITH UPD COLUMN CHECKED"
 ZOrderSet = 4
 tbmarginv = 4
-Name = "tbinstances"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local nselect, result
-
-m.nselect = Select()
-
-Select 'mr_instances1'
-
-Scan
-
-This.tbmenuitemadd(Recno('mr_instances1'), 0, 0, 0, 0, mr_instances1.iname + ' - ' + mr_instances1.ifolder)
-
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_instances1'
-
-Thisform.mr_setinstance(mr_instances1.iguid)
-
-Endif
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I70K005Y</uniqueid>
-		<timestamp>1326978033</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tblinkfile1</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 852
-Height = 28
-Width = 36
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "FILE1"
-ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tblinkfile1"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-If mr_mods.aid &gt; 0
-
-Do Case
-
-Case mr_mods.fid1 &gt; 0
-
-mr_shellexecute(mr_geturlproject_files(mr_mods.aid, mr_mods.fid1))
-
-Otherwise
-
-mr_shellexecute(mr_geturlproject_files(mr_mods.aid))
-
-Endcase
-
-Endif
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I70J9KXM</uniqueid>
-		<timestamp>1327455941</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbrefreshall</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 144
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_refresh_black_18dp.png
-Caption = "CURSE"
-ToolTipText = "REFRESH CURSE DATA FOR ALL MODS"
-ZOrderSet = 4
-Name = "tbrefreshall"
+tbpicturesize = 18
+tbpictureautosize = .F.
+Name = "tbupdateall"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
 
 _logwrite('PROCESS START')
 
-Thisform.mr_refreshcursescan()
-
-Thisform.mr_getcursedatascan()
-
-Thisform.mr_getnewverdatascan()
+thisform.mr_modupdatescan()
 
 _logwrite('PROCESS END')
-
-Thisform.updateui()
-
-Thisform.Refresh()
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I70HWZP6</uniqueid>
-		<timestamp>1326978033</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbscan</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 96
-Height = 28
-Width = 48
-Picture = ..\res\1x\outline_autorenew_black_18dp.png
-Caption = "SCAN"
-ToolTipText = "SCAN MODS FOLDER"
-ZOrderSet = 4
-Name = "tbscan"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-If Empty(mr_instances.gverlong1) Or Empty(mr_instances.gverlong2)
-
-Messagebox('SELECT MIN AND MAX MINECRAFT VERSIONS WITH "MINVER" AND "MAXVER" BUTTONS', 0 + 64, 'MODROBOT')
-
-Return
-
-Endif
-
-_logwrite('PROCESS START')
-
-Thisform.mr_getfolderdatascan()
-
-Thisform.mr_getcursedatascan()
-
-Thisform.mr_getnewverdatascan()
-
-_logwrite('PROCESS END')
-
-Thisform.updateui()
-
-Thisform.Refresh()
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I61EBSMR</uniqueid>
-		<timestamp>1358330944</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbrefresh</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 216
-Height = 28
-Width = 36
-Picture = ..\res\1x\outline_refresh_black_18dp.png
-Caption = ""
-ToolTipText = "REFRESH CURSE DATA FOR SELECTED MOD"
-ZOrderSet = 4
-Name = "tbrefresh"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-if empty(mr_mods.hash1)
-
-	return
-
-endif
-
-thisform.mr_refreshcurse(transform(mr_mods.hash1))
-
-= seek(mr_mods.rguid, 'mr_mods1', 'rguid')
-
-thisform.mr_getcursedata()
-
-thisform.mr_getnewverdata()
-
-go recno('mr_mods') in 'mr_mods'
-
-thisform.gridmain.sethighlightbackcolor()
 
 thisform.updateui()
 
+thisform.gridmain.sethighlightbackcolor()
+
 thisform.refresh()
+
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -2283,41 +2218,37 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1326978033</timestamp>
+		<uniqueid>_5IE0KY8D3</uniqueid>
+		<timestamp>1359355955</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbfolder</objname>
+		<objname>tbupdate</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 768
+Left = 468
 Height = 28
-Width = 48
-Picture = ..\res\1x\outline_folder_black_18dp.png
-Caption = "FOLDER"
-ToolTipText = "OPEN MODS FOLDER"
+Width = 24
+Picture = ..\res\1x\outline_cloud_download_black_18dp.png
+Caption = ""
+ToolTipText = "UPDATE SELECTED MOD"
 ZOrderSet = 4
-tbalign = 2
 tbmarginv = 4
-Name = "tbfolder"
+Name = "tbupdate"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local ppidl, pszName, rgfInOut
+_logwrite('PROCESS START')
 
-m.pszName = Strconv(Addbs(mr_instances.ifolder) + mr_mods.filename1 + Chr(0), 5)
+= seek(mr_mods.rguid, 'mr_mods1', 'rguid')
 
-m.ppidl = 0
+mr_modupdate(mr_mods1.rguid)
 
-If _apiSHILCreateFromPath(m.pszName, @m.ppidl, 0) = 0
+thisform.updateui()
 
-_apiSHOpenFolderAndSelectItems(m.ppidl, 0, 0, 0)
+thisform.gridmain.sethighlightbackcolor()
 
-_apiCoTaskMemFree(m.ppidl)
-
-Endif
-
+_logwrite('PROCESS END')
 
 
 ENDPROC
@@ -2338,44 +2269,75 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978033</timestamp>
+		<timestamp>1359365361</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tblinkfile2</objname>
+		<objname>tbena</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 888
+Left = 492
 Height = 28
-Width = 36
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "FILE2"
-ToolTipText = "OPEN PROJECT FILE URL IN WEB BROWSER"
+Width = 84
+Picture = ..\res\1x\outline_check_box_black_18dp.png
+Caption = "ENABLED"
+ToolTipText = 'ENABLE/DISABLE MOD|APPENDS ".disabled" TO FILE NAME'
 ZOrderSet = 4
-tbalign = 2
 tbmarginv = 4
-Name = "tblinkfile2"
+Name = "tbena"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-If mr_mods.aid &gt; 0
+if mr_mods.ena = .t.
 
-Do Case
+	this.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAPElEQVR4AWMY1EAViPcA8QFiMFStGjaD1gDxBxIM + gDWgw7gCvACTPWDyqBRg0YNomkWUSE104L1DFoAADDLRfQgho5aAAAAAElFTkSuQmCC', 14)
 
-Case mr_mods.fid2 &gt; 0
+else
 
-mr_shellexecute(mr_geturlproject_files(mr_mods.aid, mr_mods.fid2))
+	this.pictureval = strconv('iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAAcklEQVR4Aa3RgQWAYBRF4QMJoCGqAUIzJLRRgLZpgkSNVAIJxY + L3BQ6D3g + Hh4 / lzEymxnJUT2LRQu9TFgo7N6j5B01bBQeiXAwEDmU3Ig5V7JSA5WIQTETOy27iEEEdop4FFgnYpEy6Ptb0scHp / zaBa7PVhPkf310AAAAAElFTkSuQmCC', 14)
 
-Otherwise
+endif
 
-mr_shellexecute(mr_geturlproject_files(mr_mods.aid))
-
-Endcase
-
-Endif
-
-
-
+thisform.mr_enabledtoggle()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359355762</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>mr_mods</parent>
+		<properties>Top = 0
+Left = 780
+Height = 28
+Width = 60
+Picture = ..\res\1x\ic_slideshow_black_18dp.png
+Caption = "RUN"
+ToolTipText = "RUN MULTIMC INSTANCE"
+ZOrderSet = 4
+tbmarginv = 4
+tbalign = 2
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_runinstance(Thisform.mr_iguid)
 
 ENDPROC
 </methods>
@@ -2395,14 +2357,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327564533</timestamp>
+		<timestamp>1359365361</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 924
+Left = 1284
 Height = 28
 Width = 28
 FontSize = 8
@@ -2413,10 +2375,10 @@ ToolTipText = "MENU"
 ZOrderSet = 21
 tbalign = 2
 tbautowidth = .F.
-tbpictureautosize = .F.
 tbmenuoffseth = 6
 tbautofontsize = .F.
 tbmarginv = 4
+tbpictureautosize = .F.
 Name = "tbmenu"
 </properties>
 		<protected/>
@@ -2436,11 +2398,11 @@ Do Case
 
 Case m.result = 1
 
-Thisform.mr_enableall()
+Thisform.mr_enabledon()
 
 Case m.result = 2
 
-Thisform.mr_disableall()
+Thisform.mr_enabledoff()
 
 Case m.result = 4
 
@@ -2479,49 +2441,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JA0ZQ8X7</uniqueid>
-		<timestamp>1326978033</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand4</objname>
-		<parent>mr_mods</parent>
-		<properties>Top = 0
-Left = 576
-Height = 28
-Width = 48
-Picture = ..\res\1x\outline_web_asset_black_18dp.png
-Caption = "JIJ"
-ToolTipText = "OPEN JAR IN JAR TAB"
-ZOrderSet = 4
-tbalign = 2
-Name = "_tbcommand4"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-
-_inisetvalue('MR_INSTANCES_IGUID', Thisform.mr_iguid)
-
-Do Form mr_mods_jij
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5I50Z6RB2</uniqueid>
-		<timestamp>1322412355</timestamp>
+		<timestamp>1359352070</timestamp>
 		<class>image</class>
 		<classloc/>
 		<baseclass>image</baseclass>
@@ -2531,7 +2452,7 @@ ENDPROC
 Picture = ..\res\noimage1.png
 Stretch = 2
 Height = 144
-Left = 804
+Left = 1164
 Top = 324
 Width = 144
 Name = "imgavatar"
@@ -2554,14 +2475,14 @@ Name = "imgavatar"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1326978033</timestamp>
+		<timestamp>1359355762</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmaxver</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 72
+Left = 132
 Height = 28
 Width = 24
 Picture = ..\res\1x\outline_top_black_18dp.png
@@ -2615,14 +2536,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0R56FA</uniqueid>
-		<timestamp>1326978033</timestamp>
+		<timestamp>1359355762</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbminver</objname>
 		<parent>mr_mods</parent>
 		<properties>Top = 0
-Left = 48
+Left = 108
 Height = 28
 Width = 24
 Picture = ..\res\1x\outline_bottom_black_18dp.png
@@ -2675,19 +2596,61 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5KG18YL60</uniqueid>
-		<timestamp>1327474515</timestamp>
-		<class>cliptimer</class>
-		<classloc>mr_vcl.vcx</classloc>
-		<baseclass>timer</baseclass>
-		<objname>Cliptimer1</objname>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359390831</timestamp>
+		<class>_tbsplitbutton</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbinstances</objname>
 		<parent>mr_mods</parent>
-		<properties>Top = 12
-Left = 434
-Name = "Cliptimer1"
+		<properties>Top = 0
+Left = 12
+Caption = "INSTANCES"
+ToolTipText = "INSTANCES"
+Name = "tbinstances"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE Click
+_inisetvalue('MR_INSTANCES_IGUID', thisform.mr_iguid)
+
+do form mr_instances
+ENDPROC
+PROCEDURE dropdownclick
+Local iguid, nselect, result
+
+m.nselect = select()
+
+use 'mr_instances' again in 0 order tag 'INAME' alias 'menu_instances'
+
+select 'menu_instances'
+
+scan
+
+	this.tbmenuitemadd(recno('menu_instances'), 0, 0, 0, 0, menu_instances.iname + ' - ' + menu_instances.ifolder)
+
+endscan
+
+m.result = this.tbmenushow()
+
+if m.result &gt; 0 then
+
+	go m.result in 'menu_instances'
+
+	thisform.mr_iguid = menu_instances.iguid
+
+endif
+
+use in 'menu_instances'
+
+_restorearea(m.nselect)
+
+if m.result &gt; 0 then
+
+	thisform.mr_setinstance()
+
+endif
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>

@@ -4,9 +4,8 @@ lparameters piguid
 
 *!* GENERATE BATCH FILES FIRST
 
-local blmd5, blpath, btext, crlf, installmodscmd, installmodssh, instancefolder, itext, lnx, nselect
-local skipfile, url, zfilepath, zipbasefolder, zipfilename
-
+Local blmd5, blpath, btext, crlf, installmodscmd, installmodssh, instancefolder, itext, nselect
+Local skipfile, url, zfilepath, zipbasefolder, zipfilename
 
 m.nselect = select()
 
@@ -36,7 +35,7 @@ endif
 
 if not used('mods_gcb')
 
-	use 'mr_mods' again alias 'mods_gcb' in 0
+	use 'mr_mods' again alias 'mods_gcb' in 0 ORDER TAG 'filename1'
 
 endif
 
@@ -45,6 +44,8 @@ if not used('files_gcb')
 	use 'mr_files' again alias 'files_gcb' in 0
 
 endif
+
+_logwrite('GENERATE MULTIMC ZIP START')
 
 m.crlf = 0h0d0a
 
@@ -56,7 +57,7 @@ scan
 
 	select 'mods_gcb'
 
-	scan for mods_gcb.iguid = m.piguid
+	scan for mods_gcb.iguid == m.piguid
 
 		if mods_gcb.fid1 > 0
 
@@ -69,6 +70,8 @@ scan
 			endif
 
 			m.url = mr_geturlfile1(files_gcb.fid, files_gcb.filename)
+
+			_logwrite('ADD FILE', files_gcb.fid, mods_gcb.filename1)
 
 			*!* FIX URLS FOR WINDOWS BATCH
 
@@ -113,7 +116,6 @@ use in 'batch_gcb'
 use in 'inst_gcb'
 
 _restorearea(m.nselect)
-
 
 *!* NOW GENERATE ZIP FILE
 
@@ -175,21 +177,27 @@ else
 
 endif
 
-_logwrite('GENERATE INSTANCE ZIP START')
-
 _logwrite('SOURCE FOLDER:', m.instancefolder)
 
 _logwrite('ZIP FILE:', m.zipfilename)
 
-_findfilesinfoldertree(m.instancefolder, '*.*')
-
 _zipopen()
 
-*!* ADD THE ACTUAL BATCH FILES
+*!* DELETE ANY LEFTOVER BATCH FILES (WE USED TO CREATE THE ACTUAL BATCH FILES IN THE INSTANCE FOLDER)
+
+_apideletefile(m.instancefolder + '\.minecraft\_install_mods.cmd')
+
+_apideletefile(m.instancefolder + '\.minecraft\_install_mods.sh')
+
+*!* ADD THE ACTUAL BATCH FILES TO ZIP
 
 _zipaddblob(m.installmodscmd, _zipgetzfilepath(m.instancefolder + '\.minecraft\_install_mods.cmd', m.zipbasefolder))
 
 _zipaddblob(m.installmodssh, _zipgetzfilepath(m.instancefolder + '\.minecraft\_install_mods.sh', m.zipbasefolder))
+
+*!* ADD FILES TO ZIP
+
+_findfilesinfoldertree(m.instancefolder, '*.*')
 
 select 'foundfiles'
 
@@ -247,6 +255,8 @@ scan
 
 		endif
 
+		_logwrite('ADD FILE/FOLDER', m.zfilepath)
+
 		_zipaddfile(foundfiles.filename, m.zfilepath)
 
 	endif
@@ -255,12 +265,12 @@ endscan
 
 _zipclose(m.zipfilename)
 
-mr_rezipthezip(m.zipfilename)
+*mr_rezipthezip(m.zipfilename)
 
-_logwrite('GENERATE INSTANCE ZIP END')
+_logwrite('GENERATE MULTIMC ZIP END')
 
 use in 'inst_giz'
 
 use in 'blacklist_giz'
 
-_restorearea(m.nselect)
+_restorearea(m.nselect)  

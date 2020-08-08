@@ -13,19 +13,19 @@ endif
 
 m.nselect = select()
 
-if not used('addons_upd')
+if not used('upd_addons')
 
-	use 'mr_addons' in 0 again shared order tag 'aid' descending alias 'addons_upd'
+	use 'mr_addons' in 0 again shared order tag 'aid' descending alias 'upd_addons'
 
 endif
 
-select 'addons_upd'
+select 'upd_addons'
 
-if seek(m.paid, 'addons_upd', 'aid') = .f. then
+if seek(m.paid, 'upd_addons', 'aid') = .f. then
 
-	append blank in 'addons_upd'
+	append blank in 'upd_addons'
 
-	replace addons_upd.aid with m.paid in 'addons_upd'
+	replace upd_addons.aid with m.paid in 'upd_addons'
 
 endif
 
@@ -41,7 +41,7 @@ m.winhttp.gzip = .t.
 
 m.winhttp.option_enableredirects = .t.
 
-m.url = mr_geturlapi_addon(addons_upd.aid)
+m.url = mr_geturlapi_addon(upd_addons.aid)
 
 m.winhttp.open('GET', m.url, .t.)
 
@@ -65,7 +65,7 @@ if m.haresponse = 200
 
 	m.ojson = nfjsonread(m.hajson)
 
-	if m.ojson.datereleased > addons_upd.adreleased
+	if m.ojson.datereleased > upd_addons.adreleased
 
 		m.dofileupdate = .t.
 
@@ -77,14 +77,13 @@ if m.haresponse = 200
 
 	*!* FORCE FILE UPDATE 2020/20/01
 	
-	
 	m.dofileupdate = .T.
 	
-	if m.ojson.datemodified > addons_upd.admodified
+	if m.ojson.datemodified > upd_addons.admodified
 
-		replace addons_upd.hajson with _zlibcompress(m.hajson) in 'addons_upd'
+		replace upd_addons.hajson with _zlibcompress(m.hajson) in 'upd_addons'
 
-		mr_addonparse(addons_upd.aid, m.hajson)
+		mr_addonparse(upd_addons.aid, m.hajson)
 
 	endif
 
@@ -92,23 +91,23 @@ endif
 
 *!* UPDATE GET FIELDS
 
-replace addons_upd.haresponse with m.haresponse, addons_upd.hadatetime with datetime() in 'addons_upd'
+replace upd_addons.haresponse with m.haresponse, upd_addons.hadatetime with datetime() in 'upd_addons'
 
 *!* GET FILES
 
-if m.dofileupdate = .t. and addons_upd.agameid = 432
+if m.dofileupdate = .t. and upd_addons.agameid = 432
 
-	m.fjson = mr_filegetjson(addons_upd.aid)
+	m.fjson = mr_filegetjson(upd_addons.aid)
 
 	if not empty(m.fjson)
 
-		mr_fileparse(addons_upd.aid, m.fjson, addons_upd.aname, addons_upd.slug, addons_upd.authorname)
+		mr_fileparse(upd_addons.aid, m.fjson, upd_addons.aname, upd_addons.slug, upd_addons.authorname)
 
 	endif
 
 endif
 
-use in 'addons_upd'
+use in 'upd_addons'
 
 _restorearea(m.nselect)
 

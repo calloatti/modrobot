@@ -6,27 +6,27 @@ local aid, aname, did, dname, dtype, fid, filename, nselect
 
 m.nselect = select()
 
-if not used('mr_enumdep_up')
+if not used('dup_enum_dependencies')
 
-	use 'mr_enum_dependencies' in 0 again shared alias 'mr_enumdep_up'
-
-endif
-
-if not used('mr_dep_up')
-
-	use 'mr_dependencies' in 0 again shared alias 'mr_dep_up'
+	use 'mr_enum_dependencies' in 0 again shared alias 'dup_enum_dependencies'
 
 endif
 
-if not used('mr_files_up')
+if not used('dup_dependencies')
 
-	use 'mr_files' in 0 again shared alias 'mr_files_up'
+	use 'mr_dependencies' in 0 again shared alias 'dup_dependencies'
 
 endif
 
-if not used('mr_addons_up')
+if not used('dup_files')
 
-	use 'mr_addons' in 0 again shared alias 'mr_addons_up'
+	use 'mr_files' in 0 again shared alias 'dup_files'
+
+endif
+
+if not used('dup_addons')
+
+	use 'mr_addons' in 0 again shared alias 'dup_addons'
 
 endif
 
@@ -35,7 +35,7 @@ m.aid	= m.podependency.addonid
 m.fid	= m.podependency.fileid
 m.dtype	= m.podependency.type
 
-if seek(m.aid, 'mr_addons_up', 'aid') = .f.
+if seek(m.aid, 'dup_addons', 'aid') = .f.
 
 	*!* ADD DEPENDENCY ADDON ID TO ADDONS TABLE
 
@@ -43,36 +43,36 @@ if seek(m.aid, 'mr_addons_up', 'aid') = .f.
 
 endif
 
-= seek(m.aid, 'mr_addons_up', 'aid')
-= seek(m.dtype, 'mr_enumdep_up', 'eid')
-= seek(m.fid, 'mr_files_up', 'fid')
+= seek(m.aid, 'dup_addons', 'aid')
+= seek(m.dtype, 'dup_enum_dependencies', 'eid')
+= seek(m.fid, 'dup_files', 'fid')
 
-m.dname	   = mr_enumdep_up.ename
-m.aname	   = mr_addons_up.aname
-m.filename = mr_files_up.filename
+m.dname	   = dup_enum_dependencies.ename
+m.aname	   = dup_addons.aname
+m.filename = dup_files.filename
 
-if seek(m.did, 'mr_dep_up', 'did') = .f.
+if seek(m.did, 'dup_dependencies', 'did') = .f.
 
-	append blank in 'mr_dep_up'
+	append blank in 'dup_dependencies'
 
-	replace mr_dep_up.did with m.did in 'mr_dep_up'
+	replace dup_dependencies.did with m.did in 'dup_dependencies'
 
 endif
 
 replace ;
-		mr_dep_up.aid	   with	m.aid, ;
-		mr_dep_up.fid	   with	m.fid, ;
-		mr_dep_up.dtype	   with	m.dtype, ;
-		mr_dep_up.dname	   with	m.dname, ;
-		mr_dep_up.aname	   with	m.aname, ;
-		mr_dep_up.filename with	m.filename in 'mr_dep_up'
+	dup_dependencies.aid	  with m.aid, ;
+	dup_dependencies.fid	  with m.fid, ;
+	dup_dependencies.dtype	  with m.dtype, ;
+	dup_dependencies.dname	  with m.dname, ;
+	dup_dependencies.aname	  with m.aname, ;
+	dup_dependencies.filename with m.filename in 'dup_dependencies'
 
-use in 'mr_enumdep_up'
+use in 'dup_enum_dependencies'
 
-use in 'mr_dep_up'
+use in 'dup_dependencies'
 
-use in 'mr_files_up'
+use in 'dup_files'
 
-use in 'mr_addons_up'
+use in 'dup_addons'
 
 _restorearea(m.nselect)

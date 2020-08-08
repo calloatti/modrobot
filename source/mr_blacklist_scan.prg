@@ -6,9 +6,9 @@ Local blmd5, blmd5tocheck, blpath, blpathtocheck, doadditem, instancefolder, nse
 
 m.nselect = select()
 
-if not used('black_bls')
+if not used('sca_blacklist')
 
-	use 'mr_blacklist' again alias 'black_bls' in 0
+	use 'mr_blacklist' again alias 'sca_blacklist' in 0
 
 endif
 
@@ -30,7 +30,7 @@ scan
 
 	m.blmd5 = _md5hashstring(lower(m.blpath))
 
-	if seek(m.blmd5, 'black_bls', 'blmd5') = .t.
+	if seek(m.blmd5, 'sca_blacklist', 'blmd5') = .t.
 
 		loop
 
@@ -46,7 +46,7 @@ scan
 
 		m.blmd5tocheck = _md5hashstring(lower(m.blpathtocheck))
 
-		if seek(m.blmd5tocheck, 'black_bls', 'blmd5') = .t. and black_bls.blblack = .t.
+		if seek(m.blmd5tocheck, 'sca_blacklist', 'blmd5') = .t. and sca_blacklist.blblack = .t.
 
 			m.doadditem = .f.
 
@@ -68,16 +68,12 @@ scan
 
 	_logwrite(m.blpath)
 
-	if seek('00000000', 'black_bls', 'iguid') = .f.
-
-		append blank in 'black_bls'
-
-	endif
-
-	replace black_bls.blpath with m.blpath in 'black_bls'
-	replace black_bls.isfolder with foundfiles.filefolder in 'black_bls'
-	replace black_bls.blmd5 with m.blmd5 in 'black_bls'
-	replace black_bls.iguid with m.piguid in 'black_bls'
+	mr_appendblank('sca_blacklist')
+	
+	replace sca_blacklist.blpath with m.blpath in 'sca_blacklist'
+	replace sca_blacklist.isfolder with foundfiles.filefolder in 'sca_blacklist'
+	replace sca_blacklist.blmd5 with m.blmd5 in 'sca_blacklist'
+	replace sca_blacklist.iguid with m.piguid in 'sca_blacklist'
 
 	* ! * ADD FOLDERS OF ITEM
 
@@ -87,16 +83,16 @@ scan
 
 		m.blmd5 = _md5hashstring(lower(m.blpath))
 
-		if seek(m.blmd5, 'black_bls', 'blmd5') = .f.
+		if seek(m.blmd5, 'sca_blacklist', 'blmd5') = .f.
 
 			_logwrite(m.blpath)
 
-			append blank in 'black_bls'
+			mr_appendblank('sca_blacklist')
 
-			replace black_bls.blpath with m.blpath in 'black_bls'
-			replace black_bls.isfolder with foundfiles.filefolder in 'black_bls'
-			replace black_bls.blmd5 with m.blmd5 in 'black_bls'
-			replace black_bls.iguid with m.piguid in 'black_bls'
+			replace sca_blacklist.blpath with m.blpath in 'sca_blacklist'
+			replace sca_blacklist.isfolder with foundfiles.filefolder in 'sca_blacklist'
+			replace sca_blacklist.blmd5 with m.blmd5 in 'sca_blacklist'
+			replace sca_blacklist.iguid with m.piguid in 'sca_blacklist'
 
 		endif
 
@@ -110,7 +106,7 @@ use in 'foundfiles'
 
 _logwrite('SCAN END')
 
-use in 'black_bls'
+use in 'sca_blacklist'
 
 _restorearea(m.nselect)
 

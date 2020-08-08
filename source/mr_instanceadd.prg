@@ -1,105 +1,49 @@
 *!* mr_instanceadd
 
-lparameters pfolder
+lparameters pifolder
 
-local cdata, cfile, ifolder, iguid, iloader, iminecraft, iname, lny, nselect, ojson
+local iguid, nselect, oidata
+
+m.iguid = ''
 
 m.nselect = select()
 
-if not used('instance_add')
+if not used('inst_add')
 
-	use 'mr_instances' in 0 again shared alias 'instance_add'
-
-endif
-
-m.iminecraft = 'N/A'
-m.iloader	 = 'N/A'
-m.iname		 = 'N/A'
-
-m.ifolder	 = m.pfolder
-
-m.cfile = addbs(m.pfolder) + '..\..\instance.cfg'
-
-if file(m.cfile)
-
-	m.cdata = chrtran(filetostr(m.cfile), 0h0a, '|')
-
-	m.iname = strextract(m.cdata, 'name=', '|')
+	use 'mr_instances' in 0 again shared alias 'inst_add'
 
 endif
 
-if empty(m.iname)
+select 'inst_add'
 
-	m.iname = justfname(justfname(justfname(m.pfolder)))
+locate for lower(inst_add.ifolder) == lower(m.pifolder)
 
-endif
+if not found('inst_add')
 
-m.cfile = addbs(m.pfolder) + '..\..\mmc-pack.json'
+	m.iguid =  mr_crc32(m.pifolder + sys(2015))
 
-if file(m.cfile)
+	m.oidata = mr_instancegetdata(m.pifolder)
 
-	m.ojson = nfjsonread(filetostr(m.cfile))
+	mr_appendblank('inst_add')
 
-	if type('m.ojson.components[1]') = 'O'
+	replace inst_add.iguid with m.iguid in 'inst_add'
+	replace inst_add.ifolder with m.pifolder in 'inst_add'
+	replace inst_add.iname with m.oidata.iname in 'inst_add'
+	replace inst_add.iminecraft with m.oidata.iminecraft in 'inst_add'
+	replace inst_add.iloader with m.oidata.iloader in 'inst_add'
 
-		for m.lny = 1 to alen(m.ojson.components)
+	if empty(inst_add.icfdata)
 
-			do case
-
-			case type('m.ojson.components[m.lny].cachedname') # 'C'
-
-			case m.ojson.components[m.lny].cachedname == 'Minecraft'
-
-				m.iminecraft = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].version
-
-			case m.ojson.components[m.lny].cachedname == 'Forge'
-
-				m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].version
-
-			case m.ojson.components[m.lny].cachedname == 'FabricLoader'
-
-				m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].cachedversion
-
-			case m.ojson.components[m.lny].cachedname == 'Fabric Loader'
-
-				m.iloader = m.ojson.components[m.lny].cachedname + ' ' + m.ojson.components[m.lny].version
-
-			endcase
-
-		endfor
+		replace inst_add.icfdata with '"name": "CurseForgeModpackName"' + 0h0d0a + '"version": "CurseForgeModpackVersion"' + 0h0d0a + '"author": "CurseForgeAuthorName"' in 'inst_add'
 
 	endif
 
-endif
-
-m.iguid =  mr_crc32(m.ifolder)
-
-if seek(m.iguid, 'instance_add', 'iguid') = .f.
-
-	append blank in 'instance_add'
-
-	replace instance_add.iguid with m.iguid in 'instance_add'
-	replace instance_add.ifolder with m.ifolder in 'instance_add'
+	m.iguid = inst_add.iguid
 
 endif
 
-replace instance_add.iname with m.iname in 'instance_add'
-replace instance_add.iminecraft with m.iminecraft in 'instance_add'
-replace instance_add.iloader with m.iloader in 'instance_add'
-
-if empty(instance_add.icfdata)
-
-	replace instance_add.icfdata with '"name": "ModpackName"' + 0h0d0a + '"version": "1.0.0"' + 0h0d0a + '"author": "AuthorNameCF"' in 'instance_add'
-
-endif
-
-_inisetvalue('MR_INSTANCES_IGUID', instance_add.iguid)
-
-use in 'instance_add'
+use in 'inst_add'
 
 _restorearea(m.nselect)
 
-
-
-
-
+return m.iguid

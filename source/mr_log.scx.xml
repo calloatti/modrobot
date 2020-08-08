@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1358366003</timestamp>
+		<timestamp>1359312530</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0HUYIC</uniqueid>
-		<timestamp>1358366057</timestamp>
+		<timestamp>1359492143</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -70,6 +70,7 @@ Left = 10
 Height = 343
 Width = 117
 Alias = "mr_log"
+Order = ""
 Database = ..\data\data1.dbc
 CursorSource = "mr_log"
 Name = "Cursor1"
@@ -92,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TL01BLA0</uniqueid>
-		<timestamp>1358366057</timestamp>
+		<timestamp>1359492143</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -100,8 +101,8 @@ Name = "Cursor1"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 150
-Height = 90
-Width = 90
+Height = 352
+Width = 228
 Alias = "mr_instances"
 Order = "iname"
 Database = ..\data\data1.dbc
@@ -126,7 +127,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1358366057</timestamp>
+		<timestamp>1359492143</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -145,20 +146,24 @@ tmrSql.Name = "tmrSql"
 
 local iguid
 
-m.iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+if not empty(thisform.p1)
 
-thisform.mr_setinstance(m.iguid)
+	thisform.mr_iguid = thisform.p1
 
-go bottom in 'mr_log'
+else
+
+	thisform.mr_iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+endif
+
+thisform.mr_setinstance()
+
+
 ENDPROC
 PROCEDURE mr_setinstance
 *!* mr_setinstance
 
-lparameters piguid
-
-thisform.mr_iguid = m.piguid
-
-if m.piguid = '00000000' and reccount('mr_instances') &gt; 0 then
+if thisform.mr_iguid = '00000000' and reccount('mr_instances') &gt; 0 then
 
 	go top in 'mr_instances'
 
@@ -168,11 +173,9 @@ endif
 
 if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
 
-	_inisetvalue('MR_INSTANCES_IGUID', mr_instances.iguid)
-
 	if empty(mr_instances.iname) then
 
-		thisform.caption = 'LOG - ' + _shortenpath(mr_instances.iguid, 240)
+		thisform.caption = 'LOG - ' + _shortenpath(mr_instances.ifolder, 240)
 
 	else
 
@@ -180,6 +183,21 @@ if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
 
 	endif
 
+	select 'mr_log'
+
+	set filter to mr_log.iguid == thisform.mr_iguid in 'mr_log'
+
+	go bottom in 'mr_log'
+
+	if reccount('mr_log') &gt; thisform.gridmain.height / thisform.gridmain.rowheight * (-1)
+
+		skip thisform.gridmain.height / thisform.gridmain.rowheight * (-1) in 'mr_log'
+
+	endif
+
+	thisform.gridmain.refresh()
+
+	go bottom in 'mr_log'
 
 else
 
@@ -191,9 +209,6 @@ else
 
 endif
 
-select 'mr_log'
-
-set filter to mr_log.iguid == thisform.mr_iguid
 
 thisform.updateui()
 
@@ -223,7 +238,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_log</parent>
+		<parent>MR_LOG</parent>
 		<properties>Height = 456
 Left = 12
 Top = 36
@@ -254,7 +269,7 @@ Name = "gridmain"
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>mr_log</parent>
+		<parent>MR_LOG</parent>
 		<properties>Top = 0
 Left = 924
 Height = 28
@@ -290,17 +305,17 @@ Name = "tbmenu"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5TL01BLAC</uniqueid>
-		<timestamp>1358366003</timestamp>
+		<uniqueid>_5TY0VGY9N</uniqueid>
+		<timestamp>1359312160</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbinstances</objname>
-		<parent>mr_log</parent>
+		<parent>MR_LOG</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
-Width = 112
+Width = 100
 Picture = ..\res\1x\outline_expand_more_black_18dp.png
 Caption = "INSTANCES"
 ToolTipText = "OPEN INSTANCES MENU"
@@ -311,34 +326,39 @@ Name = "tbinstances"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local nselect, result
+Local iguid, nselect, result
 
-m.nselect = Select()
+m.nselect = select()
 
-Select 'mr_instances'
+use 'mr_instances' again in 0 order tag 'INAME' alias 'menu_instances'
 
-Scan
+select 'menu_instances'
 
-This.tbmenuitemadd(Recno('mr_instances'), 0, 0, 0, 0, mr_instances.iname + ' - ' + mr_instances.ifolder)
+scan
 
-Endscan
+	this.tbmenuitemadd(recno('menu_instances'), 0, 0, 0, 0, menu_instances.iname + ' - ' + menu_instances.ifolder)
+
+endscan
+
+m.result = this.tbmenushow()
+
+if m.result &gt; 0 then
+
+	go m.result in 'menu_instances'
+
+	thisform.mr_iguid = menu_instances.iguid
+
+endif
+
+use in 'menu_instances'
 
 _restorearea(m.nselect)
 
-m.result = This.tbmenushow()
+if m.result &gt; 0 then
 
-If m.result &gt; 0 Then
+	thisform.mr_setinstance()
 
-Go m.result In 'mr_instances'
-
-Thisform.mr_setinstance(mr_instances.iguid)
-
-Endif
-
-
-
-
-
+endif
 ENDPROC
 </methods>
 		<objcode/>

@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKM</uniqueid>
-		<timestamp>1357422361</timestamp>
+		<timestamp>1359493139</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -130,7 +130,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1356427575</timestamp>
+		<timestamp>1359493139</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -138,7 +138,7 @@ Name = "edtlog"
 		<parent>MR_ABOUT</parent>
 		<properties>Top = 0
 Left = 12
-Picture = ..\res\1x\outline_clear_black_18dp.png
+Picture = ..\res\1x\ic_delete_sweep_black_18dp.png
 Caption = "ZAP"
 ToolTipText = "DANGER ZONE: ZAPS TABLES WITH NO CONFIRMATION"
 Name = "_tbcommand1"
@@ -163,85 +163,145 @@ close tables all
 
 _logwrite('ZAP/PACK START')
 
-_logwrite('ZAP MR_ADDONS')
+_logwrite('MR_ADDONS')
 
 use MR_ADDONS exclusive
 
 zap
 
-_logwrite('ZAP MR_ADDONS_API ')
+_logwrite('MR_ADDONS_API')
 
 use MR_ADDONS_API exclusive
 
 zap
 
-_logwrite('PACK MR_ADDONS_EXC ')
+_logwrite('MR_ADDONS_EXC')
 
 use MR_ADDONS_EXC exclusive
 
-pack
+zap
 
-_logwrite('PACK MR_BATCH ')
+_logwrite('MR_BATCH')
 
 use MR_BATCH exclusive
 
 pack
 
-_logwrite('ZAP MR_BLACKLIST ')
+_logwrite('MR_BLACKLIST')
 
 use MR_BLACKLIST exclusive
 
 zap
 
-_logwrite('PACK MR_CATEGORIES ')
+_logwrite('MR_CATEGORIES')
 
 use MR_CATEGORIES exclusive
 
 pack
 
-_logwrite('ZAP MR_DEPENDENCIES ')
+_logwrite('MR_COMPARECLOG')
+
+use MR_COMPARECLOG exclusive
+
+zap
+
+_logwrite('MR_COMPAREMLOG')
+
+use MR_COMPAREMLOG exclusive
+
+zap
+
+_logwrite('MR_DEPENDENCIES')
 
 use MR_DEPENDENCIES exclusive
 
 zap
 
-_logwrite('ZAP MR_FILES ')
+_logwrite('MR_ENUM_DEPENDENCIES')
+
+use MR_ENUM_DEPENDENCIES exclusive
+
+pack
+
+_logwrite('MR_ENUM_FILERELEASETYPE')
+
+use MR_ENUM_FILERELEASETYPE exclusive
+
+pack
+
+_logwrite('MR_ENUM_FILESTATUS')
+
+use MR_ENUM_FILESTATUS exclusive
+
+pack
+
+_logwrite('MR_ENUM_GAMEVERSION')
+
+use MR_ENUM_GAMEVERSION exclusive
+
+pack
+
+_logwrite('MR_ENUM_PROJECTSTATUS')
+
+use MR_ENUM_PROJECTSTATUS exclusive
+
+zap
+
+_logwrite('MR_FILES')
 
 use MR_FILES exclusive
 
 zap
 
-_logwrite('ZAP MR_FILEVERSIONS ')
+_logwrite('MR_FILEVERSIONS')
 
 use MR_FILEVERSIONS exclusive
 
 zap
 
-_logwrite('ZAP MR_INSTANCES ')
+_logwrite('MR_INSTANCES')
 
 use MR_INSTANCES exclusive
 
 zap
 
-_logwrite('ZAP MR_LOG ')
+_logwrite('MR_JIJS')
+
+use MR_JIJS exclusive
+
+zap
+
+_logwrite('MR_LOG')
 
 use MR_LOG exclusive
 
 zap
 
-_logwrite('ZAP MR_MODIDS ')
+_logwrite('MR_MODIDS')
 
 use MR_MODIDS exclusive
 
 zap
 
-_logwrite('ZAP MR_MODS ')
+_logwrite('MR_MODLOADERS')
+
+use MR_MODLOADERS exclusive
+
+pack
+
+_logwrite('MR_MODS')
 
 use MR_MODS exclusive
 
 zap
 
-_logwrite('ZAP MR_PASTES ')
+_logwrite('MR_MODS_DEPENDENCIES')
+
+use MR_MODS_DEPENDENCIES exclusive
+
+zap
+
+_logwrite('MR_PASTES')
 
 use MR_PASTES exclusive
 
@@ -262,6 +322,7 @@ _logwrite('REINDEX TABLES START')
 _indextables()
 
 _logwrite('REINDEX TABLES END')
+
 
 
 
@@ -380,72 +441,28 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1357422361</timestamp>
+		<uniqueid>_5ST0T99HH</uniqueid>
+		<timestamp>1356426465</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tblinkhome</objname>
+		<objname>_tbcommand5</objname>
 		<parent>MR_ABOUT</parent>
 		<properties>Top = 0
-Left = 624
+Left = 552
 Height = 28
 Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "DISCORD"
+Caption = "WIKI"
 ToolTipText = "MODROBOT WIKI"
 ZOrderSet = 4
 tbalign = 2
 tbmarginv = 4
-Name = "tblinkhome"
+Name = "_tbcommand5"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(_inigetvalue('DISCORD_LINK', 'https://discord.gg/y8xf9FF'))
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1327067650</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tblinkfile1</objname>
-		<parent>MR_ABOUT</parent>
-		<properties>Top = 0
-Left = 696
-Height = 28
-Width = 84
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "ISSUES"
-ToolTipText = "MODROBOT GITHUB ISSUES"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tblinkfile1"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-mr_shellexecute('https://github.com/calloatti/modrobot/issues')
-
-
+mr_shellexecute('https://github.com/calloatti/modrobot/wiki')
 
 
 
@@ -510,28 +527,72 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5ST0T99HH</uniqueid>
-		<timestamp>1356426465</timestamp>
+		<uniqueid>_5I712ALKH</uniqueid>
+		<timestamp>1327067650</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand5</objname>
+		<objname>tblinkfile1</objname>
 		<parent>MR_ABOUT</parent>
 		<properties>Top = 0
-Left = 552
+Left = 696
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "ISSUES"
+ToolTipText = "MODROBOT GITHUB ISSUES"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "tblinkfile1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://github.com/calloatti/modrobot/issues')
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5I712ALKH</uniqueid>
+		<timestamp>1357422361</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tblinkhome</objname>
+		<parent>MR_ABOUT</parent>
+		<properties>Top = 0
+Left = 624
 Height = 28
 Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "WIKI"
+Caption = "DISCORD"
 ToolTipText = "MODROBOT WIKI"
 ZOrderSet = 4
 tbalign = 2
 tbmarginv = 4
-Name = "_tbcommand5"
+Name = "tblinkhome"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute('https://github.com/calloatti/modrobot/wiki')
+mr_shellexecute(_inigetvalue('DISCORD_LINK', 'https://discord.gg/y8xf9FF'))
 
 
 
@@ -553,7 +614,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5SE0FVGT5</uniqueid>
-		<timestamp>1355430668</timestamp>
+		<timestamp>1359355323</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -563,6 +624,7 @@ ENDPROC
 Left = 108
 Height = 28
 Width = 86
+Picture = ..\res\1x\ic_sort_black_18dp.png
 Caption = "REINDEX"
 ToolTipText = "RECREATES TABLES INDEXES. CLOSE ALL OTHER OPEN TABS."
 Name = "_tbcommand4"

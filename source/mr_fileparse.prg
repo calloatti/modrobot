@@ -13,27 +13,27 @@ endif
 
 m.nselect = select()
 
-if not used('filever_pjf')
+if not used('fpa_fileversions')
 
-	use 'mr_fileversions' again alias 'filever_pjf' in 0
-
-endif
-
-if not used('gversion_pjf')
-
-	use 'mr_enum_gameversion' again alias 'gversion_pjf' in 0
+	use 'mr_fileversions' again alias 'fpa_fileversions' in 0
 
 endif
 
-if not used('reltype_pjf')
+if not used('fpa_enum_gameversion')
 
-	use 'mr_enum_filereleasetype' again alias 'reltype_pjf' in 0
+	use 'mr_enum_gameversion' again alias 'fpa_enum_gameversion' in 0
 
 endif
 
-if not used('files_pjf')
+if not used('fpa_enum_filereleasetype')
 
-	use 'mr_files' again alias 'files_pjf' in 0
+	use 'mr_enum_filereleasetype' again alias 'fpa_enum_filereleasetype' in 0
+
+endif
+
+if not used('fpa_files')
+
+	use 'mr_files' again alias 'fpa_files' in 0
 
 endif
 
@@ -61,42 +61,42 @@ for m.lnx = 1 to m.ofjson.count
 
 	_logwrite('FILE PARSE', m.fid)
 
-	if seek(m.fid, 'files_pjf', 'FID') = .f. then
+	if seek(m.fid, 'fpa_files', 'FID') = .f. then
 
-		append blank in 'files_pjf'
+		append blank in 'fpa_files'
 
-		replace files_pjf.fid with m.fid in 'files_pjf'
+		replace fpa_files.fid with m.fid in 'fpa_files'
 
 	endif
 
 	replace ;
-		files_pjf.authorname with m.pauthorname, ;
-		files_pjf.aid		 with m.paid, ;
-		files_pjf.aname		 with m.paname, ;
-		files_pjf.slug		 with m.slug in 'files_pjf'
+		fpa_files.authorname with m.pauthorname, ;
+		fpa_files.aid		 with m.paid, ;
+		fpa_files.aname		 with m.paname, ;
+		fpa_files.slug		 with m.slug in 'fpa_files'
 
-	if files_pjf.hfjson == m.hfjson
+	if fpa_files.hfjson == m.hfjson
 
 		loop
 
 	endif
 
-	replace files_pjf.hfjson with m.hfjson in 'files_pjf'
+	replace fpa_files.hfjson with m.hfjson in 'fpa_files'
 
 	replace ;
-		files_pjf.dispname	 with m.ojson.displayname, ;
-		files_pjf.filedate	 with m.ojson.filedate, ;
-		files_pjf.fileext	 with justext(m.ojson.filename), ;
-		files_pjf.filelen	 with m.ojson.filelength, ;
-		files_pjf.filename	 with m.ojson.filename, ;
-		files_pjf.hash		 with m.ojson.packagefingerprint, ;
-		files_pjf.rtype		 with m.ojson.releasetype in 'files_pjf'
+		fpa_files.dispname with	m.ojson.displayname, ;
+		fpa_files.filedate with	m.ojson.filedate, ;
+		fpa_files.fileext  with	justext(m.ojson.filename), ;
+		fpa_files.filelen  with	m.ojson.filelength, ;
+		fpa_files.filename with	m.ojson.filename, ;
+		fpa_files.hash	   with	m.ojson.packagefingerprint, ;
+		fpa_files.rtype	   with	m.ojson.releasetype in 'fpa_files'
 
 	*!* RELEASE TYPE
 
-	if seek(files_pjf.rtype, 'reltype_pjf', 'eid') = .t.
+	if seek(fpa_files.rtype, 'fpa_enum_filereleasetype', 'eid') = .t.
 
-		replace files_pjf.rtypename with reltype_pjf.ename in 'files_pjf'
+		replace fpa_files.rtypename with fpa_enum_filereleasetype.ename in 'fpa_files'
 
 	endif
 
@@ -112,25 +112,25 @@ for m.lnx = 1 to m.ofjson.count
 
 			case 'mcmod.info' $ m.foldername
 
-				replace files_pjf.foldername with 'FORGE' in 'files_pjf'
+				replace fpa_files.foldername with 'FORGE' in 'fpa_files'
 
 				*!* NO EXIT HERE SINCE THE JAR CAN ALSO HAVE A fabric.mod.json INSIDE	            
 
 			case 'fabric.mod.json' $ m.foldername
 
-				replace files_pjf.foldername with 'FABRIC' in 'files_pjf'
+				replace fpa_files.foldername with 'FABRIC' in 'fpa_files'
 
 				exit
 
 			case 'riftmod.json' $ m.foldername
 
-				replace files_pjf.foldername with 'RIFT' in 'files_pjf'
+				replace fpa_files.foldername with 'RIFT' in 'fpa_files'
 
 				exit
 
 			case 'litemod.json' $ m.foldername
 
-				replace files_pjf.foldername with 'LITELOADER' in 'files_pjf'
+				replace fpa_files.foldername with 'LITELOADER' in 'fpa_files'
 
 				exit
 
@@ -160,11 +160,11 @@ for m.lnx = 1 to m.ofjson.count
 
 				*!* ADD TO VERSIONS TABLE
 
-				if seek(m.gveritem, 'gversion_pjf', 'gver') = .f.
+				if seek(m.gveritem, 'fpa_enum_gameversion', 'gver') = .f.
 
-					append blank in 'gversion_pjf'
+					append blank in 'fpa_enum_gameversion'
 
-					replace	gversion_pjf.gver with m.gveritem, gversion_pjf.gverlong with m.gverlong in 'gversion_pjf'
+					replace	fpa_enum_gameversion.gver with m.gveritem, fpa_enum_gameversion.gverlong with m.gverlong in 'fpa_enum_gameversion'
 
 				endif
 
@@ -172,22 +172,22 @@ for m.lnx = 1 to m.ofjson.count
 
 				m.guid = _md5hashstring(m.gverlong + transform(m.fid))
 
-				if seek(m.guid, 'filever_pjf', 'guid') = .f.
+				if seek(m.guid, 'fpa_fileversions', 'guid') = .f.
 
-					append blank in 'filever_pjf'
+					append blank in 'fpa_fileversions'
 
 				endif
 
 				replace ;
-					filever_pjf.guid	 with m.guid, ;
-					filever_pjf.aid		 with files_pjf.aid, ;
-					filever_pjf.fid		 with files_pjf.fid, ;
-					filever_pjf.filedate with files_pjf.filedate, ;
-					filever_pjf.filename with files_pjf.filename, ;
-					filever_pjf.gver	 with m.gveritem, ;
-					filever_pjf.gverlong with m.gverlong, ;
-					filever_pjf.loader	 with files_pjf.foldername, ;
-					filever_pjf.hash	 with files_pjf.hash in 'filever_pjf'
+					fpa_fileversions.guid	  with m.guid, ;
+					fpa_fileversions.aid	  with fpa_files.aid, ;
+					fpa_fileversions.fid	  with fpa_files.fid, ;
+					fpa_fileversions.filedate with fpa_files.filedate, ;
+					fpa_fileversions.filename with fpa_files.filename, ;
+					fpa_fileversions.gver	  with m.gveritem, ;
+					fpa_fileversions.gverlong with m.gverlong, ;
+					fpa_fileversions.loader	  with fpa_files.foldername, ;
+					fpa_fileversions.hash	  with fpa_files.hash in 'fpa_fileversions'
 
 			endif
 
@@ -199,16 +199,16 @@ for m.lnx = 1 to m.ofjson.count
 
 	m.gver = rtrim(m.gver, 1, '|')
 
-	replace files_pjf.gver with m.gver in 'files_pjf'
+	replace fpa_files.gver with m.gver in 'fpa_files'
 
 endfor
 
-*!*	use in 'filever_pjf'
+use in 'fpa_fileversions'
 
-*!*	use in 'gversion_pjf'
+use in 'fpa_enum_gameversion'
 
-*!*	use in 'reltype_pjf'
+use in 'fpa_enum_filereleasetype'
 
-*!*	use in 'files_pjf'
+use in 'fpa_files'
 
 _restorearea(m.nselect) 

@@ -3,30 +3,32 @@
 *!* The folder is the instances folder of multimc
 *!* check each subfolder to see if it contains a minecraft/mods folder
 
-Lparameters pfolder
+lparameters pfolder
 
-Local afolders[1], cfolder, lnx, ncount
+Local afolders[1], cfolder, iguid, lnx, ncount
 
-m.ncount = Adir(afolders, Addbs(m.pfolder) + '*.*', 'D', 1)
+m.iguid = ''
 
-For m.lnx = 3 To m.ncount
+m.ncount = adir(afolders, addbs(m.pfolder) + '*.*', 'D', 1)
 
-   m.cfolder = Addbs(m.pfolder) + Addbs(m.afolders[m.lnx, 1]) + '.minecraft\mods'
+for m.lnx = 3 to m.ncount
 
-   If Directory(m.cfolder)
+	m.cfolder = addbs(m.pfolder) + addbs(m.afolders[m.lnx, 1]) + '.minecraft\mods'
 
-      mr_instanceadd(m.cfolder)
+	if directory(m.cfolder)
 
-   Endif
+		m.iguid = mr_instanceadd(m.cfolder)
 
-   m.cfolder = Addbs(m.pfolder) + Addbs(m.afolders[m.lnx, 1]) + 'minecraft\mods'
+	endif
 
-   If Directory(m.cfolder)
+	m.cfolder = addbs(m.pfolder) + addbs(m.afolders[m.lnx, 1]) + 'minecraft\mods'
 
-      mr_instanceadd(m.cfolder)
+	if directory(m.cfolder)
 
-   Endif
+		m.iguid = mr_instanceadd(m.cfolder)
 
-Endfor
+	endif
 
- 
+endfor
+
+return m.iguid 

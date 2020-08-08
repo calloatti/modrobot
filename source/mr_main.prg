@@ -24,6 +24,8 @@ Endif
 
 Do Form mr_main
 
+_VFP.EditorOptions = 'LQkT'
+
 On Shutdown Clear Events
 
 Read Events

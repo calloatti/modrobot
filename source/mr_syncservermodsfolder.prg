@@ -1,9 +1,8 @@
-*!* mr_syncserverfolder
+*!* mr_syncservermodsfolder
 
 lparameters piguid
 
-local filesource, filetarget, foldersource, foldertarget, includemod, newfilename, newfoldername
-local nselect, result
+local filesource, filetarget, foldersource, foldertarget, nselect, result
 
 m.nselect = select()
 
@@ -77,47 +76,13 @@ scan for mods_gsf.iguid == m.piguid
 
 	endif
 
-	m.includemod = .f.
-
-	if mods_gsf.env == '*'
-
-		m.includemod = .t.
-
-	endif
-
-	if lower(mods_gsf.env) == 'server'
-
-		m.includemod = .t.
-
-	endif
-
 	if lower(mods_gsf.env) == 'client'
 
-		m.includemod = .f.
+		loop
 
 	endif
 
-	if seek(mods_gsf.modid, 'modids_gsf', 'modid') = .t.
-
-		if modids_gsf.isclient = .t.
-
-			m.includemod = .f.
-
-		else
-
-			m.includemod = .t.
-
-		endif
-
-	endif
-
-	if empty(mods_gsf.modid)
-
-		m.includemod = .f.
-
-	endif
-
-	if m.includemod = .f.
+	if seek(mods_gsf.modid, 'modids_gsf', 'modid') = .t. and modids_gsf.isclient = .t.
 
 		loop
 
@@ -127,7 +92,7 @@ scan for mods_gsf.iguid == m.piguid
 
 	m.filetarget = m.foldertarget + mods_gsf.filename1
 
-	_logwrite('COPY MOD', _shortenpath(m.filesource, 100), '->', _shortenpath(m.filetarget, 100))
+	_logwrite('COPY MOD', m.filesource, m.filetarget)
 
 	m.result = _apicopyfile(m.filesource, m.filetarget, 0)
 
@@ -142,8 +107,6 @@ endscan
 _logwrite('SYNC SERVER MODS FOLDER END', inst_gsf.isrvfolder)
 
 
-*!* COPY CONFIG FOLDER
-
 m.foldertarget = addbs(inst_gsf.isrvfolder) + 'config'
 
 m.foldersource = justpath(inst_gsf.ifolder) + '\config'
@@ -152,29 +115,9 @@ _logwrite('SYNC SERVER CONFIG FOLDER START', m.foldersource, '->', m.foldertarge
 
 _deletefolder(m.foldertarget, _vfp.hwnd, 0x0010 + 0x0004 + 0x0400)
 
-m.newfoldername = m.foldertarget
+_logwrite('CREATEDIRECTORY ' + m.foldertarget + ' RESULT:',_apicreatedirectory(m.foldertarget, 0))
 
-_logwrite('CREATEDIRECTORY', _shortenpath(m.newfoldername, 100), _apicreatedirectory(m.newfoldername, 0))
-
-_findfilesinfoldertree(m.foldersource)
-
-select 'foundfiles'
-
-scan for foundfiles.filefolder = .t.
-
-	m.newfoldername = m.foldertarget + strextract(foundfiles.filename, m.foldersource, '', 1, 1)
-
-	_logwrite('CREATEDIRECTORY', _shortenpath(m.newfoldername, 100), _apicreatedirectory(m.newfoldername, 0))
-
-endscan
-
-scan for foundfiles.filefolder = .f.
-
-	m.newfilename = m.foldertarget + strextract(foundfiles.filename, m.foldersource, '', 1, 1)
-
-	_logwrite('COPYFILE', _shortenpath(foundfiles.filename, 100), '->', _shortenpath(m.newfilename, 100), _apicopyfile(foundfiles.filename, m.newfilename, 0))
-
-endscan
+_logwrite('COPYFOLDER RESULT:', _copyfolder(m.foldersource, m.foldertarget, application.hWnd, 0, 'Copy config'))
 
 _logwrite('SYNC SERVER CONFIG FOLDER END')
 
@@ -184,14 +127,8 @@ use in 'mods_gsf'
 
 use in 'modids_gsf'
 
+
 _restorearea(m.nselect)
-
-
-
-
-
-
-
 
 
 

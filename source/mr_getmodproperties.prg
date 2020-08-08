@@ -20,6 +20,7 @@ addproperty(m.omp, 'mod_jars[1]', '')
 addproperty(m.omp, 'jsonfabric', '')
 addproperty(m.omp, 'jsonmixins', '')
 addproperty(m.omp, 'jsonrefmap', '')
+addproperty(m.omp, 'mod_icon', '')
 
 addproperty(m.omp, 'depends', createobject('empty'))
 
@@ -90,6 +91,22 @@ if not empty(m.jsonfabric)
 	endif
 
 	m.omp.mod_id = m.ojson.id
+
+	if type('m.ojson.icon') = 'C' AND NOT EMPTY(m.ojson.icon)
+
+		do case
+
+		case not empty(m.pfile) and file(m.pfile)
+
+			m.omp.mod_icon = mr_getfilefromzipfile(m.pfile, m.ojson.icon)
+
+		case not empty(m.pbytes)
+
+			m.omp.mod_icon = mr_getfilefromzipdata(m.pbytes, m.ojson.icon)
+
+		endcase
+
+	endif
 
 	if type('m.ojson.version') = 'C'
 
@@ -316,6 +333,7 @@ endif
 m.omp.mod_loader = rtrim(m.omp.mod_loader, 1, '|')
 
 return m.omp
+
 
 
 

@@ -28,7 +28,7 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1325633912</timestamp>
+		<timestamp>1359313533</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>4</reserved2>
+		<reserved2>5</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID13H6P8</uniqueid>
-		<timestamp>1326978043</timestamp>
+		<timestamp>1359492057</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -92,14 +92,14 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM15EC3K</uniqueid>
-		<timestamp>1326978043</timestamp>
+		<timestamp>1359492057</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor2</objname>
 		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 150
+		<properties>Top = 113
+Left = 206
 Height = 144
 Width = 126
 Alias = "mr_mods"
@@ -125,14 +125,14 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5JM16B76O</uniqueid>
-		<timestamp>1326978043</timestamp>
+		<timestamp>1359492057</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor3</objname>
 		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 290
+		<properties>Top = 38
+Left = 402
 Height = 190
 Width = 145
 Alias = "mr_mods1"
@@ -157,8 +157,41 @@ Name = "Cursor3"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5TY0WV23L</uniqueid>
+		<timestamp>1359492057</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 176
+Left = 505
+Height = 214
+Width = 207
+Alias = "mr_mods_dependencies"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods_dependencies"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1326978043</timestamp>
+		<timestamp>1359492057</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -169,6 +202,7 @@ Left = 0
 DoCreate = .T.
 Caption = "MOD DEPENDENCIES"
 mr_iguid = 
+mr_guid = .F.
 uniqueid = EE1A345833EC405592A6C539AA23C80F
 Name = "MR_MODS_DEPENDENCIES"
 tmrSql.Name = "tmrSql"
@@ -177,110 +211,116 @@ tmrSql.Name = "tmrSql"
 		<methods>PROCEDURE init2
 *!* init2
 
-thisform.updateui()
-ENDPROC
-PROCEDURE load2
-Thisform.mr_setinstance(_inigetvalue('MR_INSTANCES_IGUID', '00000000'))
+local iguid
 
+if not empty(thisform.p1)
+
+	thisform.mr_iguid = thisform.p1
+
+else
+
+	thisform.mr_iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
+
+endif
+
+thisform.mr_setinstance()
 
 ENDPROC
 PROCEDURE mr_setinstance
 *!* mr_setinstance
 
-Lparameters pguid
+if thisform.mr_iguid = '00000000' and reccount('mr_instances') &gt; 0 then
 
-Thisform.mr_iguid = m.pguid
+	go top in 'mr_instances'
 
-= Seek(Thisform.mr_iguid, 'mr_instances', 'iguid')
+endif
 
-Select * From mr_mods_dependencies Where 1 = 0 Into Cursor 'sql_deps0' Readwrite
+if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
 
-Select 'mr_mods'
+	select * from mr_mods_dependencies where 1 = 0 into cursor 'sql_deps0' readwrite
 
-Scan For mr_mods.iguid = Thisform.mr_iguid And mr_mods.dis = .F.
+	select 'mr_mods'
 
-Select * From mr_dependencies Where mr_dependencies.fid = mr_mods.fid1 Into Cursor sqlresult
+	scan for mr_mods.iguid = thisform.mr_iguid and mr_mods.ena = .t.
 
-Select 'sqlresult'
+		select * from mr_dependencies where mr_dependencies.fid = mr_mods.fid1 into cursor sqlresult
 
-Scan
+		select 'sqlresult'
 
-Append Blank In 'sql_deps0'
+		scan
 
-Replace sql_deps0.pid1 With mr_mods.aid In 'sql_deps0'
-Replace sql_deps0.fid With mr_mods.fid1 In 'sql_deps0'
-Replace sql_deps0.pid2 With sqlresult.aid In 'sql_deps0'
-Replace sql_deps0.pname With sqlresult.aname In 'sql_deps0'
-Replace sql_deps0.dtype With sqlresult.dtype In 'sql_deps0'
-Replace sql_deps0.dname With sqlresult.dname In 'sql_deps0'
+			append blank in 'sql_deps0'
 
-Replace sql_deps0.filename With mr_mods.filename1 In 'sql_deps0'
+			replace sql_deps0.pid1 with mr_mods.aid in 'sql_deps0'
+			replace sql_deps0.fid with mr_mods.fid1 in 'sql_deps0'
+			replace sql_deps0.pid2 with sqlresult.aid in 'sql_deps0'
+			replace sql_deps0.pname with sqlresult.aname in 'sql_deps0'
+			replace sql_deps0.dtype with sqlresult.dtype in 'sql_deps0'
+			replace sql_deps0.dname with sqlresult.dname in 'sql_deps0'
 
-If Isnull(sql_deps0.dtype) Then
+			replace sql_deps0.filename with mr_mods.filename1 in 'sql_deps0'
 
-Replace sql_deps0.OK With .T. In 'sql_deps0'
+			if isnull(sql_deps0.dtype) then
 
-Endif
+				replace sql_deps0.OK with .t. in 'sql_deps0'
 
-If sql_deps0.dtype = 1 Then
+			endif
 
-Replace sql_deps0.OK With .T. In 'sql_deps0'
+			if sql_deps0.dtype = 1 then
 
-Endif
+				replace sql_deps0.OK with .t. in 'sql_deps0'
 
-Select 'mr_mods1'
+			endif
 
-Locate For mr_mods1.aid == sqlresult.aid And mr_mods1.iguid == Thisform.mr_iguid And Not Deleted()
+			select 'mr_mods1'
 
-
-If Found('mr_mods1')
-
-If mr_mods1.aid = 314633
-
-?mr_mods1.iguid, Thisform.mr_iguid, mr_mods1.aid
-
-Endif
-
-Replace sql_deps0.OK With .T. In 'sql_deps0'
-
-Endif
-
-Endscan
+			locate for mr_mods1.aid == sqlresult.aid and mr_mods1.iguid == thisform.mr_iguid and not deleted()
 
 
-Endscan
+			if found('mr_mods1')
 
-If Vartype(Thisform._gridview1) = 'O'
+				replace sql_deps0.OK with .t. in 'sql_deps0'
 
-Thisform._gridview1.RecordSource = ''
+			endif
 
-Endif
-
-Select Distinct * From 'sql_deps0' Order By filename, pname Into Cursor 'sql_deps' Readwrite
-
-If Vartype(Thisform._gridview1) = 'O'
-
-Thisform._gridview1.RecordSource = 'sql_deps'
-
-Endif
-
-Select 'sql_deps'
-
-Go Top
-
-Thisform.updateui()
+		endscan
 
 
+	endscan
+
+	thisform.gridmain.recordsource = ''
+
+	select distinct * from 'sql_deps0' order by filename, pname into cursor 'sql_deps' readwrite
+
+	thisform.gridmain.recordsource = 'sql_deps'
+
+	select 'sql_deps'
+
+	go top
+
+	if empty(mr_instances.iname) then
+
+		thisform.caption = 'DEPS - ' + mr_instances.iguid
+
+	else
+
+		thisform.caption = 'DEPS - ' + mr_instances.iname
+
+	endif
 
 
+else
+
+	thisform.setall('ENABLED', .f.)
+
+	thisform.tbinstances.enabled = .t.
+
+	thisform.caption = 'DEPS - NO INSTANCE SELECTED'
+
+endif
 
 
-
-
-
-
-
-
+thisform.updateui()
 ENDPROC
 PROCEDURE updateui
 *!* updateui
@@ -306,16 +346,6 @@ Thisform.lblinstance.Caption = m.icaption
 
 Endif
 
-If Empty(mr_instances.iname) Then
-
-Thisform.Caption = 'DEPS - ' + mr_instances.iguid
-
-Else
-
-Thisform.Caption = 'DEPS - ' + mr_instances.iname
-
-Endif
-
 thisform.Refresh()
 ENDPROC
 </methods>
@@ -325,6 +355,7 @@ ENDPROC
 		<reserved1/>
 		<reserved2/>
 		<reserved3>mr_iguid
+mr_guid
 *mr_setinstance 
 </reserved3>
 		<reserved4/>
@@ -337,19 +368,19 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1325557537</timestamp>
+		<timestamp>1359313906</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
-		<objname>_gridview1</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<objname>gridmain</objname>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Height = 432
 Left = 12
-RecordSource = "sql_deps"
+RecordSource = "mr_mods_dependencies"
 Top = 36
 Width = 936
 _gridcontextmenulang = en
-Name = "_gridview1"
+Name = "gridmain"
 </properties>
 		<protected/>
 		<methods>PROCEDURE AfterRowColChange
@@ -423,7 +454,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbmenu</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Top = 0
 Left = 912
 Height = 28
@@ -534,7 +565,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfiles</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Top = 0
 Left = 840
 Height = 28
@@ -568,79 +599,13 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JN0RNFDQ</uniqueid>
-		<timestamp>1326978043</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbinstances</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 108
-Picture = ..\res\1x\outline_expand_more_black_18dp.png
-Caption = "INSTANCES"
-ToolTipText = "OPEN INSTANCES MENU"
-PicturePosition = 4
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbinstances"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local nselect, result
-
-m.nselect = Select()
-
-Select 'mr_instances'
-
-Scan
-
-This.tbmenuitemadd(Recno('mr_instances'), 0, 0, 0, 0, mr_instances.iname + ' - ' + mr_instances.ifolder)
-
-Endscan
-
-_restorearea(m.nselect)
-
-m.result = This.tbmenushow()
-
-If m.result &gt; 0 Then
-
-Go m.result In 'mr_instances'
-
-Thisform.mr_setinstance(mr_instances.iguid)
-
-Endif
-
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5ID12N36L</uniqueid>
 		<timestamp>1326978043</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverview</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>Top = 0
 Left = 768
 Height = 28
@@ -682,7 +647,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
 		<objname>lblinstance</objname>
-		<parent>MR_MODS_DEPENDENCIES</parent>
+		<parent>mr_mods_dependencies</parent>
 		<properties>FontSize = 8
 Anchor = 14
 Caption = ""
@@ -695,6 +660,76 @@ Name = "lblinstance"
 </properties>
 		<protected/>
 		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TZ18Z79L</uniqueid>
+		<timestamp>1359390563</timestamp>
+		<class>_tbsplitbutton</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbinstances</objname>
+		<parent>mr_mods_dependencies</parent>
+		<properties>Top = 0
+Left = 12
+Caption = "INSTANCES"
+ToolTipText = "INSTANCES"
+Name = "tbinstances"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+_inisetvalue('MR_INSTANCES_IGUID', thisform.mr_iguid)
+
+do form mr_instances
+ENDPROC
+PROCEDURE dropdownclick
+Local iguid, nselect, result
+
+m.nselect = select()
+
+use 'mr_instances' again in 0 order tag 'INAME' alias 'menu_instances'
+
+select 'menu_instances'
+
+scan
+
+	this.tbmenuitemadd(recno('menu_instances'), 0, 0, 0, 0, menu_instances.iname + ' - ' + menu_instances.ifolder)
+
+endscan
+
+m.result = this.tbmenushow()
+
+if m.result &gt; 0 then
+
+	go m.result in 'menu_instances'
+
+	thisform.mr_iguid = menu_instances.iguid
+
+endif
+
+use in 'menu_instances'
+
+_restorearea(m.nselect)
+
+if m.result &gt; 0 then
+
+	thisform.mr_setinstance()
+
+endif
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>

@@ -1,0 +1,988 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359432744</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 1190
+Height = 493
+InitialSelectedAlias = "mr_comparemlog"
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>5</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TG16RSDP</uniqueid>
+		<timestamp>1359461512</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 418
+Width = 186
+Alias = "mr_files"
+Database = ..\data\data1.dbc
+CursorSource = "mr_files"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TG16RSDQ</uniqueid>
+		<timestamp>1359461512</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 11
+Left = 804
+Height = 358
+Width = 148
+Alias = "mr_modids"
+Database = ..\data\data1.dbc
+CursorSource = "mr_modids"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00K8IS3</uniqueid>
+		<timestamp>1359461512</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 50
+Left = 249
+Height = 331
+Width = 197
+Alias = "mr_comparemlog"
+Order = "ref"
+Database = ..\data\data1.dbc
+CursorSource = "mr_comparemlog"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U00K8IS4</uniqueid>
+		<timestamp>1359461512</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 11
+Left = 533
+Height = 291
+Width = 216
+Alias = "mr_comparemlog1"
+Order = ""
+Database = ..\data\data1.dbc
+CursorSource = "mr_comparemlog"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1359461512</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_comparemods</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "COMPARE"
+uniqueid = 51D192E10638473B804F1EC9BE023A6C
+Name = "MR_COMPAREMODS"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE init2
+thisform.txtfolder1.value = _inigetvalue('COMPARE_FOLDER1', '')
+thisform.txtfolder2.value = _inigetvalue('COMPARE_FOLDER2', '')
+
+thisform.updateui()
+ENDPROC
+PROCEDURE mr_genlist
+*!* mr_genlist
+
+local eol, modurl, txt
+
+m.eol = 0h20200d0a
+
+select 'mr_comparemlog1'
+
+set order to tag 'REF' in 'mr_comparemlog1'
+
+m.txt = '**New**' + 0h0d0a
+
+scan for mr_comparemlog1.levent == 'NEW'
+
+	*m.txt = m.txt + '- **' + mr_comparemlog1.modname + '** (' + mr_comparemlog1.filename2 + ')' + 0h0d0a
+
+	= seek(mr_comparemlog1.hash2, 'mr_files', 'hash')
+
+	m.modurl = mr_geturlproject(mr_files.aid)
+
+	if empty(m.modurl)
+
+		= seek(mr_comparemlog1.modid, 'mr_modids', 'modid')
+
+		m.modurl = mr_modids.url
+
+	endif
+
+	if empty(m.modurl)
+
+		m.txt = m.txt + '- ' + mr_comparemlog1.modname + ': ' + mr_comparemlog1.filename2 + m.eol
+
+	else
+
+		m.txt = m.txt + '- [' + mr_comparemlog1.modname  + ':](' + m.modurl + ')' + ' ' + mr_comparemlog1.filename2 + m.eol
+
+	endif
+
+endscan
+
+m.txt = m.txt + m.eol
+
+m.txt =  m.txt + '**Removed**' + m.eol
+
+scan for 'REMOVED' $ mr_comparemlog1.levent
+
+	= seek(mr_comparemlog1.hash2, 'mr_files', 'hash')
+
+	m.modurl = mr_geturlproject(mr_files.aid)
+
+	if empty(m.modurl)
+
+		= seek(mr_comparemlog1.modid, 'mr_modids', 'modid')
+
+		m.modurl = mr_modids.url
+
+	endif
+
+	if empty(m.modurl)
+
+		m.txt = m.txt + '- ' + mr_comparemlog1.modname + ': ' + mr_comparemlog1.filename1 + m.eol
+
+	else
+
+		m.txt = m.txt + '- [' + mr_comparemlog1.modname  + ':](' + m.modurl + ')' + ' ' + mr_comparemlog1.filename1 + m.eol
+
+	endif
+
+	*m.txt = m.txt + '- ' + mr_comparemlog1.modname + ' (' + mr_comparemlog1.filename2 + ')' + m.eol
+
+endscan
+
+m.txt = m.txt + m.eol
+
+m.txt =  m.txt + '**Updated**' + m.eol
+
+scan for 'UPDATED' $ mr_comparemlog1.levent
+
+	= seek(mr_comparemlog1.hash2, 'mr_files', 'hash')
+
+	m.modurl = mr_geturlproject(mr_files.aid)
+
+	if empty(m.modurl)
+
+		= seek(mr_comparemlog1.modid, 'mr_modids', 'modid')
+
+		m.modurl = mr_modids.url
+
+	endif
+
+	if empty(m.modurl)
+
+		m.txt = m.txt + '- ' + mr_comparemlog1.modname + ': ' + mr_comparemlog1.filename2 + m.eol
+
+	else
+
+		m.txt = m.txt + '- [' + mr_comparemlog1.modname  + ':](' + m.modurl + ')' + ' (' + mr_comparemlog1.filename1 + ' -&gt; ' + mr_comparemlog1.filename2 + ')' + m.eol
+
+	endif
+
+	*m.txt = m.txt + '- ' + mr_comparemlog1.modname + ' (' + mr_comparemlog1.filename1 + ' -&gt; ' + mr_comparemlog1.filename2 + ')' + m.eol
+
+endscan
+
+m.txt = m.txt + m.eol
+
+m.txt =  m.txt + '**Enabled/Disabled**' + m.eol
+
+scan for 'ENABLED' $ mr_comparemlog1.levent or 'DISABLED' $ mr_comparemlog1.levent
+
+	= seek(mr_comparemlog1.hash2, 'mr_files', 'hash')
+
+	m.modurl = mr_geturlproject(mr_files.aid)
+
+	if empty(m.modurl)
+
+		= seek(mr_comparemlog1.modid, 'mr_modids', 'modid')
+
+		m.modurl = mr_modids.url
+
+	endif
+
+	if empty(m.modurl)
+
+		m.txt = m.txt + '- ' + mr_comparemlog1.modname + ': ' + mr_comparemlog1.filename2 + m.eol
+
+	else
+
+		m.txt = m.txt + '- [' + mr_comparemlog1.modname  + ':](' + m.modurl + ')' + ' (' + mr_comparemlog1.filename1 + ' -&gt; ' + mr_comparemlog1.filename2 + ')' + m.eol
+
+	endif
+
+	*m.txt = m.txt + '- ' + mr_comparemlog1.modname + ' (' + mr_comparemlog1.filename1 + ' -&gt; ' + mr_comparemlog1.filename2 + ')' + m.eol
+
+endscan
+
+m.txt = m.txt + m.eol
+
+m.txt =  m.txt + '**No Change**' + m.eol
+
+scan for empty(mr_comparemlog1.levent)
+
+	m.txt = m.txt + '- ' + mr_comparemlog1.modname + ' (' + mr_comparemlog1.filename1 + ')' + m.eol
+
+endscan
+
+set order to tag '' in 'mr_comparemlog1'
+
+_cliptext = m.txt
+
+
+
+
+
+
+ENDPROC
+PROCEDURE mr_scan
+*!* mr_scan
+
+_logwrite('PROCESS START')
+
+delete all in 'mr_comparemlog1'
+
+thisform.mr_scanfolder(rtrim(alltrim(thisform.txtfolder1.value), 1, '\'), 1)
+
+thisform.mr_scanfolder(rtrim(alltrim(thisform.txtfolder2.value), 1, '\'), 2)
+
+select 'mr_comparemlog1'
+
+scan
+
+	if empty(mr_comparemlog1.filename1)
+
+		replace mr_comparemlog1.ref with upper(mr_comparemlog1.filename2) in 'mr_comparemlog1'
+
+	else
+
+		replace mr_comparemlog1.ref with upper(mr_comparemlog1.filename1) in 'mr_comparemlog1'
+
+	endif
+
+endscan
+
+_logwrite('PROCESS END')
+
+go top in 'mr_comparemlog1'
+
+thisform.refresh()
+
+
+
+
+
+
+ENDPROC
+PROCEDURE mr_scanfile
+*!* mr_scanfile
+
+lparameters pfilename, pjson, phash, ppass
+
+Local modid, modname, ojson
+
+if not empty(m.pjson)
+
+	m.ojson = nfjsonread(m.pjson)
+
+	m.modid	  = m.ojson.id
+	m.modname = m.ojson.name
+
+else
+
+	m.modid	  = 'ERROR' + sys(2015)
+	m.modname = m.pfilename
+
+endif
+
+if m.ppass = 1
+
+	mr_appendblank('mr_comparemlog1')
+
+	replace mr_comparemlog1.filename1 with m.pfilename in 'mr_comparemlog1'
+	replace mr_comparemlog1.hash1 with m.phash in 'mr_comparemlog1'
+
+	replace mr_comparemlog1.filename2 with '' in 'mr_comparemlog1'
+
+	replace mr_comparemlog1.modid with m.modid in 'mr_comparemlog1'
+	replace mr_comparemlog1.modname with m.modname in 'mr_comparemlog1'
+
+	replace mr_comparemlog1.levent with 'REMOVED' in 'mr_comparemlog1'
+
+	replace mr_comparemlog1.passnum with m.ppass in 'mr_comparemlog1'
+
+else
+
+	if seek(m.modid, 'mr_comparemlog1', 'modid') = .t. and mr_comparemlog1.passnum = 1
+
+		replace mr_comparemlog1.filename2 with m.pfilename in 'mr_comparemlog1'
+		replace mr_comparemlog1.hash2 with m.phash in 'mr_comparemlog1'
+
+		if mr_comparemlog1.hash1 == mr_comparemlog1.hash2
+
+			replace mr_comparemlog1.levent with '' in 'mr_comparemlog1'
+
+			if justext(mr_comparemlog1.filename1) = 'disabled' and justext(mr_comparemlog1.filename2) = 'jar'
+
+				replace mr_comparemlog1.levent with 'ENABLED' in 'mr_comparemlog1'
+
+			endif
+
+			if justext(mr_comparemlog1.filename1) = 'jar' and justext(mr_comparemlog1.filename2) = 'disabled'
+
+				replace mr_comparemlog1.levent with 'DISABLED' in 'mr_comparemlog1'
+
+			endif
+
+		else
+
+			replace mr_comparemlog1.levent with 'UPDATED' in 'mr_comparemlog1'
+
+			if justext(mr_comparemlog1.filename1) = 'disabled' and justext(mr_comparemlog1.filename2) = 'jar'
+
+				replace mr_comparemlog1.levent with mr_comparemlog1.levent + '/ENABLED' in 'mr_comparemlog1'
+
+			endif
+
+			if justext(mr_comparemlog1.filename1) = 'jar' and justext(mr_comparemlog1.filename2) = 'disabled'
+
+				replace mr_comparemlog1.levent with mr_comparemlog1.levent + '/DISABLED' in 'mr_comparemlog1'
+
+			endif
+
+		endif
+
+	else
+
+		mr_appendblank('mr_comparemlog1')
+
+		replace mr_comparemlog1.filename2 with m.pfilename in 'mr_comparemlog1'
+		replace mr_comparemlog1.hash2 with m.phash in 'mr_comparemlog1'
+
+		replace mr_comparemlog1.modid with m.modid in 'mr_comparemlog1'
+		replace mr_comparemlog1.modname with m.modname in 'mr_comparemlog1'
+
+		replace mr_comparemlog1.levent with 'NEW' in 'mr_comparemlog1'
+
+	endif
+
+	replace mr_comparemlog1.passnum with m.ppass in 'mr_comparemlog1'
+
+endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ENDPROC
+PROCEDURE mr_scanfolder
+*!* mr_scanfolder
+
+lparameters pfolder, ppass
+
+local afiles[1], filename, filespec, fileunc, lnx, ncount
+
+if not empty(m.pfolder) and directory(m.pfolder)
+
+	m.filespec = addbs(m.pfolder) + '*.*'
+
+	m.ncount = adir(afiles, m.filespec, '', 1)
+
+	for m.lnx = 1 to m.ncount
+
+		m.filename = m.afiles(m.lnx, 1)
+
+		if not inlist(upper(justext(m.filename)), 'JAR', 'DISABLED')
+
+			loop
+
+		endif
+
+		m.fileunc = addbs(m.pfolder) + m.filename
+
+		_logwrite(justfname(m.fileunc))
+
+		thisform.mr_scanfile(m.filename, mr_getfilefromzipfile(m.fileunc, 'fabric.mod.json'), mr_fingerprint(m.fileunc), m.ppass)
+
+	endfor
+
+endif
+
+
+
+ENDPROC
+PROCEDURE mr_setfolder
+*!* mr_setfolder
+
+lparameters pfoldernum
+
+Local cfolder, getdircaption, selfolder
+
+if m.pfoldernum = 1
+
+	m.cfolder = thisform.txtfolder1.value
+
+	m.getdircaption = 'Select folder 1'
+
+else
+
+	m.cfolder = thisform.txtfolder2.value
+
+	m.getdircaption = 'Select folder 1'
+
+	if empty(m.cfolder) and not empty(thisform.txtfolder1.value)
+
+		m.cfolder = thisform.txtfolder1.value
+
+	endif
+
+endif
+
+if empty(m.cfolder)
+
+	m.cfolder = set('Default')
+
+endif
+
+m.selfolder = getdir(m.cfolder, m.getdircaption, '', 1 + 64 + 16 + 32)
+
+if not empty(m.selfolder) then
+
+	if m.pfoldernum = 1
+
+		_inisetvalue('COMPARE_FOLDER1', m.selfolder)
+
+		thisform.txtfolder1.value = m.selfolder
+
+	else
+
+		_inisetvalue('COMPARE_FOLDER2', m.selfolder)
+
+		thisform.txtfolder2.value = m.selfolder
+
+	endif
+
+endif
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>*mr_setfolder 
+*mr_scan 
+*mr_genlist 
+*mr_scanfolder 
+*mr_scanfile 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5IG0ZGZAY</uniqueid>
+		<timestamp>1325479554</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtlog</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
+Height = 144
+Left = 12
+ReadOnly = .T.
+TabIndex = 9
+Top = 348
+Width = 936
+ZOrderSet = 0
+Value = 
+IntegralHeight = .F.
+islog = .T.
+Name = "edtlog"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1359461512</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Height = 228
+Left = 12
+RecordSource = "mr_comparemlog"
+Top = 108
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+lparameters nColIndex
+
+this.sethighlightbackcolor()
+
+
+ENDPROC
+PROCEDURE getdynamicbackcolor
+lparameters poColum as column
+
+*!* http://materialuicolors.co/?utm_source=launchers
+
+local lnDynamicBackColor
+
+do case
+
+case not empty(mr_comparemlog.levent)
+
+	m.lnDynamicBackColor = _hsl(60, 90, 90)
+
+otherwise
+
+	m.lnDynamicBackColor = this.ColumnBackColor
+
+
+endcase
+
+return m.lnDynamicBackColor
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0FGT4D</uniqueid>
+		<timestamp>1358076433</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbscan</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "SCAN MODS FOLDER"
+ZOrderSet = 4
+Name = "tbscan"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_scan()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0IENUB</uniqueid>
+		<timestamp>1358077739</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Top = 0
+Left = 108
+Height = 28
+Width = 180
+Picture = ..\res\1x\outline_description_black_18dp.png
+Caption = "LIST TO CLIPBOARD"
+ToolTipText = "OPEN JSON IN NOTEPAD"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_genlist()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358076294</timestamp>
+		<class>_textbox_character</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>textbox</baseclass>
+		<objname>txtfolder1</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Anchor = 10
+Height = 24
+Left = 12
+ReadOnly = .T.
+Top = 36
+Width = 888
+autosize = .F.
+hinttext = Select folder1
+Name = "txtfolder1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0EPZED</uniqueid>
+		<timestamp>1358076294</timestamp>
+		<class>_textbox_character</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>textbox</baseclass>
+		<objname>txtfolder2</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Anchor = 10
+Height = 24
+Left = 12
+ReadOnly = .T.
+Top = 72
+Width = 888
+autosize = .F.
+hinttext = Select folder2
+Name = "txtfolder2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358076268</timestamp>
+		<class>_commandbutton</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_commandbutton1</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Top = 35
+Left = 912
+Height = 26
+Width = 38
+Anchor = 8
+Caption = "..."
+Name = "_commandbutton1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_setfolder(1)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5JM0ES59X</uniqueid>
+		<timestamp>1358076268</timestamp>
+		<class>_commandbutton</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_commandbutton2</objname>
+		<parent>MR_COMPAREMODS</parent>
+		<properties>Top = 71
+Left = 912
+Height = 26
+Width = 38
+Anchor = 8
+Caption = "..."
+Name = "_commandbutton2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_setfolder(2)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+Tahoma, 0, 10, 6, 16, 13, 32, 3, 0
+Segoe UI, 0, 9, 6, 15, 12, 31, 3, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

@@ -2,8 +2,6 @@
 
 lparameters lpapplicationname, lpcommandline
 
-?lpapplicationname, lpcommandline
-
 local cprocessinfo, cstartupinfo, hprocess, hthread, lpprocessinformation, lpstartupinfo, result
 
 declare integer CreateProcess in WIN32API as _apicreateprocess_sss ;

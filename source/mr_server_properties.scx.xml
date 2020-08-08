@@ -1,0 +1,1159 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359216718</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 502
+Left = 96
+Width = 516
+Height = 493
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>2</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0DIL3I</uniqueid>
+		<timestamp>1359493188</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 10
+Height = 250
+Width = 179
+Alias = "mr_server_properties"
+Order = "propname"
+Database = ..\data\data1.dbc
+CursorSource = "mr_server_properties"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H3</uniqueid>
+		<timestamp>1359493188</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_server_properties</objname>
+		<parent/>
+		<properties>DoCreate = .T.
+Caption = "SERVER.PROPERTIES"
+uniqueid = 3748E215F8094859A7B3DEE2DB4483A9
+Name = "MR_SERVER_PROPERTIES"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE init2
+for each m.ocontrol in thisform.controls
+
+	if pemstatus(m.ocontrol, 'controlsource', 5) and not empty(m.ocontrol.controlsource)
+
+		m.ocontrol.controlsource = strtran(m.ocontrol.controlsource, 'mr_server_properties', 'sqlsp')
+
+	endif
+
+endfor
+
+thisform.gridmain.RecordSource = 'sqlsp'
+
+thisform.updateui()
+ENDPROC
+PROCEDURE load2
+select * from 'mr_server_properties' WHERE 1=0 into cursor 'sqlsp' readwrite
+
+select 'sqlsp'
+ENDPROC
+PROCEDURE mr_updateinteger
+*!* mr_updateinteger
+
+lparameters pvalue
+
+replace sqlsp.propvalue with transform(val(sqlsp.propvalue) + m.pvalue) in 'sqlsp'
+
+thisform.updateui()
+ENDPROC
+PROCEDURE mr_updateprop
+*!* mr_updateprop
+
+lparameters pvalue
+
+replace sqlsp.propvalue with alltrim(m.pvalue) in 'sqlsp'
+
+thisform.updateui()
+ENDPROC
+PROCEDURE updateui
+local lnx, propval
+
+thisform.tboverride.enabled = not empty(sqlsp.propor)
+
+if sqlsp.proptype = 'integer'
+
+	thisform.tbnum1.enabled	= between(val(sqlsp.propvalue) - 1, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum2.enabled	= between(val(sqlsp.propvalue) + 1, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum3.enabled	= between(val(sqlsp.propvalue) - 10, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum4.enabled	= between(val(sqlsp.propvalue) + 10, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum5.enabled	= between(val(sqlsp.propvalue) - 100, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum6.enabled	= between(val(sqlsp.propvalue) + 100, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum7.enabled	= between(val(sqlsp.propvalue) - 1000, sqlsp.propmin, sqlsp.propmax)
+	thisform.tbnum8.enabled	= between(val(sqlsp.propvalue) + 1000, sqlsp.propmin, sqlsp.propmax)
+
+else
+
+	thisform.tbnum1.enabled	= .f.
+	thisform.tbnum2.enabled	= .f.
+	thisform.tbnum3.enabled	= .f.
+	thisform.tbnum4.enabled	= .f.
+	thisform.tbnum5.enabled	= .f.
+	thisform.tbnum6.enabled	= .f.
+	thisform.tbnum7.enabled	= .f.
+	thisform.tbnum8.enabled	= .f.
+
+endif
+
+if sqlsp.proptype = 'boolean'
+
+	thisform.tboption1.enabled = .t.
+	thisform.tboption1.caption = 'true'
+	thisform.tboption2.enabled = .t.
+	thisform.tboption2.caption = 'false'
+
+else
+
+	thisform.tboption1.enabled = .f.
+	thisform.tboption1.caption = 'N/A'
+	thisform.tboption2.enabled = .f.
+	thisform.tboption2.caption = 'N/A'
+
+endif
+
+thisform.tboption3.enabled = .f.
+thisform.tboption3.caption = 'N/A'
+thisform.tboption4.enabled = .f.
+thisform.tboption4.caption = 'N/A'
+
+replace sqlsp.propvalues with alltrim(sqlsp.propvalues)
+
+for m.lnx = 1 to getwordcount(sqlsp.propvalues, '|')
+
+	m.propval = getwordnum(sqlsp.propvalues, m.lnx, '|')
+
+	with evaluate('thisform.tboption' + transform(m.lnx))
+
+		.enabled = .t.
+
+		.caption = m.propval
+
+	endwith
+
+endfor
+
+
+
+
+thisform.refresh()
+
+
+
+
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>*mr_updateinteger 
+*mr_updateprop 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5H4</uniqueid>
+		<timestamp>1359461545</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Anchor = 15
+Height = 456
+Left = 12
+RecordSource = "mr_server_properties"
+TabIndex = 1
+Top = 36
+Width = 468
+_gridcontextmenulang = en
+autowidth = .F.
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+lparameters nColIndex
+
+this.sethighlightbackcolor()
+
+thisform.updateui()
+ENDPROC
+PROCEDURE getdynamicbackcolor
+lparameters poColum as column
+
+*!* http://materialuicolors.co/?utm_source=launchers
+
+local lnDynamicBackColor
+
+do case
+
+case not sqlsp.propvalue =  sqlsp.propdef
+
+	m.lnDynamicBackColor = _hsl(60, 90, 90)
+
+otherwise
+
+	m.lnDynamicBackColor = this.ColumnBackColor
+
+
+endcase
+
+return m.lnDynamicBackColor
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359300194</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edthelp</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Anchor = 13
+Height = 264
+Left = 492
+ReadOnly = .T.
+TabIndex = 16
+Top = 228
+Width = 360
+EnableHyperlinks = .T.
+ControlSource = "mr_server_properties.propguidhelp"
+Name = "edthelp"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0ELTWI</uniqueid>
+		<timestamp>1359299971</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtvalue</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Anchor = 9
+Height = 144
+Left = 492
+TabIndex = 22
+Top = 72
+Width = 360
+EnableHyperlinks = .T.
+ControlSource = "mr_server_properties.propvalue"
+Name = "edtvalue"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359300105</timestamp>
+		<class>_textbox_character</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>textbox</baseclass>
+		<objname>txtname</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Anchor = 9
+ControlSource = "mr_server_properties.propname"
+Height = 24
+Left = 492
+ReadOnly = .T.
+TabIndex = 2
+Top = 36
+Width = 360
+autosize = .F.
+Name = "txtname"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359299971</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbdefault</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 35
+Left = 864
+Anchor = 8
+Caption = "DEFAULT"
+TabIndex = 3
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbdefault"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateprop(sqlsp.propdef)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboption1</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 99
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "OPTION1"
+TabIndex = 5
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tboption1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateprop(this.caption)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0F2ZO5</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboption2</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 131
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "OPTION2"
+TabIndex = 7
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tboption2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateprop(this.caption)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0F2ZOA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboption3</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 163
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "OPTION3"
+TabIndex = 9
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tboption3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateprop(this.caption)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboption4</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 195
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "OPTION4"
+TabIndex = 11
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tboption4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateprop(this.caption)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum1</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 227
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "-1"
+TabIndex = 13
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(-1)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0DIL3I</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum2</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 259
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "+1"
+TabIndex = 15
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(1)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum3</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 291
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "-10"
+TabIndex = 17
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(-10)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum4</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 323
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "+10"
+TabIndex = 18
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(10)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum5</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 355
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "-100"
+TabIndex = 19
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum5"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(-100)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0DIL3I</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum6</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 387
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "+100"
+TabIndex = 20
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum6"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(100)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0JI7FF</uniqueid>
+		<timestamp>1359299971</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tboverride</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 67
+Left = 864
+Anchor = 8
+Caption = "OVERRIDE"
+TabIndex = 3
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tboverride"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateprop(sqlsp.propor)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0MSU2W</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum7</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 419
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "-1000"
+TabIndex = 19
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum7"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(-1000)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TW0MSU32</uniqueid>
+		<timestamp>1359172808</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbnum8</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 451
+Left = 864
+Height = 28
+Width = 84
+Anchor = 8
+Caption = "+1000"
+TabIndex = 20
+tbalign = 0
+tbautowidth = .F.
+tbstyle = 10
+Name = "tbnum8"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_updateinteger(1000)
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359493188</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 0
+Left = 60
+Height = 28
+Width = 48
+Caption = "OPEN"
+Enabled = .F.
+tbautowidth = .F.
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+*!* mr_load_server_properties
+
+*!* RESET TABLE
+
+local cfile, cstr, lalines[1], lnx, nlines, propname, propvalue
+
+replace sqlsp.propinclude with .f. all  in 'sqlsp'
+
+replace sqlsp.propvalue with alltrim(sqlsp.propdef) all in 'sqlsp'
+
+replace sqlsp.propname with alltrim(sqlsp.propname) all in 'sqlsp'
+
+m.cfile = "E:\AOF-STRAWBERRY-SERVER-1.16.1-3.2.0\server.properties"
+
+m.cstr = filetostr(m.cfile)
+
+m.nlines = alines(lalines, m.cstr)
+
+for m.lnx = 1 to m.nlines
+
+	m.propname	= alltrim(strextract(m.lalines(m.lnx), '', '='))
+	m.propvalue	= alltrim(strextract(m.lalines(m.lnx), '=', ''))
+
+	if seek(m.propname, 'sqlsp', 'propname') = .t.
+
+		replace sqlsp.propinclude with .t. in 'sqlsp'
+
+		replace sqlsp.propvalue with m.propvalue in 'sqlsp'
+
+	endif
+
+endfor
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TX009A5X</uniqueid>
+		<timestamp>1359493188</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 0
+Left = 108
+Height = 28
+Width = 48
+Caption = "SAVE"
+Enabled = .F.
+tbautowidth = .F.
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+*!* mr_load_server_properties
+
+Local cfile
+
+m.cfile = "E:\AOF-STRAWBERRY-SERVER-1.16.1-3.2.0\server.properties"
+
+strtofile('', m.cfile, 0)
+
+select 'sqlsp'
+
+set order to tag 'propname'
+
+scan for sqlsp.propinclude = .t.
+
+	strtofile(sqlsp.propname + '=' + sqlsp.propvalue + 0h0d0a, m.cfile, 1)
+
+endscan
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5TY0IEJKR</uniqueid>
+		<timestamp>1359300167</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>MR_SERVER_PROPERTIES</parent>
+		<properties>Top = 0
+Left = 12
+Height = 28
+Width = 48
+Caption = "NEW"
+tbautowidth = .F.
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.gridmain.recordsource = ''
+
+select * from 'mr_server_properties' into cursor 'sqlsp' readwrite
+
+go top in 'sqlsp'
+
+thisform.gridmain.recordsource = 'sqlsp'
+
+thisform.updateui()
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Tahoma, 0, 10, 6, 16, 13, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>
