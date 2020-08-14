@@ -4,4 +4,4 @@
 
 Lparameters paid
 
-Return mr_geturlapi() + '/addon/' + Transform(m.paid)
+Return mr_geturlapi() + _inigetvalue('URL_CURSE_API_V2_ADDON', '/addon/') + Transform(m.paid)

@@ -26,6 +26,14 @@ if not found('inst_add')
 
 	mr_appendblank('inst_add')
 
+	replace inst_add.gver1 with '' in 'inst_add'
+	replace inst_add.gver2 with '' in 'inst_add'
+	replace inst_add.gverlong1 with '' in 'inst_add'
+	replace inst_add.gverlong2 with '' in 'inst_add'
+	replace inst_add.isrvfolder with '' in 'inst_add'
+	replace inst_add.itwifolder with '' in 'inst_add'
+	replace inst_add.izipfolder with '' in 'inst_add'
+
 	replace inst_add.iguid with m.iguid in 'inst_add'
 	replace inst_add.ifolder with m.pifolder in 'inst_add'
 	replace inst_add.iname with m.oidata.iname in 'inst_add'

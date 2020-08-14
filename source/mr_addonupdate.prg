@@ -2,8 +2,8 @@
 
 lparameters paid
 
-Local winhttp as 'winhttp' OF 'winhttp.vcx'
-Local dofileupdate, fjson, hajson, haresponse, nselect, ojson, result, url
+local winhttp as 'winhttp' of 'winhttp.vcx'
+local dofileupdate, fjson, hajson, haresponse, nselect, ojson, result, url
 
 if empty(m.paid)
 
@@ -29,7 +29,7 @@ if seek(m.paid, 'upd_addons', 'aid') = .f. then
 
 endif
 
-_logwrite('PROJECT UPDATE', m.paid)
+_logwrite('ADDON UPDATE START', m.paid)
 
 m.winhttp = newobject('winhttp', 'winhttp.vcx')
 
@@ -57,6 +57,8 @@ enddo
 
 m.haresponse = m.winhttp.responsestatus
 
+_logwrite('ADDON UPDATE API RESULT', m.winhttp.responsestatus)
+
 if m.haresponse = 200
 
 	m.hajson = m.winhttp.getresponse()
@@ -65,27 +67,29 @@ if m.haresponse = 200
 
 	m.ojson = nfjsonread(m.hajson)
 
-	if m.ojson.datereleased > upd_addons.adreleased
+	*!* FORCE ALL UPDATES NOT MATTER WHAT, CF API BEING STUPID AND FAILING RANDOMLY 2020/08/12
 
-		m.dofileupdate = .t.
+	*!*	if m.ojson.datereleased > upd_addons.adreleased
 
-	else
+	*!*		m.dofileupdate = .t.
 
-		m.dofileupdate = .f.
+	*!*	else
 
-	endif
+	*!*		m.dofileupdate = .f.
 
-	*!* FORCE FILE UPDATE 2020/20/01
-	
-	m.dofileupdate = .T.
-	
-	if m.ojson.datemodified > upd_addons.admodified
+	*!*	endif
 
-		replace upd_addons.hajson with _zlibcompress(m.hajson) in 'upd_addons'
+	*!*	*!* FORCE FILE UPDATE 2020/01/20
 
-		mr_addonparse(upd_addons.aid, m.hajson)
+	*!* m.dofileupdate = .t.
 
-	endif
+	*!*	if m.ojson.datemodified > upd_addons.admodified
+
+	replace upd_addons.hajson with _zlibcompress(m.hajson) in 'upd_addons'
+
+	mr_addonparse(upd_addons.aid, m.hajson)
+
+	*!*	endif
 
 endif
 
@@ -93,9 +97,13 @@ endif
 
 replace upd_addons.haresponse with m.haresponse, upd_addons.hadatetime with datetime() in 'upd_addons'
 
+_logwrite('ADDON UPDATE END', m.paid)
+
 *!* GET FILES
 
-if m.dofileupdate = .t. and upd_addons.agameid = 432
+*!* if m.dofileupdate = .t. and upd_addons.agameid = 432
+
+if upd_addons.agameid = 432
 
 	m.fjson = mr_filegetjson(upd_addons.aid)
 
@@ -111,4 +119,4 @@ use in 'upd_addons'
 
 _restorearea(m.nselect)
 
-  
+

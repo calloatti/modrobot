@@ -8,7 +8,7 @@ Lparameters pfid, pfilename, pnotencoded
 
 Local host, part1, part2, url
 
-m.host = 'https://media.forgecdn.net/files/'
+m.host = _inigetvalue('URL_CURSEFORGECDN', 'https://media.forgecdn.net/files/')
 
 m.part1 = Left(Transform(m.pfid), Len(Transform(m.pfid)) - 3)
 

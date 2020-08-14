@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I611Q32O</uniqueid>
-		<timestamp>1326977988</timestamp>
+		<timestamp>1359889867</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IM0WLYWC</uniqueid>
-		<timestamp>1326977988</timestamp>
+		<timestamp>1359889867</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,7 +127,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1326977988</timestamp>
+		<timestamp>1359889867</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -227,7 +227,7 @@ Name = "gridmain"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IM0WIEU1</uniqueid>
-		<timestamp>1326977988</timestamp>
+		<timestamp>1359889867</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -246,44 +246,88 @@ Name = "tbupdateall"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local gver, gverlong, json, lnx, ojson
+local gver, gverlong, json, lnx, ojson
 
 
 _logwrite('PROCESS START')
 
 m.json = mr_downloadstring('https://launchermeta.mojang.com/mc/game/version_manifest.json')
 
-If Not Empty(m.json)
+if not empty(m.json)
 
-m.ojson = nfjsonread(m.json)
+	m.ojson = nfjsonread(m.json)
 
-For m.lnx = 1 To Alen(m.ojson.versions)
+	for m.lnx = 1 to alen(m.ojson.versions)
 
-If m.ojson.versions[m.lnx].Type = 'release'
+		if m.ojson.versions[m.lnx].type = 'release'
 
-m.gver = m.ojson.versions[m.lnx].Id
+			m.gver = m.ojson.versions[m.lnx].id
 
-m.gverlong = mr_getgameversionlong(m.gver)
+			m.gverlong = mr_getgameversionlong(m.gver)
 
-If Seek(m.gver, 'mr_enum_gameversion1', 'gver') = .F.
+			if seek(m.gver, 'mr_enum_gameversion1', 'gver') = .f.
 
-Append Blank In 'mr_enum_gameversion1'
+				append blank in 'mr_enum_gameversion1'
 
-Replace ;
-mr_enum_gameversion1.gver With m.gver, ;
-mr_enum_gameversion1.gverlong With m.gverlong In 'mr_enum_gameversion1'
+				replace ;
+					mr_enum_gameversion1.gver	  with m.gver, ;
+					mr_enum_gameversion1.gverlong with m.gverlong in 'mr_enum_gameversion1'
 
-Endif
+			endif
 
-Endif
+		endif
 
-Endfor
+	endfor
 
-Endif
+endif
 
 _logwrite('PROCESS END')
 
-Thisform.Refresh()
+go top in 'mr_enum_gameversion'
+
+thisform.refresh()
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U31DJ8Y3</uniqueid>
+		<timestamp>1359657172</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>tbapi_file</objname>
+		<parent>mr_enum_gameversion</parent>
+		<properties>Top = 0
+Left = 156
+Height = 28
+Width = 84
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "JSON1"
+ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
+ZOrderSet = 4
+tbmarginv = 4
+Name = "tbapi_file"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+mr_shellexecute('https://launchermeta.mojang.com/mc/game/version_manifest.json')
+
 
 
 ENDPROC

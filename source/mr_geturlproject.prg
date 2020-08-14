@@ -18,13 +18,19 @@ if vartype(m.paidorslug) = 'N' then
 
 		use 'mr_addons' again in 0 alias 'addons_seek'
 
-		= seek(m.paidorslug, 'addons_seek', 'aid')
+		if seek(m.paidorslug, 'addons_seek', 'aid') = .t.
 
-		m.url = mr_geturlbase() + '/mc-mods/' + addons_seek.slug
+			m.url = mr_geturlbase() + '/mc-mods/' + addons_seek.slug
 
-		use in 'addons_seek'
+			use in 'addons_seek'
 
-		_restorearea(m.nselect)
+			_restorearea(m.nselect)
+
+		else
+
+			m.url = 'https://minecraft.curseforge.com/projects/' + transform(m.paidorslug)
+
+		endif
 
 	endif
 
@@ -35,4 +41,5 @@ else
 endif
 
 return m.url
+
 

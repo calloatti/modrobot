@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I6148MZA</uniqueid>
-		<timestamp>1359436058</timestamp>
+		<timestamp>1359699827</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I80F59K3</uniqueid>
-		<timestamp>1359436058</timestamp>
+		<timestamp>1359699827</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -128,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TP0721F8</uniqueid>
-		<timestamp>1359436058</timestamp>
+		<timestamp>1359699827</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -161,7 +161,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1359436058</timestamp>
+		<timestamp>1359699827</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -233,14 +233,14 @@ m.sep = space(3)
 
 m.icaption = ' ' + ;
 	'GUID: ' + mr_instances.iguid + m.sep + ;
-	'NAME: ' + mr_instances.iname + m.sep + ;
-	'VERSION ' + mr_instances.iminecraft + m.sep + ;
-	'LOADER: ' + mr_instances.iloader + m.sep + ;
-	'MINVER: ' + mr_instances.gver1 + m.sep + ;
-	'MAXVER: ' + mr_instances.gver2 + m.sep + ;
+	'NAME: ' + ALLTRIM(mr_instances.iname) + m.sep + ;
+	'VERSION ' + ALLTRIM(mr_instances.iminecraft) + m.sep + ;
+	'LOADER: ' + ALLTRIM(mr_instances.iloader) + m.sep + ;
+	'MINVER: ' + ALLTRIM(mr_instances.gver1) + m.sep + ;
+	'MAXVER: ' + ALLTRIM(mr_instances.gver2) + m.sep + ;
 	'PATH: '
 
-m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - len(m.icaption))
+m.icaption = LEFT(m.icaption + _shortenpath(mr_instances.ifolder, 255 - len(m.icaption)), 255)
 
 thisform.lblinstance.caption = m.icaption
 
@@ -269,7 +269,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
@@ -308,7 +308,7 @@ Name = "edtlog"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Anchor = 15
 Height = 276
 Left = 12
@@ -467,12 +467,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1359314541</timestamp>
+		<timestamp>1359699827</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand6</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
@@ -498,7 +498,7 @@ if not empty(m.iguid)
 
 endif
 
-thisform.gridmain.refresh()
+thisform.updateui()
 ENDPROC
 </methods>
 		<objcode/>
@@ -522,7 +522,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand11</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 720
 Height = 28
@@ -561,7 +561,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand5</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 144
 Height = 28
@@ -659,7 +659,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand17</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 780
 Height = 28
@@ -699,7 +699,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand16</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 1128
 Height = 28
@@ -741,7 +741,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 72
 Height = 28
@@ -779,7 +779,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbserver</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 1032
 Height = 28
@@ -826,7 +826,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbfolder</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 312
 Height = 28
@@ -885,7 +885,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 648
 Height = 28
@@ -924,7 +924,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbrefreshinstance</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 468
 Height = 28
@@ -964,7 +964,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand7</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 372
 Height = 28
@@ -1023,7 +1023,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand8</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 1212
 Height = 28
@@ -1074,7 +1074,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand9</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 1164
 Height = 28
@@ -1113,7 +1113,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand10</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 912
 Height = 28
@@ -1154,7 +1154,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbrefreshfabric</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 516
 Height = 28
@@ -1194,7 +1194,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand12</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 420
 Height = 28
@@ -1253,7 +1253,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand14</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 840
 Height = 28
@@ -1298,7 +1298,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand15</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 1260
 Height = 28
@@ -1339,7 +1339,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand3</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 192
 Height = 28
@@ -1404,7 +1404,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand4</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>Top = 0
 Left = 252
 Height = 28
@@ -1465,7 +1465,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox5</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>FontName = "Consolas"
 Anchor = 12
 Height = 144
@@ -1499,7 +1499,7 @@ Name = "_editbox5"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>label</baseclass>
 		<objname>lblinstance</objname>
-		<parent>mr_instances</parent>
+		<parent>MR_INSTANCES</parent>
 		<properties>FontSize = 8
 Anchor = 14
 Caption = ""

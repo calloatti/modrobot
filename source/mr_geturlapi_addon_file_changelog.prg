@@ -2,4 +2,4 @@
 
 Lparameters paid, pfid
 
-Return mr_geturlapi_addon(m.paid) + '/file/'  + Transform(m.pfid) + '/changelog'
+Return mr_geturlapi_addon_file(m.paid, pfid) + _inigetvalue('URL_CURSE_API_V2_CHANGELOG', '/changelog')

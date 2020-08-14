@@ -114,7 +114,7 @@ for m.lnx = 1 to m.ofjson.count
 
 				replace fpa_files.foldername with 'FORGE' in 'fpa_files'
 
-				*!* NO EXIT HERE SINCE THE JAR CAN ALSO HAVE A fabric.mod.json INSIDE	            
+				*!* NO EXIT HERE SINCE THE JAR CAN BE FORGE AND FABRIC	            
 
 			case 'fabric.mod.json' $ m.foldername
 
