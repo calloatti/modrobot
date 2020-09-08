@@ -33,6 +33,8 @@ do while m.winhttp.waitforresponse(0) = 0
 
 enddo
 
+mr_winhttplog(m.winhttp)
+
 _logwrite('GET FILES JSON RESULT', m.winhttp.responsestatus)
 
 *!* ONLY IF SUCESS UPDATE DATA

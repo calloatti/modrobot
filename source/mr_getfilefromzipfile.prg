@@ -1,125 +1,127 @@
 *!* mr_getfilefromzipfile
 
-Lparameters pfile, pfname
+lparameters pfile, pfname
 
-Local bytes, cdoff, cdr_offset, cdr_size, cmeth, crc32, csize, fclen, fname, fnlen, hfile
-Local lfh_offset, np, ubytes, usize, xflen
+local bytes, cdoff, cdr_offset, cdr_size, cmeth, crc32, csize, fclen, fname, fnlen, hfile
+local lfh_offset, np, ubytes, usize, xflen
 
-If Not _file(m.pfile)
+if not _file(m.pfile)
 
-   Error 'FILE NOT FOUND: ' + m.pfile
+	error 'FILE NOT FOUND: ' + m.pfile
 
-Endif
+endif
 
 m.ubytes = ''
 
-m.hfile = Fopen(m.pfile, 0)
+m.hfile = fopen(m.pfile, 0)
 
-If m.hfile < 0
+if m.hfile < 0
 
-   Error 'FOPEN'
+	error 'FOPEN'
 
-Endif
+endif
 
-Fseek(m.hfile, -8192, 2)
+fseek(m.hfile, -8192, 2)
 
-m.bytes = Fread(m.hfile, 8192)
+m.bytes = fread(m.hfile, 8192)
 
 *!* EOCDR [end of central directory record]
 
-If Occurs(0h504b0506, m.bytes) > 0
+if occurs(0h504b0506, m.bytes) > 0
 
-   m.np = Rat(0h504b0506, m.bytes, 1)
+	m.np = rat(0h504b0506, m.bytes, 1)
 
-   m.cdr_offset = mr_ctoubin(Substr(m.bytes, m.np + 16, 4))
+	m.cdr_offset = mr_ctoubin(substr(m.bytes, m.np + 16, 4))
 
-   m.cdr_size	= mr_ctoubin(Substr(m.bytes, m.np + 12, 4))
+	m.cdr_size	= mr_ctoubin(substr(m.bytes, m.np + 12, 4))
 
-   Fseek(m.hfile, m.cdr_offset, 0)
+	fseek(m.hfile, m.cdr_offset, 0)
 
-   *!* GET CENTRAL DIRECTORY
+	*!* GET CENTRAL DIRECTORY
 
-   m.bytes = Fread(m.hfile, m.cdr_size)
+	m.bytes = fread(m.hfile, m.cdr_size)
 
-   *!* ITERATE CENTRAL DIRECTORY FILE HEADERS
+	*!* ITERATE CENTRAL DIRECTORY FILE HEADERS
 
-   m.np = 1
+	m.np = 1
 
-   Do While m.np < m.cdr_size
+	do while m.np < m.cdr_size
 
-      *!* central directory file header
-      *!* file name length
-      *!* extra field length
-      *!* file comment length
-      *!* file name (variable size)
-      *!* compressed size
-      *!* crc-32
-      *!* compression method
+		*!* central directory file header
+		*!* file name length
+		*!* extra field length
+		*!* file comment length
+		*!* file name (variable size)
+		*!* compressed size
+		*!* crc-32
+		*!* compression method
 
-      m.fnlen = mr_ctoubin(Substr(m.bytes, m.np + 28, 2))
-      m.fname = Substr(m.bytes, m.np + 46, m.fnlen)
-      m.xflen = mr_ctoubin(Substr(m.bytes, m.np + 30, 2))
-      m.fclen = mr_ctoubin(Substr(m.bytes, m.np + 32, 2))
+		m.fnlen	= mr_ctoubin(substr(m.bytes, m.np + 28, 2))
+		m.fname	= substr(m.bytes, m.np + 46, m.fnlen)
+		m.xflen	= mr_ctoubin(substr(m.bytes, m.np + 30, 2))
+		m.fclen	= mr_ctoubin(substr(m.bytes, m.np + 32, 2))
 
-      If Upper(m.fname) == Upper(m.pfname)
+		if upper(m.fname) == upper(m.pfname) or upper(m.fname) == upper(chrtran(m.pfname, '\', '/'))
 
-         m.csize = mr_ctoubin(Substr(m.bytes, m.np + 20, 4))
-         m.usize = mr_ctoubin(Substr(m.bytes, m.np + 24, 4))
-         m.crc32 = mr_ctoubin(Substr(m.bytes, m.np + 16, 4))
-         m.cmeth = mr_ctoubin(Substr(m.bytes, m.np + 10, 2))
+			m.csize	= mr_ctoubin(substr(m.bytes, m.np + 20, 4))
+			m.usize	= mr_ctoubin(substr(m.bytes, m.np + 24, 4))
+			m.crc32	= mr_ctoubin(substr(m.bytes, m.np + 16, 4))
+			m.cmeth	= mr_ctoubin(substr(m.bytes, m.np + 10, 2))
 
-         *!* LOCAL FILE HEADER OFFSET
+			*!* LOCAL FILE HEADER OFFSET
 
-         m.lfh_offset = mr_ctoubin(Substr(m.bytes, m.np + 42, 4))
+			m.lfh_offset = mr_ctoubin(substr(m.bytes, m.np + 42, 4))
 
-         Fseek(m.hfile, m.lfh_offset, 0)
+			fseek(m.hfile, m.lfh_offset, 0)
 
-         *!* GET LOCAL FILE HEADER
+			*!* GET LOCAL FILE HEADER
 
-         m.bytes = Fread(m.hfile, 30)
+			m.bytes = fread(m.hfile, 30)
 
-         *!* local file header:
-         *!* file name length
-         *!* extra field length
+			*!* local file header:
+			*!* file name length
+			*!* extra field length
 
-         m.fnlen = mr_ctoubin(Substr(m.bytes, 26 + 1, 2))
-         m.xflen = mr_ctoubin(Substr(m.bytes, 28 + 1, 2))
+			m.fnlen	= mr_ctoubin(substr(m.bytes, 26 + 1, 2))
+			m.xflen	= mr_ctoubin(substr(m.bytes, 28 + 1, 2))
 
-         m.cdoff = 30 + m.fnlen + m.xflen
+			m.cdoff = 30 + m.fnlen + m.xflen
 
-         Fseek(m.hfile, m.lfh_offset + m.cdoff, 0)
+			fseek(m.hfile, m.lfh_offset + m.cdoff, 0)
 
-         m.bytes = Fread(m.hfile, m.csize)
+			m.bytes = fread(m.hfile, m.csize)
 
-         Do Case
+			do case
 
-            Case m.cmeth = 0
+			case m.cmeth = 0
 
-               m.ubytes = m.bytes
+				m.ubytes = m.bytes
 
-            Case m.cmeth = 8
+			case m.cmeth = 8
 
-               m.ubytes = _zlibuncompresszip(m.bytes, m.usize, m.crc32)
+				m.ubytes = _zlibuncompresszip(m.bytes, m.usize, m.crc32)
 
-            Otherwise
+			otherwise
 
-               Error 'UNKNOWN COMPRESSION METHOD'
+				error 'UNKNOWN COMPRESSION METHOD'
 
-         Endcase
+			endcase
 
-         Exit
+			exit
 
-      Endif
+		endif
 
-      m.np = m.np + 46 + m.fnlen + m.xflen + m.fclen
+		m.np = m.np + 46 + m.fnlen + m.xflen + m.fclen
 
-   Enddo
+	enddo
 
-Endif
+endif
 
-Fclose(m.hfile)
+fclose(m.hfile)
 
-Return m.ubytes
+return m.ubytes
+
+
 
 
 

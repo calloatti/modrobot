@@ -3,7 +3,8 @@
 
 lparameters piguid, pifolder
 
-local blmd5, blpath, instancefolder, nselect
+Local blmd5, blpath, instancefolder, nselect, orecord
+
 
 m.nselect = select()
 
@@ -51,7 +52,11 @@ scan
 
 		if seek(m.blmd5, 'seek_blacklist', 'blmd5') = .t. and seek_blacklist.blblack = .t.
 
-			replace sca_blacklist.iguid with '00000000' in 'sca_blacklist'
+			scatter memo blank name m.orecord
+
+			m.orecord.iguid = '00000000'
+
+			gather name m.orecord
 
 		endif
 
@@ -70,7 +75,3 @@ use in 'sca_blacklist'
 use in 'seek_blacklist'
 
 _restorearea(m.nselect)
-
-
-
-

@@ -55,6 +55,8 @@ do while m.winhttp.waitforresponse(0) = 0
 
 enddo
 
+mr_winhttplog(m.winhttp)
+
 m.haresponse = m.winhttp.responsestatus
 
 _logwrite('ADDON UPDATE API RESULT', m.winhttp.responsestatus)
@@ -63,33 +65,19 @@ if m.haresponse = 200
 
 	m.hajson = m.winhttp.getresponse()
 
+	*!* SAVE ORIGINAL JSON FOR CATEGORIES 2020/08/28
+	
+	replace upd_addons.hajsonf with _zlibcompress(m.hajson) in 'upd_addons'
+
 	m.hajson = mr_addonflatten(m.hajson)
 
 	m.ojson = nfjsonread(m.hajson)
 
 	*!* FORCE ALL UPDATES NOT MATTER WHAT, CF API BEING STUPID AND FAILING RANDOMLY 2020/08/12
 
-	*!*	if m.ojson.datereleased > upd_addons.adreleased
-
-	*!*		m.dofileupdate = .t.
-
-	*!*	else
-
-	*!*		m.dofileupdate = .f.
-
-	*!*	endif
-
-	*!*	*!* FORCE FILE UPDATE 2020/01/20
-
-	*!* m.dofileupdate = .t.
-
-	*!*	if m.ojson.datemodified > upd_addons.admodified
-
 	replace upd_addons.hajson with _zlibcompress(m.hajson) in 'upd_addons'
 
 	mr_addonparse(upd_addons.aid, m.hajson)
-
-	*!*	endif
 
 endif
 
@@ -100,8 +88,6 @@ replace upd_addons.haresponse with m.haresponse, upd_addons.hadatetime with date
 _logwrite('ADDON UPDATE END', m.paid)
 
 *!* GET FILES
-
-*!* if m.dofileupdate = .t. and upd_addons.agameid = 432
 
 if upd_addons.agameid = 432
 

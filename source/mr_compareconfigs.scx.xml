@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TG16RSDP</uniqueid>
-		<timestamp>1359461518</timestamp>
+		<timestamp>1361610849</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TG16RSDQ</uniqueid>
-		<timestamp>1359461518</timestamp>
+		<timestamp>1361610849</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -126,7 +126,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5U00KRVBJ</uniqueid>
-		<timestamp>1359461518</timestamp>
+		<timestamp>1361610849</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -160,7 +160,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5U00KRVBK</uniqueid>
-		<timestamp>1359461518</timestamp>
+		<timestamp>1361610849</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -193,11 +193,11 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1359461518</timestamp>
+		<timestamp>1361610849</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_compareconfigs</objname>
+		<objname>MR_COMPARECONFIGS</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0

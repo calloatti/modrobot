@@ -44,11 +44,17 @@ case not empty(m.pfile) and file(m.pfile)
 
 	m.jsonforge = mr_getfilefromzipfile(m.pfile, 'mcmod.info')
 
-	m.tomlforge = mr_getfilefromzipfile(m.pfile, 'META_INF\mods.toml')
+	m.tomlforge = mr_getfilefromzipfile(m.pfile, 'META-INF\mods.toml')
 
 	*!*	      m.jsonrift = mr_getfilefromzipfile(m.pfile, 'riftmod.json')
 
 	*!*	      m.jsonlitemod = mr_getfilefromzipfile(m.pfile, 'litemod.json')
+
+	if empty(m.tomlforge)
+
+		m.tomlforge = mr_getfilefromzipfile(m.pfile, 'META_INF\mods.toml')
+
+	endif
 
 case not empty(m.pbytes)
 
@@ -56,11 +62,17 @@ case not empty(m.pbytes)
 
 	m.jsonforge = mr_getfilefromzipdata(m.pbytes, 'mcmod.info')
 
-	m.tomlforge = mr_getfilefromzipdata(m.pbytes, 'META_INF\mods.toml')
+	m.tomlforge = mr_getfilefromzipdata(m.pbytes, 'META-INF\mods.toml')
 
 	*!*	      m.jsonrift = mr_getfilefromzipdata(m.pbytes, 'riftmod.json')
 
 	*!*	      m.jsonlitemod = mr_getfilefromzipdata(m.pbytes, 'litemod.json')
+
+	if empty(m.tomlforge)
+
+		m.tomlforge = mr_getfilefromzipdata(m.pfile, 'META_INF\mods.toml')
+
+	endif
 
 otherwise
 
@@ -92,7 +104,7 @@ if not empty(m.jsonfabric)
 
 	m.omp.mod_id = m.ojson.id
 
-	if type('m.ojson.icon') = 'C' AND NOT EMPTY(m.ojson.icon)
+	if type('m.ojson.icon') = 'C' and not empty(m.ojson.icon)
 
 		do case
 
@@ -257,7 +269,7 @@ endif
 
 if not empty(m.tomlforge)
 
-	m.omp.mod_loader = m.omp.mod_loader + 'FORGET|'
+	m.omp.mod_loader = m.omp.mod_loader + 'FORGE|'
 
 	m.omp.mod_id = strextract(m.tomlforge, 'modId="', '"')
 
@@ -333,6 +345,7 @@ endif
 m.omp.mod_loader = rtrim(m.omp.mod_loader, 1, '|')
 
 return m.omp
+
 
 
 

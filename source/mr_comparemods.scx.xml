@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TG16RSDP</uniqueid>
-		<timestamp>1359461512</timestamp>
+		<timestamp>1361610852</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,7 +93,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TG16RSDQ</uniqueid>
-		<timestamp>1359461512</timestamp>
+		<timestamp>1361610852</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -126,7 +126,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5U00K8IS3</uniqueid>
-		<timestamp>1359461512</timestamp>
+		<timestamp>1361610852</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -160,7 +160,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5U00K8IS4</uniqueid>
-		<timestamp>1359461512</timestamp>
+		<timestamp>1361610852</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -194,11 +194,11 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1359461512</timestamp>
+		<timestamp>1361610852</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_comparemods</objname>
+		<objname>MR_COMPAREMODS</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
@@ -262,7 +262,7 @@ m.txt =  m.txt + '**Removed**' + m.eol
 
 scan for 'REMOVED' $ mr_comparemlog1.levent
 
-	= seek(mr_comparemlog1.hash2, 'mr_files', 'hash')
+	= seek(mr_comparemlog1.hash1, 'mr_files', 'hash')
 
 	m.modurl = mr_geturlproject(mr_files.aid)
 

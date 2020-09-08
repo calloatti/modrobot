@@ -2,6 +2,10 @@
 
 lparameters premotefile, plocalfile, pproxy
 
+Local winhttp as 'winhttp' of 'winhttp'
+Local bytesdone, bytesperc, bytestotal, contentlength, contentrange, filehandle, nblocksize, nresult
+Local rangefrom, rangestr, rangeto, tempfile
+
 *!* NRESULT 0 FILE DOWNLOAD ERROR
 *!* NRESULT 1 FILE DOWNLOAD OK
 
@@ -11,12 +15,7 @@ lparameters premotefile, plocalfile, pproxy
 
 #define HTTPREQUEST_PROXYSETTING_PROXY	2
 
-local winhttp as 'winhttp' of 'winhttp'
-local bytesdone, bytesperc, bytestotal, contentlength, contentrange, filehandle, nblocksize, nresult
-local rangefrom, rangestr, rangeto, tempfile
-
-
-m.nblocksize =(1024 * 128) - 1
+m.nblocksize = (1024 * 128) - 1
 
 *!* CHECK IF WE ALREADY HAVE THE FILE
 
@@ -26,7 +25,11 @@ m.nblocksize =(1024 * 128) - 1
 
 m.tempfile = m.plocalfile + '.download'
 
-if not _file(m.plocalfile)
+if _file(m.plocalfile)
+
+	m.nresult = MRDOWNLOAD_SUCCESS
+
+else
 
 	m.winhttp = newobject('winhttp', 'winhttp')
 
@@ -89,6 +92,8 @@ if not _file(m.plocalfile)
 			_apisleep(50)
 
 		enddo
+
+		mr_winhttplog(m.winhttp)
 
 		*!* Content-Range: bytes 16777216-17182321/17182322
 
@@ -154,20 +159,23 @@ if not _file(m.plocalfile)
 
 	endif
 
-endif
+	if _getfilesize(m.plocalfile) = m.bytestotal then
 
-if _getfilesize(m.plocalfile) = m.bytestotal then
+		m.nresult = MRDOWNLOAD_SUCCESS
 
-	m.nresult = MRDOWNLOAD_SUCCESS
+	else
 
-else
+		_apideletefile(m.plocalfile)
 
-	_apideletefile(m.plocalfile)
+		m.nresult = MRDOWNLOAD_ERROR
 
-	m.nresult = MRDOWNLOAD_ERROR
+	endif
 
 endif
 
 return m.nresult
 
 
+
+
+ 

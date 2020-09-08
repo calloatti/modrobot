@@ -28,16 +28,17 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1361339618</timestamp>
+		<timestamp>1360827960</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 334
-Left = 91
-Width = 765
+		<properties>Top = 220
+Left = 1
+Width = 1234
 Height = 493
+InitialSelectedAlias = "mr_mods_categories"
 DataSource = .NULL.
 Name = "Dataenvironment"
 </properties>
@@ -47,7 +48,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>4</reserved2>
+		<reserved2>6</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,88 +59,21 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IY0V8FA6</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor2</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 23
-Left = 44
-Height = 232
-Width = 251
-Alias = "mr_instances"
-Order = "iname"
-Database = ..\data\data1.dbc
-CursorSource = "mr_instances"
-Name = "Cursor2"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5TY0J95B7</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor3</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 11
-Left = 342
-Height = 295
-Width = 122
-Alias = "mr_jijs"
-Order = "filename"
-Database = ..\data\data1.dbc
-CursorSource = "mr_jijs"
-Name = "Cursor3"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5U00O9WV6</uniqueid>
-		<timestamp>1361339701</timestamp>
+		<uniqueid>_5UL0WIOM4</uniqueid>
+		<timestamp>1361339854</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
 		<objname>Cursor1</objname>
 		<parent>Dataenvironment</parent>
-		<properties>Top = 49
-Left = 493
-Height = 233
-Width = 228
-Alias = "mr_jijs1"
+		<properties>Top = 20
+Left = 10
+Height = 403
+Width = 265
+Alias = "mr_mods_categories"
+Order = "filename"
 Database = ..\data\data1.dbc
-CursorSource = "mr_jijs"
+CursorSource = "mr_mods_categories"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -159,20 +93,156 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
+		<uniqueid>_5UL0ZU6SG</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 343
+Height = 321
+Width = 244
+Alias = "mr_categories"
+Order = "cnamepath"
+Database = ..\data\data1.dbc
+CursorSource = "mr_categories"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL0ZUWGF</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 124
+Left = 627
+Height = 90
+Width = 90
+Alias = "mr_instances"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL130Z5A</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 99
+Left = 819
+Height = 214
+Width = 256
+Alias = "mr_addons"
+Database = ..\data\data1.dbc
+CursorSource = "mr_addons"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL14CY91</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor5</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 655
+Height = 382
+Width = 269
+Alias = "mr_mods_categories1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_mods_categories"
+Name = "Cursor5"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1361339701</timestamp>
+		<timestamp>1361339854</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_mods_jij</objname>
+		<objname>mr_mods_categories</objname>
 		<parent/>
 		<properties>Top = 0
 Left = 0
+Height = 504
+Width = 960
 DoCreate = .T.
-Caption = "JIJ"
+Caption = "MOD CATEGORIES"
 mr_iguid = .F.
-uniqueid = 27BA27FF71AE410DB1203389AA8F7135
-Name = "MR_MODS_JIJ"
+mr_categoryid = -1
+uniqueid = A2C40FAAC07848A6AAF7217783F34B60
+Name = "MR_MODS_CATEGORIES"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
@@ -194,6 +264,7 @@ endif
 thisform.mr_setinstance()
 
 
+
 ENDPROC
 PROCEDURE mr_setinstance
 *!* mr_setinstance
@@ -202,22 +273,37 @@ if thisform.mr_iguid = '00000000' and reccount('mr_instances') &gt; 0 then
 
 	go top in 'mr_instances'
 
+	thisform.mr_iguid = mr_instances.iguid
+
 endif
 
 if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
 
-
 	if empty(mr_instances.iname) then
 
-		thisform.caption = 'JIJ - ' + _shortenpath(mr_instances.ifolder, 240)
+		thisform.caption = 'MOD CATEGORIES - ' + _shortenpath(mr_instances.ifolder, 240)
 
 	else
 
-		thisform.caption = 'JIJ - ' + _shortenpath(mr_instances.iname, 240)
+		thisform.caption = 'MOD CATEGORIES - ' + _shortenpath(mr_instances.iname, 240)
 
 	endif
 
-	set filter to mr_jijs.iguid == thisform.mr_iguid in 'mr_jijs'
+	select 'mr_mods_categories'
+
+	do case
+
+	case thisform.mr_categoryid = -1
+
+		set filter to mr_mods_categories.iguid = thisform.mr_iguid
+
+	otherwise
+
+		set filter to mr_mods_categories.categoryid = thisform.mr_categoryid and mr_mods_categories.iguid = thisform.mr_iguid
+
+	endcase
+
+	go top in 'mr_mods_categories'
 
 else
 
@@ -225,23 +311,27 @@ else
 
 	thisform.tbinstances.enabled = .t.
 
-	thisform.caption = 'JIJ - NO INSTANCE SELECTED'
+	thisform.caption = 'LOG - NO INSTANCE SELECTED'
 
 endif
 
-go top in 'mr_jijs'
 
 thisform.updateui()
 
 thisform.refresh()
 ENDPROC
 PROCEDURE updateui
-*!* updateui
+local icaption, sep
 
+if seek(mr_mods_categories.aid, 'mr_addons', 'aid') = .t.
 
-local icaption, ojson, sep
+	thisform.imgavatar.pictureval = mr_addons.avatar
 
-thisform.edit1.value = mr_jijs.jmod
+else
+
+	thisform.imgavatar.pictureval = ''
+
+endif
 
 m.sep = space(3)
 
@@ -258,25 +348,11 @@ m.icaption = m.icaption + _shortenpath(mr_instances.ifolder, 255 - len(m.icaptio
 
 thisform.lblinstance.caption = m.icaption
 
-if not empty(mr_jijs.jmod)
 
-	m.ojson = nfjsonread(mr_jijs.jmod)
 
-	thisform.tbhomepage.enabled = type('m.ojson.contact.homepage') == 'C'
 
-	thisform.tbsources.enabled = type('m.ojson.contact.sources') == 'C'
 
-	thisform.tbissues.enabled = type('m.ojson.contact.issues') == 'C'
 
-else
-
-	thisform.tbhomepage.enabled = .f.
-
-	thisform.tbsources.enabled = .f.
-
-	thisform.tbissues.enabled = .f.
-
-endif
 
 
 ENDPROC
@@ -287,6 +363,7 @@ ENDPROC
 		<reserved1/>
 		<reserved2/>
 		<reserved3>mr_iguid
+mr_categoryid
 *mr_setinstance 
 </reserved3>
 		<reserved4/>
@@ -298,22 +375,22 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5I6106W9K</uniqueid>
-		<timestamp>1361339701</timestamp>
+		<uniqueid>_5UL12P8IG</uniqueid>
+		<timestamp>1361339854</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>MR_MODS_JIJ</parent>
+		<parent>mr_mods_categories</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 14
 Height = 144
 Left = 12
 ReadOnly = .T.
-TabIndex = 11
+TabIndex = 7
 Top = 324
-Width = 936
+Width = 780
 ZOrderSet = 0
 Value = 
 IntegralHeight = .F.
@@ -338,28 +415,26 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1361339701</timestamp>
+		<timestamp>1361339854</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Anchor = 15
-Height = 276
+		<parent>mr_mods_categories</parent>
+		<properties>Height = 276
 Left = 12
-RecordSource = "mr_jijs"
-TabIndex = 9
+RecordSource = "mr_mods_categories"
+TabIndex = 6
 Top = 36
-Width = 324
+Width = 936
 _gridcontextmenulang = en
-autowidth = .F.
 Name = "gridmain"
 </properties>
 		<protected/>
 		<methods>PROCEDURE AfterRowColChange
 LPARAMETERS nColIndex
 
-Thisform.updateui()
+thisform.updateui()
 ENDPROC
 </methods>
 		<objcode/>
@@ -377,40 +452,133 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IY0VMAZ0</uniqueid>
-		<timestamp>1361339701</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>mr_mods_categories</parent>
+		<properties>Top = 0
+Left = 348
+Caption = "EXPORT"
+TabIndex = 4
+ToolTipText = "EXPORT TO MODROBOT\EXPORT FOLDER"
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+Local cfile
+
+m.cfile = _getapppath() + 'export'
+
+if not directory(m.cfile, 1)
+
+	mkdir(m.cfile)
+
+endif
+
+m.cfile = m.cfile + '\' + ttoc(datetime(), 1) + '.xml'
+
+thisform.gridmain.datatoexcelxlm(m.cfile, .t.)
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL13QAM5</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand4</objname>
+		<parent>mr_mods_categories</parent>
+		<properties>Top = 0
+Left = 840
+Height = 28
+Width = 108
+Picture = ..\res\1x\outline_open_in_new_black_18dp.png
+Caption = "OVERVIEW"
+TabIndex = 5
+ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
+ZOrderSet = 4
+tbalign = 2
+tbmarginv = 4
+Name = "_tbcommand4"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+If mr_mods_categories.aid &gt; 0
+
+mr_shellexecute(mr_geturlproject(mr_mods_categories.aid))
+
+Endif
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL12CT4K</uniqueid>
+		<timestamp>1361339854</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbscan</objname>
-		<parent>MR_MODS_JIJ</parent>
+		<parent>mr_mods_categories</parent>
 		<properties>Top = 0
-Left = 408
+Left = 204
 Height = 28
-Width = 84
+Width = 72
 Picture = ..\res\1x\outline_autorenew_black_18dp.png
 Caption = "SCAN"
-TabIndex = 4
+TabIndex = 3
 ToolTipText = "SCAN MODS FOLDER"
 ZOrderSet = 4
 Name = "tbscan"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
+go bottom in 'mr_mods_categories'
 
-mr_jarinjar_scan(mr_instances.iguid, mr_instances.ifolder)
+if not eof('mr_mods_categories')
 
-go top in 'mr_jijs'
+	skip 1 in 'mr_mods_categories'
+
+endif
+
+do mr_categories_update_mods.prg with thisform.mr_iguid
+
+go top in 'mr_mods_categories'
 
 thisform.updateui()
 
 thisform.refresh()
-
-
-
-
-
-
 ENDPROC
 </methods>
 		<objcode/>
@@ -428,163 +596,51 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5JB1EWWS4</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_tbcommand</class>
+		<uniqueid>_5UL0ZMUVF</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>_tbdropdown</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>_tbcommand1</objname>
-		<parent>MR_MODS_JIJ</parent>
+		<objname>_tbdropdown1</objname>
+		<parent>mr_mods_categories</parent>
 		<properties>Top = 0
-Left = 312
+Left = 108
 Height = 28
 Width = 84
-Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "LIST TO CLIPBOARD"
-TabIndex = 3
-ToolTipText = "OPEN JSON IN NOTEPAD"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "_tbcommand1"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local txt
-
-Select mr_jijs1
-
-Calculate Max(Len(mr_jijs1.filename)) To m.padfilename
-Calculate Max(Len(mr_jijs1.jij)) To m.padjij
-Calculate Max(Len(mr_jijs1.modid )) To m.padmodid
-
-
-m.txt = ''
-
-Scan
-
-m.txt = m.txt + Padr(mr_jijs1.filename, m.padfilename, ' ') + ','
-
-m.txt = m.txt + Padr(mr_jijs1.jij, m.padjij, ' ') + ','
-
-m.txt = m.txt + Transform(mr_jijs1.jijlevel) + ','
-
-m.txt = m.txt + mr_jijs1.modid + 0h0d0a
-
-Endscan
-
-_Cliptext = m.txt
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbjson</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 240
-Height = 28
-Width = 72
-Picture = ..\res\1x\outline_description_black_18dp.png
-Caption = "JSON"
+Caption = "CATEGORY"
 TabIndex = 2
-ToolTipText = "OPEN JSON IN NEW WINDOW"
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbjson"
+Name = "_tbdropdown1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Local cfile
+local result
 
-m.cfile = _getapppath() + 'json'
+select mr_mods_categories1.categoryid, ;
+	mr_mods_categories1.categoryname, ;
+	count(mr_mods_categories1.categoryname) as categorycount;
+	from mr_mods_categories1;
+	where mr_mods_categories1.iguid = thisform.mr_iguid;
+	group by mr_mods_categories1.categoryid, ;
+	mr_mods_categories1.categoryname;
+	order by mr_mods_categories1.categoryname into cursor 'category_menu'
 
-If Not Directory(m.cfile, 1)
+this.tbmenuitemadd(-1, 0, 0, thisform.mr_categoryid = -1, 0, 'All')
 
-Mkdir(m.cfile)
+select 'category_menu'
 
-Endif
+scan for category_menu.categoryid &gt; 0
 
-If Not Empty(mr_jijs.jmod)
+	this.tbmenuitemadd(category_menu.categoryid, 0, 0, thisform.mr_categoryid = category_menu.categoryid, 0, category_menu.categoryname + ' (' + transform(category_menu.categorycount) + ')')
 
-m.cfile = m.cfile + '\' + mr_jijs.jij + '-fabric.mod.json.txt'
+endscan
 
-Endif
+m.result = this.tbmenushow()
 
-Strtofile(mr_jijs.jmod, m.cfile)
+if m.result # 0
 
-mr_shellexecute(m.cfile)
+	thisform.mr_categoryid = m.result
 
-
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbhomepage</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 600
-Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "HOMEPAGE"
-TabIndex = 5
-ToolTipText = "OPEN HOMEPAGE URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-tbpicturesize = 18
-tbpictureautosize = .F.
-Name = "tbhomepage"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local ojson
-
-m.ojson = nfjsonread(mr_jijs.jmod)
-
-if type('m.ojson.contact.homepage') = 'C'
-
-	mr_shellexecute(m.ojson.contact.homepage)
+	thisform.mr_setinstance()
 
 endif
 
@@ -608,195 +664,13 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbsources</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 696
-Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "SOURCES"
-TabIndex = 6
-ToolTipText = "OPEN SOURCES URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-tbpicturesize = 18
-tbpictureautosize = .F.
-Name = "tbsources"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local ojson
-
-m.ojson = nfjsonread(mr_jijs.jmod)
-
-if type('m.ojson.contact.sources') = 'C'
-
-	mr_shellexecute(m.ojson.contact.sources)
-
-endif
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5U00PMCI5</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbissues</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 792
-Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "ISSUES"
-TabIndex = 7
-ToolTipText = "OPEN ISSUES URL IN WEB BROWSER"
-ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-tbpicturesize = 18
-tbpictureautosize = .F.
-Name = "tbissues"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local ojson
-
-m.ojson = nfjsonread(mr_jijs.jmod)
-
-if type('m.ojson.contact.issues') = 'C'
-
-	mr_shellexecute(m.ojson.contact.issues)
-
-endif
-
-
-
-ENDPROC
-</methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbmenu</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>Top = 0
-Left = 924
-Height = 28
-Width = 28
-FontSize = 8
-Picture = ..\res\3bars.png
-Caption = ""
-TabIndex = 8
-ToolTipText = "MENU"
-ZOrderSet = 21
-tbalign = 2
-tbautowidth = .F.
-tbpictureautosize = .F.
-tbmenuoffseth = 6
-tbautofontsize = .F.
-tbmarginv = 4
-Name = "tbmenu"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5IY148ZB7</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_label</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>label</baseclass>
-		<objname>lblinstance</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>FontSize = 8
-Anchor = 14
-Caption = ""
-Height = 15
-Left = 12
-Top = 480
-Width = 936
-TabIndex = 12
-autowidth = .F.
-Name = "lblinstance"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5TZ193F1B</uniqueid>
-		<timestamp>1361339701</timestamp>
+		<uniqueid>_5UL122XLO</uniqueid>
+		<timestamp>1361339854</timestamp>
 		<class>_tbsplitbutton</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbinstances</objname>
-		<parent>MR_MODS_JIJ</parent>
+		<parent>mr_mods_categories</parent>
 		<properties>Top = 0
 Left = 12
 Caption = "INSTANCES"
@@ -841,6 +715,8 @@ _restorearea(m.nselect)
 
 if m.result &gt; 0 then
 
+	thisform.mr_categoryid = -1
+	
 	thisform.mr_setinstance()
 
 endif
@@ -861,22 +737,56 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5U00P6YCB</uniqueid>
-		<timestamp>1361339701</timestamp>
-		<class>_editbox</class>
+		<uniqueid>_5UL12P8II</uniqueid>
+		<timestamp>1360826731</timestamp>
+		<class>image</class>
+		<classloc/>
+		<baseclass>image</baseclass>
+		<objname>imgavatar</objname>
+		<parent>mr_mods_categories</parent>
+		<properties>Anchor = 12
+Picture = ..\res\noimage1.png
+Stretch = 2
+Height = 144
+Left = 804
+Top = 324
+Width = 144
+Name = "imgavatar"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL12ZIBC</uniqueid>
+		<timestamp>1361339854</timestamp>
+		<class>_label</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>editbox</baseclass>
-		<objname>edit1</objname>
-		<parent>MR_MODS_JIJ</parent>
-		<properties>FontName = "Consolas"
-Anchor = 13
-Height = 276
-Left = 348
-ReadOnly = .T.
-TabIndex = 10
-Top = 36
-Width = 600
-Name = "edit1"
+		<baseclass>label</baseclass>
+		<objname>lblinstance</objname>
+		<parent>mr_mods_categories</parent>
+		<properties>FontSize = 8
+Anchor = 14
+Caption = ""
+Height = 15
+Left = 12
+Top = 480
+Width = 936
+TabIndex = 8
+autowidth = .F.
+Name = "lblinstance"
 </properties>
 		<protected/>
 		<methods/>
@@ -906,7 +816,6 @@ Name = "edit1"
 Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
-Consolas, 0, 9, 7, 14, 11, 13, 3, 0
 </properties>
 		<protected/>
 		<methods/>

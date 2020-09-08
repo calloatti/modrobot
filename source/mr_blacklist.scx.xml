@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K6187AE0</uniqueid>
-		<timestamp>1359429006</timestamp>
+		<timestamp>1360628175</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5K618BJJZ</uniqueid>
-		<timestamp>1359429006</timestamp>
+		<timestamp>1360628175</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -128,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1359429006</timestamp>
+		<timestamp>1360628175</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -414,33 +414,31 @@ Name = "tbmenu"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1359127291</timestamp>
+		<uniqueid>_5K618STAR</uniqueid>
+		<timestamp>1357520493</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbscan</objname>
+		<objname>tbtoggleenabled</objname>
 		<parent>mr_blacklist</parent>
 		<properties>Top = 0
-Left = 216
+Left = 408
 Height = 28
-Width = 72
-Picture = ..\res\1x\outline_autorenew_black_18dp.png
-Caption = "SCAN"
-ToolTipText = "UPDATE LIST OF FILES AND FOLDERS"
+Width = 108
+Picture = ..\res\1x\outline_toggle_off_black_18dp.png
+Caption = "TOGGLE BLACKLIST"
+ToolTipText = "TOOGLE BLACKLIST"
 ZOrderSet = 4
-Name = "tbscan"
+tbmarginv = 4
+Name = "tbtoggleenabled"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_blacklist_scan(mr_instances.iguid, mr_instances.ifolder)
+replace mr_blacklist.blblack with not mr_blacklist.blblack in 'mr_blacklist'
 
-go top in 'mr_blacklist'
+thisform.gridmain.sethighlightbackcolor()
 
 thisform.refresh()
-
-
-
 ENDPROC
 </methods>
 		<objcode/>
@@ -459,7 +457,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KA0YVNID</uniqueid>
-		<timestamp>1359429006</timestamp>
+		<timestamp>1360628175</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -471,7 +469,7 @@ Height = 28
 Width = 96
 Picture = ..\res\1x\outline_autorenew_black_18dp.png
 Caption = "CLEAN UP"
-ToolTipText = "REMOVE BLACKLISTED CHILD FILES AND FOLDERS"
+ToolTipText = "REMOVES NON BLACKLISTED ROWS"
 ZOrderSet = 4
 Name = "tbcleanup"
 </properties>
@@ -499,31 +497,33 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5K618STAR</uniqueid>
-		<timestamp>1357520493</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1359127291</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbtoggleenabled</objname>
+		<objname>tbscan</objname>
 		<parent>mr_blacklist</parent>
 		<properties>Top = 0
-Left = 408
+Left = 216
 Height = 28
-Width = 108
-Picture = ..\res\1x\outline_toggle_off_black_18dp.png
-Caption = "TOGGLE BLACKLIST"
-ToolTipText = "TOOGLE BLACKLIST"
+Width = 72
+Picture = ..\res\1x\outline_autorenew_black_18dp.png
+Caption = "SCAN"
+ToolTipText = "UPDATE LIST OF FILES AND FOLDERS"
 ZOrderSet = 4
-tbmarginv = 4
-Name = "tbtoggleenabled"
+Name = "tbscan"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-replace mr_blacklist.blblack with not mr_blacklist.blblack in 'mr_blacklist'
+mr_blacklist_scan(mr_instances.iguid, mr_instances.ifolder)
 
-thisform.gridmain.sethighlightbackcolor()
+go top in 'mr_blacklist'
 
 thisform.refresh()
+
+
+
 ENDPROC
 </methods>
 		<objcode/>

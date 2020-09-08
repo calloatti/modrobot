@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15C4CE</uniqueid>
-		<timestamp>1354605039</timestamp>
+		<timestamp>1360810496</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15C4CF</uniqueid>
-		<timestamp>1354605039</timestamp>
+		<timestamp>1360810496</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -128,7 +128,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KE0WADV5</uniqueid>
-		<timestamp>1354605039</timestamp>
+		<timestamp>1360810496</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -161,7 +161,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5S216EFX5</uniqueid>
-		<timestamp>1354605039</timestamp>
+		<timestamp>1360810496</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -194,7 +194,7 @@ Name = "Cursor4"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KC15BGL3</uniqueid>
-		<timestamp>1354605039</timestamp>
+		<timestamp>1360810496</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -303,6 +303,8 @@ do while .t.
 		_apisleep(10)
 
 	enddo
+
+	mr_winhttplog(m.winhttp)
 
 	m.haresponse = m.winhttp.responsestatus
 
@@ -417,6 +419,8 @@ scan for thisform.mr_scanfor() = .t.
 
 	enddo
 
+	mr_winhttplog(m.winhttp)
+	
 	m.haresponse = m.winhttp.responsestatus
 
 	_logwrite('UPDATE', m.url, m.haresponse)
@@ -653,7 +657,7 @@ aidmax
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtlog</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 6
@@ -692,7 +696,7 @@ Name = "edtlog"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Anchor = 7
 Height = 300
 Left = 12
@@ -731,7 +735,7 @@ ENDPROC
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>_editbox1</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>FontName = "Consolas"
 FontSize = 8
 Anchor = 15
@@ -766,7 +770,7 @@ Name = "_editbox1"
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
@@ -833,7 +837,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand4</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Top = 0
 Left = 132
 Height = 28
@@ -900,7 +904,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand5</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Top = 0
 Left = 252
 Height = 28
@@ -968,7 +972,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Top = 0
 Left = 384
 Height = 28
@@ -1021,7 +1025,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand3</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Top = 0
 Left = 504
 Caption = "CANCEL"
@@ -1054,7 +1058,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand6</objname>
-		<parent>MR_ADDONS_API</parent>
+		<parent>mr_addons_api</parent>
 		<properties>Top = 0
 Left = 636
 Caption = "GEN EXC"

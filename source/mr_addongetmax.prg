@@ -19,7 +19,6 @@ m.url = mr_geturlprojectsnew(1)
 
 m.winhttp.open('GET', m.url, .t.)
 
-
 m.winhttp.setrequestheader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8')
 
 m.winhttp.setrequestheader('Accept-Language', 'en-US,en;q=0.5')
@@ -40,6 +39,8 @@ do while m.winhttp.waitforresponse(0) = 0
 
 enddo
 
+mr_winhttplog(m.winhttp)
+
 _logwrite('RESULT', m.winhttp.responsestatus)
 
 _cliptext = m.winhttp.getresponse()
@@ -47,7 +48,7 @@ _cliptext = m.winhttp.getresponse()
 
 if m.winhttp.responsestatus # 200 then
 
-	RETURN 0
+	return 0
 
 endif
 
@@ -77,11 +78,13 @@ do while m.winhttp.waitforresponse(0) = 0
 
 enddo
 
+mr_winhttplog(m.winhttp)
+
 _logwrite('RESULT', m.winhttp.responsestatus)
 
 if m.winhttp.responsestatus # 200 then
 
-	RETURN 0 
+	return 0
 
 endif
 

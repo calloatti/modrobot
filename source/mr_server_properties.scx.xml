@@ -28,14 +28,14 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1359216718</timestamp>
+		<timestamp>1360015750</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 502
-Left = 96
+		<properties>Top = 386
+Left = 177
 Width = 516
 Height = 493
 DataSource = .NULL.
@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TW0DIL3I</uniqueid>
-		<timestamp>1359493188</timestamp>
+		<timestamp>1360015857</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -93,13 +93,17 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1359493188</timestamp>
+		<timestamp>1360015857</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
 		<objname>mr_server_properties</objname>
 		<parent/>
-		<properties>DoCreate = .T.
+		<properties>Top = 0
+Left = 0
+Height = 528
+Width = 960
+DoCreate = .T.
 Caption = "SERVER.PROPERTIES"
 uniqueid = 3748E215F8094859A7B3DEE2DB4483A9
 Name = "MR_SERVER_PROPERTIES"
@@ -241,14 +245,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1359461545</timestamp>
+		<timestamp>1360015826</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Anchor = 15
-Height = 456
+Height = 432
 Left = 12
 RecordSource = "mr_server_properties"
 TabIndex = 1
@@ -308,14 +312,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1359300194</timestamp>
+		<timestamp>1360015826</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edthelp</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Anchor = 13
-Height = 264
+Height = 240
 Left = 492
 ReadOnly = .T.
 TabIndex = 16
@@ -348,7 +352,7 @@ Name = "edthelp"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
 		<objname>edtvalue</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Anchor = 9
 Height = 144
 Left = 492
@@ -382,7 +386,7 @@ Name = "edtvalue"
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>textbox</baseclass>
 		<objname>txtname</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Anchor = 9
 ControlSource = "mr_server_properties.propname"
 Height = 24
@@ -417,7 +421,7 @@ Name = "txtname"
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbdefault</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 35
 Left = 864
 Anchor = 8
@@ -454,7 +458,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboption1</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 99
 Left = 864
 Height = 28
@@ -493,7 +497,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboption2</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 131
 Left = 864
 Height = 28
@@ -532,7 +536,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboption3</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 163
 Left = 864
 Height = 28
@@ -571,7 +575,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboption4</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 195
 Left = 864
 Height = 28
@@ -610,7 +614,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum1</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 227
 Left = 864
 Height = 28
@@ -650,7 +654,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum2</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 259
 Left = 864
 Height = 28
@@ -690,7 +694,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum3</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 291
 Left = 864
 Height = 28
@@ -730,7 +734,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum4</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 323
 Left = 864
 Height = 28
@@ -770,7 +774,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum5</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 355
 Left = 864
 Height = 28
@@ -810,7 +814,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum6</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 387
 Left = 864
 Height = 28
@@ -850,7 +854,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tboverride</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 67
 Left = 864
 Anchor = 8
@@ -887,7 +891,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum7</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 419
 Left = 864
 Height = 28
@@ -927,7 +931,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>tbnum8</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 451
 Left = 864
 Height = 28
@@ -962,12 +966,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1359493188</timestamp>
+		<timestamp>1360015659</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 0
 Left = 60
 Height = 28
@@ -985,7 +989,7 @@ Name = "_tbcommand1"
 
 local cfile, cstr, lalines[1], lnx, nlines, propname, propvalue
 
-replace sqlsp.propinclude with .f. all  in 'sqlsp'
+replace sqlsp.propinc with .f. all  in 'sqlsp'
 
 replace sqlsp.propvalue with alltrim(sqlsp.propdef) all in 'sqlsp'
 
@@ -1004,7 +1008,7 @@ for m.lnx = 1 to m.nlines
 
 	if seek(m.propname, 'sqlsp', 'propname') = .t.
 
-		replace sqlsp.propinclude with .t. in 'sqlsp'
+		replace sqlsp.propinc with .t. in 'sqlsp'
 
 		replace sqlsp.propvalue with m.propvalue in 'sqlsp'
 
@@ -1029,12 +1033,12 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TX009A5X</uniqueid>
-		<timestamp>1359493188</timestamp>
+		<timestamp>1360015669</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand2</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 0
 Left = 108
 Height = 28
@@ -1058,7 +1062,7 @@ select 'sqlsp'
 
 set order to tag 'propname'
 
-scan for sqlsp.propinclude = .t.
+scan for sqlsp.propinc = .t.
 
 	strtofile(sqlsp.propname + '=' + sqlsp.propvalue + 0h0d0a, m.cfile, 1)
 
@@ -1089,7 +1093,7 @@ ENDPROC
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand3</objname>
-		<parent>MR_SERVER_PROPERTIES</parent>
+		<parent>mr_server_properties</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
@@ -1114,6 +1118,39 @@ thisform.updateui()
 
 ENDPROC
 </methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5U90DDRU7</uniqueid>
+		<timestamp>1360015857</timestamp>
+		<class>_textbox_character</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>textbox</baseclass>
+		<objname>txtfolder1</objname>
+		<parent>mr_server_properties</parent>
+		<properties>Anchor = 14
+Height = 24
+Left = 12
+ReadOnly = .T.
+Top = 492
+Width = 936
+autosize = .F.
+Name = "txtfolder1"
+</properties>
+		<protected/>
+		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>

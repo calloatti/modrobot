@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PSBPF</uniqueid>
-		<timestamp>1322336976</timestamp>
+		<timestamp>1359970460</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -95,12 +95,12 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PSBPG</uniqueid>
-		<timestamp>1321885856</timestamp>
+		<timestamp>1359970460</timestamp>
 		<class>tdimain</class>
 		<classloc>..\..\tdi\tdi.vcx</classloc>
 		<baseclass>container</baseclass>
 		<objname>Tdimain1</objname>
-		<parent>mr_main</parent>
+		<parent>MR_MAIN</parent>
 		<properties>Top = 0
 Left = 12
 tabfirstwidth = 60
@@ -108,7 +108,9 @@ Name = "Tdimain1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE tdiinit
-DO FORM MR_MENU
+mr_findfilechange_reset()
+
+do form MR_MENU
 ENDPROC
 </methods>
 		<objcode/>

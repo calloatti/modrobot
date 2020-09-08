@@ -28,15 +28,15 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1361339882</timestamp>
+		<timestamp>1358411545</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 220
-Left = 1
-Width = 765
+		<properties>Top = 311
+Left = 728
+Width = 516
 Height = 493
 DataSource = .NULL.
 Name = "Dataenvironment"
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>2</reserved2>
+		<reserved2>1</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,110 +58,30 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IG0ZBELE</uniqueid>
-		<timestamp>1361339882</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor1</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 10
-Height = 222
-Width = 292
-Alias = "mr_categories"
-Order = "cnamepath"
-Database = ..\data\data1.dbc
-CursorSource = "mr_categories"
-Name = "Cursor1"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1361339882</timestamp>
+		<timestamp>1358413570</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_categories</objname>
+		<objname>mr_tricks</objname>
 		<parent/>
 		<properties>DoCreate = .T.
-Caption = "CATEGORIES"
-uniqueid = 98BD55BAADFE4814A06FD41F17645C3F
-Name = "MR_CATEGORIES"
+Caption = "TRICKS"
+uniqueid = 872277E07014476FAEF5770BA0FF6F73
+Name = "MR_TRICKS"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
-		<methods>PROCEDURE init2
-Thisform.updateui()
+		<methods>PROCEDURE load2
+
+SELECT * FROM 'mr_tricks' INTO CURSOR 'sql_tricks' readwrite
+
+SELECT 'sql_tricks'
 ENDPROC
 PROCEDURE updateui
-
-If Empty(mr_categories.avatar)
-
-Thisform.imgavatar.PictureVal = Filetostr(Thisform.apppath + 'res\noimage.png')
-
-Else
-
-Thisform.imgavatar.PictureVal = mr_categories.avatar
-
-Endif
-
+thisform.edtinput.Value = sql_tricks.tinput
 ENDPROC
 </methods>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5IG0ZGZAY</uniqueid>
-		<timestamp>1361339882</timestamp>
-		<class>_editbox</class>
-		<classloc>..\..\shared\_base.vcx</classloc>
-		<baseclass>editbox</baseclass>
-		<objname>edtlog</objname>
-		<parent>mr_categories</parent>
-		<properties>FontName = "Consolas"
-FontSize = 8
-Anchor = 14
-Height = 144
-Left = 12
-ReadOnly = .T.
-TabIndex = 4
-Top = 348
-Width = 780
-ZOrderSet = 0
-Value = 
-IntegralHeight = .F.
-islog = .T.
-Name = "edtlog"
-</properties>
-		<protected/>
-		<methods/>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -178,16 +98,14 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1361339882</timestamp>
+		<timestamp>1358412716</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_categories</parent>
+		<parent>mr_enum_filestatus</parent>
 		<properties>Height = 300
 Left = 12
-RecordSource = "mr_categories"
-TabIndex = 3
 Top = 36
 Width = 936
 _gridcontextmenulang = en
@@ -195,9 +113,9 @@ Name = "gridmain"
 </properties>
 		<protected/>
 		<methods>PROCEDURE AfterRowColChange
-LPARAMETERS nColIndex
+lparameters nColIndex
 
-Thisform.updateui()
+thisform.updateui()
 ENDPROC
 </methods>
 		<objcode/>
@@ -215,21 +133,23 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IG0ZENLQ</uniqueid>
-		<timestamp>1322550283</timestamp>
-		<class>image</class>
-		<classloc/>
-		<baseclass>image</baseclass>
-		<objname>imgavatar</objname>
-		<parent>mr_categories</parent>
-		<properties>Anchor = 12
-Picture = ..\res\noimage1.png
-Stretch = 2
+		<uniqueid>_5TL1ECGXT</uniqueid>
+		<timestamp>1358412716</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>edtinput</objname>
+		<parent>mr_enum_filestatus</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 14
 Height = 144
-Left = 804
+Left = 12
+ReadOnly = .T.
 Top = 348
-Width = 144
-Name = "imgavatar"
+Width = 936
+IntegralHeight = .F.
+Name = "edtinput"
 </properties>
 		<protected/>
 		<methods/>
@@ -248,41 +168,56 @@ Name = "imgavatar"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IH0RRMV7</uniqueid>
-		<timestamp>1361339882</timestamp>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1358413570</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tbrefreshall</objname>
-		<parent>mr_categories</parent>
+		<objname>_tbcommand2</objname>
+		<parent>mr_enum_filestatus</parent>
 		<properties>Top = 0
 Left = 12
 Height = 28
-Width = 96
+Width = 84
 Picture = ..\res\1x\outline_refresh_black_18dp.png
-Caption = "REFRESH"
-TabIndex = 1
-ToolTipText = "REFRESH CURSE DATA FOR ALL CATEGORIES"
+Caption = "IMPORT"
+ToolTipText = "REFRESH CURSE DATA FOR SELECTED PROJECT"
 ZOrderSet = 4
-Name = "tbrefreshall"
+Name = "_tbcommand2"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-Thisform.gridmain.Enabled = .f.
+Local afiles[1], ajsonlines[1], cjson, lnx, nfiles, nlines, tinput
 
-mr_categories_update()
+m.nfiles = adir(afiles, thisform.apppath + 'tricks\*.json')
 
-Thisform.updateui()
+m.cjson = 0h + filetostr( thisform.apppath + 'tricks\' + m.afiles(m.nfiles, 1))
 
-Thisform.gridmain.Enabled = .t.
+m.nlines = alines(ajsonlines, m.cjson)
 
-Thisform.Refresh()
+for m.lnx = 2 to m.nlines - 1 step 6
 
+	append blank in 'sql_tricks'
 
+	replace sql_tricks.tname with 0h + strextract(m.ajsonlines(m.lnx), '"', '"') in 'sql_tricks'
 
+	replace sql_tricks.ttype with 0h + strextract(m.ajsonlines(m.lnx + 1), '"type": "', '"') in 'sql_tricks'
 
+	m.tinput = 0h +strextract(m.ajsonlines(m.lnx + 2), '"input": "', '')
 
+	m.tinput = 0h + left(m.tinput, len(m.tinput) - 2)
 
+	replace sql_tricks.tinputm with m.tinput in 'sql_tricks'
+
+	replace sql_tricks.tinput with m.tinput in 'sql_tricks'
+
+	replace sql_tricks.towner with 0h+ strextract(m.ajsonlines(m.lnx + 3), '"owner": ', ',') in 'sql_tricks'
+
+	replace sql_tricks.tversion with VAL(strextract(m.ajsonlines(m.lnx+4), '"version": ', '')) in 'sql_tricks'
+
+endfor
+
+thisform.refresh()
 ENDPROC
 </methods>
 		<objcode/>
@@ -300,32 +235,38 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5IH0TQPTB</uniqueid>
-		<timestamp>1361339882</timestamp>
+		<uniqueid>_5TL1EPG3W</uniqueid>
+		<timestamp>1358413482</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
-		<objname>tboverview</objname>
-		<parent>mr_categories</parent>
+		<objname>_tbcommand1</objname>
+		<parent>mr_enum_filestatus</parent>
 		<properties>Top = 0
-Left = 840
+Left = 108
 Height = 28
-Width = 96
-Picture = ..\res\1x\outline_open_in_new_black_18dp.png
-Caption = "OPEN"
-TabIndex = 2
-ToolTipText = "OPEN CATEGORY IN BROWSER"
+Width = 84
+Picture = ..\res\1x\outline_refresh_black_18dp.png
+Caption = "EXPORT"
+ToolTipText = "REFRESH CURSE DATA FOR SELECTED PROJECT"
 ZOrderSet = 4
-tbalign = 2
-tbmarginv = 4
-Name = "tboverview"
+Name = "_tbcommand1"
 </properties>
 		<protected/>
 		<methods>PROCEDURE Click
-mr_shellexecute(mr_geturlbase() + '/' + mr_categories.slugpath)
+Local txt
 
+select 'sql_tricks'
 
+m.txt = 0h + '|Name|Type|Text|' + 0h0a + '|:--|:--|:--|' + 0h0a
 
+scan
+
+	m.txt = m.txt + '|' + sql_tricks.tname + '|' + sql_tricks.ttype + '|' + sql_tricks.tinputm + '|' + 0h0a
+
+endscan
+
+_cliptext = m.txt
 ENDPROC
 </methods>
 		<objcode/>
@@ -351,8 +292,8 @@ ENDPROC
 		<objname/>
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
-Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>
 		<protected/>

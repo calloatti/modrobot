@@ -28,14 +28,14 @@
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1359312530</timestamp>
+		<timestamp>1360814407</timestamp>
 		<class>dataenvironment</class>
 		<classloc/>
 		<baseclass>dataenvironment</baseclass>
 		<objname>Dataenvironment</objname>
 		<parent/>
-		<properties>Top = 220
-Left = 1
+		<properties>Top = 296
+Left = 109
 Width = 765
 Height = 493
 DataSource = .NULL.
@@ -47,7 +47,7 @@ Name = "Dataenvironment"
 		<ole/>
 		<ole2/>
 		<reserved1/>
-		<reserved2>3</reserved2>
+		<reserved2>2</reserved2>
 		<reserved3/>
 		<reserved4>2</reserved4>
 		<reserved5/>
@@ -58,8 +58,8 @@ Name = "Dataenvironment"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5ID0HUYIC</uniqueid>
-		<timestamp>1360679508</timestamp>
+		<uniqueid>_5UL0PNO6I</uniqueid>
+		<timestamp>1360817390</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -67,12 +67,11 @@ Name = "Dataenvironment"
 		<parent>Dataenvironment</parent>
 		<properties>Top = 20
 Left = 10
-Height = 343
-Width = 117
-Alias = "mr_log"
-Order = ""
+Height = 209
+Width = 228
+Alias = "mr_winhttplog"
 Database = ..\data\data1.dbc
-CursorSource = "mr_log"
+CursorSource = "mr_winhttplog"
 Name = "Cursor1"
 </properties>
 		<protected/>
@@ -92,127 +91,27 @@ Name = "Cursor1"
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5TL01BLA0</uniqueid>
-		<timestamp>1360679508</timestamp>
-		<class>cursor</class>
-		<classloc/>
-		<baseclass>cursor</baseclass>
-		<objname>Cursor2</objname>
-		<parent>Dataenvironment</parent>
-		<properties>Top = 20
-Left = 150
-Height = 352
-Width = 228
-Alias = "mr_instances"
-Order = "iname"
-Database = ..\data\data1.dbc
-CursorSource = "mr_instances"
-Name = "Cursor2"
-</properties>
-		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1360679508</timestamp>
+		<timestamp>1360817390</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
-		<objname>mr_log</objname>
+		<objname>mr_winhttplog</objname>
 		<parent/>
 		<properties>DoCreate = .T.
-Caption = "LOG"
-mr_iguid = .F.
-uniqueid = 592EF988041C45D1957EF7B8A89F58A1
-Name = "MR_LOG"
+Caption = "WINHTTP LOG"
+uniqueid = 2A7A97FF8B8D47C0A010CAEBB70C62E5
+Name = "MR_WINHTTPLOG"
 tmrSql.Name = "tmrSql"
 </properties>
 		<protected/>
 		<methods>PROCEDURE init2
-*!* init2
-
-local iguid
-
-if not empty(thisform.p1)
-
-	thisform.mr_iguid = thisform.p1
-
-else
-
-	thisform.mr_iguid = _inigetvalue('MR_INSTANCES_IGUID', '00000000')
-
-endif
-
-thisform.mr_setinstance()
-
-
-ENDPROC
-PROCEDURE mr_setinstance
-*!* mr_setinstance
-
-if thisform.mr_iguid = '00000000' and reccount('mr_instances') &gt; 0 then
-
-	go top in 'mr_instances'
-
-	thisform.mr_iguid = mr_instances.iguid
-
-endif
-
-if seek(thisform.mr_iguid, 'mr_instances', 'iguid') = .t.
-
-	if empty(mr_instances.iname) then
-
-		thisform.caption = 'LOG - ' + _shortenpath(mr_instances.ifolder, 240)
-
-	else
-
-		thisform.caption = 'LOG - ' + _shortenpath(mr_instances.iname, 240)
-
-	endif
-
-	select 'mr_log'
-
-	set filter to mr_log.iguid == thisform.mr_iguid in 'mr_log'
-
-	go bottom in 'mr_log'
-
-	if reccount('mr_log') &gt; thisform.gridmain.height / thisform.gridmain.rowheight * (-1)
-
-		skip thisform.gridmain.height / thisform.gridmain.rowheight * (-1) in 'mr_log'
-
-	endif
-
-	thisform.gridmain.refresh()
-
-	go bottom in 'mr_log'
-
-else
-
-	thisform.setall('ENABLED', .f.)
-
-	thisform.tbinstances.enabled = .t.
-
-	thisform.caption = 'LOG - NO INSTANCE SELECTED'
-
-endif
-
-
 thisform.updateui()
+ENDPROC
+PROCEDURE updateui
+thisform._editbox1.value = ''
 
-thisform.refresh()
+
 ENDPROC
 </methods>
 		<objcode/>
@@ -220,9 +119,7 @@ ENDPROC
 		<ole2/>
 		<reserved1/>
 		<reserved2/>
-		<reserved3>mr_iguid
-*mr_setinstance 
-</reserved3>
+		<reserved3/>
 		<reserved4/>
 		<reserved5/>
 		<reserved6/>
@@ -233,90 +130,26 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H4</uniqueid>
-		<timestamp>1322123575</timestamp>
+		<timestamp>1360814407</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>mr_log</parent>
-		<properties>Height = 456
+		<parent>mr_winhttplog</parent>
+		<properties>Anchor = 11
+Height = 228
 Left = 12
 Top = 36
 Width = 936
 _gridcontextmenulang = en
+autowidth = .F.
 Name = "gridmain"
 </properties>
 		<protected/>
-		<methods/>
-		<objcode/>
-		<ole/>
-		<ole2/>
-		<reserved1/>
-		<reserved2/>
-		<reserved3/>
-		<reserved4/>
-		<reserved5/>
-		<reserved6/>
-		<reserved7/>
-		<reserved8/>
-		<user/>
-	</record>
-	<record>
-		<platform>WINDOWS</platform>
-		<uniqueid>_5TY0VGY9N</uniqueid>
-		<timestamp>1359312160</timestamp>
-		<class>_tbcommand</class>
-		<classloc>..\..\tbz\_tbz.vcx</classloc>
-		<baseclass>commandbutton</baseclass>
-		<objname>tbinstances</objname>
-		<parent>mr_log</parent>
-		<properties>Top = 0
-Left = 12
-Height = 28
-Width = 100
-Picture = ..\res\1x\outline_expand_more_black_18dp.png
-Caption = "INSTANCES"
-ToolTipText = "OPEN INSTANCES MENU"
-PicturePosition = 4
-ZOrderSet = 4
-tbmarginv = 4
-Name = "tbinstances"
-</properties>
-		<protected/>
-		<methods>PROCEDURE Click
-Local iguid, nselect, result
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
 
-m.nselect = select()
-
-use 'mr_instances' again in 0 order tag 'INAME' alias 'menu_instances'
-
-select 'menu_instances'
-
-scan
-
-	this.tbmenuitemadd(recno('menu_instances'), 0, 0, 0, 0, menu_instances.iname + ' - ' + menu_instances.ifolder)
-
-endscan
-
-m.result = this.tbmenushow()
-
-if m.result &gt; 0 then
-
-	go m.result in 'menu_instances'
-
-	thisform.mr_iguid = menu_instances.iguid
-
-endif
-
-use in 'menu_instances'
-
-_restorearea(m.nselect)
-
-if m.result &gt; 0 then
-
-	thisform.mr_setinstance()
-
-endif
+thisform.updateui()
 ENDPROC
 </methods>
 		<objcode/>
@@ -334,21 +167,145 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5UJ0M3LPY</uniqueid>
-		<timestamp>1360679508</timestamp>
+		<uniqueid>_5UL0PYJJE</uniqueid>
+		<timestamp>1360814294</timestamp>
+		<class>_editbox</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>editbox</baseclass>
+		<objname>_editbox1</objname>
+		<parent>mr_winhttplog</parent>
+		<properties>FontName = "Consolas"
+FontSize = 8
+Anchor = 15
+Height = 216
+Left = 12
+ReadOnly = .T.
+Top = 276
+Width = 936
+IntegralHeight = .F.
+Name = "_editbox1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5HZ0HR5GA</uniqueid>
+		<timestamp>1360817390</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand1</objname>
-		<parent>mr_log</parent>
+		<parent>mr_winhttplog</parent>
 		<properties>Top = 0
-Left = 120
-Caption = "REVERT"
-ToolTipText = "REVERTS UPDATE"
+Left = 744
+Caption = "RESPONSE TEXT"
+tbalign = 2
 Name = "_tbcommand1"
 </properties>
 		<protected/>
-		<methods/>
+		<methods>PROCEDURE Click
+if left(mr_winhttplog.wrestext, 1) $ '[{'
+
+	thisform._editbox1.value = mr_jsonformat(mr_winhttplog.wrestext)
+
+else
+
+	thisform._editbox1.value = mr_winhttplog.wrestext
+
+endif
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL0T8FHV</uniqueid>
+		<timestamp>1360817390</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand2</objname>
+		<parent>mr_winhttplog</parent>
+		<properties>Top = 0
+Left = 648
+Caption = "BODY"
+tbalign = 2
+Name = "_tbcommand2"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+if left(mr_winhttplog.wsendbody, 1) $ '[{'
+
+	thisform._editbox1.value = mr_jsonformat(mr_winhttplog.wsendbody)
+
+else
+
+	thisform._editbox1.value = mr_winhttplog.wsendbody
+
+endif
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL0T9T5P</uniqueid>
+		<timestamp>1360817390</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand3</objname>
+		<parent>mr_winhttplog</parent>
+		<properties>Top = 0
+Left = 840
+Caption = "RESPONSE HEADERS"
+tbalign = 2
+Name = "_tbcommand3"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform._editbox1.value = mr_winhttplog.wrheaders
+
+
+ENDPROC
+</methods>
 		<objcode/>
 		<ole/>
 		<ole2/>
@@ -373,6 +330,7 @@ Name = "_tbcommand1"
 		<parent/>
 		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
 Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Consolas, 0, 8, 6, 13, 10, 12, 3, 0
 Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
 </properties>
 		<protected/>

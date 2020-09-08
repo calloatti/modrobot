@@ -2,11 +2,13 @@
 
 lparameters piguid
 
-Local blmd5, blpath, filepath, firstfile, gverlong, html, instancefolder, lalines[1], lnx, manifest
-Local minecraft_version, modloaders_id, nlines, nselect, skipfile, zfilepath, zipbasefolder
-Local zipfilename
+Local blmd5, blpath, errormsg, filepath, firstfile, gverlong, html, instancefolder, lalines[1], lnx
+Local manifest, minecraft_version, modloaders_id, nlines, nselect, skipfile, zfilepath
+Local zipbasefolder, zipfilename, zipfilesuffix
 
 m.nselect = select()
+
+m.zipfilesuffix  = _inigetvalue('ZIPFILESUFFIX_CURSEFORGE', '_twitch') + '.zip'
 
 if not used('inst_gcf')
 
@@ -14,13 +16,61 @@ if not used('inst_gcf')
 
 endif
 
+if not used('modloaders_gcf')
+
+	use 'mr_modloaders' again alias 'modloaders_gcf' in 0
+
+endif
+
+if not used('mods_gcf')
+
+	use 'mr_mods' again alias 'mods_gcf' in 0 order tag 'filename1'
+
+endif
+
+if not used('blacklist_gcf')
+
+	use 'mr_blacklist' again alias 'blacklist_gcf' in 0
+
+endif
+
 if seek(m.piguid, 'inst_gcf', 'iguid') = .f.
 
 	messagebox('ERROR: INSTANCE GUID NOT FOUND', 64, 'MODROBOT')
 
-	use in 'inst_gcf'
+	mr_gencfmodpackzip_cleanup(m.nselect)
 
-	_restorearea(m.nselect)
+	return
+
+endif
+
+*!* CHECK THAT MODPACK DATA HAS BEEN SET
+
+m.errormsg = ''
+
+if '"CurseForgeModpackName"' $ inst_gcf.icfdata
+
+	m.errormsg = m.errormsg + 'REPLACE "CurseForgeModpackName" WITH THE MODPACK NAME' + 0h0d0a
+
+endif
+
+if '"CurseForgeModpackVersion"' $ inst_gcf.icfdata
+
+	m.errormsg = m.errormsg + 'REPLACE "CurseForgeModpackVersion" WITH THE MODPACK VERSION' + 0h0d0a
+
+endif
+
+if '"CurseForgeAuthorName"' $ inst_gcf.icfdata
+
+	m.errormsg = m.errormsg + 'REPLACE "CurseForgeAuthorName" WITH THE MODPACK AUTHOR NAME' + 0h0d0a
+
+endif
+
+if not empty(m.errormsg)
+
+	messagebox(m.errormsg, 64, 'MODROBOT')
+
+	mr_gencfmodpackzip_cleanup(m.nselect)
 
 	return
 
@@ -30,9 +80,7 @@ if empty(inst_gcf.izipfolder)
 
 	messagebox('ERROR: INSTANCE OUTPUT ZIP FOLDER NOT SPECIFIED', 64, 'MODROBOT')
 
-	use in 'inst_gcf'
-
-	_restorearea(m.nselect)
+	mr_gencfmodpackzip_cleanup(m.nselect)
 
 	return
 
@@ -40,33 +88,51 @@ endif
 
 _logwrite('GENERATE CF MODPACK ZIP START')
 
-if not used('modloaders_gcf')
-
-	use 'mr_modloaders' again alias 'modloaders_gcf' in 0
-
-endif
-
 select 'modloaders_gcf'
 
 m.gverlong = mr_getgameversionlong(inst_gcf.iminecraft)
 
-locate for modloaders_gcf.gverlong = m.gverlong and modloaders_gcf.mlatest = .t. and modloaders_gcf.mreco = .t.
+select * from 'modloaders_gcf' order by modloaders_gcf.mname desc top 1 where modloaders_gcf.gverlong == m.gverlong and modloaders_gcf.mlatest = .t. and modloaders_gcf.mreco = .t. into cursor 'sql_gcf'
 
-if not found('modloaders_gcf')
+if reccount('sql_gcf') = 0
 
-	locate for modloaders_gcf.gverlong = m.gverlong and modloaders_gcf.mreco = .t.
+	select * from 'modloaders_gcf' order by modloaders_gcf.mname desc top 1 where modloaders_gcf.gverlong == m.gverlong and modloaders_gcf.mlatest = .f. and modloaders_gcf.mreco = .t. into cursor 'sql_gcf'
 
 endif
 
-if not found('modloaders_gcf')
+*!* IF NO FORGE LOADER VERSION FOUND, REFRESH MODLOADER DATA AND TRY AGAIN
 
-	use in 'inst_gcf'
+if reccount('sql_gcf') = 0
 
-	use in 'modloaders_gcf'
+	mr_modloaders_update()
 
-	_restorearea(m.nselect)
+	select * from 'modloaders_gcf' order by modloaders_gcf.mname desc top 1 where modloaders_gcf.gverlong == m.gverlong and modloaders_gcf.mlatest = .t. and modloaders_gcf.mreco = .t. into cursor 'sql_gcf'
+
+endif
+
+if reccount('sql_gcf') = 0
+
+	select * from 'modloaders_gcf' order by modloaders_gcf.mname desc top 1 where modloaders_gcf.gverlong == m.gverlong and modloaders_gcf.mlatest = .f. and modloaders_gcf.mreco = .t. into cursor 'sql_gcf'
+
+endif
+
+*!* IF NO FORGE LOADER RECOMMENDED OR LATEST FOUND, USE LATEST VERSION
+
+if reccount('sql_gcf') = 0
+
+	select * from 'modloaders_gcf' order by modloaders_gcf.mname desc top 1 where modloaders_gcf.gverlong == m.gverlong and modloaders_gcf.mlatest = .f. and modloaders_gcf.mreco = .f. into cursor 'sql_gcf'
+
+endif
+
+*!* IF NO FORGE LOADER FOUND, GIVE UP
+
+if reccount('sql_gcf') = 0
 
 	_logwrite('ERROR CF MODPACK ZIP: FORGE RECOMMENDED VERSION NOT FOUND')
+
+	mr_gencfmodpackzip_cleanup(m.nselect)
+
+	return
 
 endif
 
@@ -83,8 +149,8 @@ endif
 
 *!* GENERATE MANIFEST.JSON
 
-m.minecraft_version	= modloaders_gcf.gver
-m.modloaders_id		= modloaders_gcf.mname
+m.minecraft_version	= sql_gcf.gver
+m.modloaders_id		= sql_gcf.mname
 
 text to m.manifest textmerge noshow
 {
@@ -114,12 +180,6 @@ endfor
 m.manifest = m.manifest + '  "files": [' + 0h0d0a
 
 *!* NOW ADD MOD FILES TO MANIFEST AND GENERATE MODLIST.HTML
-
-if not used('mods_gcf')
-
-	use 'mr_mods' again alias 'mods_gcf' in 0 order tag 'filename1'
-
-endif
 
 select 'mods_gcf'
 
@@ -175,14 +235,7 @@ _zipaddblob(m.manifest, 'manifest.json')
 
 _zipaddblob(m.html, 'modlist.html')
 
-
 *!* NOW COPY ALL THE OTHER FILES
-
-if not used('blacklist_gcf')
-
-	use 'mr_blacklist' again alias 'blacklist_gcf' in 0
-
-endif
 
 select 'blacklist_gcf'
 
@@ -206,11 +259,11 @@ m.zipbasefolder = m.instancefolder
 
 if empty(inst_gcf.iname)
 
-	m.zipfilename = inst_gcf.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + '_twitch.zip'
+	m.zipfilename = inst_gcf.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + m.zipfilesuffix
 
 else
 
-	m.zipfilename = _cleanfilename(inst_gcf.izipfolder + lower(chrtran(inst_gcf.iname, ' ', '_')) + '_twitch.zip')
+	m.zipfilename = _cleanfilename(inst_gcf.izipfolder + lower(chrtran(inst_gcf.iname, ' ', '_')) + m.zipfilesuffix)
 
 endif
 
@@ -280,29 +333,35 @@ _zipclose(m.zipfilename)
 
 mr_rezipthezip(m.zipfilename)
 
-select 'mods_gcf'
-
-use in 'mods_gcf'
-
-use in 'inst_gcf'
-
-use in 'modloaders_gcf'
-
-use in 'blacklist_gcf'
-
-_restorearea(m.nselect)
-
-
 _logwrite('GENERATE CF MODPACK ZIP END')
 
+mr_gencfmodpackzip_cleanup(m.nselect)
 
+procedure mr_gencfmodpackzip_cleanup
 
+lparameters pnselect
 
+if used('mods_gcf')
+	use in 'mods_gcf'
+endif
 
+if used('inst_gcf')
+	use in 'inst_gcf'
+endif
 
+if used('modloaders_gcf')
+	use in 'modloaders_gcf'
+endif
 
+if used('blacklist_gcf')
+	use in 'blacklist_gcf'
+endif
 
+if used('sql_gcf')
+	use in 'sql_gcf'
+endif
 
+_restorearea(m.pnselect)
 
-
+endproc
  

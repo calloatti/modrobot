@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JL</uniqueid>
-		<timestamp>1359432568</timestamp>
+		<timestamp>1360825019</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -68,7 +68,7 @@ Name = "Dataenvironment"
 		<properties>Top = 0
 Left = 0
 Height = 756
-Width = 1020
+Width = 1296
 DoCreate = .T.
 Caption = "HOME"
 BackColor = 47,47,53
@@ -446,14 +446,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<timestamp>1360754778</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand9</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 624
-Left = 888
+Left = 1176
 Height = 96
 Width = 96
 Anchor = 12
@@ -535,7 +535,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<timestamp>1360088239</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -548,7 +548,7 @@ Width = 96
 Anchor = 6
 Picture = ..\res\bookmark.png
 Caption = "MODIDS"
-ToolTipText = "LIST OF ALL MOD IDS FOUND. USE TO FORCE MODS AS CLIENT SIDE, ADD MOD URLS FOR NON CF MODS"
+ToolTipText = "LIST OF ALL MOD IDS FOUND. USE TO FORCE MODS AS CLIENT/SERVER SIDE, ADD MOD URLS FOR NON CF MODS"
 PicturePosition = 13
 ForeColor = 250,250,250
 tbpicturealpha = 200
@@ -623,14 +623,14 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I60PV5JK</uniqueid>
-		<timestamp>1327080568</timestamp>
+		<timestamp>1360754778</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_tbcommand14</objname>
 		<parent>MR_MENU</parent>
 		<properties>Top = 624
-Left = 780
+Left = 888
 Height = 96
 Width = 96
 Anchor = 6
@@ -798,8 +798,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5K71B1C2A</uniqueid>
-		<timestamp>1358712188</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -887,8 +887,8 @@ ENDPROC
 	</record>
 	<record>
 		<platform>WINDOWS</platform>
-		<uniqueid>_5TH03HYVC</uniqueid>
-		<timestamp>1359432569</timestamp>
+		<uniqueid>_5I60PV5JK</uniqueid>
+		<timestamp>1321885826</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -1003,6 +1003,94 @@ Name = "_tbcommand21"
 		<protected/>
 		<methods>PROCEDURE Click
 DO FORM MR_SERVER_PROPERTIES
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0W92N4</uniqueid>
+		<timestamp>1360754786</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand22</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 624
+Left = 780
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "COPY|BLACKLIST"
+ToolTipText = "COPY ONE INSTANCE BLACKLIST TO ANOTHER INSTANCE BLACKLIST"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand22"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_BLACKLIST_COPY
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UL117UWG</uniqueid>
+		<timestamp>1360825019</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand23</objname>
+		<parent>MR_MENU</parent>
+		<properties>Top = 516
+Left = 780
+Height = 96
+Width = 96
+Anchor = 6
+Picture = ..\res\bookmark.png
+Caption = "MODS|CATEGORIES"
+ToolTipText = "INSTANCE MODS BY CATEGORY"
+PicturePosition = 13
+ForeColor = 250,250,250
+tbpicturealpha = 200
+tbautowidth = .F.
+tbstyle = 3
+tbpictureautosize = .F.
+tbpicturesize = 48
+Name = "_tbcommand23"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+DO FORM MR_MODS_CATEGORIES
 ENDPROC
 </methods>
 		<objcode/>

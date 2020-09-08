@@ -63,6 +63,8 @@ Do While m.winhttp.waitforresponse(0) = 0
 
 Enddo
 
+mr_winhttplog(m.winhttp)
+
 If m.winhttp.responsestatus = 201
 
    m.ojson = nfjsonread(m.winhttp.responsetext)

@@ -2,7 +2,9 @@
 
 lparameters piguid, pserverfolder
 
-Local fail, nselect, serverfolder, zfilepath, zipbasefolder, zipfilename
+local fail, nselect, serverfolder, zfilepath, zipbasefolder, zipfilename
+
+m.zipfilesuffix  = _inigetvalue('ZIPFILESUFFIX_SERVER', '_server') + '.zip'
 
 m.nselect = select()
 
@@ -54,9 +56,15 @@ if m.fail = .f.
 
 	m.zipbasefolder = justpath(m.serverfolder)
 
-	*m.zipfilename = lower(inst_giz.izipfolder + justfname(_zipgetzfilepath(m.serverfolder, m.zipbasefolder)) + '.zip')
+	if empty(inst_giz.iname)
 
-	m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + '_server.zip')
+		m.zipfilename = inst_giz.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + m.zipfilesuffix
+
+	else
+
+		m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + m.zipfilesuffix)
+
+	endif
 
 	_logwrite('GENERATE SERVER ZIP START')
 
@@ -83,7 +91,7 @@ if m.fail = .f.
 	endscan
 
 	_zipclose(m.zipfilename)
-	
+
 	mr_rezipthezip(m.zipfilename)
 
 	_logwrite('GENERATE SERVER ZIP END')
@@ -94,4 +102,3 @@ use in 'inst_giz'
 
 _restorearea(m.nselect)
 
- 

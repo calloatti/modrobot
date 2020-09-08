@@ -1,6 +1,6 @@
 *!* mr_modloaders_update
 
-Local winhttp as 'winhttp' OF 'winhttp.vcx'
+Local winhttp as 'winhttp' of 'winhttp.vcx'
 Local lnx, nselect, ojson, result, url
 
 m.nselect = select()
@@ -37,11 +37,11 @@ do while m.winhttp.waitforresponse(0) = 0
 
 enddo
 
+mr_winhttplog(m.winhttp)
+
 select 'modl_upd'
 
 if m.winhttp.responsestatus = 200
-
-	_cliptext = m.winhttp.getresponse()
 
 	m.ojson = nfjsonread(m.winhttp.getresponse())
 
@@ -58,12 +58,12 @@ if m.winhttp.responsestatus = 200
 			endif
 
 			replace ;
-				modl_upd.gver     with	m.ojson.array[m.lnx].gameversion, ;
-				modl_upd.gverlong with	mr_getgameversionlong(m.ojson.array[m.lnx].gameversion), ;
-				modl_upd.mdate	  with	m.ojson.array[m.lnx].datemodified, ;
-				modl_upd.mlatest  with	m.ojson.array[m.lnx].latest, ;
-				modl_upd.mname	  with	m.ojson.array[m.lnx].name, ;
-				modl_upd.mreco	  with	m.ojson.array[m.lnx].recommended in 'modl_upd'
+				modl_upd.gver	  with m.ojson.array[m.lnx].gameversion, ;
+				modl_upd.gverlong with mr_getgameversionlong(m.ojson.array[m.lnx].gameversion), ;
+				modl_upd.mdate	  with m.ojson.array[m.lnx].datemodified, ;
+				modl_upd.mlatest  with m.ojson.array[m.lnx].latest, ;
+				modl_upd.mname	  with m.ojson.array[m.lnx].name, ;
+				modl_upd.mreco	  with m.ojson.array[m.lnx].recommended in 'modl_upd'
 
 		endfor
 

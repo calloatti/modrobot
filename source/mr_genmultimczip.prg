@@ -4,8 +4,10 @@ lparameters piguid
 
 *!* GENERATE BATCH FILES FIRST
 
-Local blmd5, blpath, btext, crlf, installmodscmd, installmodssh, instancefolder, itext, nselect
-Local skipfile, url, zfilepath, zipbasefolder, zipfilename
+local blmd5, blpath, btext, crlf, installmodscmd, installmodssh, instancefolder, itext, nselect
+local skipfile, url, zfilepath, zipbasefolder, zipfilename, zipfilesuffix
+
+m.zipfilesuffix  = _inigetvalue('ZIPFILESUFFIX_MULTIMC', '_multimc') + '.zip'
 
 m.nselect = select()
 
@@ -35,7 +37,7 @@ endif
 
 if not used('mods_gcb')
 
-	use 'mr_mods' again alias 'mods_gcb' in 0 ORDER TAG 'filename1'
+	use 'mr_mods' again alias 'mods_gcb' in 0 order tag 'filename1'
 
 endif
 
@@ -169,11 +171,11 @@ m.zipbasefolder = justpath(m.instancefolder)
 
 if empty(inst_giz.iname)
 
-	m.zipfilename = inst_giz.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + '_multimc.zip'
+	m.zipfilename = inst_giz.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + m.zipfilesuffix
 
 else
 
-	m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + '_multimc.zip')
+	m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + m.zipfilesuffix)
 
 endif
 
@@ -245,6 +247,14 @@ scan
 
 	endif
 
+	*!* CHECK IF WE HAVE A FILE INSIDE THE NATIVES FOLDER
+
+	if lower(addbs(m.instancefolder) + 'natives') $ lower(foundfiles.filename)
+
+		m.skipfile = .t.
+
+	endif
+
 	*!* add the file to the zip
 
 	if m.skipfile = .f.
@@ -273,4 +283,4 @@ use in 'inst_giz'
 
 use in 'blacklist_giz'
 
-_restorearea(m.nselect)  
+_restorearea(m.nselect)

@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1359436172</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KG0O9JCA</uniqueid>
-		<timestamp>1359436172</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -157,7 +157,7 @@ Name = "Relation1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TD0FKV44</uniqueid>
-		<timestamp>1359436172</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -191,7 +191,7 @@ Name = "Cursor3"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5H3</uniqueid>
-		<timestamp>1359436172</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -268,7 +268,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327328464</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -280,7 +280,7 @@ Anchor = 6
 Height = 144
 Left = 12
 ReadOnly = .T.
-TabIndex = 9
+TabIndex = 11
 Top = 348
 Width = 456
 ZOrderSet = 0
@@ -307,7 +307,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1322076669</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
@@ -316,6 +316,7 @@ Name = "edtlog"
 		<properties>Anchor = 15
 Height = 300
 Left = 12
+TabIndex = 10
 Top = 36
 Width = 936
 _gridcontextmenulang = en
@@ -344,7 +345,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I50W8VO9</uniqueid>
-		<timestamp>1359436172</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -356,6 +357,7 @@ Height = 28
 Width = 60
 Picture = ..\res\1x\outline_description_black_18dp.png
 Caption = "JSON"
+TabIndex = 3
 ToolTipText = "OPEN JSON IN NEW WINDOW"
 ZOrderSet = 4
 tbmarginv = 4
@@ -375,7 +377,7 @@ endif
 
 m.cfile = m.cfile + '\a_' + transform(mr_addons.aid, '@l 9999999999') + '.txt'
 
-strtofile(nfjsonformat(_zlibuncompress(mr_addons.hajson)), m.cfile)
+strtofile(nfjsonformat(_zlibuncompress(mr_addons.hajsonf)), m.cfile)
 
 mr_shellexecute(m.cfile)
 
@@ -401,7 +403,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5TD0FKV5L</uniqueid>
-		<timestamp>1357855357</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -414,6 +416,7 @@ Width = 84
 Picture = ..\res\1x\outline_refresh_black_18dp.png
 Caption = "CHECK"
 Enabled = .F.
+TabIndex = 5
 ToolTipText = "REFRESH CURSE DATA FOR SELECTED PROJECT"
 ZOrderSet = 4
 Name = "_tbcommand1"
@@ -465,7 +468,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KG0O7W7M</uniqueid>
-		<timestamp>1359436172</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -477,6 +480,7 @@ Height = 28
 Width = 72
 Picture = ..\res\1x\outline_web_asset_black_18dp.png
 Caption = "FILES"
+TabIndex = 6
 ToolTipText = "OPEN FILES IN NEW TAB"
 ZOrderSet = 4
 tbalign = 2
@@ -506,7 +510,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZF</uniqueid>
-		<timestamp>1333692449</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -518,6 +522,7 @@ Height = 28
 Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "FILES"
+TabIndex = 8
 ToolTipText = "OPEN PROJECT FILES URL IN WEB BROWSER"
 ZOrderSet = 4
 tbalign = 2
@@ -546,7 +551,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZA</uniqueid>
-		<timestamp>1333692449</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -558,6 +563,7 @@ Height = 28
 Width = 96
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "OVERVIEW"
+TabIndex = 7
 ToolTipText = "OPEN PROJECT OVERVIEW URL IN WEB BROWSER"
 ZOrderSet = 4
 tbalign = 2
@@ -588,7 +594,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYZ4</uniqueid>
-		<timestamp>1333692449</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -600,6 +606,7 @@ Height = 28
 Width = 96
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "API ADDON"
+TabIndex = 1
 ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
 ZOrderSet = 4
 tbmarginv = 4
@@ -628,7 +635,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I90JUYYZ</uniqueid>
-		<timestamp>1333692449</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -640,6 +647,7 @@ Height = 28
 Width = 84
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "API FILES"
+TabIndex = 2
 ToolTipText = "OPEN API ENDPOINT IN WEB BROWSER"
 ZOrderSet = 4
 tbmarginv = 4
@@ -668,7 +676,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5HZ0HR5GA</uniqueid>
-		<timestamp>1327454824</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -680,6 +688,7 @@ Height = 28
 Width = 84
 Picture = ..\res\1x\outline_refresh_black_18dp.png
 Caption = "CURSE"
+TabIndex = 4
 ToolTipText = "REFRESH CURSE DATA FOR SELECTED PROJECT"
 ZOrderSet = 4
 Name = "_tbcommand2"
@@ -711,7 +720,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I319JKF4</uniqueid>
-		<timestamp>1327328464</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -723,6 +732,7 @@ Anchor = 14
 Height = 144
 Left = 480
 ReadOnly = .T.
+TabIndex = 12
 Top = 348
 Width = 312
 IntegralHeight = .F.
@@ -812,7 +822,7 @@ Name = "imgavatar"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I81DYGAG</uniqueid>
-		<timestamp>1333692449</timestamp>
+		<timestamp>1361339734</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -825,7 +835,7 @@ Width = 28
 FontSize = 8
 Picture = ..\res\3bars.png
 Caption = ""
-TabIndex = 7
+TabIndex = 9
 ToolTipText = "MENU"
 ZOrderSet = 21
 tbalign = 2

@@ -59,7 +59,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKM</uniqueid>
-		<timestamp>1359493139</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -91,7 +91,7 @@ tmrSql.Name = "tmrSql"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I91BVS1U</uniqueid>
-		<timestamp>1327067569</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_editbox</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>editbox</baseclass>
@@ -103,7 +103,7 @@ Anchor = 15
 Height = 456
 Left = 12
 ReadOnly = .T.
-TabIndex = 9
+TabIndex = 8
 Top = 36
 Width = 936
 ZOrderSet = 0
@@ -130,7 +130,7 @@ Name = "edtlog"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1359493139</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -140,6 +140,7 @@ Name = "edtlog"
 Left = 12
 Picture = ..\res\1x\ic_delete_sweep_black_18dp.png
 Caption = "ZAP"
+TabIndex = 1
 ToolTipText = "DANGER ZONE: ZAPS TABLES WITH NO CONFIRMATION"
 Name = "_tbcommand1"
 </properties>
@@ -307,6 +308,24 @@ use MR_PASTES exclusive
 
 zap
 
+_logwrite('MR_WINHTTPLOG')
+
+use MR_WINHTTPLOG exclusive
+
+zap
+
+_logwrite('MR_MODS_CATEGORIES')
+
+use MR_MODS_CATEGORIES exclusive
+
+zap
+
+_logwrite('MR_NBTPARSE')
+
+use MR_NBTPARSE exclusive
+
+zap
+
 use
 
 alter table MR_LOG  alter column LID I autoinc nextvalue 1
@@ -350,7 +369,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5IA0HBKS5</uniqueid>
-		<timestamp>1327073326</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -360,6 +379,7 @@ ENDPROC
 Left = 864
 Picture = ..\res\1x\outline_info_black_18dp.png
 Caption = "ABOUT"
+TabIndex = 7
 ToolTipText = "LIST MODROBO INFO"
 tbalign = 2
 Name = "_tbcommand2"
@@ -442,7 +462,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ST0T99HH</uniqueid>
-		<timestamp>1356426465</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -454,6 +474,7 @@ Height = 28
 Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "WIKI"
+TabIndex = 3
 ToolTipText = "MODROBOT WIKI"
 ZOrderSet = 4
 tbalign = 2
@@ -484,7 +505,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5KA0UFA44</uniqueid>
-		<timestamp>1327067650</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -496,6 +517,7 @@ Height = 28
 Width = 84
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "RELEASES"
+TabIndex = 6
 ToolTipText = "MODROBOT RELEASES"
 ZOrderSet = 4
 tbalign = 2
@@ -528,7 +550,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1327067650</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -540,6 +562,7 @@ Height = 28
 Width = 84
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "ISSUES"
+TabIndex = 5
 ToolTipText = "MODROBOT GITHUB ISSUES"
 ZOrderSet = 4
 tbalign = 2
@@ -572,7 +595,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5I712ALKH</uniqueid>
-		<timestamp>1357422361</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -584,6 +607,7 @@ Height = 28
 Width = 72
 Picture = ..\res\1x\outline_open_in_new_black_18dp.png
 Caption = "DISCORD"
+TabIndex = 4
 ToolTipText = "MODROBOT WIKI"
 ZOrderSet = 4
 tbalign = 2
@@ -614,7 +638,7 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5SE0FVGT5</uniqueid>
-		<timestamp>1359355323</timestamp>
+		<timestamp>1361339722</timestamp>
 		<class>_tbcommand</class>
 		<classloc>..\..\tbz\_tbz.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
@@ -626,6 +650,7 @@ Height = 28
 Width = 86
 Picture = ..\res\1x\ic_sort_black_18dp.png
 Caption = "REINDEX"
+TabIndex = 2
 ToolTipText = "RECREATES TABLES INDEXES. CLOSE ALL OTHER OPEN TABS."
 Name = "_tbcommand4"
 </properties>

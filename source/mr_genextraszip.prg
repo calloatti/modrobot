@@ -2,7 +2,9 @@
 
 lparameters piguid
 
-local instancefolder, modfilename, nselect, zfilepath, zipbasefolder, zipfilename
+Local instancefolder, modfilename, nselect, zfilepath, zipbasefolder, zipfilename, zipfilesuffix
+
+m.zipfilesuffix  = _inigetvalue('ZIPFILESUFFIX_EXTRAS', '_extras') + '.zip'
 
 m.nselect = select()
 
@@ -42,11 +44,11 @@ m.zipbasefolder = inst_giz.ifolder
 
 if empty(inst_giz.iname)
 
-	m.zipfilename = inst_giz.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + '_extras.zip'
+	m.zipfilename = inst_giz.izipfolder + justfname(_zipgetzfilepath(m.instancefolder, m.zipbasefolder)) + m.zipfilesuffix
 
 else
 
-	m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + '_extras.zip')
+	m.zipfilename = _cleanfilename(inst_giz.izipfolder + lower(chrtran(inst_giz.iname, ' ', '_')) + m.zipfilesuffix)
 
 endif
 
@@ -101,3 +103,4 @@ use in 'mods_giz'
 _restorearea(m.nselect)
 
 
+ 

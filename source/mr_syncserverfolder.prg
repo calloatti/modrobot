@@ -178,6 +178,19 @@ endscan
 
 _logwrite('SYNC SERVER CONFIG FOLDER END')
 
+
+_logwrite('SYNC SERVER FOLDER START')
+
+*!* COPY FROM SERVER
+
+m.foldersource = justpath(inst_gsf.ifolder) + '\server'
+
+m.foldertarget = addbs(inst_gsf.isrvfolder)
+
+m.result = _copyfolder(m.foldersource, m.foldertarget, _vfp.hwnd, 0x0010, 'COPY SERVER FILES')
+
+_logwrite('SYNC SERVER FOLDER END')
+
 use in 'inst_gsf'
 
 use in 'mods_gsf'
@@ -185,6 +198,7 @@ use in 'mods_gsf'
 use in 'modids_gsf'
 
 _restorearea(m.nselect)
+
 
 
 

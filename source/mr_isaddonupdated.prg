@@ -15,7 +15,7 @@ m.winhttp.settimeouts(60000, 60000, 30000, 60000)
 
 m.winhttp.option_enableredirects = .t.
 
-m.url = mr_geturlapi() + '/addon/timestamp'
+m.url = mr_geturlapi_addon_timestamp()
 
 m.winhttp.open('GET', m.url, .t.)
 
@@ -28,6 +28,8 @@ do while m.winhttp.waitforresponse(0) = 0
 	_apisleep(10)
 
 enddo
+
+mr_winhttplog(m.winhttp)
 
 m.haresponse = m.winhttp.responsestatus
 

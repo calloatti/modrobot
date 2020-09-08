@@ -1,0 +1,583 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>Screen</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties/>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1>VERSION =   3.00</reserved1>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0UYG9D</uniqueid>
+		<timestamp>1360754428</timestamp>
+		<class>dataenvironment</class>
+		<classloc/>
+		<baseclass>dataenvironment</baseclass>
+		<objname>Dataenvironment</objname>
+		<parent/>
+		<properties>Top = 220
+Left = 1
+Width = 1255
+Height = 437
+DataSource = .NULL.
+Name = "Dataenvironment"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2>6</reserved2>
+		<reserved3/>
+		<reserved4>2</reserved4>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0V1SNG</uniqueid>
+		<timestamp>1360754712</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor1</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 17
+Left = 192
+Height = 178
+Width = 131
+Alias = "mr_instances2"
+Order = "iname"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0V1SNH</uniqueid>
+		<timestamp>1360754712</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor2</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 22
+Left = 23
+Height = 163
+Width = 125
+Alias = "mr_instances1"
+Order = "iname"
+Database = ..\data\data1.dbc
+CursorSource = "mr_instances"
+Name = "Cursor2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0VCXHV</uniqueid>
+		<timestamp>1360754712</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor3</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 392
+Height = 182
+Width = 116
+Alias = "mr_blacklist"
+Database = ..\data\data1.dbc
+CursorSource = "mr_blacklist"
+Name = "Cursor3"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0W069J</uniqueid>
+		<timestamp>1360754712</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor4</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 550
+Height = 131
+Width = 124
+Alias = "mr_blacklist1"
+Database = ..\data\data1.dbc
+CursorSource = "mr_blacklist"
+Name = "Cursor4"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0W069K</uniqueid>
+		<timestamp>1360754712</timestamp>
+		<class>cursor</class>
+		<classloc/>
+		<baseclass>cursor</baseclass>
+		<objname>Cursor5</objname>
+		<parent>Dataenvironment</parent>
+		<properties>Top = 20
+Left = 708
+Height = 150
+Width = 200
+Alias = "mr_blacklist2"
+Database = ..\data\data1.dbc
+CursorSource = "mr_blacklist"
+Name = "Cursor5"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0UYG9E</uniqueid>
+		<timestamp>1360754712</timestamp>
+		<class>_form</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>form</baseclass>
+		<objname>mr_blacklist_copy</objname>
+		<parent/>
+		<properties>Top = 0
+Left = 0
+DoCreate = .T.
+Caption = "BLACKLIST COPY"
+uniqueid = 0A1C9C5044604B3AA6A6AC0DD79CF1D6
+Name = "MR_BLACKLIST_COPY"
+tmrSql.Name = "tmrSql"
+</properties>
+		<protected/>
+		<methods>PROCEDURE init2
+thisform.updateui()
+ENDPROC
+PROCEDURE mr_copy
+local blmd5, blpath, ifolder1, ifolder2
+
+m.ifolder1 = justpath(justpath(mr_instances1.ifolder))
+m.ifolder2 = justpath(justpath(mr_instances2.ifolder))
+
+select 'mr_blacklist1'
+
+scan for mr_blacklist1.iguid == mr_instances1.iguid
+
+	m.blpath = strtran(mr_blacklist1.blpath, m.ifolder1, m.ifolder2, 1, 1)
+
+	m.blmd5 = _md5hashstring(lower(m.blpath))
+
+	if seek(m.blmd5, 'mr_blacklist2', 'blmd5') = .f.
+
+		append blank in 'mr_blacklist2'
+
+		replace mr_blacklist2.iguid with mr_instances2.iguid in 'mr_blacklist2'
+		replace mr_blacklist2.blpath with m.blpath in 'mr_blacklist2'
+		replace mr_blacklist2.blblack with mr_blacklist1.blblack in 'mr_blacklist2'
+		replace mr_blacklist2.isfolder with mr_blacklist1.isfolder in 'mr_blacklist2'
+		replace mr_blacklist2.blmd5 with m.blmd5 in 'mr_blacklist2'
+
+	endif
+
+endscan
+
+= seek(mr_instances2.iguid, 'mr_instances1', 'IGUID')
+
+thisform.updateui()
+
+thisform.refresh()
+
+messagebox('BLACKLIST COPIED', 0, 'MODROBOT')
+ENDPROC
+PROCEDURE updateui
+
+set filter to mr_blacklist.iguid == mr_instances1.iguid in 'mr_blacklist'
+
+go top in 'mr_blacklist'
+
+thisform.gridmain.refresh()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3>*mr_copy 
+</reserved3>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0UYG9D</uniqueid>
+		<timestamp>1360754507</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>_gridview1</objname>
+		<parent>_form1</parent>
+		<properties>Anchor = 11
+Height = 132
+Left = 12
+RecordSource = "mr_instances1"
+Top = 36
+Width = 936
+_gridcontextmenulang = en
+Name = "_gridview1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+LPARAMETERS nColIndex
+
+thisform.updateui()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0V1SNO</uniqueid>
+		<timestamp>1360754507</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>_gridview2</objname>
+		<parent>_form1</parent>
+		<properties>Anchor = 11
+Height = 132
+Left = 12
+RecordSource = "mr_instances2"
+Top = 204
+Width = 936
+_gridcontextmenulang = en
+Name = "_gridview2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0UYG9D</uniqueid>
+		<timestamp>1360754507</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>_label1</objname>
+		<parent>_form1</parent>
+		<properties>Caption = "FROM:"
+Height = 24
+Left = 12
+Top = 12
+Width = 828
+Name = "_label1"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0V5LA6</uniqueid>
+		<timestamp>1360754507</timestamp>
+		<class>_label</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>label</baseclass>
+		<objname>_label2</objname>
+		<parent>_form1</parent>
+		<properties>Caption = "TO:"
+Height = 24
+Left = 12
+Top = 180
+Width = 936
+Name = "_label2"
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0VCXI7</uniqueid>
+		<timestamp>1360754507</timestamp>
+		<class>_gridview</class>
+		<classloc>..\..\shared\_base.vcx</classloc>
+		<baseclass>grid</baseclass>
+		<objname>gridmain</objname>
+		<parent>_form1</parent>
+		<properties>Anchor = 15
+Height = 144
+Left = 12
+RecordSource = "mr_blacklist"
+Top = 348
+Width = 936
+_gridcontextmenulang = en
+Name = "gridmain"
+</properties>
+		<protected/>
+		<methods>PROCEDURE AfterRowColChange
+lparameters nColIndex
+
+this.sethighlightbackcolor()
+ENDPROC
+PROCEDURE DblClick
+replace mr_blacklist.blblack with not mr_blacklist.blblack in 'mr_blacklist'
+
+this.sethighlightbackcolor()
+ENDPROC
+PROCEDURE getdynamicbackcolor
+lparameters poColum as column
+
+*!* http://materialuicolors.co/?utm_source=launchers
+
+local lnDynamicBackColor
+
+if mr_blacklist.blblack = .t.
+
+	m.lnDynamicBackColor = rgb(0xFF, 0xCD, 0xD2)
+
+else
+
+	m.lnDynamicBackColor = this.ColumnBackColor
+
+
+endif
+
+return m.lnDynamicBackColor
+
+
+
+
+ENDPROC
+PROCEDURE sethighlightbackcolor
+
+if mr_blacklist.blblack = .t.
+
+	this.highlightbackcolor = rgb(229, 115, 115)
+
+else
+
+	this.highlightbackcolor = this.gethighlightbackcolor()
+
+
+endif
+
+
+
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>WINDOWS</platform>
+		<uniqueid>_5UK0W06A5</uniqueid>
+		<timestamp>1360754428</timestamp>
+		<class>_tbcommand</class>
+		<classloc>..\..\tbz\_tbz.vcx</classloc>
+		<baseclass>commandbutton</baseclass>
+		<objname>_tbcommand1</objname>
+		<parent>_form1</parent>
+		<properties>Top = 0
+Left = 864
+Caption = "COPY"
+tbalign = 2
+Name = "_tbcommand1"
+</properties>
+		<protected/>
+		<methods>PROCEDURE Click
+thisform.mr_copy()
+ENDPROC
+</methods>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+	<record>
+		<platform>COMMENT</platform>
+		<uniqueid>RESERVED</uniqueid>
+		<timestamp>0</timestamp>
+		<class/>
+		<classloc/>
+		<baseclass/>
+		<objname/>
+		<parent/>
+		<properties>Tahoma, 0, 8, 5, 13, 11, 27, 2, 0
+Arial, 0, 9, 5, 15, 12, 32, 3, 0
+Segoe UI, 0, 8, 6, 13, 11, 28, 2, 0
+</properties>
+		<protected/>
+		<methods/>
+		<objcode/>
+		<ole/>
+		<ole2/>
+		<reserved1/>
+		<reserved2/>
+		<reserved3/>
+		<reserved4/>
+		<reserved5/>
+		<reserved6/>
+		<reserved7/>
+		<reserved8/>
+		<user/>
+	</record>
+</VFPData>

@@ -39,6 +39,8 @@ If Seek(m.purl, 'pastes_del', 'purl') = .T.
 
    Enddo
 
+	mr_winhttplog(m.winhttp)
+
    *!* "success":true
 
    ?m.winhttp.responsetext

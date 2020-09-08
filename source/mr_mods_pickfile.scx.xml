@@ -60,7 +60,7 @@ Name = "Dataenvironment"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0RVGB7</uniqueid>
-		<timestamp>1322357811</timestamp>
+		<timestamp>1361339835</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -94,7 +94,7 @@ Name = "Cursor1"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0SB5Z8</uniqueid>
-		<timestamp>1322357811</timestamp>
+		<timestamp>1361339835</timestamp>
 		<class>cursor</class>
 		<classloc/>
 		<baseclass>cursor</baseclass>
@@ -127,7 +127,7 @@ Name = "Cursor2"
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0RPE6J</uniqueid>
-		<timestamp>1322357811</timestamp>
+		<timestamp>1361339835</timestamp>
 		<class>_form</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>form</baseclass>
@@ -197,14 +197,15 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0RPE6K</uniqueid>
-		<timestamp>1322351945</timestamp>
+		<timestamp>1361339809</timestamp>
 		<class>_gridview</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>grid</baseclass>
 		<objname>gridmain</objname>
-		<parent>MR_MODS_PICKFILE</parent>
+		<parent>mr_mods_pickfile</parent>
 		<properties>Height = 456
 Left = 12
+TabIndex = 1
 Top = 12
 Width = 936
 _gridcontextmenulang = en
@@ -233,15 +234,17 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0RXA0D</uniqueid>
-		<timestamp>1322351945</timestamp>
+		<timestamp>1361339835</timestamp>
 		<class>_commandbuttonaceptar</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_commandbuttonaceptar1</objname>
-		<parent>MR_MODS_PICKFILE</parent>
+		<parent>mr_mods_pickfile</parent>
 		<properties>Top = 473
 Left = 864
 Caption = "OK"
+Default = .T.
+TabIndex = 3
 Name = "_commandbuttonaceptar1"
 </properties>
 		<protected/>
@@ -267,15 +270,16 @@ ENDPROC
 	<record>
 		<platform>WINDOWS</platform>
 		<uniqueid>_5ID0RXA0E</uniqueid>
-		<timestamp>1322351945</timestamp>
+		<timestamp>1361339809</timestamp>
 		<class>_commandbuttoncancelar</class>
 		<classloc>..\..\shared\_base.vcx</classloc>
 		<baseclass>commandbutton</baseclass>
 		<objname>_commandbuttoncancelar1</objname>
-		<parent>MR_MODS_PICKFILE</parent>
+		<parent>mr_mods_pickfile</parent>
 		<properties>Top = 473
 Left = 768
 Caption = "Cancel"
+TabIndex = 2
 Name = "_commandbuttoncancelar1"
 </properties>
 		<protected/>
